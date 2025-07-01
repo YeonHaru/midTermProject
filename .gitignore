@@ -1,3 +1,11 @@
+.metadata/
+Servers/
+Error404/.settings/
+Error404/target/
+Error404/.classpath
+Error404/.project
+Error404/src/test/
+
 # Compiled class file
 *.class
 

@@ -1,0 +1,28 @@
+.custom-navbar {
+  background-color: var(--main-color) !important;
+  color: var(--text-main) !important;
+}
+
+/* 브랜드 텍스트나 링크에도 텍스트 색상 적용 */
+.custom-navbar .navbar-brand,
+.custom-navbar .nav-link {
+  color: var(--text-main) !important;
+}
+
+/* 선택 시나 호버 시 색상도 바꾸고 싶다면 */
+.custom-navbar .nav-link:hover {
+  color: var(--accent-color-1) !important;
+}
+
+/* 검색버튼 색상 */
+.custom-btn {
+  background-color: var(--accent-color-1) !important;
+  color: var(--bg-color) !important;
+  border: 1px solid var(--main-color) !important;
+}
+
+.custom-btn:hover {
+  background-color: var(--accent-color-1)!important;
+  color: white!important;
+  border-color: var(--accent-color-2)!important;
+}
