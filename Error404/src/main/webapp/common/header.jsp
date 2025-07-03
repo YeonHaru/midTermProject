@@ -4,7 +4,7 @@
 <!-- 부트스트랩 5.2.3 CSS -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
 
-
+${BOOKS}
 <!-- 상단 이벤트 배너 -->
 <nav class="navbar navbar-expand-lg custom-navbar"
 	style="background-color: var(- -bg-color);">
@@ -52,7 +52,7 @@
 						class="nav-link dropdown-toggle" href="#" id="domesticMenu"
 						role="button" data-bs-toggle="dropdown" aria-expanded="false">국내도서</a>
 						<ul class="dropdown-menu" aria-labelledby="domesticMenu">
-							<li><a class="dropdown-item" href="#">소설</a></li>
+							<li><a class="dropdown-item" href="/book.do">소설</a></li>
 							<li><a class="dropdown-item" href="#">에세이</a></li>
 							<li><a class="dropdown-item" href="#">자기계발</a></li>
 						</ul></li>

@@ -1,4 +1,6 @@
-package egovframework.example.book;
+package egovframework.example.book.web;
+
+import java.util.List;
 
 import org.egovframe.rte.ptl.mvc.tags.ui.pagination.PaginationInfo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,13 +23,17 @@ public class BookController {
 	private BookService bookService;
 	
 //	전체조회
-	@GetMapping("/book/book.do")
+	@GetMapping("/book.do")
 	public String book(
 			@ModelAttribute Criteria criteria, Model model
 			) {
-		PaginationInfo paginationInfo = new PaginationInfo();
-		paginationInfo.setCurrentPageNo(criteria.getPageIndex());
-		criteria.setFirstIndex(paginationInfo.getFirstRecordIndex());
+//		PaginationInfo paginationInfo = new PaginationInfo();
+//		paginationInfo.setCurrentPageNo(criteria.getPageIndex());
+//		criteria.setFirstIndex(paginationInfo.getFirstRecordIndex());
+//		전체조회 서비스 메소드 실행
+		List<?> books = bookService.selectBookList(criteria);
+		log.info("테스트 : "+books);	
+		model.addAttribute("books", books);
 		return "book/book_all";
 	}
 	
