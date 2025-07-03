@@ -1,35 +1,57 @@
-// DOMContentLoaded 이벤트를 사용해 DOM 로드 후 스크립트 실행
 document.addEventListener("DOMContentLoaded", function () {
-  // 탭 버튼과 콘텐츠 영역, 그리고 버튼들 선택
-  const tabs = document.querySelectorAll('.login-tab');
-  const contents = document.querySelectorAll('.login-content');
-  const memberBtn = document.querySelector('.login-btn-member');
-  const nonMemberBtn = document.querySelector('.login-btn-nonmember');
+  // 메인 배너 슬라이더
+  new Swiper(".main-banner-swiper", {
+    loop: true,
+    autoplay: {
+      delay: 4000,
+    },
+    pagination: {
+      el: ".main-banner-pagination",
+      clickable: true,
+    },
+    navigation: {
+      nextEl: ".main-banner-next",
+      prevEl: ".main-banner-prev",
+    },
+  });
+  // 공지사항 슬라이더
+  new Swiper(".notice-swiper", {
+    pagination: {
+      el: ".swiper-pagination",
+      type: "fraction",
+    },
+    navigation: {
+      nextEl: ".swiper-button-next",
+      prevEl: ".swiper-button-prev",
+    },
+  });
 
-  tabs.forEach(tab => {
-    tab.addEventListener('click', () => {
-      // 1. 모든 탭에서 active 클래스 제거 후 클릭한 탭에 active 추가
-      tabs.forEach(t => t.classList.remove('active'));
-      tab.classList.add('active');
+  // 페이지 번호 업데이트 함수
+  function updatePageNumber() {
+    const realIndex = noticeSwiper.realIndex + 1; // 1부터 시작
 
-      // 2. 모든 콘텐츠 영역 숨기고
-      contents.forEach(content => content.classList.remove('active'));
-
-      // 3. data-tab 속성 값에 따라 해당 콘텐츠에 active 클래스 추가
-      const selected = tab.getAttribute('data-tab'); // "member" 또는 "nonmember"
-      const targetContent = document.querySelector(`.login-${selected}`);
-      if (targetContent) {
-        targetContent.classList.add('active');
-      }
-
-      // 4. 회원과 비회원 전용 버튼 전환 (버튼 텍스트가 다르므로)
-      if (selected === 'member') {
-        memberBtn.classList.add('active');
-        nonMemberBtn.classList.remove('active');
+    const slides = document.querySelectorAll(".notice-swiper .swiper-slide");
+    slides.forEach((slide, index) => {
+      const priceEl = slide.querySelector(".side-box-price");
+      if (!priceEl) return;
+      if (index === noticeSwiper.activeIndex) {
+        priceEl.textContent = `${realIndex
+          .toString()
+          .padStart(2, "0")} - ${totalSlides.toString().padStart(2, "0")}`;
       } else {
-        memberBtn.classList.remove('active');
-        nonMemberBtn.classList.add('active');
+        priceEl.textContent = "";
       }
     });
+  }
+
+  // 초기 페이지 번호 설정
+  updatePageNumber();
+
+  // 슬라이드 변경 시 페이지 번호 갱신
+  noticeSwiper.on("slideChange", updatePageNumber);
+
+  // 다음 버튼 클릭 이벤트
+  document.getElementById("notice-next").addEventListener("click", function () {
+    noticeSwiper.slideNext();
   });
 });
