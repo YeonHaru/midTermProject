@@ -9,8 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import egovframework.example.common.Criteria;
-import egovframework.example.dept.service.impl.DeptMapper;
 import egovframework.example.users.service.UsersService;
+import egovframework.example.users.service.UsersVO;
 
 /**
  * @author user
@@ -26,5 +26,17 @@ public class UsersServiceImpl implements UsersService{
 		// TODO Auto-generated method stub
 		return usersMapper.selectUsersList(criteria);
 	}
+
+	@Override
+	public boolean login(UsersVO usersVO) {
+		// TODO Auto-generated method stub
+		UsersVO dbUser = usersMapper.selectUserById(usersVO.getUserid());
+		
+		if (dbUser !=null && dbUser.getPassword().equals(usersVO.getPassword())) {
+			return true;
+		}
+		return false;
+	}
+
 	
 }
