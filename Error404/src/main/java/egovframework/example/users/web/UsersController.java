@@ -3,10 +3,17 @@
  */
 package egovframework.example.users.web;
 
+
+import javax.servlet.http.HttpSession;
+
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+
+import org.springframework.web.bind.annotation.PostMapping;
+
 
 import egovframework.example.users.service.UsersService;
 import egovframework.example.users.service.UsersVO;
@@ -37,13 +44,17 @@ public class UsersController {
 		return "auth/login";  // login에 연결해둠
 		
 	}
+
+	@PostMapping("/login.do")
+	public String login(UsersVO usersVO, HttpSession session) {
+	    boolean success = usersService.login(usersVO);
+	    if (success) {
+	        session.setAttribute("loginUser", usersVO);
+	        return "redirect:/home.do";
+	    } else {
+	        return "login";
+	    }
 	
-//	매장조회 페이지 열기(주소정하기, 추가페이지 우리 몇개까지?)
-	@GetMapping("/mapview.do")
-	public String locationMapView(Model model) {
-		model.addAttribute("usersVO", new UsersVO());
-		return "location/mapview";  // mapview에 연결해둠
-		
-	}
+}
 
 }

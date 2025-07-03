@@ -14,6 +14,8 @@
 
   <!-- 오른쪽 상단 회원가입 버튼 -->
   <div class="signup-button-container">
+
+
     <a href="/join.do" class="signup-button">회원가입</a>
   </div>
 
@@ -28,6 +30,7 @@
 
     <!-- 회원 로그인 콘텐츠 -->
     <div class="login-content login-member active">
+
       <div class="login-form">
         <input type="text" class="login-input" placeholder="아이디를 입력하세요">
         <input type="password" class="login-input" placeholder="비밀번호를 입력하세요">

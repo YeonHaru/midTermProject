@@ -4,7 +4,6 @@
 package egovframework.example.users.service;
 
 import egovframework.example.common.Criteria;
-import egovframework.example.dept.service.DeptVO;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
