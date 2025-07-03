@@ -3,13 +3,17 @@
  */
 package egovframework.example.users.web;
 
+
 import javax.servlet.http.HttpSession;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+
 import org.springframework.web.bind.annotation.PostMapping;
+
 
 import egovframework.example.users.service.UsersService;
 import egovframework.example.users.service.UsersVO;
@@ -40,6 +44,7 @@ public class UsersController {
 		return "auth/login";  // login에 연결해둠
 		
 	}
+
 	@PostMapping("/login.do")
 	public String login(UsersVO usersVO, HttpSession session) {
 	    boolean success = usersService.login(usersVO);
@@ -51,4 +56,5 @@ public class UsersController {
 	    }
 	
 }
+
 }

@@ -1,4 +1,6 @@
 .best-list {
+  width: 95%;
+  padding-left: 0;
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1rem;
