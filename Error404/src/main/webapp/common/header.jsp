@@ -6,7 +6,7 @@
 <!-- 부트스트랩 아이콘 CDN (head 태그 안에 넣어야 함) -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 
-
+${BOOKS}
 <!-- 상단 이벤트 배너 -->
 <nav class="navbar navbar-expand-lg custom-navbar"
 	style="background-color: var(- -bg-color);">
@@ -54,7 +54,7 @@
 						class="nav-link dropdown-toggle" href="#" id="domesticMenu"
 						role="button" data-bs-toggle="dropdown" aria-expanded="false">국내도서</a>
 						<ul class="dropdown-menu" aria-labelledby="domesticMenu">
-							<li><a class="dropdown-item" href="#">소설</a></li>
+							<li><a class="dropdown-item" href="/book.do">소설</a></li>
 							<li><a class="dropdown-item" href="#">에세이</a></li>
 							<li><a class="dropdown-item" href="#">자기계발</a></li>
 						</ul></li>
