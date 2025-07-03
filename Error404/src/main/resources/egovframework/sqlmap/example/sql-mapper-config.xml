@@ -15,7 +15,8 @@
     <typeAliases>
          <typeAlias type="egovframework.example.common.Criteria" alias="Criteria"/>
         <typeAlias type="egovframework.example.dept.service.DeptVO" alias="DeptVO"/>
-        <typeAlias type="egovframework.example.users.service.UsersVO" alias="UsersVO"/>   
+        <typeAlias type="egovframework.example.users.service.UsersVO" alias="UsersVO"/> 
+        <typeAlias type="egovframework.example.book.service.BookVO" alias="BookVO"/>   
 
 
     
