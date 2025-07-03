@@ -1,6 +1,6 @@
 /* 푸터 전체 */
 .footer {
-  background: var(--bg-color);
+/*   background: var(--bg-color); */
   /* 원근법 깊이 설정 */
   perspective: 1000px;
   /* padding 제거하고 HTML에서 클래스 사용 권장 */
