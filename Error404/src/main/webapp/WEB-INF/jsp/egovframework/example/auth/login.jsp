@@ -14,12 +14,15 @@
 
   <!-- 오른쪽 상단 회원가입 버튼 -->
   <div class="signup-button-container">
-
-
-    <a href="/join.do" class="signup-button">회원가입</a>
+    <a href="${pageContext.request.contextPath}/join.do" class="signup-button">회원가입</a>
   </div>
 
   <h2 class="login-title">로그인</h2>
+
+  <!-- 로그인 실패 메시지 -->
+  <c:if test="${not empty msg}">
+    <p class="error-msg" style="color: red; text-align:center;">${msg}</p>
+  </c:if>
 
   <!-- 탭 영역 -->
   <div class="login-box">
@@ -30,18 +33,20 @@
 
     <!-- 회원 로그인 콘텐츠 -->
     <div class="login-content login-member active">
+      <form action="${pageContext.request.contextPath}/login.do" method="post">
+        <div class="login-form">
+          <input type="text" name="userid" class="login-input" placeholder="아이디를 입력하세요" required>
+          <input type="password" name="password" class="login-input" placeholder="비밀번호를 입력하세요" required>
 
-      <div class="login-form">
-        <input type="text" class="login-input" placeholder="아이디를 입력하세요">
-        <input type="password" class="login-input" placeholder="비밀번호를 입력하세요">
-
-        <div class="login-options">
-          <label><input type="checkbox"> 로그인 상태 유지</label>
-          <label><input type="checkbox"> 아이디 저장</label>
+          <div class="login-options">
+            <label><input type="checkbox" name="remember"> 로그인 상태 유지</label>
+            <label><input type="checkbox" name="saveId"> 아이디 저장</label>
+          </div>
         </div>
-      </div>
-      <!-- 회원용 버튼 -->
-      <button class="login-button login-btn-member active">로그인</button>
+
+        <button type="submit" class="login-button login-btn-member active">로그인</button>
+      </form>
+
       <div class="login-links">
         <a href="#">아이디 찾기</a>
         <span>|</span>
@@ -70,6 +75,6 @@
   </div>
 </div>
 
-<script src="${pageContext.request.contextPath}/js/index.js"></script>
+<script src="${pageContext.request.contextPath}/js/login.js"></script>
 </body>
 </html>
