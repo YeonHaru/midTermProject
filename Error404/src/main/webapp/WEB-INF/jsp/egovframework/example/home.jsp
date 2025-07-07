@@ -64,7 +64,7 @@
 						</div>
 						<div class="book-card">
 							<div class="image-box">
-								<img src="./images/sample.jpg" alt="도서 이미지" />
+								<img src="./images/sample2.jpg" alt="도서 이미지" />
 							</div>
 							<p class="title">도서 제목 1</p>
 						</div>
