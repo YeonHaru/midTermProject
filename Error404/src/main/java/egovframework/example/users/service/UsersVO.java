@@ -23,11 +23,11 @@ import lombok.ToString;
 @ToString
 @EqualsAndHashCode(callSuper = false)
 public class UsersVO extends Criteria{
-	private String userid ;
-	private String password ;
-	private String name ;
-	private String email ;
-	private String phone ;
-	private String join_date ;
-	private String role ;
+	private String userid ;						// 아이디
+	private String password ;					// 비밀번호
+	private String name ;						// 이름
+	private String email ;						// 메일
+	private String phone ;						// 전화번호
+	private String join_date ;					// 가입날짜
+	private String role ;							// 등급(역할)
 }
