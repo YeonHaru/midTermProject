@@ -110,7 +110,8 @@
         </div>
       </div>
     </div>      
-    <!-- 하단 아이콘 -->
+  </div>
+   <!-- 하단 아이콘 -->
     <div class="quick-menu">
       <ul class="quick-menu-list">
         <c:forEach var="icon" items="${pageContext.request.contextPath}/images/main/">
@@ -149,7 +150,6 @@
         </li>
       </ul>
     </div>
-  </div>
       <div class="mainpage-center"></div>
 <!-- 위에까지가 미니 아이콘 배너들 -->
 <div class="bg page">
