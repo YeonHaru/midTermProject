@@ -5,11 +5,25 @@
 	<select id="selectUsersList" parameterType="Criteria"
 		resultType="UsersVO">
 		SELECT * FROM USERS
-		WHERE NAME LIKE '%' || #{searchKeyword} ||'%'
+		WHERE NAME LIKE '%' || #{searchKeyword}
+		||'%'
 		OFFSET #{firstIndex} ROWS
 		FETCH NEXT #{pageUnit} ROWS ONLY
 	</select>
-	<select id="selectUserById" resultType="UsersVO" parameterType="String">
-     SELECT * FROM USERS WHERE USERID = #{userid}
-</select>
+	<select id="selectUserById" resultType="UsersVO"
+		parameterType="String">
+		SELECT * FROM USERS WHERE USERID = #{userid}
+	</select>
+	<select id="findUserId" resultType="String">
+		SELECT userid
+		FROM USERS
+		WHERE name = #{name} AND email = #{email}
+	</select>
+
+	<select id="findPassword" resultType="String">
+		SELECT password
+		FROM USERS
+		WHERE userid = #{userid} AND email = #{email}
+	</select>
+
 </mapper>
