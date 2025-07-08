@@ -54,17 +54,24 @@
 						</div>
 					</div>
 					<div class="user-summary-item">
+						<span class="icon">🧭</span>
+						<div>
+							<strong>회원등급</strong>
+							<p>
+								<c:out value="${user.grade}" />
+							</p>
+						</div>
+					</div>
+					<div class="user-summary-item qna">
 						<span class="icon">💬</span>
 						<div>
 							<strong>Q &amp; A</strong>
 							<div class="link-inline">
-								<!-- 문의하기 링크 -->
 								<span class="inquiry-link-wrap"> <a
 									href="javascript:void(0);"
 									onclick="window.open('<c:url value='/mypage/1on1Inquiry.do' />', 'inquiryPopup', 'width=460,height=600');">1:1
 										문의</a>
-								</span> 
-								<span class="inquiry-link-wrap ml2"> <a
+								</span> <span class="inquiry-link-wrap ml2"> <a
 									href="javascript:void(0);"
 									onclick="window.open('<c:url value='/mypage/myQuestions.do' />', 'myQuestionsPopup', 'width=600,height=500');"
 									class="inquiry-link myQuestion">나의 질문</a>
@@ -74,6 +81,7 @@
 					</div>
 				</div>
 
+				<!-- 부가 정보 박스 (프로모션 동의 제외) -->
 				<div class="additional-info mt4">
 					<h3 class="section-title">부가 정보</h3>
 
@@ -100,18 +108,46 @@
 							type="text" id="address" value="<c:out value='${user.address}'/>"
 							disabled />
 					</div>
-
 					<div class="button-wrap tcenter">
 						<button id="editBtn" class="btn pink-btn mr2">수정</button>
 						<button id="saveBtn" class="btn pink-btn hidden">저장</button>
 					</div>
+					<!-- 알림 수신 동의 토글박스 -->
+					<h3 class="section-title">알림 수신 동의</h3>
+					<!-- 텍스트 라벨 묶음 박스 -->
+
+					<div class="notification-agree-box">
+						<div class="notification-row">
+							<label for="promoAgree" class="notification-label"><strong>프로모션
+									정보 수신 동의</strong></label>
+							<div class="toggle-switch">
+								<input type="checkbox" id="promoAgree" name="promoAgree"
+									<c:if test="${user.promoAgree == 'Y'}">checked</c:if> /> <label
+									for="promoAgree" class="switch-label"></label> <span
+									class="toggle-status"></span>
+							</div>
+						</div>
+
+						<div class="notification-row">
+							<label for="postNotifyAgree" class="notification-label"><strong>게시물
+									조치 수신 알림</strong></label>
+							<div class="toggle-switch">
+								<input type="checkbox" id="postNotifyAgree"
+									name="postNotifyAgree"
+									<c:if test="${user.postNotifyAgree == 'Y'}">checked</c:if> />
+								<label for="postNotifyAgree" class="switch-label"></label> <span
+									class="toggle-status"></span>
+								<!-- 이 부분 꼭 있어야 해요 -->
+							</div>
+						</div>
+					</div>
+
 				</div>
 			</section>
 
-			<!-- 이하 주문 내역, 관심 목록, 설정 섹션은 그대로 두어도 무방 -->
+			<!-- 이하 주문 내역, 관심 목록, 설정 섹션 -->
 			<section class="tab-content hidden" id="orders">
 				<h2>주문 내역</h2>
-				<!-- 예시 주문 내역 -->
 				<ul class="order-list">
 					<li class="order-item">
 						<div class="order-info">
@@ -130,7 +166,6 @@
 								class="btn btn-small btn-secondary cancel-btn">취소</a>
 						</div>
 					</li>
-					<!-- 추가 주문 내역 반복 -->
 					<li class="order-item">
 						<div class="order-info">
 							<span class="order-date">2025-06-25</span> <span
@@ -148,7 +183,6 @@
 								class="btn btn-small btn-secondary cancel-btn">취소</a>
 						</div>
 					</li>
-					<!-- 추가 주문 내역 반복 -->
 					<li class="order-item">
 						<div class="order-info">
 							<span class="order-date">2025-06-25</span> <span
@@ -178,8 +212,38 @@
 			</section>
 
 			<section class="tab-content hidden" id="settings">
-				<h2>설정</h2>
-				<p>계정 설정, 알림 설정 등을 여기서 관리하세요.</p>
+				<h2 class="section-title">설정</h2>
+
+				<!-- 모바일에서는 아코디언 형태가 편함 -->
+				<details open>
+					<summary class="set-accordion-header">비밀번호 변경</summary>
+					<form id="changePasswordForm" class="set-form-stack">
+						<label for="currentPassword" class="mt3">현재 비밀번호</label> <input
+							type="password" id="currentPassword" name="currentPassword"
+							required class="mt0" /> <label for="newPassword" class="mt3">새
+							비밀번호</label> <input type="password" id="newPassword" name="newPassword"
+							required class="mt0" /> <label for="confirmPassword" class="mt3">새
+							비밀번호 확인</label> <input type="password" id="confirmPassword"
+							name="confirmPassword" required class="mt0" />
+
+						<button type="submit" class="set-btn set-pink-btn mt4">변경하기</button>
+					</form>
+				</details>
+
+				<details>
+					<summary class="set-accordion-header">2단계 인증 설정</summary>
+					<label class="set-switch-label mt4"> <input type="checkbox"
+						id="twoFactorAuth" /> 2단계 인증 사용
+					</label>
+				</details>
+
+				<details>
+					<summary class="set-accordion-header">최근 로그인 기록</summary>
+					<ul class="set-login-history mt3">
+						<li>2025-07-01 14:22 - 서울, PC</li>
+						<li>2025-06-30 18:11 - 부산, 모바일</li>
+					</ul>
+				</details>
 			</section>
 		</div>
 
