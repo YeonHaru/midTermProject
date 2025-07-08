@@ -20,7 +20,7 @@ ${BOOKS}
 		<!-- 상단 문구 -->
 		<div style="color: var(- -text-sub); font-size: 0.8125rem;">
 			<!-- small (13px) -->
-			여름 책 콘텐츠가 담긴 NOT FOUND 키링 <span
+			여름 책 콘텐츠가 담긴 NOT FOUNDa 키링 <span
 				style="color: var(- -accent-color-1); font-weight: bold;">
 				독서는 여름이 제철! 🍇🍒 </span>
 		</div>
@@ -84,7 +84,7 @@ ${BOOKS}
 						</ul></li>
 
 					<!-- 이벤트 -->
-					<li class="nav-item"><a class="nav-link" href="#">이벤트</a></li>
+					<li class="nav-item"><a class="nav-link" href="/eventmain.do">이벤트</a></li>
 				</ul>
 				<ul class="navbar-nav mb-2 mb-lg-0">
 
