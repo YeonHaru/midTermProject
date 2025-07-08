@@ -20,13 +20,13 @@ import egovframework.example.users.service.UsersVO;
 public class UsersServiceImpl implements UsersService{
 	@Autowired
 	private UsersMapper usersMapper;
-
+// 	전체조회
 	@Override
 	public List<?> selectUsersList(Criteria criteria) {
 		// TODO Auto-generated method stub
 		return usersMapper.selectUsersList(criteria);
 	}
-
+//	로그인
 	@Override
 	public boolean login(UsersVO usersVO) {
 		// TODO Auto-generated method stub
@@ -37,6 +37,11 @@ public class UsersServiceImpl implements UsersService{
 		}
 		return false;
 	}
+//	마이페이지 불러오기? 들어가기?
+	@Override
+	public UsersVO selectUserById(String userid) {
+		// TODO Auto-generated method stub
+		return usersMapper.selectUserById(userid);
+	}
 
-	
 }

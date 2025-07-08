@@ -14,5 +14,6 @@ import egovframework.example.common.Criteria;
 public interface UsersService {
 	List<?> selectUsersList(Criteria criteria);
 	boolean login(UsersVO usersVO);
+	UsersVO selectUserById(String userid);
 
 }

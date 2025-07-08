@@ -17,5 +17,5 @@ import egovframework.example.users.service.UsersVO;
 @Mapper
 public interface UsersMapper {
 	public List<?> selectUsersList(Criteria criteria);
-	public UsersVO selectUserById(String userId);
+	public UsersVO selectUserById(String userid);
 }
