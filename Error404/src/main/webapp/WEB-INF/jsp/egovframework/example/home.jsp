@@ -20,7 +20,7 @@
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/css/402_Notice.css">
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/css/403_ikon.css">	
+	href="${pageContext.request.contextPath}/css/403_ikon.css">
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/css/03_footer.css" />
 <link rel="stylesheet"
@@ -39,6 +39,182 @@
 </head>
 <body>
 	<jsp:include page="/common/header.jsp" />
+
+	
+	<div class="page">
+		<div class="mainpage-container">
+			<!-- 메인 배너 -->
+			<div class="main-banner-wrapper">
+				<div class="swiper main-banner-swiper">
+					<div class="swiper-wrapper">
+						<div class="swiper-slide main-banner-slide">
+							<div class="main-image"></div>
+						</div>
+						<div class="swiper-slide main-two-slide">
+							<div class="main-image2"></div>
+						</div>
+						<div class="swiper-slide main-two-slide">
+							<div class="main-image3"></div>
+						</div>
+						<div class="swiper-slide main-two-slide">
+							<div class="main-image4"></div>
+						</div>
+						<div class="swiper-slide main-two-slide">
+							<div class="main-image5"></div>
+						</div>
+					</div>
+					<div class="swiper-pagination main-banner-pagination"></div>
+					<div class="swiper-button-prev main-banner-prev"></div>
+					<div class="swiper-button-next main-banner-next"></div>
+				</div>
+			</div>
+
+			<!-- 공지사항 박스 -->
+			<div class="mainpage-right">
+				<div class="swiper notice-swiper">
+					<div class="swiper-wrapper">
+
+						<!-- 예시 상품 1 -->
+						<div class="swiper-slide">
+							<div class="mainpage-side-box">
+								<div class="side-box-badge">오늘만 특가</div>
+								<img
+									src="${pageContext.request.contextPath}/images/main/school.png"
+									alt="사무용품 세트" />
+								<div class="mainpage-side-box-content">
+									<h5>
+										오늘만 특가 <br /> 네오 학용품 세트
+									</h5>
+									<a href="#" class="bluedelete">오늘만 이 가격 <br /> 13,200원!
+									</a>
+									<div class="side-box-price"></div>
+								</div>
+							</div>
+						</div>
+
+						<!-- 예시 상품 2 -->
+						<div class="swiper-slide">
+							<div class="mainpage-side-box">
+								<div class="side-box-badge">
+									내일까지 <br /> 특가
+								</div>
+								<img
+									src="${pageContext.request.contextPath}/images/main/Eco.image.png"
+									alt="에코백" />
+								<div class="mainpage-side-box-content">
+									<h5>
+										내일까지 특가! <br /> Eco 에코백
+									</h5>
+									<a href="#" class="bluedelete">지금 9,900원! <br /> 내일 자정
+										12시까지 특가!
+									</a>
+									<div class="side-box-price"></div>
+								</div>
+							</div>
+						</div>
+
+						<!-- 예시 상품 3 -->
+						<div class="swiper-slide">
+							<div class="mainpage-side-box">
+								<div class="side-box-badge">한정 수량</div>
+								<img
+									src="${pageContext.request.contextPath}/images/main/bookmark.image.png"
+									alt="책갈피" />
+								<div class="mainpage-side-box-content">
+									<h5>
+										한정 판매 <br /> 우주 책갈피!
+									</h5>
+									<a href="#" class="bluedelete">지금 한정판매중! <br /> 4개 묶음으로 단돈
+										5,500 판매!
+									</a>
+									<div class="side-box-price"></div>
+								</div>
+							</div>
+						</div>
+
+					</div>
+					<div class="swiper-button-next"></div>
+					<div class="swiper-button-prev"></div>
+					<div class="swiper-pagination"></div>
+				</div>
+			</div>
+		</div>
+		<!-- 하단 아이콘 -->
+		<div class="quick-menu">
+			<ul class="quick-menu-list">
+				<c:forEach var="icon"
+					items="${pageContext.request.contextPath}/images/main/">
+					<!-- 이 부분은 향후 JSTL 배열 등으로 처리 가능 -->
+				</c:forEach>
+				<!-- /temp.do 템플릿 양식 예시입니다. 홈 컨트롤러에 임시로 해놨습니다. 템플릿양식으로 연결만 시켜둘게요. -->
+				<li><a href="/temp.do"><img
+						src="${pageContext.request.contextPath}/images/main/jewelry.svg"
+						alt="할인혜택" /><span>할인혜택</span></a></li>
+				<li><a href="#"><img
+						src="${pageContext.request.contextPath}/images/main/sale.svg"
+						alt="오늘만특가" /><span>오늘만특가</span></a></li>
+				<li><a href="#"><img
+						src="${pageContext.request.contextPath}/images/main/app.svg"
+						alt="APP혜택" /><span>APP혜택</span></a></li>
+				<li><a href="#"><img
+						src="${pageContext.request.contextPath}/images/main/card.svg"
+						alt="기프트카드" /><span>기프트카드</span></a></li>
+				<li><a href="#"><img
+						src="${pageContext.request.contextPath}/images/main/book.svg"
+						alt="바로출판" /><span>바로출판</span></a></li>
+				<li><a href="#"><img
+						src="${pageContext.request.contextPath}/images/main/book of.svg"
+						alt="이달의 책" /><span>이달의 책</span></a></li>
+				<li><a href="#"><img
+						src="${pageContext.request.contextPath}/images/main/pen.svg"
+						alt="손글씨캠페인" /><span>글씨캠페인</span></a></li>
+				<li><a href="#"><img
+						src="${pageContext.request.contextPath}/images/main/box.svg"
+						alt="사은품" /><span>사은품</span></a></li>
+				<li><a href="#"><img
+						src="${pageContext.request.contextPath}/images/main/good1.svg"
+						alt="추천" /><span>추천</span></a></li>
+				<li><a href="#"><img
+						src="${pageContext.request.contextPath}/images/main/Books.svg"
+						alt="인물&작품" /><span>인물&작품</span></a></li>
+			</ul>
+		</div>
+
+
+		<!--  회원가입유도 배너  -->
+		<section class="container mb3">
+			<div
+				class="signup-banner tcenter rounded-4 shadow flex items-center p-4">
+				<!-- 텍스트와 버튼 -->
+				<div class="banner-text">
+					<h3 class="mb3">
+						🎁 지금 가입하면 <span class="highlight">3,000원 할인</span>!
+					</h3>
+					<small class="mb4">간편 가입하고, 다양한 혜택과 함께 책을 만나보세요 📚</small>
+					<div class="mt4">
+						<a href="${pageContext.request.contextPath}/login.do"
+							class="btn-signup">회원가입 하러가기</a>
+					</div>
+				</div>
+			</div>
+		</section>
+		<div class="container my-5">
+  
+<!-- 중간 배너 -->
+<div class="swiper custom-banner-swiper">
+  <div class="swiper-wrapper">
+
+    <!-- 슬라이드 1: 밝은 민트 배경 -->
+    <div class="swiper-slide banner-slide-light">
+      <div class="slide-box">
+        <div class="text-box">
+          <h5 class="fw-bold">알라딘 프로모션</h5>
+          <p class="mb-0">신간 도서 10% 할인 이벤트 진행 중!</p>
+          <a href="#" class="btn btn-sm btn-primary mt-2">자세히 보기</a>
+        </div>
+        <div class="img-box">
+          <img src="${pageContext.request.contextPath}/images/해리포터.jpg" class="img-fluid rounded" alt="배너1" />
+
 <div class="page">
     <div class="mainpage-container">
       <!-- 메인 배너 -->
@@ -61,9 +237,37 @@
               <div class="ebook-main-image5"></div>
             </div>
           </div>
+
         </div>
       </div>
+    </div>
 
+
+    <!-- 슬라이드 2: 파란 배경 -->
+    <div class="swiper-slide banner-slide-primary">
+      <div class="slide-box">
+        <div class="text-box">
+          <h5 class="fw-bold">이벤트 배너</h5>
+          <p class="mb-0">첫 구매 고객 대상 추가 적립!</p>
+          <a href="#" class="btn btn-sm btn-light mt-2">참여하기</a>
+        </div>
+        <div class="img-box">
+          <img src="${pageContext.request.contextPath}/images/해리포터.jpg" class="img-fluid rounded" alt="배너2" />
+        </div>
+      </div>
+    </div>
+
+    <!-- 슬라이드 3: 노랑 배경 -->
+    <div class="swiper-slide banner-slide-warning">
+      <div class="slide-box">
+        <div class="text-box">
+          <h5 class="fw-bold">알림</h5>
+          <p class="mb-0">오늘의 인기 작가 인터뷰 🔥</p>
+          <a href="#" class="btn btn-sm btn-dark mt-2">인터뷰 보기</a>
+        </div>
+        <div class="img-box">
+          <img src="${pageContext.request.contextPath}/images/해리포터.jpg" class="img-fluid rounded" alt="배너3" />
+=======
       <!-- 공지사항 박스 -->
       <div class="mainpage-right">
         <div class="swiper notice-swiper">
@@ -107,49 +311,22 @@
                 </div>
               </div>
             </div>
+
         </div>
       </div>
-    </div>      
-    <!-- 하단 아이콘 -->
-    <div class="quick-menu">
-      <ul class="quick-menu-list">
-        <c:forEach var="icon" items="${pageContext.request.contextPath}/images/main/">
-          <!-- 이 부분은 향후 JSTL 배열 등으로 처리 가능 -->
-        </c:forEach>
-<!-- /temp.do 템플릿 양식 예시입니다. 홈 컨트롤러에 임시로 해놨습니다. 템플릿양식으로 연결만 시켜둘게요. -->
-        <li>
-          <a href="/temp.do"><img src="${pageContext.request.contextPath}/images/main/jewelry.svg" alt="할인혜택" /><span>할인혜택</span></a>
-        </li>
-        <li>
-          <a href="#"><img src="${pageContext.request.contextPath}/images/main/sale.svg" alt="오늘만특가" /><span>오늘만특가</span></a>
-        </li>
-        <li>
-          <a href="#"><img src="${pageContext.request.contextPath}/images/main/app.svg" alt="APP혜택" /><span>APP혜택</span></a>
-        </li>
-        <li>
-          <a href="#"><img src="${pageContext.request.contextPath}/images/main/card.svg" alt="기프트카드" /><span>기프트카드</span></a>
-        </li>
-        <li>
-          <a href="#"><img src="${pageContext.request.contextPath}/images/main/book.svg" alt="바로출판" /><span>바로출판</span></a>
-        </li>
-        <li>
-          <a href="#"><img src="${pageContext.request.contextPath}/images/main/book of.svg" alt="이달의 책" /><span>이달의 책</span></a>
-        </li>
-        <li>
-          <a href="#"><img src="${pageContext.request.contextPath}/images/main/pen.svg" alt="손글씨캠페인" /><span>글씨캠페인</span></a>
-        </li>
-        <li>
-          <a href="#"><img src="${pageContext.request.contextPath}/images/main/box.svg" alt="사은품" /><span>사은품</span></a>
-        </li>
-        <li>
-          <a href="#"><img src="${pageContext.request.contextPath}/images/main/good1.svg" alt="추천" /><span>추천</span></a>
-        </li>
-        <li>
-          <a href="#"><img src="${pageContext.request.contextPath}/images/main/Books.svg" alt="인물&작품" /><span>인물&작품</span></a>
-        </li>
-      </ul>
     </div>
+
+
+    <!-- 네비게이션 -->
+    <div class="swiper-button-prev banner-prev"></div>
+    <div class="swiper-button-next banner-next"></div>
+    <div class="swiper-pagination banner-pagination"></div>
   </div>
+
+</div>
+	</div>
+	<div class="mainpage-center"></div>
+
       <div class="mainpage-center"></div>
 <!-- 위에까지가 미니 아이콘 배너들 -->
 <div class="bg page">
@@ -364,9 +541,12 @@
       </section>
     </div>    
 	
+
 	<!-- 꼬리말 -->
-<!-- jQuery (최신 안정 버전 하나만) -->
-<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+	<!-- jQuery (최신 안정 버전 하나만) -->
+	<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+
 
 <!-- Bootstrap JS (번들 형태, Popper 포함) -->
 <script
@@ -384,9 +564,10 @@
 <!-- Swiper 최신 버전 -->
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
-<!-- 커스텀 JS -->
-<script src="${pageContext.request.contextPath}/js/401_main.js"></script>
 
-<jsp:include page="/common/footer.jsp" />
+	<!-- 커스텀 JS -->
+	<script src="${pageContext.request.contextPath}/js/401_main.js"></script>
+
+	<jsp:include page="/common/footer.jsp" />
 </body>
 </html>
