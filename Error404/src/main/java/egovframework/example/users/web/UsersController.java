@@ -44,7 +44,7 @@ public class UsersController {
 		return "auth/login";  // login에 연결해둠
 		
 	}
-
+	//	로그인
 	@PostMapping("/login.do")
 	public String login(UsersVO usersVO, HttpSession session) {
 	    boolean success = usersService.login(usersVO);
@@ -54,15 +54,5 @@ public class UsersController {
 	    } else {
 	        return "login";
 	    }
-	
 }
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-
-=======
-	
->>>>>>> Stashed changes
-=======
-	
->>>>>>> Stashed changes
 }

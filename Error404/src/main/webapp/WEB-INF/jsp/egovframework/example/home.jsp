@@ -35,12 +35,6 @@
 	<jsp:include page="/common/header.jsp" />
 <div class="page">
     <div class="mainpage-container">
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-=======
-=======
->>>>>>> Stashed changes
-
       <!-- 메인 배너 -->
       <div class="main-banner-wrapper">
         <div class="swiper main-banner-swiper">
@@ -110,8 +104,6 @@
                 </div>
               </div>
             </div>
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
 
           </div>
           <div class="swiper-button-next"></div>
@@ -120,8 +112,6 @@
         </div>
       </div>
     </div>
-
-<<<<<<< Updated upstream
       <!-- 메인 배너 -->
       <div class="main-banner-wrapper">
         <div class="swiper main-banner-swiper">
@@ -147,9 +137,6 @@
           <div class="swiper-button-next main-banner-next"></div>
         </div>
       </div>
-=======
->>>>>>> Stashed changes
-
           </div>
           <div class="swiper-button-next"></div>
           <div class="swiper-button-prev"></div>
@@ -158,11 +145,7 @@
       </div>
     </div>
 
-<<<<<<< Updated upstream
-      <!-- 공지사항 박스 -->
-      <div class="mainpage-right">
-        <div class="swiper notice-swiper">
-          <div class="swiper-wrapper">
+
 
             <!-- 예시 상품 1 -->
             <div class="swiper-slide">
@@ -218,7 +201,7 @@
           <!-- 이 부분은 향후 JSTL 배열 등으로 처리 가능 -->
         </c:forEach>
 
-=======
+
     <!-- 하단 아이콘 -->
     <div class="quick-menu">
       <ul class="quick-menu-list">
@@ -226,8 +209,7 @@
           <!-- 이 부분은 향후 JSTL 배열 등으로 처리 가능 -->
         </c:forEach>
 
->>>>>>> Stashed changes
-=======
+
     <!-- 하단 아이콘 -->
     <div class="quick-menu">
       <ul class="quick-menu-list">
@@ -235,7 +217,6 @@
           <!-- 이 부분은 향후 JSTL 배열 등으로 처리 가능 -->
         </c:forEach>
 
->>>>>>> Stashed changes
 <!-- /temp.do 템플릿 양식 예시입니다. 홈 컨트롤러에 임시로 해놨습니다. 템플릿양식으로 연결만 시켜둘게요. -->
         <li>
           <a href="/temp.do"><img src="${pageContext.request.contextPath}/images/main/jewelry.svg" alt="할인혜택" /><span>할인혜택</span></a>
