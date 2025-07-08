@@ -107,7 +107,6 @@
                 </div>
               </div>
             </div>
-          </div>
         </div>
       </div>
     </div>      
@@ -364,6 +363,7 @@
 </div>
       </section>
     </div>    
+	
 	<!-- 꼬리말 -->
 <!-- jQuery (최신 안정 버전 하나만) -->
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>

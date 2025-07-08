@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="egovframework.example.notice.service.impl.NoticeMapper">
+
+    <!-- 공지사항 전체 목록 조회 -->
+  <select id="selectNoticeList"
+          parameterType="egovframework.example.common.Criteria"
+          resultType="egovframework.example.notice.service.NoticeVO">
+    SELECT * 
+    FROM NOTICE
+    WHERE TITLE LIKE '%' || #{searchKeyword} || '%'
+    OFFSET #{firstIndex} ROWS
+    FETCH NEXT #{pageUnit} ROWS ONLY
+  </select>
+
+  <!-- 전체 공지사항 개수 조회 -->
+  <select id="selectNoticeListTotCnt"
+          parameterType="egovframework.example.common.Criteria"
+          resultType="int">
+    SELECT COUNT(*) 
+    FROM NOTICE
+    WHERE TITLE LIKE '%' || #{searchKeyword} || '%'
+  </select>
+  
+   <!-- 공지사항 상세 조회 -->
+  <select id="selectNoticeDetail"
+          parameterType="int"
+          resultType="egovframework.example.notice.service.NoticeVO">
+    SELECT NOTICE_ID,
+           TITLE,
+           CONTENT,
+           WRITER,
+           CREATE_DATE,
+           VIEW_COUNT
+    FROM NOTICE
+    WHERE NOTICE_ID = #{noticeId}
+  </select>
+
+  <!-- 공지사항 조회수 증가 -->
+  <update id="updateViewCount"
+          parameterType="int">
+    UPDATE NOTICE
+    SET VIEW_COUNT = VIEW_COUNT + 1
+    WHERE NOTICE_ID = #{noticeId}
+  </update>
+  
+<!-- 이전글 -->
+<select id="selectPrevNotice" parameterType="int"
+        resultType="egovframework.example.notice.service.NoticeVO">
+  SELECT NOTICE_ID, TITLE
+  FROM NOTICE
+  WHERE NOTICE_ID &lt; #{noticeId}
+  ORDER BY NOTICE_ID DESC
+  FETCH FIRST 1 ROWS ONLY
+</select>
+
+<!-- 다음글 -->
+<select id="selectNextNotice" parameterType="int"
+        resultType="egovframework.example.notice.service.NoticeVO">
+  SELECT NOTICE_ID, TITLE
+  FROM NOTICE
+  WHERE NOTICE_ID &gt; #{noticeId}
+  ORDER BY NOTICE_ID ASC
+  FETCH FIRST 1 ROWS ONLY
+</select>
+</mapper>

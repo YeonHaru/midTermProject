@@ -1,0 +1,18 @@
+  .table notice-table th {
+        background-color: var(--main-color);
+        text-align: center;
+      }
+      .notice-table td {
+        vertical-align: middle;
+      }
+      .notice-table tr:hover {
+        background-color: var(--sub-color);
+      }
+        .notice-nav {
+    font-size: 0.95rem;
+    color: #333;
+  }
+  .notice-nav a {
+    text-decoration: underline;
+    color: #007bff;
+  }
