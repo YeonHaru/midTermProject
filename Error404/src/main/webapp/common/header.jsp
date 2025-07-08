@@ -84,7 +84,7 @@ ${BOOKS}
 						</ul></li>
 
 					<!-- 이벤트 -->
-					<li class="nav-item"><a class="nav-link" href="#">이벤트</a></li>
+					<li class="nav-item"><a class="nav-link" href="/eventmain.do">이벤트</a></li>
 				</ul>
 				<ul class="navbar-nav mb-2 mb-lg-0">
 
