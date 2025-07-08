@@ -21,6 +21,7 @@ public class DeptServiceImpl implements DeptService {
 //		Mapper 가져오기
 		@Autowired
 		private DeptMapper deptMapper;
+		
 //		전체조회
 		@Override
 		public List<?> selectDeptList(Criteria criteria) {

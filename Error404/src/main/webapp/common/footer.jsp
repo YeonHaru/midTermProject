@@ -24,6 +24,7 @@
             <h4>공지 사항</h4>
           </div>
           <div class="after-text">
+            <a href="${pageContext.request.contextPath}/notice.do">[공지사항]</a>
             <a href="#">[채용공고]</a>
             <a href="#">토스결제 오류안내</a>
           </div>

@@ -95,6 +95,7 @@ function fn_select(dno) {
 		$("#listForm").attr("action",'<c:out value="/dept/edition.do" />').submit();
 }
 </script>
+
 <script type="text/javascript">
 /* 페이징 처리 */
     $('#pagination').twbsPagination({

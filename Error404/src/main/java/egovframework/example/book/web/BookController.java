@@ -23,7 +23,7 @@ public class BookController {
    
 //   전체조회
    @GetMapping("/book.do")
-   public String book(
+   public String bookController(
          @ModelAttribute Criteria criteria, Model model
          ) {
 //      PaginationInfo paginationInfo = new PaginationInfo();

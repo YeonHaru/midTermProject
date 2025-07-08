@@ -138,7 +138,7 @@
 							</h3>
 							<small class="mb4">간편 가입하고, 다양한 혜택과 함께 책을 만나보세요 📚</small>
 							<div class="mt4">
-								<a href="${pageContext.request.contextPath}/common/login.jsp"
+								<a href="${pageContext.request.contextPath}/login.do"
 									class="btn-signup">회원가입 하러가기</a>
 							</div>
 						</div>
