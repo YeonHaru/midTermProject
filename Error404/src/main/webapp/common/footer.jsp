@@ -1,17 +1,22 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+    <!-- a태그, c태그 정리 -->
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <!DOCTYPE html>
 <html lang="ko">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>책장 펼침 효과 + 검색 기능</title>
-
-    <!-- contextPath로 경로 동적 처리 -->
+    <!-- 	부트스트랩 css  -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous"/>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
   </head>
-  <body>
-    <footer class="footer mt5 pt5 pb5">
-      <div class="footer-book mt4 mb4">
+  <body class="bg">
+  <div class="mt1">
+    <footer class="footer page pb5">
+      <div class="footer-book mb4">
 
         <!-- 책장 1 -->
         <div class="footer-page">
@@ -19,6 +24,7 @@
             <h4>공지 사항</h4>
           </div>
           <div class="after-text">
+            <a href="${pageContext.request.contextPath}/notice.do">[공지사항]</a>
             <a href="#">[채용공고]</a>
             <a href="#">토스결제 오류안내</a>
           </div>
@@ -88,7 +94,7 @@
         <a href="#">매장위치</a>
       </div>
     </footer>
-
+</div>
     <script>
       function initFooterInteraction() {
         const pages = document.querySelectorAll(".footer-page");

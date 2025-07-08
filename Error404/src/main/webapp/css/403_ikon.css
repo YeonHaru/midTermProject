@@ -1,0 +1,88 @@
+/* ▼▼▼ 퀵 메뉴 ▼▼▼ */
+.quick-menu {
+  margin: 2rem auto;
+  padding: 1rem 0;
+  background: var(--bg-color);
+  border-radius: 1rem;
+  max-width: 1240px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+/* ✅ PC - 10등분 균등 배치 */
+.quick-menu-list {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  text-align: center;
+  padding: 0 1rem;
+  gap: 0.5rem;
+}
+
+.quick-menu-list li {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.5rem 0;
+}
+
+/* ✅ 각 칸 사이 점선 구분자 */
+.quick-menu-list li:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  top: 20%;
+  right: 0;
+  height: 60%;
+  border-right: 1px dashed var(--main-color);
+}
+
+/* ✅ 링크 스타일 */
+.quick-menu-list li a {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #222;
+  font-size: 0.75rem;
+  transition: 0.2s;
+}
+
+.quick-menu-list li a:hover {
+  color: var(--accent-color-1);
+}
+
+/* ✅ 아이콘 이미지 크기 */
+.quick-menu-list img {
+  width: 36px;
+  height: 36px;
+  object-fit: contain;
+}
+
+/* ▼▼▼ 모바일 대응 (반응형) ▼▼▼ */
+@media screen and (max-width: 767px) {
+  .quick-menu {
+    max-width: 400px;
+    margin: 1rem auto;
+    padding: 1rem;
+    border-radius: 1rem;
+  }
+
+  .quick-menu-list {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.75rem;
+    padding: 0 0.5rem;
+  }
+
+  .quick-menu-list li {
+    gap: 0.25rem;
+    padding: 0.5rem 0;
+  }
+
+  .quick-menu-list li:not(:last-child)::after {
+    display: none;
+  }
+
+  .quick-menu-list img {
+    width: 32px;
+    height: 32px;
+  }
+}

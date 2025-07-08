@@ -1,0 +1,49 @@
+/* mainpage.css */
+
+/* 메인 콘텐츠 레이아웃 */
+.main-content {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  grid-template-rows: auto auto;
+  gap: 10px;
+  grid-template-areas:
+    "left center right-top"
+    "left center right-bottom"
+    "bottom bottom bottom";
+}
+
+/* 박스별 스타일 */
+.left-box {
+  grid-area: left;
+  height: 450px;
+}
+
+.center-box {
+  grid-area: center;
+  height: 450px;
+}
+
+.right-top-box {
+  grid-area: right-top;
+  height: 220px;
+}
+
+.right-bottom-box {
+  grid-area: right-bottom;
+  height: 220px;
+}
+
+.bottom-slider {
+  grid-area: bottom;
+  height: 320px;
+  margin-top: 20px;
+}
+
+.tempbox {
+  display: flex;
+  flex-wrap: wrap;
+  background-color: var(--bg-color);
+  padding: 1.5rem;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+}

@@ -5,6 +5,8 @@ package egovframework.example.users.service;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import egovframework.example.common.Criteria;
 
 /**
@@ -12,6 +14,16 @@ import egovframework.example.common.Criteria;
  *
  */
 public interface UsersService {
-	List<?> selectUsersList(Criteria criteria);
+	List<?> selectUsersList(Criteria criteria); // 전체조회
+
+	boolean login(UsersVO usersVO); // 로그인
+
+	UsersVO selectUserById(String userid); // 마이페이지 접속
+
+	// 아이디 찾기: 이름 + 이메일
+	String findUserId(@Param("name") String name, @Param("email") String email);
+
+	// 비밀번호 찾기: 아이디 + 이메일
+	String findPassword(@Param("userid") String userid, @Param("email") String email);
 
 }

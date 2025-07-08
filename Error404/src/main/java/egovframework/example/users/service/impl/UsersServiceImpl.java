@@ -9,22 +9,54 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import egovframework.example.common.Criteria;
-import egovframework.example.dept.service.impl.DeptMapper;
 import egovframework.example.users.service.UsersService;
+import egovframework.example.users.service.UsersVO;
 
 /**
  * @author user
  *
  */
 @Service
-public class UsersServiceImpl implements UsersService{
+public class UsersServiceImpl implements UsersService {
 	@Autowired
 	private UsersMapper usersMapper;
 
+// 	전체조회
 	@Override
 	public List<?> selectUsersList(Criteria criteria) {
 		// TODO Auto-generated method stub
 		return usersMapper.selectUsersList(criteria);
 	}
-	
+
+//	로그인
+	@Override
+	public boolean login(UsersVO usersVO) {
+		// TODO Auto-generated method stub
+		UsersVO dbUser = usersMapper.selectUserById(usersVO.getUserid());
+
+		if (dbUser != null && dbUser.getPassword().equals(usersVO.getPassword())) {
+			return true;
+		}
+		return false;
+	}
+//	아이디 찾기 
+	@Override
+	public String findUserId(String name, String email) {
+		// TODO Auto-generated method stub
+		return usersMapper.findUserId(name, email);
+	}
+//	비밀번호 찾기
+	@Override
+	public String findPassword(String userid, String email) {
+		// TODO Auto-generated method stub
+		return usersMapper.findPassword(userid, email);
+	}
+
+	// 마이페이지 불러오기? 들어가기?
+	@Override
+	public UsersVO selectUserById(String userid) {
+		// TODO Auto-generated method stub
+		return usersMapper.selectUserById(userid);
+	}
+
 }

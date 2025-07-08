@@ -3,8 +3,9 @@
  */
 package egovframework.example.users.service;
 
+import java.time.LocalDate;
+
 import egovframework.example.common.Criteria;
-import egovframework.example.dept.service.DeptVO;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -24,11 +25,17 @@ import lombok.ToString;
 @ToString
 @EqualsAndHashCode(callSuper = false)
 public class UsersVO extends Criteria{
-	private String userid ;
-	private String password ;
-	private String name ;
-	private String email ;
-	private String phone ;
-	private String join_date ;
-	private String role ;
+
+	 private String userid;
+	    private String password;
+	    private String name;
+	    private String email;
+	    private String phone;
+	    private LocalDate join_date;    // DATE → LocalDate
+	    private String role;
+	    private String gender;
+	    private LocalDate birthdate;    
+	    private String address;
+	    private Integer point;          // null 가능성을 고려해 Integer 사용
+
 }
