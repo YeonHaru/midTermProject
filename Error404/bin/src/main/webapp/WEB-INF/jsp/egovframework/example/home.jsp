@@ -111,13 +111,112 @@
           <div class="swiper-pagination"></div>
         </div>
       </div>
-    </div>      
+    </div>
+      <!-- 메인 배너 -->
+      <div class="main-banner-wrapper">
+        <div class="swiper main-banner-swiper">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide main-banner-slide">
+              <div class="main-image"></div>
+            </div>
+            <div class="swiper-slide main-two-slide">
+              <div class="main-image2"></div>
+            </div>
+            <div class="swiper-slide main-two-slide">
+              <div class="main-image3"></div>
+            </div>
+            <div class="swiper-slide main-two-slide">
+              <div class="main-image4"></div>
+            </div>
+            <div class="swiper-slide main-two-slide">
+              <div class="main-image5"></div>
+            </div>
+          </div>
+          <div class="swiper-pagination main-banner-pagination"></div>
+          <div class="swiper-button-prev main-banner-prev"></div>
+          <div class="swiper-button-next main-banner-next"></div>
+        </div>
+      </div>
+          </div>
+          <div class="swiper-button-next"></div>
+          <div class="swiper-button-prev"></div>
+          <div class="swiper-pagination"></div>
+        </div>
+      </div>
+    </div>
+
+
+
+            <!-- 예시 상품 1 -->
+            <div class="swiper-slide">
+              <div class="mainpage-side-box">
+                <div class="side-box-badge">오늘만 특가</div>
+                <img src="${pageContext.request.contextPath}/images/main/school.png" alt="사무용품 세트" />
+                <div class="mainpage-side-box-content">
+                  <h5>오늘만 특가 <br /> 네오 학용품 세트</h5>
+                  <a href="#" class="bluedelete">오늘만 이 가격 <br /> 13,200원!</a>
+                  <div class="side-box-price"></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 예시 상품 2 -->
+            <div class="swiper-slide">
+              <div class="mainpage-side-box">
+                <div class="side-box-badge">내일까지 <br /> 특가</div>
+                <img src="${pageContext.request.contextPath}/images/main/Eco.image.png" alt="에코백" />
+                <div class="mainpage-side-box-content">
+                  <h5>내일까지 특가! <br /> Eco 에코백</h5>
+                  <a href="#" class="bluedelete">지금 9,900원! <br /> 내일 자정 12시까지 특가!</a>
+                  <div class="side-box-price"></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 예시 상품 3 -->
+            <div class="swiper-slide">
+              <div class="mainpage-side-box">
+                <div class="side-box-badge">한정 수량</div>
+                <img src="${pageContext.request.contextPath}/images/main/bookmark.image.png" alt="책갈피" />
+                <div class="mainpage-side-box-content">
+                  <h5>한정 판매 <br /> 우주 책갈피!</h5>
+                  <a href="#" class="bluedelete">지금 한정판매중! <br /> 4개 묶음으로 단돈 5,500 판매!</a>
+                  <div class="side-box-price"></div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+          <div class="swiper-button-next"></div>
+          <div class="swiper-button-prev"></div>
+          <div class="swiper-pagination"></div>
+        </div>
+      </div>
+    </div>
+
     <!-- 하단 아이콘 -->
     <div class="quick-menu">
       <ul class="quick-menu-list">
         <c:forEach var="icon" items="${pageContext.request.contextPath}/images/main/">
           <!-- 이 부분은 향후 JSTL 배열 등으로 처리 가능 -->
         </c:forEach>
+
+
+    <!-- 하단 아이콘 -->
+    <div class="quick-menu">
+      <ul class="quick-menu-list">
+        <c:forEach var="icon" items="${pageContext.request.contextPath}/images/main/">
+          <!-- 이 부분은 향후 JSTL 배열 등으로 처리 가능 -->
+        </c:forEach>
+
+
+    <!-- 하단 아이콘 -->
+    <div class="quick-menu">
+      <ul class="quick-menu-list">
+        <c:forEach var="icon" items="${pageContext.request.contextPath}/images/main/">
+          <!-- 이 부분은 향후 JSTL 배열 등으로 처리 가능 -->
+        </c:forEach>
+
 <!-- /temp.do 템플릿 양식 예시입니다. 홈 컨트롤러에 임시로 해놨습니다. 템플릿양식으로 연결만 시켜둘게요. -->
         <li>
           <a href="/temp.do"><img src="${pageContext.request.contextPath}/images/main/jewelry.svg" alt="할인혜택" /><span>할인혜택</span></a>
@@ -151,8 +250,9 @@
         </li>
       </ul>
     </div>
-  </div>
-      <div class="mainpage-center"></div>
+
+    <div class="mainpage-center"></div>
+  </div>	
 	
 	<!-- 꼬리말 -->
 <!-- jQuery (최신 안정 버전 하나만) -->

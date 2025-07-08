@@ -1,0 +1,128 @@
+/* 공통 CSS와 충돌하지 않도록 signup- 접두어 사용 */
+
+.signup-wrapper {
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 0.5rem;
+  font-family: "Noto Sans KR", sans-serif;
+  color: var(--text-main);
+}
+
+.signup-section-title {
+  font-size: 1.25rem;
+  font-weight: bold;
+  margin: 2rem 0 1rem;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 0.5rem;
+}
+
+.signup-required {
+  color: red;
+  margin-left: 0.25rem;
+}
+
+.signup-form-group {
+  margin-bottom: 1rem;
+}
+
+.signup-input {
+  width: 100%;
+  padding: 0.75rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 0.25rem;
+}
+
+.signup-email-row,
+.signup-phone-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.signup-select {
+  padding: 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 0.25rem;
+  font-size: 1rem;
+}
+
+.signup-email-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.signup-email-id,
+.signup-email-domain-input,
+.signup-email-domain-select {
+  flex: 1;
+}
+
+.signup-email-at {
+  font-size: 1rem;
+}
+
+.signup-helper-text {
+  font-size: 0.875rem;
+  color: #666;
+  margin-top: 0.25rem;
+}
+
+.signup-terms {
+  margin-top: 1rem;
+}
+
+.signup-checkbox {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.signup-checkbox input {
+  margin-right: 0.5rem;
+}
+
+.signup-terms-list {
+  margin-top: 1rem;
+  padding-left: 0;
+}
+
+.signup-terms-list li {
+  margin-bottom: 0.5rem;
+}
+
+.signup-marketing-options {
+  margin-left: 1.5rem;
+  margin-top: 0.5rem;
+  display: flex;
+  /* 자동 줄바꿈 */
+  flex-wrap: wrap;
+  gap: 1rem;
+  font-size: 0.9rem;
+}
+
+.signup-submit-button {
+  margin-top: 2rem;
+  width: 100%;
+  padding: 1rem;
+  background: var(--accent-color-1);
+  color: #fff;
+  font-size: 1.1rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+}
+
+.signup-footer-help {
+  display: block;
+  width: 100%;
+  text-align: center;
+  margin-top: 2rem;
+  font-size: 0.8rem;
+  color: var(--text-sub);
+}
