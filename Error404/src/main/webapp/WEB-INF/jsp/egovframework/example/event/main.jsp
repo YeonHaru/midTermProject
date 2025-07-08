@@ -66,34 +66,41 @@
       <div class="swiper-wrapper">
 
         <!-- 슬라이드 1 -->
-        <div class="swiper-slide">
-          <div class="event-slide">
-            <div class="slide-banner">
-              <div class="banner-label">종이책</div>
-              <h3>네 번째 전설의 등장!<br>이지은 작가 '첫 호러' 그림책</h3>
-              <p>먹어 보면 알지 교보단독 쿨매트 사은품</p>
-              <div class="slide-images">
-                <img src="../images/event-mat.png" alt="매트">
-                <img src="../images/event-book.png" alt="책">
-              </div>
-            </div>
-          </div>
-        </div>
+		<div class="swiper-slide">
+		  <div class="event-slide horizontal">
+		    <div class="slide-banner">
+		      <div class="banner-text">
+		        <div class="banner-label">종이책</div>
+		        <h3>네 번째 전설의 등장!<br>이지은 작가 '첫 호러' 그림책</h3>
+		        <p>먹어 보면 알지 교보단독 쿨매트 사은품</p>
+		      </div>
+		      <div class="banner-image">
+		        <img src="../images/204_eventbook01.jpg" alt="매트" />
+		      </div>
+		      <div class="banner-image">
+		       <img src="../images/204_eventbook02.jpg" alt="책">
+		      </div>
+		    </div>
+		  </div>
+		</div>
         <!-- 슬라이드 2 -->
-        <div class="swiper-slide">
-          <div class="event-slide">
-            <div class="slide-banner">
+		<div class="swiper-slide">
+		  <div class="event-slide horizontal">
+		    <div class="slide-banner">
+		      <div class="banner-text">
               <div class="banner-label">추천이벤트</div>
               <h3>여름방학 추천 도서<br>아이와 함께 읽어요</h3>
               <p>구매 시 시원한 손선풍기 증정</p>
-              <div class="slide-images">
-                <img src="../images/event-fan.png" alt="선풍기">
-                <img src="../images/event-kidbook.png" alt="어린이책">
               </div>
-            </div>
-          </div>
-        </div>
-      </div>
+		      <div class="banner-image">
+		       <img src="../images/204_eventbook03.png" alt="선풍기">
+		      </div>
+		      <div class="banner-image">
+		       <img src="../images/204_eventbook04.jpg" alt="어린이책">
+		      </div>
+		    </div>
+		  </div>
+		</div>
       <!-- 네비게이션 & 페이지네이션 -->
       <div class="swiper-button-prev"></div>
       <div class="swiper-button-next"></div>
@@ -117,7 +124,41 @@
     </ul>
   </div>
  </div>
-</div> <!-- .event-wrapper -->
+ 
+ <div class="bottom-slider mt5">
+ <h3 class="tcenter mt3">당첨자 발표</h3>
+      <table class="table">
+  <thead class="tcenter">
+    <tr>
+      <th scope="col">번호</th>
+      <th scope="col">제목</th>
+      <th scope="col">작성일</th>
+      <th scope="col">조회수</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row"  class="tcenter">1</th>
+      <td>[국내도서] <『편의점 세상』 기대평 이벤트> 이벤트 당첨자 발표</td>
+      <td class="tcenter">2025.07.07</td>
+      <td class="tcenter">4</td>
+    </tr>
+    <tr>
+      <th scope="row"  class="tcenter">2</th>
+      <td>[eBook일반] 『질문의 격』 단독 선출간 이벤트 당첨자 발표</h6></td>
+      <td class="tcenter">2025.07.07</td>
+      <td class="tcenter">2</td>
+    </tr>
+    <tr>
+      <th scope="row"  class="tcenter">3</th>
+      <td>[eBook일반] 《마케팅한다는 착각》기대평 이벤트 당첨자 발표</h6></td>
+      <td class="tcenter">2025.07.07</td>
+      <td class="tcenter">1</td>
+    </tr>
+  </tbody>
+</table>
+      </div>
+</div> 
 
 	<!-- 푸터 추가 -->
 	<%@ include file="/common/footer.jsp"%>
