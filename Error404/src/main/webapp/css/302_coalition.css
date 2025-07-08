@@ -1,0 +1,54 @@
+#coalition_part {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+  font-family: 'Noto Sans KR', sans-serif;
+  color: var(--text-main);
+}
+
+.coalition-title {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--text-main);
+  border-bottom: 2px solid var(--accent-color-1);
+  padding-bottom: 0.5rem;
+}
+
+.coalition-box {
+  background-color: #f9f9f9;
+  padding: 1.5rem;
+  border-radius: 0.5rem;
+  border: 1px solid var(--border-color);
+}
+
+.coalition-box h3 {
+  font-size: 1.25rem;
+  margin-bottom: 1rem;
+  color: var(--accent-color-1);
+}
+
+.coalition-box h4 {
+  font-size: 1rem;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+  color: var(--text-main);
+}
+
+.coalition-box ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.coalition-box li {
+  margin-bottom: 0.5rem;
+  line-height: 1.6;
+}
+
+.coalition-box a {
+  color: var(--accent-color-1);
+  text-decoration: none;
+}
+
+.coalition-box a:hover {
+  text-decoration: underline;
+}
