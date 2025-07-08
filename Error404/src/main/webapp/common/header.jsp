@@ -88,6 +88,7 @@ ${BOOKS}
 				</ul>
 				<ul class="navbar-nav mb-2 mb-lg-0">
 
+
 					<c:choose>
 						<c:when test="${not empty sessionScope.loginUser}">
 
@@ -106,6 +107,8 @@ ${BOOKS}
 								href="${pageContext.request.contextPath}/join.do">회원가입</a></li>
 						</c:otherwise>
 					</c:choose>
+
+
 
 					<li class="nav-item"><a class="nav-link" href="#">고객센터</a></li>
 					<li class="nav-item"><a class="nav-link"

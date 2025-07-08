@@ -25,6 +25,7 @@ import lombok.ToString;
 @ToString
 @EqualsAndHashCode(callSuper = false)
 public class UsersVO extends Criteria{
+
 	 private String userid;
 	    private String password;
 	    private String name;
@@ -36,4 +37,5 @@ public class UsersVO extends Criteria{
 	    private LocalDate birthdate;    
 	    private String address;
 	    private Integer point;          // null 가능성을 고려해 Integer 사용
+
 }
