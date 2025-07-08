@@ -1,0 +1,229 @@
+/* ▼▼▼ 메인 페이지 전용 디자인 추가 ▼▼▼ */
+/* TODO: 작업수정 */
+.main-image {
+  width: 100%;
+  height: 50vh;
+  background-image: url("/images/main/ebook.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  border-radius: 1rem;
+}
+.main-image2 {
+  width: 100%;
+  height: 50vh;
+  background-image: url("/images/main/top8.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+}
+.main-image3 {
+  width: 100%;
+  height: 50vh;
+  background-image: url("/images/main/edoge.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+}
+.main-image4 {
+  width: 100%;
+  height: 50vh;
+  background-image: url("/images/main/special.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+}
+.main-image5 {
+  width: 100%;
+  height: 50vh;
+  background-image: url("/images/main/the\ flint.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+}
+
+/* 메인 콘텐츠 전체 */
+.main-banner-wrapper {
+  /* flex: 0 0 80%; 
+  max-width: 75%;  */
+  width: 100%; /* 전체 너비 중앙 제한 해제 */
+  margin: 0;
+  border-radius: 1rem;
+  overflow: hidden;
+  font-family: "Noto Sans KR", sans-serif;
+  position: relative;
+  margin-right: 1.5rem;
+  /* width: 100%;
+  height: 100%;    화면 높이의 50% */
+}
+
+.main-banner-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding-left: 1rem;
+}
+
+.main-banner-text h2 {
+  font-size: 1.75rem;
+  color: white;
+}
+
+.main-banner-text p {
+  color: white;
+}
+
+.main-banner-label {
+  display: inline-block;
+  background: #222;
+  color: #fff;
+  font-size: 0.75rem;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+}
+
+/* Swiper custom styles */
+.main-banner-pagination {
+  text-align: center;
+  margin-top: 1rem;
+}
+
+/* Swiper 좌우 버튼 색상 및 크기 변경 */
+.main-banner-prev::after,
+.main-banner-next::after {
+  color: var(--bg-color);
+  font-size: 24px;
+}
+
+.main-two-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap; /* 모바일 시 줄바꿈 허용 */
+  /* width: 100%; */
+  padding-left: 1rem;
+}
+
+.main-two-text {
+  flex: 1 1 50%;
+  min-width: 40%;
+  max-width: 60%;
+}
+
+.main-two-text h2 {
+  font-size: 1.6rem;
+  margin: 0.5rem 0;
+  color: white;
+}
+
+.main-two-text p {
+  font-size: 1rem;
+  margin: 0;
+  color: white;
+}
+
+.main-two-label {
+  display: inline-block;
+  background: #222;
+  color: #fff;
+  font-size: 0.75rem;
+  padding: 0.3rem 0.5rem;
+  border-radius: 0.25rem;
+}
+
+.main-two-content img {
+  flex: 1 1 40%;
+  width: 100%;
+  max-width: 60%; /* PC에서 최대 너비 제한 */
+  height: auto;
+  object-fit: contain;
+  border-radius: 0.75rem;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.main-banner-content,
+.main-two-content {
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
+  width: 100%;
+  padding-left: 1rem;
+}
+
+.main-banner-content img,
+.main-two-content img {
+  width: auto;
+  max-height: 100%;
+  object-fit: contain;
+  border-radius: 0.75rem;
+  display: block;
+  margin: 0 auto;
+  flex-shrink: 0;
+}
+
+@media (max-width: 768px) {
+  .main-image {
+    width: 100%;
+    height: 90vh; /* 모바일 화면 전체 높이 */
+    background-image: url("/images/main/media.png");
+    background-position: center; /* 중앙 정렬 */
+    background-repeat: no-repeat; /* 반복 방지 */
+  }
+
+  .main-image2 {
+    width: 100%;
+    height: 90vh;
+    background-image: url("/images/main/media2.png");
+    background-position: center; /* 중앙 정렬 */
+    background-repeat: no-repeat; /* 반복 방지 */
+  }
+
+  .main-image3 {
+    width: 100%;
+    height: 90vh;
+    background-image: url("/images/main/media3.png");
+    background-position: center; /* 중앙 정렬 */
+    background-repeat: no-repeat; /* 반복 방지 */
+  }
+
+  .main-image4 {
+    width: 100%;
+    height: 90vh;
+    background-image: url("/images/main/media4.png");
+    background-position: center; /* 중앙 정렬 */
+    background-repeat: no-repeat; /* 반복 방지 */
+  }
+
+  .main-image5 {
+    width: 100%;
+    height: 90vh;
+    background-image: url("/images/main/media5.png");
+    background-position: center; /* 중앙 정렬 */
+    background-repeat: no-repeat; /* 반복 방지 */
+  }
+
+  .main-banner-content,
+  .main-two-content {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .main-banner-text,
+  .main-two-text {
+    max-width: 100%;
+    flex: none;
+  }
+
+  .main-banner-image-stack,
+  .main-two-content > img {
+    max-width: 70%;
+    flex: none;
+    margin: 1rem auto 0 auto;
+    max-height: none; /* 높이 제한 없앰 (필요시 조절) */
+  }
+}

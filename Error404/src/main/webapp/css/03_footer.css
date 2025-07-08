@@ -16,9 +16,10 @@
 
 /* 각 책장 */
 .footer-page {
+  border-radius: 8px;
   position: relative;
   width: 100%;
-  max-width: 340px;
+  max-width: 400px;
   height: 180px;
   border: 1px solid var(--border-color);
   background: #fff;

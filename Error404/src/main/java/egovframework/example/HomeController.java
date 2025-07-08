@@ -16,4 +16,9 @@ public class HomeController {
    public String home() {
       return "home";
    }
+   @GetMapping("/temp.do")
+   public String temp() {
+	   return "temp";
+   }
 }
+	

@@ -189,6 +189,42 @@ html {
   font-size: 0.95rem;
   color: var(--text-sub);
 }
+.store-guide-box {
+  display: flex;
+  gap: 2rem;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.store-info-text {
+  flex: 1;
+  min-width: 200px;
+}
+
+.store-map-carousel {
+  flex: 1;
+  min-width: 300px;
+  max-width: 500px;
+}
+
+/* 캐러셀 이미지 스타일 */
+.store-map-carousel .carousel-item img {
+  border-radius: 0.75rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* 버튼 아이콘 공통 강조색 반영 */
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  background-color: var(--accent-color-1);
+  border-radius: 50%;
+  width: 2.5rem;
+  height: 2.5rem;
+  background-size: 60% 60%;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
 
 /* 반응형: 모바일 768px 이하 */
 @media screen and (max-width: 768px) {

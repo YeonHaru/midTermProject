@@ -78,7 +78,7 @@ ${BOOKS}
 						</ul></li>
 
 					<!-- 이벤트 -->
-					<li class="nav-item"><a class="nav-link" href="#">이벤트</a></li>
+					<li class="nav-item"><a class="nav-link" href="/eventmain.do">이벤트</a></li>
 				</ul>
 
 				<!-- 오른쪽 로그인 및 회원가입 -->
