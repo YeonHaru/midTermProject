@@ -1,5 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<<<<<<< HEAD
+<mapper namespace="egovframework.example.book.service.impl.BookMapper">
+<select id="selectBookList"
+		parameterType="Criteria"
+		resultType="BookVO">
+		    SELECT 
+	* 
+    FROM BOOKS
+    <!-- 덕규 : 헤더에 있는 검색창영역 키워드가 있으면 검색조건 추가 하는 where sql문입니다.  -->
+		 <where>
+		      <if test="searchKeyword != null and searchKeyword.trim() != ''">
+		        <choose>
+		          	<when test="searchCondition == 'title'">
+					  AND title LIKE '%' || #{searchKeyword} || '%'
+					</when>
+					<when test="searchCondition == 'author'">
+					  AND author LIKE '%' || #{searchKeyword} || '%'
+					</when>
+					<otherwise>
+					  AND (title LIKE '%' || #{searchKeyword} || '%'
+					       OR author LIKE '%' || #{searchKeyword} || '%')
+					</otherwise>
+		        </choose>
+		      </if>
+		    </where>
+ <!-- 요기까지에용 -->
+		</select>
+=======
 <mapper
 	namespace="egovframework.example.book.service.impl.BookMapper">
 	<select id="selectBookList" resultType="BookVO"
@@ -16,4 +44,5 @@
 		WHERE BNO = #{bno}
 	</select>
 
+>>>>>>> main
 </mapper>

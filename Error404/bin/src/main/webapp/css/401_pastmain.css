@@ -1,0 +1,88 @@
+/* ▼▼▼ 메인 페이지 전용 디자인 추가 ▼▼▼ */
+
+/* 메인 콘텐츠 전체 */
+.pastmain-content {
+  background-color: var(--bg-color);
+  width : 100%;
+}
+
+/* 배너 영역 */
+.pastbanner {
+  background-color: var(--accent-color-1);
+  color: white;
+  text-align: center;
+  padding: 3rem 1rem;
+  border-radius: 1rem;
+  margin-bottom: 2rem;
+}
+.pastbanner h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+.pastbanner p {
+  font-size: 1.125rem;
+}
+
+/* 도서 섹션 */
+.book-section {
+  margin-bottom: 2.5rem;
+}
+.book-section h3 {
+  margin-bottom: 1rem;
+  color: var(--text-main);
+}
+
+/* 도서 카드 리스트 */
+.book-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+/* 도서 카드 */
+.book-card {
+  background-color: white;
+  border: 1px solid var(--border-color);
+  border-radius: 0.5rem;
+  width: calc(50% - 0.5rem);
+  padding: 0.5rem;
+  text-align: center;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+  transition: transform 0.2s;
+  overflow: hidden;
+}
+.book-card:hover {
+  transform: translateY(-4px);
+}
+
+/* 고정 비율 이미지 박스 */
+.book-card .image-box {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 3 / 4; /* 또는 2 / 3 */
+  overflow: hidden;
+  border-radius: 0.25rem;
+  margin-bottom: 0.5rem;
+}
+
+/* 이미지 크기 고정 */
+.book-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+.book-card .title {
+  font-weight: 600;
+  color: var(--text-main);
+  font-size: 0.95rem;
+}
+
+/* PC에서 카드 4열 */
+@media screen and (min-width: 1024px) {
+  .book-card {
+    width: calc(25% - 0.75rem);
+  }
+}

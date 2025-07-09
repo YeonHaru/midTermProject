@@ -1,4 +1,4 @@
-/* 📢 공지사항 테이블 스타일 */
+/*  공지사항 테이블 스타일 */
 .notice-table {
   width: 100%;
   border-collapse: collapse;
@@ -45,7 +45,7 @@
   text-decoration: underline;
 }
 
-/* 📱 모바일 리스트 스타일 */
+/*  모바일 리스트 스타일 */
 .notice-list {
   list-style: none;
   padding: 0;
@@ -80,7 +80,7 @@
   margin-top: 0.5rem;
 }
 
-/* ✅ 반응형 처리 */
+/* 반응형 처리 */
 @media screen and (max-width: 767px) {
   .notice-table {
     display: none;

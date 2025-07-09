@@ -116,3 +116,22 @@ INSERT INTO SAMPLE VALUES('SAMPLE-00112','Runtime Environment','Integration Laye
 INSERT INTO SAMPLE VALUES('SAMPLE-00113','Runtime Environment','Integration Layer','Y','eGov')
 INSERT INTO SAMPLE VALUES('SAMPLE-00114','Runtime Environment','Integration Layer','Y','eGov')
 INSERT INTO IDS VALUES('SAMPLE',115)
+
+-- ==============================
+-- 인물/작품 테이블 생성 (PERSON_INFO)
+-- ==============================
+CREATE TABLE PERSON_INFO (
+    NO INT AUTO_INCREMENT PRIMARY KEY,
+    WRITER VARCHAR(100) NOT NULL,
+    WORK VARCHAR(200) NOT NULL
+);
+
+-- ==============================
+-- 초기 데이터 삽입 (선택)
+-- ==============================
+INSERT INTO PERSON_INFO (WRITER, WORK)
+VALUES
+('이문열', '우리들의 일그러진 영웅'),
+('조정래', '태백산맥'),
+('공지영', '우리들의 행복한 시간'),
+('김영하', '살인자의 기억법');
