@@ -111,11 +111,11 @@
 }
 
 .book-flip-card {
-  width: calc(23.5%);
+  width: calc(45%);
   height: 300px;
   perspective: 1000px;
   position: relative;
-  padding: 0;
+  padding-left: 0.5rem;
 }
 .flip-inner {
   width: 100%;
@@ -137,6 +137,7 @@
   overflow: hidden;
   background: white;
   box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  padding: 0.5rem;
 }
 .flip-front {
   z-index: 2;
@@ -148,6 +149,7 @@
 }
 .image-box img {
   width: 100%;
+  
   height: 200px;
   object-fit: cover;
 }
@@ -164,4 +166,11 @@
 /* 모바일 대응용 JS 클래스 */
 .flipped {
   transform: rotateY(180deg) !important;
+}
+
+/* 🖥 태블릿 이상일 때 (기존 유지 또는 필요 시 조정) */
+@media (min-width: 769px) {
+  .book-flip-card {
+    width: 23%;
+  }
 }
