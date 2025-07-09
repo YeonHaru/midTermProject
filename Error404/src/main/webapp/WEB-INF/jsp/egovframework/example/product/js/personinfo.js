@@ -1,11 +1,11 @@
 function searchBooks() {
-  const keyword = document.getElementById("searchInput").value.toLowerCase();
+  const keyword = document.getElementById("searchInput").value.trim().toLowerCase();
   const type = document.getElementById("searchType").value;
   const cards = document.querySelectorAll(".card");
 
   cards.forEach((card) => {
-    const title = card.querySelector(".card-title")?.textContent.toLowerCase() || "";
-    const writer = card.querySelector(".card-writer")?.textContent.toLowerCase() || "";
+    const title = card.querySelector(".card-title")?.textContent?.toLowerCase() || "";
+    const writer = card.querySelector(".card-writer")?.textContent?.toLowerCase() || "";
 
     let match = false;
 
@@ -17,6 +17,7 @@ function searchBooks() {
       match = writer.includes(keyword);
     }
 
-    card.parentElement.style.display = match ? "block" : "none";
+    const container = card.parentElement || card;
+    container.style.display = match ? "block" : "none";
   });
 }
