@@ -10,6 +10,7 @@ document.querySelectorAll(".search-type-option").forEach(item => {
   item.addEventListener("click", function (e) {
     e.preventDefault();
     const type = this.dataset.type;
+    selectedType = type;
     document.getElementById("searchConditionInput").value = type;
     document.getElementById("searchTypeBtn").innerText = this.innerText;
   });
@@ -18,6 +19,8 @@ document.querySelectorAll(".search-type-option").forEach(item => {
 // ▼ 검색 버튼 클릭 시
 document.getElementById("searchBtn").addEventListener("click", function (e) {
   const keyword = document.getElementById("searchInput").value.trim();
+  console.log("selectedType:", selectedType);
+  
   if (!keyword) {
     alert("검색어를 입력해주세요.");
     e.preventDefault();
@@ -44,10 +47,11 @@ document.getElementById("searchBtn").addEventListener("click", function (e) {
         `;
       });
     })
-    .catch(err => {
-      console.error("검색 오류:", err);
-      alert("검색 중 문제가 발생했습니다.");
-    });
+	.catch(err => {
+	  console.error("검색 오류:", err);
+	  const resultBox = document.getElementById("searchResults");
+	  resultBox.innerHTML = "<p>검색 중 문제가 발생했습니다. 다시 시도해주세요.</p>";
+	});
 });
 document.addEventListener("DOMContentLoaded", function () {
   // 이벤트 등록 코드들

@@ -11,7 +11,6 @@
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 
-${BOOKS}
 <!-- 상단 이벤트 배너 -->
 <nav class="navbar navbar-expand-lg custom-navbar"
 	style="background-color: var(- -bg-color);">
@@ -41,7 +40,7 @@ ${BOOKS}
 		<div class="container-fluid">
 
 
-			<!-- TODO : 모바일 토글 버튼 (해결할 때 까지 막아놓겠음) -->
+
 			<button class="navbar-toggler" type="button"
 				data-bs-toggle="collapse" data-bs-target="#navbarContent">
 				<span class="navbar-toggler-icon"></span>
@@ -154,39 +153,43 @@ ${BOOKS}
 </nav>
 <!-- 7월9일 헤더 건든거 : 덕규 -->
 <nav class="navbar navbar-expand-lg custom-navbar bg-light">
-  <div class="container">
-    <form id="searchForm" action="${pageContext.request.contextPath}/book.do" method="get"
-          class="mx-auto w-100" style="max-width: 500px;">
+	<div class="container">
+		<form id="searchForm"
+			action="${pageContext.request.contextPath}/book.do" method="get"
+			class="mx-auto w-100" style="max-width: 500px;">
 
-      <div class="input-group shadow-sm rounded-pill border overflow-visible">
+			<div
+				class="input-group shadow-sm rounded-pill border overflow-visible">
 
-        <!-- ▼ 드롭다운 -->
-        <div class="dropdown custom-dropdown">
-          <button id="searchTypeBtn" class="btn btn-light dropdown-toggle px-3 border-0"
-                  type="button" data-bs-toggle="dropdown" aria-expanded="false">
-            통합검색
-          </button>
-			<ul class="dropdown-menu">
-			  <li><a class="dropdown-item search-type-option" href="#" data-type="all">전체검색</a></li>
-			  <li><a class="dropdown-item search-type-option" href="#" data-type="title">도서검색</a></li>
-			  <li><a class="dropdown-item search-type-option" href="#" data-type="author">저자검색</a></li>
-			</ul>
-        </div>
-		
-		<!-- 사용자 검색어 입력창 -->
-		<input type="search" id="searchInput" name="searchKeyword" class="form-control border-0 px-3"
-		       placeholder="404 NOT FOUND? WHY?" aria-label="Search" />
-		
-		<!-- 드롭다운 선택용 숨겨진 검색 타입 -->
-		<input type="hidden" name="searchCondition" id="searchConditionInput" value="all" />
+				<!-- ▼ 드롭다운 -->
+				<div class="dropdown custom-dropdown">
+					<button id="searchTypeBtn"
+						class="btn btn-light dropdown-toggle px-3 border-0" type="button"
+						data-bs-toggle="dropdown" aria-expanded="false">통합검색</button>
+					<ul class="dropdown-menu">
+					<!-- a태그 필요없어서 버튼타입으로 바꿈 -->
+						<li><button type="button" class="dropdown-item search-type-option" data-type="all">전체검색</button></li>
+						<li><button type="button" class="dropdown-item search-type-option" data-type="title">도서검색</button></li>
+						<li><button type="button" class="dropdown-item search-type-option" data-type="author">저자검색</button></li>
+					</ul>
+				</div>
 
-        <!-- ▼ 검색 버튼 -->
-        <button class="searchicon btn" id="searchBtn" type="submit">
-          <i class="bi bi-search"></i>
-        </button>
-      </div>
-    </form>
-  </div>
+				<!-- 사용자 검색어 입력창 -->
+				<input type="search" id="searchInput" name="searchKeyword"
+					class="form-control border-0 px-3"
+					placeholder="404 NOT FOUND? WHY?" aria-label="Search" />
+
+				<!-- 드롭다운 선택용 숨겨진 검색 타입 -->
+				<input type="hidden" name="searchCondition"
+					id="searchConditionInput" value="all" />
+
+				<!-- ▼ 검색 버튼 -->
+				<button class="searchicon btn" id="searchBtn" type="submit">
+					<i class="bi bi-search"></i>
+				</button>
+			</div>
+		</form>
+	</div>
 </nav>
 <!-- 여기까지 : 덕규 -->
 

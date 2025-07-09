@@ -10,8 +10,7 @@ import egovframework.example.common.Criteria;
 @Mapper
 public interface BookMapper {
 	public List<?> selectBookList(Criteria criteria);
-	public List<?> searchBookList(Criteria criteria);
-	
+	public List<BookVO> searchBookList(Criteria criteria);
 	public BookVO selectBook(int bno);
 }
 

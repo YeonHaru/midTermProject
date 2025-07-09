@@ -68,30 +68,13 @@
           </div>
         </div>
       </div>
-
-      <!-- 전체 사이트 검색창 -->
-      <form
-        action="${pageContext.request.contextPath}/search"
-        method="get"
-        class="footer-search-global mt4 mb3"
-        role="search"
-      >
-        <input
-          type="search"
-          name="query"
-          placeholder=""
-          aria-label="사이트 전체 검색"
-          required
-        />
-        <button type="submit">검색</button>
-      </form>
-
+	  <!-- 최하단에 검색 기능 삭제 했습니다. -->
       <!-- 최하단 링크 -->
       <div class="footer-bottom mt4 pt4">
         <a href="#">회사소개</a>
         <a href="#">이용약관</a>
         <a href="#">개인정보처리방침</a>
-        <a href="#">매장위치</a>
+        <a href="/mapview.do">매장위치</a>
       </div>
     </footer>
 </div>
