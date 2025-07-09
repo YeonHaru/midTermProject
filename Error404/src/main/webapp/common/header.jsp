@@ -152,39 +152,44 @@ ${BOOKS}
 		</div>
 	</div>
 </nav>
-
+<!-- 7월9일 헤더 건든거 : 덕규 -->
 <nav class="navbar navbar-expand-lg custom-navbar bg-light">
-	<div class="container">
-		<form class="mx-auto w-100" role="search"
-			action="${pageContext.request.contextPath}/search.do" method="get"
-			style="max-width: 500px;">
-			<div
-				class="input-group shadow-sm rounded-pill border overflow-visible">
+  <div class="container">
+    <form id="searchForm" action="${pageContext.request.contextPath}/book.do" method="get"
+          class="mx-auto w-100" style="max-width: 500px;">
 
-				<!-- 통합검색 드롭다운 메뉴 (열리도록) -->
-				<div class="  dropdown custom-dropdown">
-					<button class="btn btn-light dropdown-toggle px-3 border-0"
-						type="button" data-bs-toggle="dropdown" aria-expanded="false">
-						통합검색</button>
-					<ul class="dropdown-menu">
-						<li><a class="dropdown-item" href="#">전체</a></li>
-						<li><a class="dropdown-item" href="#">도서</a></li>
-						<li><a class="dropdown-item" href="#">저자</a></li>
-					</ul>
-				</div>
+      <div class="input-group shadow-sm rounded-pill border overflow-visible">
 
-				<!-- 검색 입력창 -->
-				<input type="search" class="form-control border-0 px-3"
-					placeholder="404 NOT FOUND? WHY?" aria-label="Search" name="query">
+        <!-- ▼ 드롭다운 -->
+        <div class="dropdown custom-dropdown">
+          <button id="searchTypeBtn" class="btn btn-light dropdown-toggle px-3 border-0"
+                  type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            통합검색
+          </button>
+			<ul class="dropdown-menu">
+			  <li><a class="dropdown-item search-type-option" href="#" data-type="all">전체검색</a></li>
+			  <li><a class="dropdown-item search-type-option" href="#" data-type="title">도서검색</a></li>
+			  <li><a class="dropdown-item search-type-option" href="#" data-type="author">저자검색</a></li>
+			</ul>
+        </div>
+		
+		<!-- 사용자 검색어 입력창 -->
+		<input type="search" id="searchInput" name="searchKeyword" class="form-control border-0 px-3"
+		       placeholder="404 NOT FOUND? WHY?" aria-label="Search" />
+		
+		<!-- 드롭다운 선택용 숨겨진 검색 타입 -->
+		<input type="hidden" name="searchCondition" id="searchConditionInput" value="all" />
 
-				<!-- 검색 버튼 (돋보기 아이콘) -->
-				<button class="searchicon  btn " type="submit">
-					<i class="bi bi-search"></i>
-				</button>
-			</div>
-		</form>
-	</div>
+        <!-- ▼ 검색 버튼 -->
+        <button class="searchicon btn" id="searchBtn" type="submit">
+          <i class="bi bi-search"></i>
+        </button>
+      </div>
+    </form>
+  </div>
 </nav>
+<!-- 여기까지 : 덕규 -->
+
 <!-- 이걸해볼거임 -->
 
 <!-- 여기는 건들지 마시오 -->

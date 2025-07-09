@@ -24,6 +24,10 @@ public interface UsersService {
 	String findUserId(@Param("name") String name, @Param("email") String email);
 
 	// 비밀번호 찾기: 아이디 + 이메일
-	String findPassword(@Param("userid") String userid, @Param("email") String email);
+	String sendTemporaryPassword(String userid, String email);
 
+	// 유저가 직접 마이페이지에서 비번 변경
+	boolean changePassword(String userid, String currentPassword, String newPassword);
+	
+	void insertUser(UsersVO usersVO);   // 신규 회원가입
 }

@@ -36,7 +36,7 @@
             <h4>빠른 서비스</h4>
           </div>
           <div class="after-text">
-            <a href="#">환불/교환/반품</a>
+            <a href="${pageContext.request.contextPath}/goRefund.do">환불/교환/반품</a>
             <a href="#">미배송 신고</a>
             <a href="#">입금 신고</a>
           </div>

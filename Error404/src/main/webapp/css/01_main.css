@@ -44,7 +44,7 @@
   background-color: white;
   border: 1px solid var(--border-color);
   border-radius: 0.5rem;
-  width: calc(50% - 0.5rem);
+  width: calc(50% - 0.75rem);
   padding: 0.5rem;
   text-align: center;
   box-shadow: 0 2px 5px rgba(0,0,0,0.05);
@@ -80,7 +80,7 @@
   font-size: 0.95rem;
 }
 
-/* 회원가입유도 배너 */
+/* -----------------회원가입유도 배너 승화형님*/
 .signup-banner {
   background: linear-gradient(135deg, var(--accent-color-1), var(--accent-color-2));
   color: var(--text-main);
@@ -123,64 +123,45 @@
   background-color: var(--sub-color);
   transform: scale(1.05);
 }
+/*여기까지가 승화형님 css작업 회원가입 유도 배너---------------- */
 
-/* 중간 배너 슬라이드 스타일 */
-.swiper-slide {
-  display: flex;
-  justify-content: center;
-}
+ .banner-slide {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      min-height: 180px;
+      padding: 1.5rem;
+      border-radius: 16px;
+      color: #222;
+      box-sizing: border-box;
+    }
 
-.slide-box {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  border-radius: 1rem;
-  padding: 1.5rem;
-  width: 100%;
-  max-width: 700px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.08);
-  transition: all 0.3s;
-}
+    @media (min-width: 768px) {
+        body {
+            
+            width: 60%;
+        }
+      .banner-slide {
+        flex-direction: row;
+        align-items: center;
+      }
+    }
 
-.slide-box img {
-  max-width: 100px;
-  border-radius: 0.5rem;
-}
+    .banner-text {
+      flex: 1;
+    }
 
-.text-box {
-  flex: 1;
-  text-align: left;
-}
+    .banner-img {
+      flex: 1;
+      text-align: right;
+    }
 
-.img-box {
-  margin-top: 1rem;
-}
-
-/* 반응형: 태블릿 이상에서는 좌우 배치 */
-@media (min-width: 768px) {
-  .slide-box {
-    flex-direction: row;
-    align-items: center;
-  }
-  .img-box {
-    margin-top: 0;
-    margin-left: 1.5rem;
-  }
-}
-
-/* 배너 컬러 테마 */
-.banner-slide-light {
-  background-color: #e0f7f4;
-  color: #084c61;
-}
-.banner-slide-primary {
-  background-color: #0d6efd;
-  color: #fff;
-}
-.banner-slide-warning {
-  background-color: #ffc107;
-  color: #212529;
-}
+    .banner-img img {
+      max-width: 100px;
+      height: auto;
+      object-fit: contain;
+    }
 
 /* PC에서 카드 4열 */
 @media screen and (min-width: 1024px) {

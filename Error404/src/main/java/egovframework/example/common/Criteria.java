@@ -30,7 +30,7 @@ public class Criteria {
 	private int pageIndex = 1;
 
 	/** 페이지갯수: 화면에 보일 행 개수 */
-	private int pageUnit = 5;
+	private int pageUnit = 8;
 
 	/** firstIndex: 등차숫자 자동계산 */
 	private int firstIndex = 1;
