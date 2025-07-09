@@ -31,13 +31,23 @@ public class BookController {
        // nat과 category 로그 확인
        log.info("선택된 국적: {}", criteria.getNat());
        log.info("선택된 카테고리: {}", criteria.getCategory());
+       // 덕규 : 로그 확인
+       log.info("검색어(searchKeyword): {}", criteria.getSearchKeyword());
+       log.info("검색조건(searchCondition): {}", criteria.getSearchCondition());
 
        // 조건에 맞는 도서 조회
-       List<?> books = bookService.selectBookList(criteria);
+       List<?> books;
+
+       // (덕규)검색어가 있는 경우: 검색 전용으로 조건문을 달아봄
+       if (criteria.getSearchKeyword() != null && !criteria.getSearchKeyword().trim().isEmpty()) {
+           books = bookService.searchBookList(criteria); 
+       } else {
+           books = bookService.selectBookList(criteria); // 기존 전체 조회
+       }
+       // 여기까지가 조건문으로 바꾼것
 
        model.addAttribute("books", books);
        return "book/book_all"; // JSP 경로
-
    }
 
    // 상세페이지

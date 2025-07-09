@@ -28,6 +28,14 @@ public class BookServiceImpl implements BookService {
 		// TODO Auto-generated method stub
 		return bookMapper.selectBook(bno);
 	}
+
+//  검색 책 검색하는 오버라이드(덕규 : 도서, 저자, 통합검색)	
+	@Override
+	public List<BookVO> searchBookList(Criteria criteria) {
+		// TODO Auto-generated method stub
+		return bookMapper.searchBookList(criteria);
+	}
+	
 	
 	
 }

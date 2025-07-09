@@ -5,25 +5,28 @@
 <select id="searchBookList"
 		parameterType="Criteria"
 		resultType="BookVO">
-		    SELECT 
-	* 
+	SELECT * 
     FROM BOOKS
+    
     <!-- 덕규 : 헤더에 있는 검색창영역 키워드가 있으면 검색조건 추가 하는 where sql문입니다.  -->
 		 <where>
 		      <if test="searchKeyword != null and searchKeyword.trim() != ''">
 		        <choose>
+		        
 		          	<when test="searchCondition == 'title'">
 					  AND title LIKE '%' || #{searchKeyword} || '%'
 					</when>
+					
 					<when test="searchCondition == 'author'">
 					  AND author LIKE '%' || #{searchKeyword} || '%'
 					</when>
+					
 					<otherwise>
 					  AND (title LIKE '%' || #{searchKeyword} || '%'
 					       OR author LIKE '%' || #{searchKeyword} || '%')
-					</otherwise>
-		        </choose>
-		      </if>
+					</otherwise>					
+		        </choose>		        
+		      </if>	      
 		    </where>
  <!-- 요기까지에용 -->
 		</select>

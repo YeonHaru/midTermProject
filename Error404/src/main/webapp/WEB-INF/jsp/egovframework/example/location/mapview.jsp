@@ -14,7 +14,7 @@
   <link rel="stylesheet" href="${pageContext.request.contextPath}/css/10_mapview.css" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 <!-- todo : 네이버지도 -->
-  <script src="https://oapi.map.naver.com/openapi/v3/maps.js?ncpClientId=YOUR_CLIENT_ID"></script>
+  <script type="text/javascript" src="https://oapi.map.naver.com/openapi/v3/maps.js?ncpKeyId=aoj7qwlj1l"></script>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" />
 </head>
 <body class="bg-light">
@@ -231,6 +231,17 @@
     tabs.forEach(tab => tab.classList.remove('active'));
     event.target.classList.add('active');
   }
+</script>
+<script>
+  var mapOptions = {
+    center: new naver.maps.LatLng(35.143303, 129.060620),
+    zoom: 16
+  };
+  var map = new naver.maps.Map('navermap', mapOptions);
+  var marker = new naver.maps.Marker({
+    position: new naver.maps.LatLng(35.143303, 129.060620),
+    map: map
+  });
 </script> 
 </body>
 </html>
