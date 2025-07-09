@@ -58,11 +58,45 @@ ${BOOKS}
 					<!-- 국내도서 -->
 					<li class="nav-item dropdown"><a
 						class="nav-link dropdown-toggle" href="#" id="domesticMenu"
-						role="button" data-bs-toggle="dropdown" aria-expanded="false">국내도서</a>
+						role="button" data-bs-toggle="dropdown" aria-expanded="false">
+							국내도서 </a>
 						<ul class="dropdown-menu" aria-labelledby="domesticMenu">
-							<li><a class="dropdown-item" href="/book.do">소설</a></li>
-							<li><a class="dropdown-item" href="#">에세이</a></li>
-							<li><a class="dropdown-item" href="#">자기계발</a></li>
+							<li><a class="dropdown-item"
+								href="/book.do?nat=kor&category=fiction">소설</a></li>
+							<li><a class="dropdown-item"
+								href="/book.do?nat=kor&category=fantasy">판타지</a></li>
+							<li><a class="dropdown-item"
+								href="/book.do?nat=kor&category=essay">에세이</a></li>
+							<li><a class="dropdown-item"
+								href="/book.do?nat=kor&category=self">자기계발</a></li>
+							<li><a class="dropdown-item"
+								href="/book.do?nat=kor&category=science">과학</a></li>
+							<li><a class="dropdown-item"
+								href="/book.do?nat=kor&category=history">역사</a></li>
+							<li><a class="dropdown-item"
+								href="/book.do?nat=kor&category=philosophy">철학</a></li>
+							<li><a class="dropdown-item"
+								href="/book.do?nat=kor&category=art">예술</a></li>
+							<li><a class="dropdown-item"
+								href="/book.do?nat=kor&category=travel">여행</a></li>
+							<li><a class="dropdown-item"
+								href="/book.do?nat=kor&category=children">아동/청소년</a></li>
+							<li><a class="dropdown-item"
+								href="/book.do?nat=kor&category=cooking">요리</a></li>
+							<li><a class="dropdown-item"
+								href="/book.do?nat=kor&category=business">경제/경영</a></li>
+							<li><a class="dropdown-item"
+								href="/book.do?nat=kor&category=religion">종교</a></li>
+							<li><a class="dropdown-item"
+								href="/book.do?nat=kor&category=health">건강</a></li>
+							<li><a class="dropdown-item"
+								href="/book.do?nat=kor&category=computer">컴퓨터/IT</a></li>
+							<li><a class="dropdown-item"
+								href="/book.do?nat=kor&category=education">교육</a></li>
+							<li><a class="dropdown-item"
+								href="/book.do?nat=kor&category=comics">만화/웹툰</a></li>
+							<li><a class="dropdown-item"
+								href="/book.do?nat=kor&category=poetry">시/산문</a></li>
 						</ul></li>
 
 					<!-- 외국도서 -->

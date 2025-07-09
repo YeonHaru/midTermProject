@@ -125,6 +125,44 @@
 }
 /*여기까지가 승화형님 css작업 회원가입 유도 배너---------------- */
 
+ .banner-slide {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      min-height: 180px;
+      padding: 1.5rem;
+      border-radius: 16px;
+      color: #222;
+      box-sizing: border-box;
+    }
+
+    @media (min-width: 768px) {
+        body {
+            
+            width: 60%;
+        }
+      .banner-slide {
+        flex-direction: row;
+        align-items: center;
+      }
+    }
+
+    .banner-text {
+      flex: 1;
+    }
+
+    .banner-img {
+      flex: 1;
+      text-align: right;
+    }
+
+    .banner-img img {
+      max-width: 100px;
+      height: auto;
+      object-fit: contain;
+    }
+
 /* PC에서 카드 4열 */
 @media screen and (min-width: 1024px) {
   .book-card {

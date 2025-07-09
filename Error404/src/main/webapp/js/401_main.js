@@ -65,4 +65,10 @@ $("#notice-prev").on("click", function () {
 $(window).on("load", function () {
   updatePageNumber();
 });
-})
+ });
+ 
+
+
+  
+  
+

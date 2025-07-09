@@ -36,7 +36,7 @@
             <h4>빠른 서비스</h4>
           </div>
           <div class="after-text">
-            <a href="#">환불/교환/반품</a>
+            <a href="${pageContext.request.contextPath}/goRefund.do">환불/교환/반품</a>
             <a href="#">미배송 신고</a>
             <a href="#">입금 신고</a>
           </div>
@@ -48,7 +48,7 @@
             <h4>출판사, 판매자 안내</h4>
           </div>
           <div class="after-text">
-            <a href="#">제휴&마케팅 안내</a>
+            <a href="${pageContext.request.contextPath}/coalition/coalition.do">제휴&마케팅 안내</a>
             <a href="#">출판사 안내</a>
             <a href="#">판매자 매니저</a>
             <a href="#">광고 안내</a>
@@ -62,7 +62,7 @@
             <h4>제휴서비스</h4>
           </div>
           <div class="after-text">
-            <a href="#">문화상품권</a>
+            <a href="${pageContext.request.contextPath}/cultureCashGuide/cultureCashGuide.do">문화상품권</a>
             <a href="#">컬쳐랜드상품권</a>
             <a href="#">문화누리카드</a>
           </div>
