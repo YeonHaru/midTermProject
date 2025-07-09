@@ -34,7 +34,7 @@ public class UsersVO extends Criteria{
 	    private LocalDate join_date;    // DATE → LocalDate
 	    private String role;
 	    private String gender;
-	    private LocalDate birthdate;    
+	    private String birthdate;    
 	    private String address;
 	    private Integer point;          // null 가능성을 고려해 Integer 사용
 	    private String promoAgree;		// 알림수신동의

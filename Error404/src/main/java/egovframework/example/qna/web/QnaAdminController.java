@@ -1,7 +1,7 @@
 /**
  * 
  */
-package egovframework.example.refundInquiry.web;
+package egovframework.example.qna.web;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import egovframework.example.refundInquiry.service.RefundInquiryService;
-import egovframework.example.refundInquiry.service.RefundInquiryVO;
+import egovframework.example.qna.service.QnaService;
+import egovframework.example.qna.service.QnaVO;
 
 /**
  * @author user
@@ -19,23 +19,23 @@ import egovframework.example.refundInquiry.service.RefundInquiryVO;
  *	mapper , service, serviceimpl은 같이 쓰면됩니다 (임폴트추가 필수로 사용해야 합니다)
  */
 @Controller
-public class RefundInquiryAdminController {
+public class QnaAdminController {
 	
 	@Autowired
-	public RefundInquiryService refundInquiryService;
+	public QnaService qnaService;
 	
 	// 답변 작성 폼 페이지 (ID로 문의글 조회 후 폼에 보여주기)
     @GetMapping("/answerForm")
     public String showAnswerForm(@RequestParam Long id, Model model) {
-        RefundInquiryVO inquiry = refundInquiryService.selectInquiryById(id); // selectInquiryById 메서드 필요
-        model.addAttribute("inquiry", inquiry);
+    	QnaVO qna = qnaService.selectQnaById(id);  //  selectInquiryById 메서드 필요
+        model.addAttribute("inquiry", qna);
         return "admin/refundInquiry-answerForm";
     }
 
     // 답변 저장 처리
     @PostMapping("/answerSubmit")
-    public String submitAnswer(RefundInquiryVO refundInquiryVO) {
-        refundInquiryService.updateInquiryAnswer(refundInquiryVO);
+    public String submitAnswer(QnaVO qnaVO) {
+        qnaService.updateQnaAnswer(qnaVO);
         return "redirect:/admin/refundInquiry/list"; // 목록으로 리다이렉트
     }
 }

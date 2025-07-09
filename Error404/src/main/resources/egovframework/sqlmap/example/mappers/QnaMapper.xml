@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="egovframework.example.qna.service.impl.QnaMapper">
+
+	<!-- 등록 -->
+	<insert id="insertQna" parameterType="QnaVO">
+		INSERT INTO QNA (
+			QNA_ID, TITLE, Q_ID, Q_CONTENT, Q_DATE
+		) VALUES (
+			QNA_SEQ.NEXTVAL, #{title}, #{questionUserId}, #{questionContent}, SYSDATE
+		)
+	</insert>
+
+	<!-- 사용자별 QNA 조회 -->
+	<select id="selectQnaByUserId" resultType="QnaVO" parameterType="String">
+		SELECT
+			QNA_ID, TITLE, Q_ID AS questionUserId, Q_CONTENT AS questionContent,
+			Q_DATE AS questionDate, A_ID AS answerUserId, A_CONTENT AS answerContent, A_DATE AS answerDate
+		FROM QNA
+		WHERE Q_ID = #{userId}
+		ORDER BY QNA_ID DESC
+	</select>
+
+	<!-- 답변 등록 -->
+	<update id="updateQnaAnswer" parameterType="QnaVO">
+		UPDATE QNA
+		SET A_ID = #{answerUserId},
+			A_CONTENT = #{answerContent},
+			A_DATE = SYSDATE
+		WHERE QNA_ID = #{qnaId}
+	</update>
+
+	<!-- QNA 단건 조회 -->
+	<select id="selectQnaById" resultType="QnaVO" parameterType="long">
+		SELECT
+			QNA_ID, TITLE, Q_ID AS questionUserId, Q_CONTENT AS questionContent,
+			Q_DATE AS questionDate, A_ID AS answerUserId, A_CONTENT AS answerContent, A_DATE AS answerDate
+		FROM QNA
+		WHERE QNA_ID = #{qnaId}
+	</select>
+
+</mapper>

@@ -18,7 +18,9 @@
         <typeAlias type="egovframework.example.users.service.UsersVO" alias="UsersVO"/> 
         <typeAlias type="egovframework.example.book.service.BookVO" alias="BookVO"/>
         <typeAlias type="egovframework.example.refund.service.RefundVO" alias="RefundVO"/>     
-        <typeAlias type="egovframework.example.refundInquiry.service.RefundInquiryVO" alias="RefundInquiryVO"/>
+        <typeAlias type="egovframework.example.qna.service.QnaVO" alias="QnaVO"/>
+	
+	
 
         <typeAlias type="egovframework.example.guestorder.service.GuestOrderVO" alias="GuestOrderVO"/>
         <typeAlias type="egovframework.example.personinfo.service.PersonInfoVO" alias="PersonInfoVO"/>

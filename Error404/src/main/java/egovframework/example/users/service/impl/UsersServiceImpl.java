@@ -3,6 +3,7 @@
  */
 package egovframework.example.users.service.impl;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -109,6 +110,12 @@ public class UsersServiceImpl implements UsersService {
 //		신규 회원가입 
 		@Override
 		public void insertUser(UsersVO usersVO) {
+			usersVO.setJoin_date(LocalDate.now());			// 회원가입시 가입날짜가 오늘이게끔
+			usersVO.setRole("USER");						// 회원가입시  User
+			usersVO.setPoint(0);							//   "    포인트0원
+			usersVO.setGrade("일반");							// 회원등급
+				
+//			insert실행문
 			usersMapper.insertUser(usersVO);
 			
 		}

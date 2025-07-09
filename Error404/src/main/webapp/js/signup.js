@@ -1,25 +1,31 @@
-document.addEventListener("DOMContentLoaded", function () {
-  // ==============================
-  // 📧 이메일 도메인 선택 관련
-  // ==============================
-  const domainSelect = document.querySelector(".signup-email-domain-select");
-  const domainInput = document.querySelector(".signup-email-domain-input");
+// ✅ signup.js 전체 파일
 
+console.log("✅ signup.js 로드됨"); // 스크립트 로딩 확인용
+
+// ==============================
+// 📧 이메일 도메인 선택 관련
+// ==============================
+const domainSelect = document.querySelector(".signup-email-domain-select");
+const domainInput = document.querySelector(".signup-email-domain-input");
+
+if (domainSelect && domainInput) {
   domainSelect.addEventListener("change", function () {
-    domainInput.value = this.value; // 선택 시 자동입력
+    domainInput.value = this.value;
     if (this.value === "") {
       domainInput.placeholder = "도메인 입력";
       domainInput.focus();
     }
   });
+}
 
-  // ==============================
-  // ✅ 약관 체크 전체선택 처리
-  // ==============================
-  const checkAll = document.getElementById("check-all");
-  const checkEach = document.querySelectorAll(".check-each");
-  const checkMarketing = document.querySelectorAll(".check-marketing");
+// ==============================
+// ✅ 약관 체크 전체선택 처리
+// ==============================
+const checkAll = document.getElementById("check-all");
+const checkEach = document.querySelectorAll(".check-each");
+const checkMarketing = document.querySelectorAll(".check-marketing");
 
+if (checkAll) {
   checkAll.addEventListener("change", function () {
     const checked = checkAll.checked;
     checkEach.forEach(cb => cb.checked = checked);
@@ -34,11 +40,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
   checkEach.forEach(cb => cb.addEventListener("change", updateAllCheck));
   checkMarketing.forEach(cb => cb.addEventListener("change", updateAllCheck));
+}
 
-  // ==============================
-  // 📩 이메일 & 전화번호 조합 후 hidden에 담기
-  // ==============================
-  document.getElementById("signupForm").addEventListener("submit", function (e) {
+// ==============================
+// 📩 이메일 & 전화번호 조합 후 hidden에 담기
+// ==============================
+const form = document.getElementById("signupForm");
+if (form) {
+  form.addEventListener("submit", function (e) {
     // 이메일 조합
     const emailId = document.getElementById("emailId").value.trim();
     const emailDomain = document.getElementById("emailDomain").value.trim();
@@ -50,6 +59,7 @@ document.addEventListener("DOMContentLoaded", function () {
       return;
     }
     email.value = emailId + "@" + emailDomain;
+    console.log("📧 조립된 이메일:", email.value);
 
     // 휴대전화 조합
     const phone1 = document.getElementById("phone1").value.trim();
@@ -63,5 +73,19 @@ document.addEventListener("DOMContentLoaded", function () {
       return;
     }
     phone.value = phone1 + "-" + phone2 + "-" + phone3;
+    console.log("📱 조립된 전화번호:", phone.value);
+    
+    // ✅ 수신 동의 여부 조합 (이제 제대로 위치함)
+    const finalPromoAgree = document.getElementById("finalPromoAgree");
+    let agreed = false;
+
+    checkMarketing.forEach(cb => {
+      if (cb.checked) agreed = true;
+    });
+
+    finalPromoAgree.value = agreed ? "Y" : "N";
+    console.log("📩 수신 동의 여부:", finalPromoAgree.value);
   });
-});
+  
+  
+}
