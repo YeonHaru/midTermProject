@@ -1,10 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="egovframework.example.book.service.impl.BookMapper">
-<select id="selectBookList" resultType="BookVO" parameterType="Criteria">
-SELECT * FROM BOOKS
-WHERE 1=1
-<if test="nat != null"> AND UPPER(NAT) = UPPER(#{nat}) </if>
-<if test="category != null"> AND UPPER(CATEGORY) = UPPER(#{category}) </if>
-</select>
+<mapper
+	namespace="egovframework.example.book.service.impl.BookMapper">
+	<select id="selectBookList" resultType="BookVO"
+		parameterType="Criteria">
+		SELECT * FROM BOOKS
+		WHERE 1=1
+		<if test="nat != null"> AND UPPER(NAT) = UPPER(#{nat}) </if>
+		<if test="category != null"> AND UPPER(CATEGORY) = UPPER(#{category}) </if>
+	</select>
+
+	<select id="selectBook" parameterType="int" resultType="BookVO">
+		SELECT *
+		FROM BOOKS
+		WHERE BNO = #{bno}
+	</select>
+
 </mapper>

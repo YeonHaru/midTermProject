@@ -1,0 +1,248 @@
+.background{
+  background-color: var(--bg-color);
+}
+
+/* 모바일 우선 기본 스타일 */
+.book-detail-container {
+  padding: 2rem 1rem;
+  display: flex;
+  flex-direction: column;
+
+}
+.book-image{
+  width: 100%;
+  max-width: 300px;
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+  position: relative;
+  border-radius: 8px;
+  margin: 0 auto;
+}
+
+.book-image img {
+   width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  position: absolute;
+}
+
+.book-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.book-text p {
+  line-height: 2.5 !important;
+}
+
+.book-title {
+  font-weight: bold;
+  margin-bottom: 15px;
+  line-height: 5rem ;
+}
+
+.price-sale {
+  color: red;
+  font-weight: bold;
+}
+
+.button-group {
+  display: flex;
+  flex-wrap: wrap;  /* 줄바꿈 허용 */
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.button-group button {
+  flex: 1 1 48%; /* 최소 2개씩 줄에 배치 */
+  padding: 12px;
+  font-size: 14px;
+  background-color: var(--accent-color-1);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.button-group button:hover {
+  background-color: var(--accent-color-2);
+}
+
+
+.book-basic-info {
+  padding: 2rem 1rem;
+  /* max-width: 900px; */
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.info-item {
+  display: flex;
+  flex-wrap: wrap;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 1rem;
+}
+
+.info-label {
+  flex: 0 0 180px;
+  font-weight: bold;
+  color: #4A4A4A;
+  margin-bottom: 0.5rem;
+}
+
+.info-text {
+  flex: 1;
+  color: #888888;
+  line-height: 1.6;
+}
+
+
+.related-books {
+  padding: 2rem 1rem;
+}
+
+.related-books .section-title {
+  /* font-size: 1.4rem; */
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.related-swiper {
+  position: relative;
+  max-width: 100%;
+ 
+}
+
+.book-slide {
+  text-align: center;
+}
+
+/* 고정 비율 이미지 박스 */
+.image-box {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 5; /* 예: 가로:세로 = 3:4 비율 */
+  overflow: hidden;
+  border-radius: 0.5rem;
+}
+
+
+.book-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+.book-title {
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+  color: var(--text-main);
+}
+
+.return-exchange-info {
+  padding: 2rem 1rem;
+  background-color: var(--main-color);
+  border: 2px solid var(--border-color);
+  font-size: 0.95rem;
+  line-height: 1.8;
+  border-radius: 1rem;
+}
+
+.return-exchange-info .info-title {
+  font-size: 1.4rem;
+  font-weight: bold;
+  margin-bottom: 1.5rem;
+  color: var(--text-main);
+}
+
+.info-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.info-item {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.info-item .label {
+  width: 180px;
+  font-weight: bold;
+  color: #222;
+  flex-shrink: 0;
+}
+
+.info-item .description {
+  flex: 1;
+  color: #555;
+}
+
+
+/* 네비게이션 버튼 위치 조정 */
+.swiper-button-prev, .swiper-button-next {
+  color:var(--sub-color);
+}
+
+.swiper-pagination-bullet {
+  background: var(--sub-color);
+  opacity: 1;
+}
+
+.swiper-pagination-bullet-active {
+  background: var(--sub-color);
+}
+
+/* 반응형 처리 */
+@media (max-width: 600px) {
+  .info-item {
+    flex-direction: column;
+  }
+
+  .info-label {
+    flex: 1;
+    margin-bottom: 0.25rem;
+  }
+
+  .info-item .label {
+    width: auto;
+  }
+
+  .info-text {
+    flex: 1;
+  }
+}
+
+/* ✅ 반응형: 태블릿 이상에서 가로 정렬 */
+@media (min-width: 768px) {
+  .book-detail-container {
+    flex-direction: row;
+    align-items: flex-start;
+    margin: 0 auto;
+  }
+
+  .book-image img {      
+    max-width: 300px;
+  }
+
+  .book-info {
+    flex: 1;
+    margin-left: 40px;
+  }
+
+  .button-group {
+    flex-wrap: nowrap;
+  }
+
+  .button-group button {
+    flex: 1;
+  }
+}
