@@ -40,14 +40,14 @@ public class BookController {
 
    }
 
-   
-//   상세페이지
-    @GetMapping("/book/detail.do")
-    public String bookDetail(@RequestParam int bno, Model model) {
-        BookVO bookVO = bookService.selectBook(bno);
-        model.addAttribute("bookVO", bookVO); // JSP에 넘겨줄 모델 데이터
-        return "book/book_detail"; // → /WEB-INF/views/book/detail.jsp 로 forward
-    }
+   // 상세페이지
+   @GetMapping("/book/detail.do")
+   public String bookDetail(@RequestParam int bno, Model model) {
+       BookVO book = bookService.selectBook(bno);
+       model.addAttribute("book", book); // ← 여기 이름을 "book"으로 맞춰줌
+       return "book/book_detail";
+   }
+
    
 
 }
