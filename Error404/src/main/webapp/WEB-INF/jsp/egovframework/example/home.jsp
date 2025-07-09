@@ -33,7 +33,7 @@
 </head>
 <body>
 	<jsp:include page="/common/header.jsp" />
-	
+
 	<div class="page">
 		<div class="mainpage-container">
 			<!-- 메인 배너 -->
@@ -191,61 +191,58 @@
 				</div>
 			</div>
 		</section>
-		<div class="container my-5">
-  
-<!-- 중간 배너 -->
-<div class="swiper custom-banner-swiper">
+		
+<!-- 해리포터 배너 슬라이드 -->
+<div class="swiper myBannerSwiper">
   <div class="swiper-wrapper">
 
-    <!-- 슬라이드 1: 밝은 민트 배경 -->
-    <div class="swiper-slide banner-slide-light">
-      <div class="slide-box">
-        <div class="text-box">
-          <h5 class="fw-bold">알라딘 프로모션</h5>
-          <p class="mb-0">신간 도서 10% 할인 이벤트 진행 중!</p>
-          <a href="#" class="btn btn-sm btn-primary mt-2">자세히 보기</a>
+    <!-- 슬라이드 1 -->
+    <div class="swiper-slide">
+      <div class="banner-slide" style="background-color: #f8f9fa;">
+        <div class="banner-text">
+          <h4>🧙 해리포터 시리즈 입문</h4>
+          <p>마법 세계의 시작! <strong>해리포터와 마법사의 돌</strong>로 입문해보세요.</p>
         </div>
-        <div class="img-box">
-          <img src="${pageContext.request.contextPath}/images/해리포터.jpg" class="img-fluid rounded" alt="배너1" />
-        </div>
-      </div>
-    </div>
-
-    <!-- 슬라이드 2: 파란 배경 -->
-    <div class="swiper-slide banner-slide-primary">
-      <div class="slide-box">
-        <div class="text-box">
-          <h5 class="fw-bold">이벤트 배너</h5>
-          <p class="mb-0">첫 구매 고객 대상 추가 적립!</p>
-          <a href="#" class="btn btn-sm btn-light mt-2">참여하기</a>
-        </div>
-        <div class="img-box">
-          <img src="${pageContext.request.contextPath}/images/해리포터.jpg" class="img-fluid rounded" alt="배너2" />
+        <div class="banner-img">
+          <img src="${pageContext.request.contextPath}/images/해리포터.jpg" alt="마법사의 돌 이미지" />
         </div>
       </div>
     </div>
 
-    <!-- 슬라이드 3: 노랑 배경 -->
-    <div class="swiper-slide banner-slide-warning">
-      <div class="slide-box">
-        <div class="text-box">
-          <h5 class="fw-bold">알림</h5>
-          <p class="mb-0">오늘의 인기 작가 인터뷰 🔥</p>
-          <a href="#" class="btn btn-sm btn-dark mt-2">인터뷰 보기</a>
+    <!-- 슬라이드 2 -->
+    <div class="swiper-slide">
+      <div class="banner-slide" style="background-color: #e9f7ef;">
+        <div class="banner-text">
+          <h4>🛡️ 불사조 기사단의 귀환</h4>
+          <p>어둠의 세력에 맞서는 <strong>불사조 기사단</strong>의 비밀 작전!</p>
         </div>
-        <div class="img-box">
-          <img src="${pageContext.request.contextPath}/images/해리포터.jpg" class="img-fluid rounded" alt="배너3" />
+        <div class="banner-img">
+          <img src="${pageContext.request.contextPath}/images/해리포터불사조기사단.jpg" alt="불사조 기사단 이미지" />
         </div>
       </div>
     </div>
 
+    <!-- 슬라이드 3 -->
+    <div class="swiper-slide">
+      <div class="banner-slide" style="background-color: #fff3cd;">
+        <div class="banner-text">
+          <h4>🗝️ 비밀의 방이 열렸다</h4>
+          <p><strong>해리포터와 비밀의 방</strong> 속 미스터리를 풀어보세요!</p>
+        </div>
+        <div class="banner-img">
+          <img src="${pageContext.request.contextPath}/images/해리포터와비밀의방.jpg" alt="비밀의 방 이미지" />
+        </div>
+      </div>
+    </div>
 
-    <!-- 네비게이션 -->
-    <div class="swiper-button-prev banner-prev"></div>
-    <div class="swiper-button-next banner-next"></div>
-    <div class="swiper-pagination banner-pagination"></div>
   </div>
+
+
+  <div class="swiper-button-next"></div>
+  <div class="swiper-button-prev"></div>
+  <div class="swiper-pagination"></div>
 </div>
+	
 	</div>
 	<div class="mainpage-center"></div>
 

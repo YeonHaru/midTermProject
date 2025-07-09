@@ -67,28 +67,7 @@ $(window).on("load", function () {
 });
  });
  
- // 중간배너 모바일 1개 pc 3개짜리
-new Swiper(".custom-banner-swiper", {
-  slidesPerView: 1,
-  spaceBetween: 20,
-  loop: true,
-  navigation: {
-    nextEl: ".banner-next",
-    prevEl: ".banner-prev",
-  },
-  pagination: {
-    el: ".banner-pagination",
-    clickable: true,
-  },
-  breakpoints: {
-    768: {
-      slidesPerView: 2,
-    },
-    1024: {
-      slidesPerView: 3,
-    },
-  },
-});
+
 
   
   

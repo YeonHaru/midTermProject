@@ -42,4 +42,16 @@ public class RefundController {
 	public String inquiryPopup() {
 		return "mypage/mypage-inquiry"; // 
 	}
+	
+//	footer에 있는 환불 클릭하면 넘어감
+	@GetMapping("/goRefund.do")
+	public String goRefund(HttpSession session) {
+	    UsersVO loginUser = (UsersVO) session.getAttribute("loginUser");
+
+	    if (loginUser == null) {
+	        return "redirect:/login.do"; // 로그인 안 되어 있으면 로그인 페이지로 이동
+	    }
+
+	    return "redirect:/mypage.do"; // 로그인 되어 있으면 마이페이지로 이동
+	}
 }
