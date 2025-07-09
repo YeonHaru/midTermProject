@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="egovframework.example.personinfo.service.impl.PersonInfoMapper">
+<mapper namespace="egovframework.example.writerinfo.service.impl.WriterInfoMapper">
 <!-- id="메소드명", parameterType="매개변수자료형", resultType="리턴자료형" -->
-		<select  id="selectPersonList"
+		<select  id="selectWriterList"
 				 parameterType="Criteria"
-				 resultType="PersonInfoVO"
+				 resultType="WriterInfoVO"
 		>
-				SELECT * FROM PERSON_INFO
+				SELECT * FROM WRITER_INFO
 				WHERE WORK LIKE '%' || #{searchKeyword} ||'%'
 				OFFSET #{firstIndex} ROWS
 				FETCH NEXT #{pageUnit} ROWS ONLY 
 		</select>
 		
  		<!-- id="메소드명", parameterType="매개변수자료형", resultType="리턴자료형" -->
-		<select 	id="selectPersonListTotCnt"
+		<select 	id="selectWriterListTotCnt"
 						parameterType="Criteria"
 						resultType="int"
 		 >
-				SELECT COUNT(*) FROM PERSON_INFO
+				SELECT COUNT(*) FROM WRITER_INFO
 				WHERE WORK LIKE '%' || #{searchKeyword} ||'%'
 		</select>
 

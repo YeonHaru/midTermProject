@@ -1,6 +1,15 @@
-.card-img-top {
-  height: 30vh;         /* ▶ 전체 화면 높이의 20% */
-  object-fit: cover;    /* ▶ 이미지 비율 유지하며 채움 */
+.section-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #4A4A4A; /* 메인 텍스트 컬러 */
+  padding-bottom: 0.5rem;
+  border-bottom: 4px solid #FDD7D7; /* 포인트 밑줄 */
+  display: inline-block;
+  background-color: #FFF8F8; /* 연한 배경색 */
+  padding: 0.5rem 1rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+  margin-bottom: 1rem; /* ✅ 아래 여백 추가 */
 }
 
 .card-title {
@@ -22,11 +31,11 @@
 }
 
 
- .col-md-3 {
-  max-width: 300rem; /* 카드 최대 너비 지정 */
+/*  .col-md-3 {
+  max-width: 300rem; 카드 최대 너비 지정
   flex: 0 0 auto;
 }
-
+ */
 
 .card {
   width: 100%; /* 컬럼 너비에 맞게 꽉 채움 */
@@ -81,7 +90,11 @@
 .kyobo-btn:hover {
   background-color: #fbb;
 }
+    /* 박스 4개 배치 */
+ 	.col4 {width:23% !important; display:inline-block; padding:0.5%;}
+ 
 
+ 	
 
 /* 모바일 화면일때 */
 @media (max-width: 768px) {
