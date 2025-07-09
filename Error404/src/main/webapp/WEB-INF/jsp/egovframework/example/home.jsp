@@ -333,6 +333,67 @@
 >>>>>>> 4da640607bb0518d65b1ab7d3f0590df41606c63
         </div>
       </div>
+<<<<<<< HEAD
+    </div>      
+  </div>
+     <!--  승화형님 회원가입유도 배너  -->
+      <section class="container mb3">
+         <div
+            class="signup-banner tcenter rounded-4 shadow flex items-center p-4">
+            <!-- 텍스트와 버튼 -->
+            <div class="banner-text">
+               <h3 class="mb3">
+                  🎁 지금 가입하면 <span class="highlight">3,000원 할인</span>!
+               </h3>
+               <small class="mb4">간편 가입하고, 다양한 혜택과 함께 책을 만나보세요 📚</small>
+               <div class="mt4">
+                  <a href="${pageContext.request.contextPath}/login.do"
+                     class="btn-signup">회원가입 하러가기</a>
+               </div>
+            </div>
+         </div>
+      </section>
+      <!-- 승화형님 -->
+   <!-- 하단 아이콘 -->
+    <div class="quick-menu">
+      <ul class="quick-menu-list">
+        <c:forEach var="icon" items="${pageContext.request.contextPath}/images/main/">
+          <!-- 이 부분은 향후 JSTL 배열 등으로 처리 가능 -->
+        </c:forEach>
+<!-- /temp.do 템플릿 양식 예시입니다. 홈 컨트롤러에 임시로 해놨습니다. 템플릿양식으로 연결만 시켜둘게요. -->
+        <li>
+          <a href="/temp.do"><img src="${pageContext.request.contextPath}/images/main/jewelry.svg" alt="할인혜택" /><span>할인혜택</span></a>
+        </li>
+        <li>
+          <a href="#"><img src="${pageContext.request.contextPath}/images/main/sale.svg" alt="오늘만특가" /><span>오늘만특가</span></a>
+        </li>
+        <li>
+          <a href="#"><img src="${pageContext.request.contextPath}/images/main/app.svg" alt="APP혜택" /><span>APP혜택</span></a>
+        </li>
+        <li>
+          <a href="#"><img src="${pageContext.request.contextPath}/images/main/card.svg" alt="기프트카드" /><span>기프트카드</span></a>
+        </li>
+        <li>
+          <a href="#"><img src="${pageContext.request.contextPath}/images/main/book.svg" alt="바로출판" /><span>바로출판</span></a>
+        </li>
+        <li>
+          <a href="#"><img src="${pageContext.request.contextPath}/images/main/book of.svg" alt="이달의 책" /><span>이달의 책</span></a>
+        </li>
+        <li>
+          <a href="#"><img src="${pageContext.request.contextPath}/images/main/pen.svg" alt="손글씨캠페인" /><span>글씨캠페인</span></a>
+        </li>
+        <li>
+          <a href="#"><img src="${pageContext.request.contextPath}/images/main/box.svg" alt="사은품" /><span>사은품</span></a>
+        </li>
+        <li>
+          <a href="#"><img src="${pageContext.request.contextPath}/images/main/good1.svg" alt="추천" /><span>추천</span></a>
+        </li>
+        <li>
+          <a href="#"><img src="${pageContext.request.contextPath}/images/main/Books.svg" alt="인물&작품" /><span>인물&작품</span></a>
+        </li>
+      </ul>
+=======
+>>>>>>> main
     </div>
 
   </div>
@@ -586,6 +647,13 @@
 <!-- Swiper 최신 버전 -->
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
+<<<<<<< HEAD
+<!-- 커스텀 JS -->
+<script src="${pageContext.request.contextPath}/js/401_main.js"></script>
+<!-- 헤더의 검색창 영역 JS파일 -->
+<script src="${pageContext.request.contextPath}/js/200_search.js"></script>
+=======
+>>>>>>> main
 
 	<!-- 커스텀 JS -->
 	<script src="${pageContext.request.contextPath}/js/401_main.js"></script>
