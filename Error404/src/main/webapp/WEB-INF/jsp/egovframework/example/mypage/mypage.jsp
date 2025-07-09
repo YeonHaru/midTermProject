@@ -217,7 +217,10 @@
 				<!-- 모바일에서는 아코디언 형태가 편함 -->
 				<details open>
 					<summary class="set-accordion-header">비밀번호 변경</summary>
-					<form id="changePasswordForm" class="set-form-stack">
+					<form id="changePasswordForm" method="post"
+						action="<c:url value='/mypage/changePassword.do'/>"
+						class="set-form-stack">
+
 						<label for="currentPassword" class="mt3">현재 비밀번호</label> <input
 							type="password" id="currentPassword" name="currentPassword"
 							required class="mt0" /> <label for="newPassword" class="mt3">새

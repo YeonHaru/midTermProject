@@ -28,4 +28,9 @@ public interface UsersMapper {
 
 	// 비밀번호 찾기: 아이디 + 이메일
 	public String findPassword(@Param("userid") String userid, @Param("email") String email);
+	
+	// 임시 비밀번호 업데이트용
+	void updatePassword(@Param("userid") String userid, @Param("password") String password);
+	
+	public void insertUser(UsersVO usersVO);   // 신규 회원가입
 }	

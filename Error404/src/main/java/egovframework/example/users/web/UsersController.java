@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import egovframework.example.users.service.UsersService;
 import egovframework.example.users.service.UsersVO;
@@ -100,18 +101,52 @@ public class UsersController {
 	public String findPwForm() {
 		return "auth/findPw"; // findPw.jsp 또는 findPw.html
 	}
-
-	// 비밀번호 찾기 처리
+	// 비밀번호 찾기 처리 (추가)
 	@PostMapping("/findPw.do")
-	public String findPw(String userid, String email, Model model) {
-		String password = usersService.findPassword(userid, email);
-		if (password != null) {
-			model.addAttribute("result", "비밀번호는 " + password + " 입니다.");
-			// 실제 운영에서는 임시 비밀번호 발급 + 메일 전송 등으로 변경 필요
-		} else {
-			model.addAttribute("result", "일치하는 정보가 없습니다.");
-		}
-		return "auth/findPw";
+	public String sendTempPassword(String userid, String email, Model model) {
+	    String resultMessage;
+	    try {
+	        resultMessage = usersService.sendTemporaryPassword(userid, email);
+	    } catch (Exception e) {
+	        log.error("임시 비밀번호 발송 중 오류 발생", e);
+	        resultMessage = "임시 비밀번호 발송 중 오류가 발생했습니다. 다시 시도해주세요.";
+	    }
+	    model.addAttribute("result", resultMessage);
+	    return "auth/findPw";
 	}
+	
+//	 유저가 직접 비밀번호 수정
+		@PostMapping("/mypage/changePassword.do")
+		public String changePassword(@RequestParam String currentPassword,
+		                             @RequestParam String newPassword,
+		                             HttpSession session, Model model) {
 
+		    UsersVO loginUser = (UsersVO) session.getAttribute("loginUser");
+		    String userid = loginUser.getUserid();
+
+		    boolean result = usersService.changePassword(userid, currentPassword, newPassword);
+
+		    if (result) {
+		        model.addAttribute("msg", "비밀번호가 변경되었습니다.");
+		    } else {
+		        model.addAttribute("msg", "현재 비밀번호가 일치하지 않습니다.");
+		    }
+
+		    model.addAttribute("user", usersService.selectUserById(userid));
+
+		    return "mypage/mypage";
+		}
+		// 회원가입 처리
+		@PostMapping("/join.do")
+		public String joinUser(UsersVO usersVO, Model model) {
+		    try {
+		        usersService.insertUser(usersVO);
+		        model.addAttribute("msg", "회원가입이 완료되었습니다. 로그인 해주세요.");
+		        return "auth/login"; // 가입 후 로그인 페이지로 이동
+		    } catch (Exception e) {
+		        log.error("회원가입 중 오류 발생", e);
+		        model.addAttribute("msg", "회원가입 중 오류가 발생했습니다. 다시 시도해주세요.");
+		        return "auth/join"; // 오류 시 다시 가입 폼으로
+		    }
+		}
 }

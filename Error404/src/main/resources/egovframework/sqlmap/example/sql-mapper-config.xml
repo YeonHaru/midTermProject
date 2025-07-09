@@ -19,11 +19,11 @@
         <typeAlias type="egovframework.example.book.service.BookVO" alias="BookVO"/>
         <typeAlias type="egovframework.example.refund.service.RefundVO" alias="RefundVO"/>     
         <typeAlias type="egovframework.example.refundInquiry.service.RefundInquiryVO" alias="RefundInquiryVO"/>
+
         <typeAlias type="egovframework.example.guestorder.service.GuestOrderVO" alias="GuestOrderVO"/>
-<<<<<<< HEAD
-=======
-        
->>>>>>> 4da640607bb0518d65b1ab7d3f0590df41606c63
+        <typeAlias type="egovframework.example.personinfo.service.PersonInfoVO" alias="PersonInfoVO"/>
+
+
 
 
     

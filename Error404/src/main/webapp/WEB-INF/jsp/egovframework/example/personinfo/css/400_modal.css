@@ -1,0 +1,201 @@
+.card-img-top {
+  height: 30vh;         /* ▶ 전체 화면 높이의 20% */
+  object-fit: cover;    /* ▶ 이미지 비율 유지하며 채움 */
+}
+
+.card-title {
+  align-self: flex-start; /* 왼쪽 정렬 */
+}
+
+.card-writer {
+  align-self: flex-end;   /* 오른쪽 정렬 */
+  margin-top: 0;
+  margin-bottom: 0;
+  color: #666;
+}
+
+.card {
+  overflow: hidden;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+
+}
+
+
+ .col-md-3 {
+  max-width: 300rem; /* 카드 최대 너비 지정 */
+  flex: 0 0 auto;
+}
+
+
+.card {
+  width: 100%; /* 컬럼 너비에 맞게 꽉 채움 */
+}
+
+.book-img {
+  width: 100%;
+  height: auto;
+  max-height: 250px;  /* PC에서 이미지 최대 높이 증가 */
+  object-fit: contain;
+  object-position: center;
+  padding: 6px;
+  background-color: #FFF8F8;
+  border-radius: 4px;
+}
+
+/* 외부 박스: 가운데 정렬 + 여백 */
+.kyobo-wrapper {
+  margin: 4vh auto;
+  text-align: center;
+  width: 100%;
+}
+
+/* 내부 검색박스: 작고 깔끔하게 */
+.kyobo-search {
+  display: flex;
+  width: 100%;
+  max-width: 480px;
+  border: 1px solid #ccc;
+  border-radius: 3vh;
+  overflow: hidden;
+  margin: 0 auto;
+  font-family: "Noto Sans KR", sans-serif;
+  box-shadow: 0 0.3vh 0.8vh rgba(0, 0, 0, 0.05);
+}
+
+/* 각 요소 스타일 */
+.kyobo-select,
+.kyobo-input,
+.kyobo-btn {
+  border: none;
+  outline: none;
+  padding: 1.1vh 1vw;
+  font-size: 1.4vh;
+}
+
+/* 비율 */
+.kyobo-select { flex: 2; border-right: 1px solid #eee; }
+.kyobo-input  { flex: 5; }
+.kyobo-btn    { flex: 2; background: #fdd7d7; cursor: pointer; transition: 0.2s; }
+
+.kyobo-btn:hover {
+  background-color: #fbb;
+}
+
+
+/* 모바일 화면일때 */
+@media (max-width: 768px) {
+  .col-md-3 {
+    max-width: 100%;
+    flex: 0 0 100%;
+  }
+
+  .book-img {
+    height: 38vh;           /* 적당히 큰 높이 */
+    max-height: none;
+    margin-bottom: -4vh;    /* 살짝만 이미지가 카드 아래로 넘침 */
+    object-fit: contain;    /* 이미지 비율 유지하며 넘치게 */
+  }
+
+  .card {
+    overflow: visible;      /* 넘치는 부분 잘리지 않도록 */
+  }
+
+ .card-header-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin-top: 2vh;     /* ✅ 위쪽에 여백 줘서 이미지와 간격 확보 */
+    padding-top: 1vh;     /* ✅ 여유를 위한 패딩 */
+  }
+
+  .card-title {
+    font-size: 1rem;
+    flex: 1;
+    margin: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .card-writer {
+    font-size: 0.85rem;
+    color: #666;
+    margin: 0;
+    white-space: nowrap;
+  }
+
+  .card-body {
+    padding-top: 2vh;  /* 카드 본문 전체 위 여백도 약간 추가 */
+  }
+
+
+
+  .card-text {
+    font-size: 0.85rem;
+  }
+
+
+   .kyobo-wrapper {
+    padding: 0 1rem;  /* 바깥 좌우 여백 */
+    box-sizing: border-box; /* 패딩을 포함해서 너비 계산 */
+  }
+
+  .kyobo-search {
+    width: 100% !important;
+    max-width: none !important;
+    padding: 0;
+    flex-wrap: nowrap !important; /* 여기서 nowrap 넣어도 됨 */
+  }
+
+  .kyobo-select,
+  .kyobo-input {
+    font-size: 1.2vh !important;
+    -webkit-text-size-adjust: 100% !important;
+  }
+
+  .kyobo-btn {
+    flex: 1 1 20%;       /* 버튼 너비 약 20% */
+    border-radius: 0;    /* 네모 모서리 유지 */
+    margin-right: 0;      /* 왼쪽 마진 제거 */
+    padding-left: 1vw;
+    padding-right: 1vw;
+    min-width: auto !important;
+    font-size: 1.2vh !important;
+    display: inline-block !important;
+  }
+  /* flex 비율도 여기서 기본값 설정 */
+  .kyobo-select {
+    flex: 1 1 25%;
+  }
+  .kyobo-input {
+    flex: 1 1 50%;
+  }
+  .kyobo-btn {
+    flex: 1 1 25%;
+    font-size: 1.2vh !important;
+  }
+}
+
+/* 576px 이하에서만 조금 더 작게 조정 */
+@media (max-width: 576px) {
+  .kyobo-select,
+  .kyobo-input {
+    font-size: 1.1vh !important;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
