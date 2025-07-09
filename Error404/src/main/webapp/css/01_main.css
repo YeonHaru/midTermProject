@@ -44,7 +44,7 @@
   background-color: white;
   border: 1px solid var(--border-color);
   border-radius: 0.5rem;
-  width: calc(50% - 0.5rem);
+  width: calc(50% - 0.75rem);
   padding: 0.5rem;
   text-align: center;
   box-shadow: 0 2px 5px rgba(0,0,0,0.05);
@@ -80,7 +80,7 @@
   font-size: 0.95rem;
 }
 
-/* 회원가입유도 배너 */
+/* -----------------회원가입유도 배너 승화형님*/
 .signup-banner {
   background: linear-gradient(135deg, var(--accent-color-1), var(--accent-color-2));
   color: var(--text-main);
@@ -123,6 +123,7 @@
   background-color: var(--sub-color);
   transform: scale(1.05);
 }
+/*여기까지가 승화형님 css작업 회원가입 유도 배너---------------- */
 
 /* PC에서 카드 4열 */
 @media screen and (min-width: 1024px) {

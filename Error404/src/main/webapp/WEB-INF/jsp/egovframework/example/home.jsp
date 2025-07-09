@@ -111,6 +111,24 @@
       </div>
     </div>      
   </div>
+     <!--  승화형님 회원가입유도 배너  -->
+      <section class="container mb3">
+         <div
+            class="signup-banner tcenter rounded-4 shadow flex items-center p-4">
+            <!-- 텍스트와 버튼 -->
+            <div class="banner-text">
+               <h3 class="mb3">
+                  🎁 지금 가입하면 <span class="highlight">3,000원 할인</span>!
+               </h3>
+               <small class="mb4">간편 가입하고, 다양한 혜택과 함께 책을 만나보세요 📚</small>
+               <div class="mt4">
+                  <a href="${pageContext.request.contextPath}/login.do"
+                     class="btn-signup">회원가입 하러가기</a>
+               </div>
+            </div>
+         </div>
+      </section>
+      <!-- 승화형님 -->
    <!-- 하단 아이콘 -->
     <div class="quick-menu">
       <ul class="quick-menu-list">
@@ -150,6 +168,7 @@
         </li>
       </ul>
     </div>
+  </div>
       <div class="mainpage-center"></div>
 <!-- 위에까지가 미니 아이콘 배너들 -->
 <div class="bg page">
@@ -386,6 +405,8 @@
 
 <!-- 커스텀 JS -->
 <script src="${pageContext.request.contextPath}/js/401_main.js"></script>
+<!-- 헤더의 검색창 영역 JS파일 -->
+<script src="${pageContext.request.contextPath}/js/200_search.js"></script>
 
 <jsp:include page="/common/footer.jsp" />
 </body>
