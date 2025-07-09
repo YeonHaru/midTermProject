@@ -34,8 +34,11 @@ public class Criteria {
 
 	/** firstIndex: 등차숫자 자동계산 */
 	private int firstIndex = 1;
-
+	
+	
 	private String insertTime;
-
 	private String updateTime;
+	
+	private String nat;
+	private String category;
 }
