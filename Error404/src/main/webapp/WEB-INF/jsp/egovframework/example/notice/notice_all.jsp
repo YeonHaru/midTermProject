@@ -52,6 +52,8 @@
                 <td><c:out value="${data.viewCount}" /></td>
               </tr>
             </c:forEach>
+            
+            <!-- 공지가 없을때 나옴 -->
             <c:if test="${empty noticeList}">
               <tr>
                 <td colspan="5" class="tcenter text-muted">등록된 공지사항이 없습니다.</td>
@@ -73,6 +75,8 @@
               </div>
             </li>
           </c:forEach>
+          
+          <!-- 공지가 없을때 나옴 -->
           <c:if test="${empty noticeList}">
             <li class="tcenter text-muted">등록된 공지사항이 없습니다.</li>
           </c:if>
@@ -103,6 +107,13 @@
       startPage: parseInt("${paginationInfo.currentPageNo}"),
       visiblePages: "${paginationInfo.recordCountPerPage}",
       initiateStartPageClick: false,
+      
+     // 아이콘 포함된 버튼 텍스트(공지 페이지)
+      first: '<i class="bi bi-skip-backward-fill"></i> 처음',
+      prev: '<i class="bi bi-caret-left-fill"></i> 이전',
+      next: '다음 <i class="bi bi-caret-right-fill"></i>',
+      last: '마지막 <i class="bi bi-skip-forward-fill"></i>',
+
       onPageClick: function (event, page) {
         fn_egov_link_page(page);
       }
