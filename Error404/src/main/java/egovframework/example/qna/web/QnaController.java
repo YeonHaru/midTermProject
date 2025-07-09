@@ -1,7 +1,7 @@
 /**
  * 
  */
-package egovframework.example.refundInquiry.web;
+package egovframework.example.qna.web;
 
 import java.util.List;
 
@@ -9,34 +9,34 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import egovframework.example.refundInquiry.service.RefundInquiryService;
-import egovframework.example.refundInquiry.service.RefundInquiryVO;
+import egovframework.example.qna.service.QnaService;
+import egovframework.example.qna.service.QnaVO;
 import egovframework.example.users.service.UsersVO;
-import org.springframework.ui.Model;
 
 /**
  * @author user
  *	1대1 문의 컨트롤러
  */
 @Controller
-public class RefundInquiryController {
+public class QnaController {
 
 	@Autowired
-	private RefundInquiryService refundInquiryService;
+	private QnaService qnaService;
 
 //	로그인이 되었을때 마이페이지로 이동  로그인이 안되어있다면 바로 로그인페이지로 이동
 	@PostMapping("/inquiry/submit")
-	public String submitInquiry(RefundInquiryVO refundInquiryVO, HttpSession session) {
+	public String submitInquiry(QnaVO qnaVO, HttpSession session) {
 		UsersVO loginUser = (UsersVO) session.getAttribute("loginUser");
 		if (loginUser == null) {
 			return "redirect:/login.do";
 		}
 
-		refundInquiryVO.setUserId(loginUser.getUserid());
-		refundInquiryService.insertRefundInquiry(refundInquiryVO);
+		qnaVO.setQuestionUserId(loginUser.getUserid()); // 변경
+		qnaService.insertQna(qnaVO); // 변경
 
 		return "redirect:/mypage.do";
 	}
@@ -56,10 +56,10 @@ public class RefundInquiryController {
 	    }
 	    // 1. 유저 ID로 문의 내역 조회
 	    String userId = loginUser.getUserid();
-	    List<RefundInquiryVO> inquiryList = refundInquiryService.selectInquiriesByUserId(userId);
+	    List<QnaVO> qnaList = qnaService.selectQnaByUserId(userId); // 변경
 
 	    // 2. 조회된 리스트를 model에 담기
-	    model.addAttribute("inquiries", inquiryList);
+	    model.addAttribute("inquiries", qnaList);
 	    
 	    return "mypage/mypage-myquestions"; 
 	}

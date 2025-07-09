@@ -1,7 +1,7 @@
 /**
  * 
  */
-package egovframework.example.refundInquiry.service;
+package egovframework.example.qna.service;
 
 import java.util.Date;
 
@@ -21,13 +21,13 @@ import lombok.ToString;
 @NoArgsConstructor
 @ToString
 @EqualsAndHashCode(callSuper = false)
-public class RefundInquiryVO {
-	private Long id; // NUMBER, 시퀀스 값
-	private String userId; // USER_ID
-	private String title; // TITLE
-	private String content; // CONTENT
-	private Date requestDate; // REQUEST_DATE
-	private String answer;		// 관리자 답변
-	private Date answerDate;	// 관리자 답변 날짜
-
+public class QnaVO {
+	private Long qnaId;				// QNA_ID
+	private String title;			// TITLE
+	private String questionUserId;	// Q_ID
+	private String questionContent;	// Q_CONTENT
+	private Date questionDate;		// Q_DATE
+	private String answerUserId;	// A_ID
+	private String answerContent;	// A_CONTENT
+	private Date answerDate;		// A_DATE
 }
