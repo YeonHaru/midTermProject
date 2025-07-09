@@ -40,5 +40,22 @@
         FROM USERS
         WHERE userid = #{userid} AND email = #{email}
     </select>
+    
+     <update id="updatePassword">
+        UPDATE USERS
+        SET PASSWORD = #{password}
+        WHERE USERID = #{userid}
+    </update>
+    
+    <insert id="insertUser" parameterType="UsersVO">
+    INSERT INTO USERS (
+        USERID, PASSWORD, NAME, EMAIL, PHONE, JOIN_DATE, ROLE,
+        GENDER, BIRTHDATE, ADDRESS, POINT, PROMO_AGREE, POST_NOTIFY_AGREE, GRADE
+    )
+    VALUES (
+        #{userid}, #{password}, #{name}, #{email}, #{phone}, #{join_date}, #{role},
+        #{gender}, #{birthdate}, #{address}, #{point}, #{promoAgree}, #{postNotifyAgree}, #{grade}
+    )
+</insert>
 
 </mapper>
