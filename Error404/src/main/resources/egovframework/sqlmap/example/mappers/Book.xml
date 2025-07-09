@@ -27,9 +27,8 @@
 		    </where>
  <!-- 요기까지에용 -->
 		</select>
-		</mapper>
-<mapper>
-	namespace="egovframework.example.book.service.impl.BookMapper">
+
+
 	<select id="selectBookList" resultType="BookVO"
 		parameterType="Criteria">
 		SELECT * FROM BOOKS
@@ -44,4 +43,5 @@
 		WHERE BNO = #{bno}
 	</select>
 
-</mapper>
+	</mapper>	
+
