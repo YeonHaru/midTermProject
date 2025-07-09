@@ -1,0 +1,167 @@
+/* mainpage.css */
+
+/* 메인 콘텐츠 레이아웃 */
+.main-content {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  grid-template-rows: auto auto;
+  gap: 10px;
+  grid-template-areas:
+    "left center right-top"
+    "left center right-bottom"
+    "bottom bottom bottom";
+}
+
+/* 박스별 스타일 */
+.left-box {
+  grid-area: left;
+  height: 450px;
+}
+
+.center-box {
+  grid-area: center;
+  height: 450px;
+}
+
+.right-top-box {
+  grid-area: right-top;
+  height: 220px;
+}
+
+.right-bottom-box {
+  grid-area: right-bottom;
+  height: 220px;
+}
+
+.bottom-slider {
+  grid-area: bottom;
+  height: 320px;
+  margin-top: 20px;
+}
+
+.tempbox {
+  display: flex;
+  flex-wrap: wrap;
+  background-color: var(--bg-color);
+  padding: 1.5rem;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  text-align: center;
+}
+.ai-picks-box img {
+  max-height: 200px;
+  object-fit: cover;
+}
+
+/* 이미지 꽉채우게 */
+.carousel-inner {
+  height: 450px; /* 원하는 높이로 조정 가능 */
+  border-radius: 8px;
+}
+
+.carousel-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}  
+
+.benefit-list li {
+  margin-bottom: 6px;
+  list-style: disc;
+}
+.progress-bar-wrapper {
+  width: 100%;
+  background-color: #eee;
+  height: 10px;
+  border-radius: 5px;
+  margin: 10px 0;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  background-color: #4caf50;
+  border-radius: 5px;
+  transition: width 0.3s ease;
+}
+
+.progress-text {
+  font-size: 0.85rem;
+  margin-bottom: 8px;
+}
+.benefit-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.benefit-buttons button {
+  padding: 8px 14px;
+  border: 1px solid #f5a1c0;
+  border-radius: 6px;
+  background-color: #ffe4ec;
+  color: #c2185b;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.benefit-buttons button:hover {
+  background-color: #fdd2e0;
+}
+
+.book-flip-card {
+  width: calc(23.5%);
+  height: 300px;
+  perspective: 1000px;
+  position: relative;
+  padding: 0;
+}
+.flip-inner {
+  width: 100%;
+  height: 100%;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+  position: relative;
+}
+.book-flip-card:hover .flip-inner {
+  transform: rotateY(180deg);
+}
+.flip-front, .flip-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  overflow: hidden;
+  background: white;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+.flip-front {
+  z-index: 2;
+}
+.flip-back {
+  transform: rotateY(180deg);
+  padding: 1rem;
+  text-align: center;
+}
+.image-box img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+.title {
+  font-size: 1rem;
+  font-weight: bold;
+  margin-top: 0.5rem;
+}
+.desc {
+  font-size: 0.9rem;
+  color: #555;
+  margin-top: 1rem;
+}
+/* 모바일 대응용 JS 클래스 */
+.flipped {
+  transform: rotateY(180deg) !important;
+}

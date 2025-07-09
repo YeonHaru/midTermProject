@@ -1,0 +1,58 @@
+.step-container {
+  background-color: transparent; /* 배경 투명하게 */
+  border: none;                  /* 테두리 제거 */
+  border-radius: 0;              /* 둥근 모서리 제거 */
+  padding: 1.5rem 0;             /* 좌우 여백 제거, 위아래만 유지 */
+  margin-bottom: 1.5rem;
+ text-align: center;
+}
+
+.step-icon {
+  font-size: 2rem;
+  color: var(--accent-color-1);
+  margin-bottom: 0.75rem;
+  display: block;
+  
+}
+
+.step-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--accent-color-1);
+  margin-bottom: 0.5rem;
+  text-align: center;
+}
+
+.step-desc {
+  color: var(--text-main);
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  text-align: center;
+}
+
+.pin-input {
+  width: 50%;
+  padding: 0.75rem;
+  font-size: 1rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 0.5rem;
+
+}
+
+.btn-submit {
+  background-color: var(--accent-color-1);
+  color: white;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  display: block;
+  margin: 0 auto;
+}
+
+.btn-submit:hover {
+  background-color: #e08080;
+}

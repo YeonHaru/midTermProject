@@ -23,6 +23,7 @@ public class BookController {
    
 //   전체조회
    @GetMapping("/book.do")
+
    public String book(
          @ModelAttribute Criteria criteria,  // nat과 category도 이 안에 포함됨
          Model model
@@ -36,6 +37,7 @@ public class BookController {
 
        model.addAttribute("books", books);
        return "book/book_all"; // JSP 경로
+
    }
 
    

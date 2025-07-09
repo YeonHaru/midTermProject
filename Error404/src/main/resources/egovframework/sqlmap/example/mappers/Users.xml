@@ -1,15 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper
-	namespace="egovframework.example.users.service.impl.UsersMapper">
-	<select id="selectUsersList" parameterType="Criteria"
-		resultType="UsersVO">
-		SELECT * FROM USERS
-		WHERE NAME LIKE '%' || #{searchKeyword} ||'%'
-		OFFSET #{firstIndex} ROWS
-		FETCH NEXT #{pageUnit} ROWS ONLY
-	</select>
-	<select id="selectUserById" resultType="UsersVO" parameterType="String">
-     SELECT * FROM USERS WHERE USERID = #{userid}
-</select>
+<mapper namespace="egovframework.example.users.service.impl.UsersMapper">
+
+    <select id="selectUsersList" parameterType="Criteria" resultType="UsersVO">
+        SELECT * FROM USERS
+        WHERE NAME LIKE '%' || #{searchKeyword} || '%'
+        OFFSET #{firstIndex} ROWS
+        FETCH NEXT #{pageUnit} ROWS ONLY
+    </select>
+
+    <select id="selectUserById" resultType="UsersVO" parameterType="String">
+        SELECT 
+            USERID,
+            PASSWORD,
+            NAME,
+            EMAIL,
+            PHONE,
+            JOIN_DATE,
+            ROLE,
+            GENDER,
+            BIRTHDATE,
+            ADDRESS,
+            POINT,
+            PROMO_AGREE AS promoAgree,
+            POST_NOTIFY_AGREE AS postNotifyAgree,
+            GRADE
+        FROM USERS
+        WHERE USERID = #{userid}
+    </select>
+
+    <select id="findUserId" resultType="String">
+        SELECT userid
+        FROM USERS
+        WHERE name = #{name} AND email = #{email}
+    </select>
+
+    <select id="findPassword" resultType="String">
+        SELECT password
+        FROM USERS
+        WHERE userid = #{userid} AND email = #{email}
+    </select>
+
 </mapper>

@@ -1,0 +1,100 @@
+/* 📢 공지사항 테이블 스타일 */
+.notice-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+ background-color: var(--bg-color);
+  table-layout: fixed;
+  color: var(--text-main);
+  display: table;
+}
+
+.notice-table th,
+.notice-table td {
+  text-align: center;
+  padding: 0.75rem;
+  vertical-align: middle;
+  border-bottom: 1px solid var(--border-color);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* 제목 컬럼만 좌측 정렬 */
+.notice-table td:nth-child(2) {
+  text-align: left;
+}
+
+/* 테이블 헤더 */
+.notice-table thead {
+  background-color: var(--main-color);
+  font-weight: bold;
+  color: var(--text-main);
+}
+
+/* 링크 스타일 */
+.notice-table a {
+  color: var(--text-main);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+.notice-table a:hover {
+  color: var(--accent-color-1);
+  text-decoration: underline;
+}
+
+/* 📱 모바일 리스트 스타일 */
+.notice-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: none;
+  background-color: var(--bg-color);
+}
+
+.notice-item {
+  padding: 1rem;
+  border-bottom: 1px solid var(--border-color);
+  background-color: var(--bg-color);
+}
+
+.notice-item a {
+  display: block;
+  color: var(--text-main);
+  font-size: 1rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.notice-item a:hover {
+  color: var(--accent-color-1);
+  text-decoration: underline;
+}
+
+.notice-meta {
+  font-size: 0.875rem;
+  color: var(--text-sub);
+  margin-top: 0.5rem;
+}
+
+/* ✅ 반응형 처리 */
+@media screen and (max-width: 767px) {
+  .notice-table {
+    display: none;
+  }
+  .notice-list {
+    display: block;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .notice-list {
+    display: none;
+  }
+  .notice-table {
+    display: table;
+  }
+}

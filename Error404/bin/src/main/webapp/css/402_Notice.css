@@ -1,0 +1,150 @@
+/* 공지사항 상자 너비 */
+.mainpage-container {
+  display: flex !important;    /* flex 강제 적용 */
+  gap: 1rem;                  /* 좌우 간격 */
+  align-items: flex-start;    /* 상단 정렬 */
+  width: 100%;                /* 전체 너비 확보 */
+  box-sizing: border-box;
+}
+
+.main-banner-wrapper {
+  flex: 1 1 auto;             /* 가변 너비 */
+  max-width: 75%;
+  min-width: 0;               /* 오버플로우 방지 */
+  margin: 0 !important;       /* 공통 margin 초기화 */
+  padding: 0 !important;      /* 공통 padding 초기화 */
+  box-sizing: border-box;
+}
+.mainpage-right {
+ /* flex: 0 0 20%; */
+  max-width: 20%;
+  display: flex;
+  align-items: stretch;
+  width: 100%;
+  height: auto;
+  margin-top: 3rem; /* 👈 상단 여백 추가 */
+}
+
+.mainpage-center {
+  margin-left: 20px;
+}
+
+@media screen and (max-width: 767px) {
+  .mainpage-container {
+    display: block;    /* flex 제거해서 block 컨테이너로 변경 */
+    max-width: 400px;  /* 부모도 적당히 제한 */
+    margin: 1rem auto;
+    padding: 0 0.5rem;
+  }
+
+  .main-banner-wrapper {
+    width: 80%;
+    max-width: 400px;
+    padding: 0 0.5rem;        /* 좌우 여백 균등히 */
+    box-sizing: border-box;
+    margin: 0 auto;         /* 중앙 정렬 */
+  }
+
+  .main-banner-content {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    text-align: center;
+    padding: 1rem 0;
+  }
+
+  .main-banner-text {
+    width: 100%;
+  }
+
+  .main-banner-content img {
+    width: 100%;
+    max-width: 320px;   /* 이미지 크기 제한 */
+    height: auto;
+  }
+
+  .mainpage-right {
+    display: none; /* 공지사항 박스 모바일에서 숨김 */
+  }
+}
+
+.mainpage-side-box {
+  background: var(--bg-color);
+  border-radius: 1rem;
+  border: 1px solid var(--main-color);
+  padding: 1rem;
+  height: 100%;
+  box-sizing: border-box;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.mainpage-side-box img {
+  width: 100%;             /* 부모 너비에 맞게 꽉 채움 */
+  height: 200px;           /* 원하는 높이 설정 */
+  object-fit: cover;       /* 비율 무시하고 잘라서 채움 */
+  border-radius: 1rem;
+  display: block;          /* 여백 제거 (선택) */
+}
+
+.side-box-badge {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: #ff4d4f;
+  color: white;
+  font-size: 0.75rem;
+  padding: 0.2rem 0.5rem;
+  border-radius: 0.5rem;
+  font-weight: bold;
+}
+
+.mainpage-side-box-content {
+  text-align: center;
+  padding: 0.5rem 0;
+}
+.bluedelete{
+  color: var(--text-sub);              /* 서브텍스트 */
+  text-decoration: none;    /* 밑줄 제거 */
+}
+
+/* 스와이퍼 ... 이라던지 1/3 2/3 3/3 같은거 없앤거  */
+/* .swiper-pagination {
+  display: none !important;
+} */
+
+.mainpage-side-box-content h5 {
+  font-weight: bold;
+  margin-bottom: 0.25rem;
+}
+
+.side-box-pagination {
+  cursor: pointer;
+  user-select: none;
+  text-align: center;
+  margin-top: 1rem;
+  font-size: 0.95rem;
+  color: #444;
+  font-weight: 600;
+  position: static; /* 절대위치나 고정위치 사용하지 않도록 */
+}
+
+.side-box-price {
+  font-size: 0.85rem;
+  color: #666;
+  margin-top: 0.5rem;
+  text-align: center;
+}
+
+
+#notice-next {
+  text-align: center;
+  font-size: 0.9rem;
+  color: #444;
+  margin-top: 0.5rem;
+  cursor: pointer; /* 👈 클릭 가능하게 표시 */
+}
+

@@ -13,8 +13,8 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous"/>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
   </head>
-  <body>
-  <div class="bg">
+  <body class="bg">
+  <div class="mt1">
     <footer class="footer page pb5">
       <div class="footer-book mb4">
 
@@ -24,6 +24,7 @@
             <h4>공지 사항</h4>
           </div>
           <div class="after-text">
+            <a href="${pageContext.request.contextPath}/notice.do">[공지사항]</a>
             <a href="#">[채용공고]</a>
             <a href="#">토스결제 오류안내</a>
           </div>
@@ -47,7 +48,7 @@
             <h4>출판사, 판매자 안내</h4>
           </div>
           <div class="after-text">
-            <a href="#">제휴&마케팅 안내</a>
+            <a href="${pageContext.request.contextPath}/coalition/coalition.do">제휴&마케팅 안내</a>
             <a href="#">출판사 안내</a>
             <a href="#">판매자 매니저</a>
             <a href="#">광고 안내</a>
@@ -61,7 +62,7 @@
             <h4>제휴서비스</h4>
           </div>
           <div class="after-text">
-            <a href="#">문화상품권</a>
+            <a href="${pageContext.request.contextPath}/cultureCashGuide/cultureCashGuide.do">문화상품권</a>
             <a href="#">컬쳐랜드상품권</a>
             <a href="#">문화누리카드</a>
           </div>
