@@ -101,9 +101,6 @@
   padding-left: 0.5rem;
 }
 
-.search-form button:hover {
-  color: var(--main-color, #007bff);
-}
 /* ====== 슬라이드 배너 & 추천 묶음 ====== */
 .event-swiper-section {
   display: flex;
@@ -183,6 +180,27 @@
   background-color: #fff;
   padding: 0.5rem;
 }
+/* 기본: 세로 정렬 (모바일용) */
+.event-slide.horizontal .slide-banner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.banner-text {
+  margin-bottom: 15px;
+}
+
+.banner-image {
+  margin: 5px 0;
+}
+
+.banner-image img {
+  width: 80%;
+  max-width: 300px;
+  height: auto;
+}
 
 /* 우측: 추천 박스 */
 .slide-recommend {
@@ -208,6 +226,16 @@
   font-size: 0.9rem;
   line-height: 1.6;
 }
+ .bottom-slider {
+  display: flex;
+  flex-wrap: wrap;
+  background-color: var(--bg-color);
+  padding: 1.5rem;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+} 
+
+
 /* 모바일 반응형 */
 @media (max-width: 768px) {
   .event-swiper-section {
@@ -256,6 +284,45 @@
   .search-form {
     max-width: 100%;
     border-radius: 6px;
+  }
+}
+
+
+/* 768px 이상: 가로 정렬 */
+@media (min-width: 768px) {
+  .event-slide.horizontal .slide-banner {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    text-align: left;
+  }
+
+  .banner-text {
+    flex: 1;
+    margin-bottom: 0;
+    padding-right: 20px;
+  }
+
+  .banner-image {
+    margin: 0 5px;
+  }
+
+  .banner-image img {
+    max-width: 350px;
+    height: 280px;
+  }
+}
+
+/* 1024px 이상: 여유 공간 확보 */
+@media (min-width: 1024px) {
+  .banner-image img {
+    max-width: 350px;
+    height: 280px;
+  }
+
+  .event-slide.horizontal .slide-banner {
+    gap: 30px;
+    padding: 10px 20px;
   }
 }
 

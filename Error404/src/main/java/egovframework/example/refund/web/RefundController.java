@@ -17,7 +17,8 @@ import egovframework.example.users.service.UsersVO;
 
 /**
  * @author user
- *
+ *	이건 마이페이지 환불요청에 들어가는 VO입니다
+ *	환불사유,나의1대1문의 조회 기능으로 만든것입니다.
  */
 @Controller
 public class RefundController {

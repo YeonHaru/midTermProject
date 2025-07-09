@@ -23,26 +23,31 @@ public class BookController {
    
 //   전체조회
    @GetMapping("/book.do")
-   public String bookController(
-         @ModelAttribute Criteria criteria, Model model
-         ) {
-//      PaginationInfo paginationInfo = new PaginationInfo();
-//      paginationInfo.setCurrentPageNo(criteria.getPageIndex());
-//      criteria.setFirstIndex(paginationInfo.getFirstRecordIndex());
-//      전체조회 서비스 메소드 실행
-      List<?> books = bookService.selectBookList(criteria);
-      log.info("테스트 : "+books);   
-      model.addAttribute("books", books);
-      return "book/book_all";
+
+   public String book(
+         @ModelAttribute Criteria criteria,  // nat과 category도 이 안에 포함됨
+         Model model
+   ) {
+       // nat과 category 로그 확인
+       log.info("선택된 국적: {}", criteria.getNat());
+       log.info("선택된 카테고리: {}", criteria.getCategory());
+
+       // 조건에 맞는 도서 조회
+       List<?> books = bookService.selectBookList(criteria);
+
+       model.addAttribute("books", books);
+       return "book/book_all"; // JSP 경로
+
    }
-   
-//   상세페이지
-    @GetMapping("/book/detail.do")
-    public String bookDetail(@RequestParam int bno, Model model) {
-        BookVO bookVO = bookService.selectBook(bno);
-        model.addAttribute("bookVO", bookVO); // JSP에 넘겨줄 모델 데이터
-        return "book/book_detail"; // → /WEB-INF/views/book/detail.jsp 로 forward
-    }
+
+   // 상세페이지
+   @GetMapping("/book/detail.do")
+   public String bookDetail(@RequestParam int bno, Model model) {
+       BookVO book = bookService.selectBook(bno);
+       model.addAttribute("book", book); // ← 여기 이름을 "book"으로 맞춰줌
+       return "book/book_detail";
+   }
+
    
 
 }

@@ -37,5 +37,7 @@ public class UsersVO extends Criteria{
 	    private LocalDate birthdate;    
 	    private String address;
 	    private Integer point;          // null 가능성을 고려해 Integer 사용
-
+	    private String promoAgree;		// 알림수신동의
+	    private String postNotifyAgree;	// 알림수신동의
+	    private String grade;			// 회원등급
 }

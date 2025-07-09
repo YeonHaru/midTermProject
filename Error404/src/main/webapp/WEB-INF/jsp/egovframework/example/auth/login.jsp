@@ -63,7 +63,8 @@
 
 			<!-- 비회원 주문확인 콘텐츠 -->
 			<div class="login-content login-nonmember">
-				<form action="${pageContext.request.contextPath}/guestOrder/check"
+				<form
+					action="${pageContext.request.contextPath}/guestOrder/check.do"
 					method="post">
 					<div class="login-form">
 						<input type="text" name="orderId" class="login-input"
