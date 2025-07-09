@@ -1,7 +1,7 @@
 /**
  * 
  */
-package egovframework.example.personinfo.web;
+package egovframework.example.writerinfo.web;
 
 import java.util.List;
 
@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
 import egovframework.example.common.Criteria;
-import egovframework.example.personinfo.service.PersonInfoService;
+import egovframework.example.writerinfo.service.WriterInfoService;
 import lombok.extern.log4j.Log4j2;
 
 /**
@@ -22,13 +22,13 @@ import lombok.extern.log4j.Log4j2;
  */
 @Log4j2
 @Controller
-public class PersonInfoController {
+public class WriterInfoController {
 //	서비스 가져오기
 	@Autowired
-	private PersonInfoService personInfoService;
+	private WriterInfoService writerInfoService;
 	
 //	전체조회
-	@GetMapping("/personinfo/personinfo.do")
+	@GetMapping("/writerinfo/writerinfo.do")
 	public String name(@ModelAttribute Criteria criteria, Model model) {
 //		1)등차자동계산 클래스 :
 //			-필요정보 : (1) 현재페이지번호, (2) 보일 갯수(pageUnit) : 8
@@ -39,17 +39,17 @@ public class PersonInfoController {
 		criteria.setFirstIndex(paginationInfo.getFirstRecordIndex());
 		
 //	전체조회 서비스 메소드 실행
-	List<?> personinfos = personInfoService.selectPersonList(criteria);
-	log.info("테스트 : "+personinfos);	
-	model.addAttribute("personinfos", personinfos);
+	List<?> writerinfos = writerInfoService.selectWriterList(criteria);
+	log.info("테스트 : "+writerinfos);	
+	model.addAttribute("writerinfos", writerinfos);
 	
 //	페이지 번호 그리기 : 플러그인(전체테이블 행 갯수)
-	int totCnt = personInfoService.selectPersonListTotCnt(criteria);
+	int totCnt = writerInfoService.selectWriterListTotCnt(criteria);
 	paginationInfo.setTotalRecordCount(totCnt);
 	log.info("테스트 : " + totCnt);
 //	페이지 모든정보 : paginationInfo
 	model.addAttribute("paginationInfo", paginationInfo);	
-	return "personinfo/personinfo_all";
+	return "writerinfo/writerinfo_all";
 	}
 
 

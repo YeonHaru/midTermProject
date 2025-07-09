@@ -1,11 +1,11 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Card Grid</title>
-
-    <style>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+ <style>
       .card-img-top {
         height: 20vh !important;
         object-fit: contain;
@@ -16,7 +16,6 @@
         box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
       }
     </style>
-
     <!-- 부트스트랩 CSS -->
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
@@ -26,10 +25,12 @@
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="./css/400_modal.css" />
-  </head>
-  <body>
-      <div class="container my-5">
+    <link rel="stylesheet" href="/css/400_modal.css" />
+</head>
+<body>
+${writerinfos}
+<jsp:include page="/common/header.jsp" />
+  <div class="container my-5">
         <!-- ✅ 제목 영역 -->
       <h4 class="section-title">지금 가장 인기있는 작가&작품</h4>
 
@@ -39,7 +40,7 @@
           <div class="col-md-3">
             <div class="card h-100">
               <img
-                src="./img/pink_person.png"
+                src="/images/pink_person.png"
                 class="card-img-top book-img"
                 alt="도서 이미지"
               />
@@ -62,7 +63,7 @@
           <div class="col-md-3">
             <div class="card h-100">
               <img
-                src="./img/pink_person.png"
+                src="/images/pink_person.png"
                 class="card-img-top book-img"
                 alt="도서 이미지"
               />
@@ -71,7 +72,7 @@
               >
                 <div class="title-writer-wrapper">
                   <h5 class="card-title mb-1">하퍼 리</h5>
-                  <h6 class="card-writer mb-0">2024년 노벨문학상</h6>
+                  <h6 class="card-writer mb-0">2007년 자유의 메달</h6>
                 </div>
                 <i
                   class="bi bi-heart-fill heart-icon"
@@ -85,7 +86,7 @@
           <div class="col-md-3">
             <div class="card h-100">
               <img
-                src="./img/pink_person.png"
+                src="/images/pink_person.png"
                 class="card-img-top book-img"
                 alt="도서 이미지"
               />
@@ -93,8 +94,8 @@
                 class="card-body d-flex justify-content-between align-items-center"
               >
                 <div class="title-writer-wrapper">
-                  <h5 class="card-title mb-1">김금희</h5>
-                  <h6 class="card-writer mb-0">2020년 오늘의 젊은 예술가상</h6>
+                  <h5 class="card-title mb-1">어니스트 헤밍웨이</h5>
+                  <h6 class="card-writer mb-0">1954년 노벨 문학상</h6>
                 </div>
                 <i
                   class="bi bi-heart-fill heart-icon"
@@ -108,7 +109,7 @@
           <div class="col-md-3">
             <div class="card h-100">
               <img
-                src="./img/pink_person.png"
+                src="/images/pink_person.png"
                 class="card-img-top book-img"
                 alt="도서 이미지"
               />
@@ -116,8 +117,8 @@
                 class="card-body d-flex justify-content-between align-items-center"
               >
                 <div class="title-writer-wrapper">
-                  <h5 class="card-title mb-1">하태완</h5>
-                  <h6 class="card-writer mb-0">2018년 YES24 올해의 책</h6>
+                  <h5 class="card-title mb-1">다자이 오사무</h5>
+                  <h6 class="card-writer mb-0">아쿠타가와 상 차석</h6>
                 </div>
                 <i
                   class="bi bi-heart-fill heart-icon"
@@ -132,7 +133,7 @@
           <div class="col-md-3">
             <div class="card h-100">
               <img
-                src="./img/perfume.png"
+                src="/images/perfume.png"
                 class="card-img-top book-img"
                 alt="도서 이미지"
               />
@@ -220,7 +221,7 @@
           <div class="col-md-3">
             <div class="card h-100">
               <img
-                src="./img/parrot.png"
+                src="/images/parrot.png"
                 class="card-img-top book-img"
                 alt="도서 이미지"
               />
@@ -322,7 +323,7 @@
           <div class="col-md-3">
             <div class="card h-100">
               <img
-                src="./img/sea.png"
+                src="/images/sea.png"
                 class="card-img-top book-img"
                 alt="도서 이미지"
               />
@@ -408,7 +409,7 @@
           <div class="col-md-3">
             <div class="card h-100">
               <img
-                src="./img/people.png"
+                src="/images/people.png"
                 class="card-img-top book-img"
                 alt="도서 이미지"
               />
@@ -562,5 +563,5 @@
 
       <!-- Bootstrap JS -->
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-  </body>
+</body>
 </html>

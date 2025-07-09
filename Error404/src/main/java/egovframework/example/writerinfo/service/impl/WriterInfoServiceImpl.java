@@ -1,7 +1,7 @@
 /**
  * 
  */
-package egovframework.example.personinfo.service.impl;
+package egovframework.example.writerinfo.service.impl;
 
 import java.util.List;
 
@@ -10,30 +10,30 @@ import org.springframework.stereotype.Service;
 
 import egovframework.example.common.Criteria;
 import egovframework.example.dept.service.impl.DeptMapper;
-import egovframework.example.personinfo.service.PersonInfoService;
+import egovframework.example.writerinfo.service.WriterInfoService;
 
 /**
  * @author user
  *
  */
 @Service
-public class PersonInfoServiceImpl implements PersonInfoService{
+public class WriterInfoServiceImpl implements WriterInfoService{
 //	Mapper 가져오기
 	@Autowired
-	private PersonInfoMapper personInfoMapper;
+	private WriterInfoMapper writerInfoMapper;
 
 //	전체조회
 	@Override
-	public List<?> selectPersonList(Criteria criteria) {
+	public List<?> selectWriterList(Criteria criteria) {
 		// TODO Auto-generated method stub
-		return personInfoMapper.selectPersonList(criteria);
+		return writerInfoMapper.selectWriterList(criteria);
 	}
 
 //	총 개수구하기
 	@Override
-	public int selectPersonListTotCnt(Criteria criteria) {
+	public int selectWriterListTotCnt(Criteria criteria) {
 		// TODO Auto-generated method stub
-		return personInfoMapper.selectPersonListTotCnt(criteria);
+		return writerInfoMapper.selectWriterListTotCnt(criteria);
 	}
 	
 	
