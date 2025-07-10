@@ -1,7 +1,7 @@
 /**
  * 
  */
-package egovframework.example.refund.service;
+package egovframework.example.refundrequests.service;
 
 import java.util.Date;
 
@@ -24,9 +24,11 @@ import lombok.ToString;
 @ToString
 @EqualsAndHashCode(callSuper = false)
 public class RefundVO {
-	private Long id;             // NUMBER (자동 생성되므로 Long 타입 권장)
-    private String userId;       // 유저아이디
-    private String reason;       // 환불사유
-    private String content;      // 환불상세사유
-    private Date requestDate;    // 환불날짜
+	private Long rno;           // RNO (기존 id → rno로 변경)
+	private String userid;      // USERID
+	private String reason;      // REASON
+	private String content;     // CONTENT
+	private Date requestDate;   // REQUEST_DATE
+	private Long ono;           // ONO (선택적 사용)
+	private String status;      // STATUS (선택적 사용)
 }

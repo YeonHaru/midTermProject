@@ -50,9 +50,10 @@ public class UsersController {
 		if (success) {
 			session.setAttribute("loginUser", usersVO);
 			
-			// TEMP_PW_YN이 'Y'이면 알림용 세션 설정
+			 // TEMP_PW_YN이 'Y'면 플래그 세션에 저장하고 마이페이지로 강제 이동
 	        if ("Y".equals(usersVO.getTempPwYn())) {
 	            session.setAttribute("isTempPassword", true);
+	            return "redirect:/mypage.do"; // ✅ 마이페이지로 이동
 	        }
 			
 			return "redirect:/home.do";
@@ -81,6 +82,14 @@ public class UsersController {
 		UsersVO userDetails = usersService.selectUserById(loginUser.getUserid());
 		model.addAttribute("user", userDetails);
 
+		// 세션에 임시비번 플래그가 있으면 JSP에 넘기고 한 번만 사용
+	    Boolean isTemp = (Boolean) session.getAttribute("isTempPassword");
+	    if (isTemp != null && isTemp) {
+	        model.addAttribute("isTempPassword", true);
+	        session.removeAttribute("isTempPassword"); // ✅ 팝업은 한 번만 띄우기 위해 제거
+	    }
+		
+	
 		return "mypage/mypage";
 	}
 

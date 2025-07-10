@@ -1,7 +1,7 @@
 /**
  * 
  */
-package egovframework.example.refund.service;
+package egovframework.example.refundrequests.service;
 
 /**
  * @author user

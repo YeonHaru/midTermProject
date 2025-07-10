@@ -2,11 +2,26 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="egovframework.example.refund.service.impl.RefundMapper">
+<mapper namespace="egovframework.example.refundrequests.service.impl.RefundMapper">
 
     <insert id="insertRefundRequest" parameterType="RefundVO">
-        INSERT INTO REFUND_REQUESTS (USER_ID, REASON, CONTENT, REQUEST_DATE)
-        VALUES (#{userId}, #{reason}, #{content}, SYSDATE)
+       INSERT INTO REFUND_REQUESTS (
+        RNO,
+        USERID,
+        REASON,
+        CONTENT,
+        REQUEST_DATE,
+        ONO,
+        STATUS
+    ) VALUES (
+        REFUND_SEQ.NEXTVAL,
+        #{userid},
+        #{reason},
+        #{content},
+        SYSDATE,
+        #{ono},
+        #{status}
+    )
     </insert>
 
 </mapper>

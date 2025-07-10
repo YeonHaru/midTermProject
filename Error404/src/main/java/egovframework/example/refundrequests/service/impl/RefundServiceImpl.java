@@ -1,13 +1,13 @@
 /**
  * 
  */
-package egovframework.example.refund.service.impl;
+package egovframework.example.refundrequests.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import egovframework.example.refund.service.RefundService;
-import egovframework.example.refund.service.RefundVO;
+import egovframework.example.refundrequests.service.RefundService;
+import egovframework.example.refundrequests.service.RefundVO;
 
 /**
  * @author user

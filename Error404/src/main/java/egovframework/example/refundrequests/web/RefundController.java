@@ -1,7 +1,7 @@
 /**
  * 
  */
-package egovframework.example.refund.web;
+package egovframework.example.refundrequests.web;
 
 import javax.servlet.http.HttpSession;
 
@@ -11,8 +11,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import egovframework.example.refund.service.RefundService;
-import egovframework.example.refund.service.RefundVO;
+import egovframework.example.refundrequests.service.RefundService;
+import egovframework.example.refundrequests.service.RefundVO;
 import egovframework.example.users.service.UsersVO;
 
 /**
@@ -32,9 +32,17 @@ public class RefundController {
 		if (loginUser == null) {
 			return "redirect:/login.do";
 		}
-		refundVO.setUserId(loginUser.getUserid());
-		refundService.insertRefundRequest(refundVO);
-		model.addAttribute("msg", "환불 요청이 정상 접수되었습니다.");
+		refundVO.setUserid(loginUser.getUserid());			// 로그인 사용자 id 설정
+		
+		// ✅ 추가 설정
+		refundVO.setStatus("요청"); // 기본 상태
+		refundVO.setOno(0L);       // 주문번호 없으면 0 또는 실제 주문번호
+		
+		
+		
+		refundService.insertRefundRequest(refundVO); 			// 환불요청등록
+		
+		model.addAttribute("msg", "환불 요청이 정상 접수되었습니다.");   // 결과 메시지
 		return "redirect:/mypage.do"; // 성공페이지 또는 알림 후 마이페이지로 redirect
 	}
 
