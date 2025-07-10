@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class HomeController {
    @GetMapping("/home.do")
    public String home() {
-	   
       return "home";
    }
    @GetMapping("/temp.do")

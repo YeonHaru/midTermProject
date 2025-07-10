@@ -16,6 +16,9 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" />
 </head>
 <body>
+<%
+  request.setAttribute("hideSearch", true);
+%><!-- 7월10일 이 문구는 특정페이지에서 검색창이 숨겨지는 기능을 구현 -->
   <jsp:include page="/common/header.jsp" />
 
   <form id="listForm" name="listForm" method="get">

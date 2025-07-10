@@ -1,51 +1,26 @@
-/* ▼▼▼ 메인 페이지 전용 디자인 추가 ▼▼▼ */
-/* TODO: 작업수정 */
-/* 메인베너 이미지 관련 css입니다 */
-.ebook-main-image {
+/* ▼ 메인 배너 이미지 스타일 */
+.ebook-main-image,
+.ebook-main-image2,
+.ebook-main-image3,
+.ebook-main-image4,
+.ebook-main-image5 {
   width: 100%;
   height: 50vh;
-  background-image: url("/images/main/ebook.png");
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
   border-radius: 1rem;
 }
-.ebook-main-image2 {
-  width: 100%;
-  height: 50vh;
-  background-image: url("/images/main/top8.png");
-  background-repeat: no-repeat;
-  background-size: contain;
-  background-position: center;
-}
-.ebook-main-image3 {
-  width: 100%;
-  height: 50vh;
-  background-image: url("/images/main/edoge.png");
-  background-repeat: no-repeat;
-  background-size: contain;
-  background-position: center;
-}
-.ebook-main-image4 {
-  width: 100%;
-  height: 50vh;
-  background-image: url("/images/main/special.png");
-  background-repeat: no-repeat;
-  background-size: contain;
-  background-position: center;
-}
-.ebook-main-image5 {
-  width: 100%;
-  height: 50vh;
-  background-image: url("/images/main/the\ flint.png");
-  background-repeat: no-repeat;
-  background-size: contain;
-  background-position: center;
-}
 
+.ebook-main-image { background-image: url("/images/main/ebook.png"); }
+.ebook-main-image2 { background-image: url("/images/main/top8.png"); }
+.ebook-main-image3 { background-image: url("/images/main/edoge.png"); }
+.ebook-main-image4 { background-image: url("/images/main/special.png"); }
+.ebook-main-image5 { background-image: url("/images/main/the_flint.png"); }
+
+/* 배너 공통 wrapper */
 .ebook-banner-wrapper {
   width: 100%;
-  margin: 0;
   border-radius: 1rem;
   overflow: hidden;
   font-family: "Noto Sans KR", sans-serif;
@@ -53,70 +28,21 @@
   margin-right: 1.5rem;
 }
 
-.ebook-banner-content {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-  padding-left: 1rem;
-}
-
-.ebook-banner-text h2 {
-  font-size: 1.75rem;
-  color: white;
-}
-
-.ebook-banner-text p {
-  color: white;
-}
-
-.ebook-banner-label {
-  display: inline-block;
-  background: #222;
-  color: #fff;
-  font-size: 0.75rem;
-  padding: 0.25rem 0.5rem;
-  border-radius: 0.25rem;
-}
-
-.ebook-banner-pagination {
-  text-align: center;
-  margin-top: 1rem;
-}
-
-.ebook-banner-prev::after,
-.ebook-banner-next::after {
-  color: var(--bg-color);
-  font-size: 24px;
-}
-
-.ebook-two-content {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
-  flex-wrap: wrap;
-  padding-left: 1rem;
-}
-
-.ebook-two-text {
-  flex: 1 1 50%;
-  min-width: 40%;
-  max-width: 60%;
-}
-
+/* 텍스트 및 레이블 */
+.ebook-banner-text h2,
 .ebook-two-text h2 {
-  font-size: 1.6rem;
+  font-size: 1.75rem;
   margin: 0.5rem 0;
   color: white;
 }
 
+.ebook-banner-text p,
 .ebook-two-text p {
-  font-size: 1rem;
-  margin: 0;
   color: white;
+  font-size: 1rem;
 }
 
+.ebook-banner-label,
 .ebook-two-label {
   display: inline-block;
   background: #222;
@@ -126,97 +52,75 @@
   border-radius: 0.25rem;
 }
 
-.ebook-two-content img {
+/* 레이아웃 */
+.ebook-banner-content,
+.ebook-two-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+  width: 100%;
+  padding-left: 1rem;
+}
+
+.ebook-two-text {
+  flex: 1 1 50%;
+  max-width: 60%;
+  min-width: 40%;
+}
+
+.ebook-two-content img,
+.ebook-banner-content img {
   flex: 1 1 40%;
   width: 100%;
   max-width: 60%;
   height: auto;
   object-fit: contain;
   border-radius: 0.75rem;
+  margin: auto;
   display: block;
-  margin-left: auto;
-  margin-right: auto;
 }
 
-.ebook-banner-content,
-.ebook-two-content {
-  display: flex;
-  align-items: stretch;
-  justify-content: space-between;
-  width: 100%;
-  padding-left: 1rem;
+/* 페이지네이션 버튼 아이콘 */
+.ebook-banner-prev::after,
+.ebook-banner-next::after {
+  color: var(--bg-color);
+  font-size: 24px;
 }
 
-.ebook-banner-content img,
-.ebook-two-content img {
-  width: auto;
-  max-height: 100%;
-  object-fit: contain;
-  border-radius: 0.75rem;
-  display: block;
-  margin: 0 auto;
-  flex-shrink: 0;
-}
-
+/* 반응형: 모바일 */
 @media (max-width: 768px) {
-  .ebook-main-image {
-    width: 100%;
-    height: 90vh;
-    background-image: url("/images/main/media.png");
-    background-position: center;
-    background-repeat: no-repeat;
-  }
-
-  .ebook-main-image2 {
-    width: 100%;
-    height: 90vh;
-    background-image: url("/images/main/media2.png");
-    background-position: center;
-    background-repeat: no-repeat;
-  }
-
-  .ebook-main-image3 {
-    width: 100%;
-    height: 90vh;
-    background-image: url("/images/main/media3.png");
-    background-position: center;
-    background-repeat: no-repeat;
-  }
-
-  .ebook-main-image4 {
-    width: 100%;
-    height: 90vh;
-    background-image: url("/images/main/media4.png");
-    background-position: center;
-    background-repeat: no-repeat;
-  }
-
+  .ebook-main-image,
+  .ebook-main-image2,
+  .ebook-main-image3,
+  .ebook-main-image4,
   .ebook-main-image5 {
-    width: 100%;
     height: 90vh;
-    background-image: url("/images/main/media5.png");
-    background-position: center;
-    background-repeat: no-repeat;
   }
+
+  .ebook-main-image { background-image: url("/images/main/media.png"); }
+  .ebook-main-image2 { background-image: url("/images/main/media2.png"); }
+  .ebook-main-image3 { background-image: url("/images/main/media3.png"); }
+  .ebook-main-image4 { background-image: url("/images/main/media4.png"); }
+  .ebook-main-image5 { background-image: url("/images/main/media5.png"); }
 
   .ebook-banner-content,
   .ebook-two-content {
     flex-direction: column;
     align-items: center;
     text-align: center;
+    padding: 0;
   }
 
   .ebook-banner-text,
   .ebook-two-text {
     max-width: 100%;
-    flex: none;
   }
 
-  .ebook-banner-image-stack,
-  .ebook-two-content > img {
+  .ebook-two-content img,
+  .ebook-banner-content img {
     max-width: 70%;
-    flex: none;
-    margin: 1rem auto 0 auto;
-    max-height: none;
+    margin-top: 1rem;
   }
 }

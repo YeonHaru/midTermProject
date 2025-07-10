@@ -43,7 +43,7 @@
 	<jsp:include page="/common/header.jsp" />
 
 
-	<div class="page">
+	<div class="bg page">
 		<div class="mainpage-container">
 			<!-- 메인 배너 -->
 			<div class="main-banner-wrapper">
@@ -68,7 +68,7 @@
 				</div>
 			</div>
 
-			<!-- 공지사항 박스 -->
+			<!-- 메인배너 우측 사이드 박스 -->
 			<div class="mainpage-right">
 				<div class="swiper notice-swiper">
 					<div class="swiper-wrapper">
@@ -174,10 +174,10 @@
 						alt="인물&작품" /><span>인물&작품</span></a></li>
 			</ul>
 		</div>
-
+		<!-- 위에까지가 미니 아이콘 배너들 -->
 
 		<!--  회원가입유도 배너  -->
-		<section class="container mb3">
+		<section class="container mt5 mb5">
 			<div
 				class="signup-banner tcenter rounded-4 shadow flex items-center p-4">
 				<!-- 텍스트와 버튼 -->
@@ -193,22 +193,6 @@
 				</div>
 			</div>
 		</section>
-
-	</div>
-
-
-
-
-	<div class="mainpage-center"></div>
-	<!-- 위에까지가 미니 아이콘 배너들 -->
-	<div class="bg page">
-		<div class="pastmain-content">
-			<!-- 메인 배너 -->
-			<section class="pastbanner">
-				<h2>책과 함께하는 삶</h2>
-				<p>당신만의 책을 만나보세요</p>
-			</section>
-		</div>
 
 		<!-- 신간 도서 섹션 -->
 		<section class="book-section new-books">
@@ -248,37 +232,45 @@
 				</div>
 			</div>
 		</section>
-	</div>
-	
-	<!-- 베스트셀러 TOP 10 -->
-	<section class="page mt3">
-		<h2 class="tcenter mb3">베스트셀러 TOP 10</h2>
-		<ul class="best-list">
-			<li class="best-item"><span class="best-rank">1</span> <span
-				class="best-title">심판 <span class="best-new">new</span></span></li>
-			<li class="best-item"><span class="best-rank">2</span> <span
-				class="best-title">첫 여름, 완주 <span class="best-up">3</span></span></li>
-			<li class="best-item"><span class="best-rank">3</span> <span
-				class="best-title">안녕이라 그랬어</span></li>
-			<li class="best-item"><span class="best-rank">4</span> <span
-				class="best-title">급류 <span class="best-new">new</span></span></li>
-			<li class="best-item"><span class="best-rank">5</span> <span
-				class="best-title">청춘의 독서</span></li>
-			<li class="best-item"><span class="best-rank">6</span> <span
-				class="best-title">검지의 힘</span></li>
-			<li class="best-item"><span class="best-rank">7</span> <span
-				class="best-title">열혈간호 93 <span class="best-down">1</span></span></li>
-			<li class="best-item"><span class="best-rank">8</span> <span
-				class="best-title">고래눈이 내리다</span></li>
-			<li class="best-item"><span class="best-rank">9</span> <span
-				class="best-title">광장 이후 (한정판) <span class="best-new">new</span></span></li>
-			<li class="best-item"><span class="best-rank">10</span> <span
-				class="best-title">치유의 빛 <span class="best-down">2</span></span></li>
-		</ul>
-	</section>
-	
-	<div class="bg page">
+
 		<div class="pastmain-content">
+			<!-- 책과 함께하는 삶 배너 -->
+			<section class="pastbanner">
+				<h2>책과 함께하는 삶</h2>
+				<p>당신만의 책을 만나보세요</p>
+			</section>
+		</div>
+
+
+		<!-- 베스트셀러 TOP 10 -->
+		<section class="page mt3">
+			<h2 class="tcenter mb3">베스트셀러 TOP 10</h2>
+			<ul class="best-list">
+				<li class="best-item"><span class="best-rank">1</span> <span
+					class="best-title">심판 <span class="best-new">new</span></span></li>
+				<li class="best-item"><span class="best-rank">2</span> <span
+					class="best-title">첫 여름, 완주 <span class="best-up">3</span></span></li>
+				<li class="best-item"><span class="best-rank">3</span> <span
+					class="best-title">안녕이라 그랬어</span></li>
+				<li class="best-item"><span class="best-rank">4</span> <span
+					class="best-title">급류 <span class="best-new">new</span></span></li>
+				<li class="best-item"><span class="best-rank">5</span> <span
+					class="best-title">청춘의 독서</span></li>
+				<li class="best-item"><span class="best-rank">6</span> <span
+					class="best-title">검지의 힘</span></li>
+				<li class="best-item"><span class="best-rank">7</span> <span
+					class="best-title">열혈간호 93 <span class="best-down">1</span></span></li>
+				<li class="best-item"><span class="best-rank">8</span> <span
+					class="best-title">고래눈이 내리다</span></li>
+				<li class="best-item"><span class="best-rank">9</span> <span
+					class="best-title">광장 이후 (한정판) <span class="best-new">new</span></span></li>
+				<li class="best-item"><span class="best-rank">10</span> <span
+					class="best-title">치유의 빛 <span class="best-down">2</span></span></li>
+			</ul>
+		</section>
+
+
+		<div class="pastmain-content mt5 mb5">
 			<!-- AI 추천 picks 배너 -->
 			<section class="pastbanner">
 				<h2>AI 추천 Picks</h2>
@@ -324,9 +316,9 @@
 				</div>
 			</div>
 		</section>
-	</div>
 
-	<div class="bg page">
+
+
 		<div class="pastmain-content">
 			<!-- 바로 출판 POD 배너 -->
 			<section class="pastbanner">
@@ -417,8 +409,8 @@
 				</div>
 			</div>
 		</section>
-	</div>
 
+	</div>
 
 	<!-- 꼬리말 -->
 	<!-- jQuery (최신 안정 버전 하나만) -->
