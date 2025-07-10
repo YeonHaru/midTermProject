@@ -33,4 +33,8 @@ public interface UsersMapper {
 	void updatePassword(@Param("userid") String userid, @Param("password") String password);
 	
 	public void insertUser(UsersVO usersVO);   // 신규 회원가입
+	
+//	임시 비번 데이터 저장용
+	public void updatePasswordPermanent(@Param("userid") String userid, @Param("password") String password);
+
 }	

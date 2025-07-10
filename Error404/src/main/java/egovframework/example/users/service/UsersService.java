@@ -30,4 +30,7 @@ public interface UsersService {
 	boolean changePassword(String userid, String currentPassword, String newPassword);
 	
 	void insertUser(UsersVO usersVO);   // 신규 회원가입
+	
+//	임시비번 데이터 저장용
+	void updatePasswordPermanent(@Param("userid") String userid, @Param("password") String password);
 }
