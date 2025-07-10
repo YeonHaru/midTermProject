@@ -12,6 +12,48 @@
   margin-bottom: 1rem; /* ✅ 아래 여백 추가 */
 }
 
+/* 책 넘기기 버튼 중앙정렬 */
+.flex-center {
+  display: flex;
+  justify-content: center;   /* ✅ 가운데 정렬 */
+  align-items: center;
+  margin: 3vh 0;              /* 상하 여백 */
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;   /* ✅ 가운데 정렬 */
+  flex-wrap: wrap;
+  padding-left: 0;
+  list-style: none;
+  margin: 0 auto;             /* ✅ 중앙 정렬 보조 */
+}
+
+/* 버튼 꾸미기 */
+.pagination li a {
+  font-size: 1rem;
+  color: var( --accent-color-1);
+  border: 1px solid var(--main-color);
+  border-radius: 8px;
+  padding: 0.4rem 0.8rem;
+  margin: 0 4px;
+  background-color: var(--bg-color);
+  transition: all 0.2s ease-in-out;
+}
+
+.pagination li a:hover {
+  background-color:var( --main-color); 
+  color: var( --accent-color-1);       
+  cursor: pointer;           /* 마우스 포인터를 손 모양으로 변경 */
+  transition: all 0.3s ease;
+}
+
+.pagination li.active a {
+  background-color: var( --accent-color-1);
+  color: white;
+  border-color: var( --accent-color-1);
+}
+
 .card-title {
   align-self: flex-start; /* 왼쪽 정렬 */
 }
@@ -52,6 +94,30 @@
   border-radius: 4px;
 }
 
+.kyobo-container {
+  max-width: 500px;
+  margin: 2rem auto;
+  padding: 2rem 1rem;
+  border: 1px solid #ddd;
+  border-radius: 1rem;
+  background-color: #fff;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.kyobo-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #222;
+  margin-bottom: 0.3rem;
+}
+
+.kyobo-subtitle {
+  font-size: 0.9rem;
+  color: #666;
+  margin-bottom: 1rem;
+}
+
 /* 외부 박스: 가운데 정렬 + 여백 */
 .kyobo-wrapper {
   margin: 4vh auto;
@@ -62,14 +128,10 @@
 /* 내부 검색박스: 작고 깔끔하게 */
 .kyobo-search {
   display: flex;
-  width: 100%;
-  max-width: 480px;
   border: 1px solid #ccc;
-  border-radius: 3vh;
+  border-radius: 999px;
   overflow: hidden;
-  margin: 0 auto;
-  font-family: "Noto Sans KR", sans-serif;
-  box-shadow: 0 0.3vh 0.8vh rgba(0, 0, 0, 0.05);
+  background: #fff;
 }
 
 /* 각 요소 스타일 */
@@ -150,6 +212,29 @@
     font-size: 0.85rem;
   }
 
+  .kyobo-container {
+  max-width: 500px;
+  margin: 2rem auto;
+  padding: 2rem 1rem;
+  border: 1px solid #ddd;
+  border-radius: 1rem;
+  background-color: #fff;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  }
+
+   .kyobo-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #222;
+  margin-bottom: 0.3rem;
+  }
+
+   .kyobo-subtitle {
+  font-size: 0.9rem;
+  color: #666;
+  margin-bottom: 1rem;
+  }
 
    .kyobo-wrapper {
     padding: 0 1rem;  /* 바깥 좌우 여백 */
@@ -157,11 +242,12 @@
   }
 
   .kyobo-search {
-    width: 100% !important;
-    max-width: none !important;
-    padding: 0;
-    flex-wrap: nowrap !important; /* 여기서 nowrap 넣어도 됨 */
-  }
+  display: flex;
+  border: 1px solid #ccc;
+  border-radius: 999px;
+  overflow: hidden;
+  background: #fff;
+}
 
   .kyobo-select,
   .kyobo-input {

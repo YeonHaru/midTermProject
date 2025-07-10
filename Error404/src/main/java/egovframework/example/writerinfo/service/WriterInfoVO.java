@@ -23,9 +23,22 @@ import lombok.ToString;
 @ToString
 @EqualsAndHashCode(callSuper = false)
 public class WriterInfoVO extends Criteria{
-	private int wno ;				      		// 기본키
-	private String writer ;						// 작가
-	private String work ;						// 작품
-	private String prize;
-	private String details;
-}
+	private String uuid;				      		// 기본키(uuid)
+	private String writer;						// 작가
+	private String work;						// 작품
+	private String prize;                       // 상
+	private String details;                     // 짧은 글
+	private String plot;                        // 줄거리
+	private byte[] bookcover;                   // 첨부파일
+	private String bookurl;						// 이미지 다운로드를 위한 URL
+	public WriterInfoVO(String writer, String work, String prize, String details, String plot, byte[] bookcover) {
+		super();
+		this.writer = writer;
+		this.work = work;
+		this.prize = prize;
+		this.details = details;
+		this.plot = plot;
+		this.bookcover = bookcover;
+	}
+
+} 
