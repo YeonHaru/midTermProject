@@ -5,12 +5,9 @@ prefix="c" %>
 <html>
   <head>
     <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Insert title here</title>
     <style>
-      .card-img-top {
-        height: 20vh !important;
-        object-fit: contain;
-      }
 
       .card:hover {
         transform: scale(1.03);
@@ -30,10 +27,6 @@ prefix="c" %>
     <link rel="stylesheet" href="/css/00_style.css" />
   </head>
   <body>
-    ${writerinfos} <br>
-    ${paginationInfo.totalPageCount} : 총페이지수 <br>
- ${paginationInfo.currentPageNo} : 현재페이지<br>
-${paginationInfo.recordCountPerPage} : 보일개수<br>
     <jsp:include page="/common/header.jsp" />
     <div class="container my-5">
      <form id="listForm" name="listForm" method="get">
@@ -49,11 +42,12 @@ ${paginationInfo.recordCountPerPage} : 보일개수<br>
         <c:forEach var="data" items="${writerinfos}" varStatus="status">
           <div class="col4">
             <!-- 1번 -->
-            <div class="card h-100 mb1">
+          
+            <div class="card card1 mb1">
               <img
                 src="/images/pink_person.png"
                 class="card-img-top book-img"
-                alt="도서 이미지"
+                alt="작가 이미지"
               />
               <div
                 class="card-body d-flex justify-content-between align-items-center"
@@ -68,13 +62,14 @@ ${paginationInfo.recordCountPerPage} : 보일개수<br>
                 ></i>
               </div>
             </div>
+           
             <!-- 5번 -->
             <!-- 카드 5 -->
-            <div class="card h-100">
+            <div class="card card2">
               <img
                 src="${data.bookurl}"
                 class="card-img-top book-img"
-                alt="도서 이미지"
+                alt="작품 이미지"
               />
               <div class="card-body">
                 <div
@@ -147,11 +142,14 @@ ${paginationInfo.recordCountPerPage} : 보일개수<br>
       </div>
       </div>
       </form>
+      <div id="no-result-message" style="display: none; text-align: center; color: #888; margin-top: 2rem;">
+   <p>검색 결과가 없습니다.</p>
+  </div>
     </div>
 
 <!-- 검색박스 -->
      <div class="kyobo-container">
-  <h2 class="kyobo-title">궁금한 작가&작품이 있으신가요?</h2>
+  <h3 class="kyobo-title">궁금한 작가&작품이 있으신가요?</h3>
   <p class="kyobo-subtitle">인물명, 도서 이름을 검색해보세요.</p>
   <div class="kyobo-wrapper">
     <div class="kyobo-search">
@@ -187,41 +185,6 @@ ${paginationInfo.recordCountPerPage} : 보일개수<br>
         });
       });
 
-      // 검색 함수
-      function searchBooks() {
-        const keyword = document
-          .getElementById("searchInput")
-          .value.toLowerCase();
-        const type = document.getElementById("searchType")?.value || "all";
-        const cards = document.querySelectorAll(".card");
-
-        cards.forEach((card) => {
-          const title =
-            card.querySelector(".card-title")?.textContent.toLowerCase() || "";
-          const writer =
-            card.querySelector(".card-writer")?.textContent.toLowerCase() || "";
-
-          let match = false;
-          if (type === "all") {
-            match = title.includes(keyword) || writer.includes(keyword);
-          } else if (type === "title") {
-            match = title.includes(keyword);
-          } else if (type === "writer") {
-            match = writer.includes(keyword);
-          }
-
-          card.parentElement.style.display = match ? "block" : "none";
-        });
-      }
-
-      // 엔터키로도 검색 가능하게 (옵션)
-      document
-        .getElementById("searchInput")
-        ?.addEventListener("keydown", function (event) {
-          if (event.key === "Enter") {
-            searchBooks();
-          }
-        });
     </script>
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
@@ -256,10 +219,58 @@ function fn_egov_link_page(pageNo) {
 
     onPageClick: function (event, page) {
         fn_egov_link_page(page);
-    }
+    } 
 });
-
-
 </script>
+
+<!-- ✅ 검색 함수 전체 복사해서 붙여주세요 -->
+<script>
+  function searchBooks() {
+    const keyword = document.getElementById("searchInput").value.trim().toLowerCase();
+    const type = document.getElementById("searchType")?.value || "all";
+    const col4s = document.querySelectorAll(".col4");
+    let matchedCount = 0;
+
+    // 검색어 없으면 전체 보이기
+    if (!keyword) {
+      col4s.forEach((col) => {
+        col.style.display = "inline-block";
+      });
+      document.getElementById("no-result-message").style.display = "none";
+      return;
+    }
+
+    col4s.forEach((col) => {
+      const writer = col.querySelector(".card1 .card-title")?.textContent.toLowerCase() || "";
+      const prize = col.querySelector(".card1 .card-writer")?.textContent.toLowerCase() || "";
+      const title = col.querySelector(".card2 .card-title")?.textContent.toLowerCase() || "";
+
+      let match = false;
+
+      if (type === "all") {
+        match = writer.includes(keyword) || title.includes(keyword) || prize.includes(keyword);
+      } else if (type === "writer") {
+        match = writer.includes(keyword);
+      } else if (type === "title") {
+        match = title.includes(keyword);
+      }
+
+      col.style.display = match ? "inline-block" : "none";
+      if (match) matchedCount++;
+    });
+
+    document.getElementById("no-result-message").style.display = matchedCount === 0 ? "block" : "none";
+  }
+
+  // 버튼 클릭 시 검색
+  document.querySelector(".kyobo-btn").addEventListener("click", searchBooks);
+
+//이벤트 연결
+  document.querySelector(".kyobo-btn").addEventListener("click", searchBooks);
+  document.getElementById("searchInput").addEventListener("keydown", (e) => {
+    if (e.key === "Enter") searchBooks();
+  });
+</script>
+
   </body>
 </html>
