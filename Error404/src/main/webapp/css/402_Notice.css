@@ -6,11 +6,12 @@
   width: 100%;                /* 전체 너비 확보 */
   height: auto;
   box-sizing: border-box;
+  
 }
 
 .main-banner-wrapper {
   flex: 1 1 auto;             /* 가변 너비 */
-  max-width: 75%;
+  max-width: 80%;
   min-width: 0;               /* 오버플로우 방지 */
   margin: 0 !important;       /* 공통 margin 초기화 */
   padding: 0 !important;      /* 공통 padding 초기화 */
@@ -28,12 +29,6 @@
   margin-top: 2.7rem; /* 👈 상단 여백 추가 */
 }
 
-.mainpage-center {
-  margin-left: 20px;
-}
-
-
-
 @media screen and (max-width: 767px) {
   .mainpage-container {
     display: block;    /* flex 제거해서 block 컨테이너로 변경 */
@@ -48,19 +43,6 @@
     padding: 0 0.5rem;        /* 좌우 여백 균등히 */
     box-sizing: border-box;
     margin: 0 auto;         /* 중앙 정렬 */
-  }
-
-  .main-banner-content {
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 2rem;
-    text-align: center;
-    padding: 1rem 0;
-  }
-
-  .main-banner-text {
-    width: 100%;
   }
 
   .main-banner-content img {
@@ -126,16 +108,7 @@
   margin-bottom: 0.25rem;
 }
 
-.side-box-pagination {
-  cursor: pointer;
-  user-select: none;
-  text-align: center;
-  margin-top: 1rem;
-  font-size: 0.95rem;
-  color: #444;
-  font-weight: 600;
-  position: static; /* 절대위치나 고정위치 사용하지 않도록 */
-}
+
 
 .side-box-price {
   font-size: 0.85rem;
@@ -144,12 +117,4 @@
   text-align: center;
 }
 
-
-#notice-next {
-  text-align: center;
-  font-size: 0.9rem;
-  color: #444;
-  margin-top: 0.5rem;
-  cursor: pointer; /* 👈 클릭 가능하게 표시 */
-}
 

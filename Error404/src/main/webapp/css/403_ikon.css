@@ -1,6 +1,6 @@
 /* ▼▼▼ 퀵 메뉴 ▼▼▼ */
 .quick-menu {
-  margin: 2rem auto;
+  margin: 0 auto;
   padding: 1rem 0;
   background: var(--bg-color);
   border-radius: 1rem;

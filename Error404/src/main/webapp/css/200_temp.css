@@ -109,13 +109,17 @@
 .benefit-buttons button:hover {
   background-color: #fdd2e0;
 }
+.book-section new-books{
+	margin: 0;
+}
 
 .book-flip-card {
-  width: calc(45%);
+  width: calc(46%);
   height: 300px;
   perspective: 1000px;
   position: relative;
-  padding-left: 0.5rem;
+  padding-left: 0.3rem; 
+
 }
 .flip-inner {
   width: 100%;
@@ -171,6 +175,6 @@
 /* 🖥 태블릿 이상일 때 (기존 유지 또는 필요 시 조정) */
 @media (min-width: 769px) {
   .book-flip-card {
-    width: 23%;
+    width: 23.5%;
   }
 }
