@@ -143,7 +143,7 @@
 
 
 
-					<li class="nav-item"><a class="nav-link" href="#">고객센터</a></li>
+					<li class="nav-item"><a class="nav-link" href="#">장바구니</a></li>
 					<li class="nav-item"><a class="nav-link"
 						href="${pageContext.request.contextPath}/mapview.do">매장안내</a></li>
 				</ul>
@@ -151,6 +151,11 @@
 		</div>
 	</div>
 </nav>
+<!-- 7월10일 특정 페이지에는 검색창이 안보이게 숨기기 -->
+<%
+  boolean hideSearch = Boolean.TRUE.equals(request.getAttribute("hideSearch"));
+%>
+<% if (!hideSearch) { %>
 <!-- 7월9일 헤더 건든거 : 덕규 -->
 <nav class="navbar navbar-expand-lg custom-navbar bg-light">
 	<div class="container">
@@ -158,8 +163,7 @@
 			action="${pageContext.request.contextPath}/book.do" method="get"
 			class="mx-auto w-100" style="max-width: 500px;">
 
-			<div
-				class="input-group shadow-sm rounded-pill border overflow-visible">
+			<div class="input-group shadow-sm rounded-pill border overflow-visible">
 
 				<!-- ▼ 드롭다운 -->
 				<div class="dropdown custom-dropdown">
@@ -191,7 +195,8 @@
 		</form>
 	</div>
 </nav>
-<!-- 여기까지 : 덕규 -->
+<% } %>
+<!-- 여기까지 : 덕규 7월10일-->
 
 <!-- 이걸해볼거임 -->
 
