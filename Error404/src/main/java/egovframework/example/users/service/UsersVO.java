@@ -32,7 +32,7 @@ public class UsersVO extends Criteria{
 	    private String email;
 	    private String phone;
 	    private LocalDate join_date;    // DATE → LocalDate
-	    private String role;
+	    private String role = "GENERAL" ; // 일반 등급 기본값 : 덕규(7/10)
 	    private String gender;
 	    private String birthdate;    
 	    private String address;
