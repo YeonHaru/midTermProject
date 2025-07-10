@@ -134,14 +134,8 @@ public class UsersServiceImpl implements UsersService {
 		usersMapper.updatePasswordPermanent(userid, password);
 
 	}
-// 	누적구매에 따른 등급
-	@Override
-	public void updateUserGradeByTotalPurchase(String userid) {
-		// TODO Auto-generated method stub
-		
-		usersMapper.updateUserGradeByTotalPurchase(userid);
-		
-	}
+
+	
 
 	
 
