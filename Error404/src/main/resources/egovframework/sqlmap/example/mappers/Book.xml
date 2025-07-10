@@ -45,6 +45,24 @@
 		FROM BOOKS
 		WHERE BNO = #{bno}
 	</select>
+	
+	<!-- 메인페이지 신간 도서 4개용(승화) -->
+	<select id="selectLatestBooks" resultType="BookVO">
+    SELECT *
+    FROM BOOKS
+    ORDER BY PDATE DESC
+    FETCH FIRST 4 ROWS ONLY
+   </select>
+   
+   <!-- 메인페이지 랜덤 도서 4개용(승화) -->
+<select id="selectRandomBooks" resultType="BookVO">
+  SELECT *
+  FROM (
+    SELECT * FROM BOOKS
+    ORDER BY DBMS_RANDOM.VALUE
+  )
+  WHERE ROWNUM &lt;= 4
+</select>
 
 	</mapper>	
 

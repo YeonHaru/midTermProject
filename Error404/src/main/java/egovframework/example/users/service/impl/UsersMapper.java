@@ -36,7 +36,6 @@ public interface UsersMapper {
 	
 //	임시 비번 데이터 저장용
 	public void updatePasswordPermanent(@Param("userid") String userid, @Param("password") String password);
-
-//  회원등급 관련된 유저매퍼 등록입니다 7/10	
-	public void updateGrade(@Param("userid") String userid, @Param("role") String role);
+	
+	public void updateUserGradeByTotalPurchase(String userid);  // 누적구매에 따른 등급
 	}	

@@ -80,6 +80,10 @@
   font-size: 0.95rem;
 }
 
+.book-card a {
+  text-decoration: none;
+}
+
 /* 회원가입유도 배너 */
 .signup-banner {
   background: linear-gradient(135deg, var(--accent-color-1), var(--accent-color-2));

@@ -35,6 +35,19 @@ public class BookServiceImpl implements BookService {
 		// TODO Auto-generated method stub
 		return bookMapper.searchBookList(criteria);
 	}
+
+//	메인페이지 신간 도서 4개용(승화)
+	@Override
+	public List<BookVO> selectLatestBooks() {
+		// TODO Auto-generated method stub
+		return bookMapper.selectLatestBooks();
+	}
+
+	@Override
+	public List<BookVO> selectRandomBooks() {
+		// TODO Auto-generated method stub
+		return bookMapper.selectRandomBooks();
+	}
 	
 	
 	

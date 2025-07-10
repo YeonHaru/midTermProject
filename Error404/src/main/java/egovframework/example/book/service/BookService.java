@@ -8,4 +8,6 @@ public interface BookService {
 	List<?> selectBookList(Criteria criteria);
 	BookVO selectBook(int bno);
 	List<BookVO> searchBookList(Criteria criteria);
+	List<BookVO> selectLatestBooks();  // 메인페이지 신간 도서 4개용(승화)
+	List<BookVO> selectRandomBooks();  // 메인페이지 랜덤 도서 4개용(승화)
 }

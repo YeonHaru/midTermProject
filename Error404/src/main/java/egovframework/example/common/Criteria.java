@@ -41,4 +41,8 @@ public class Criteria {
 	
 	private String nat;
 	private String category;
+	
+	
+//	장바구니, userId추가
+	private String userId;
 }

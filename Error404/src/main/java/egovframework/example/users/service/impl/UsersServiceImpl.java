@@ -134,25 +134,17 @@ public class UsersServiceImpl implements UsersService {
 		usersMapper.updatePasswordPermanent(userid, password);
 
 	}
+// 	누적구매에 따른 등급
+	@Override
+	public void updateUserGradeByTotalPurchase(String userid) {
+		// TODO Auto-generated method stub
+		
+		usersMapper.updateUserGradeByTotalPurchase(userid);
+		
+	}
 
 	
 
-//	회원등급 정보 임플입니다 7월10일
-	@Override
-	public void updateUserGrade(String userid) {
-		LocalDate threeMonthsAgo = LocalDate.now().minusMonths(3);
-        int total = purchaseMapper.sumByUserIdSince(userid, threeMonthsAgo);
-
-        String newGrade;
-        if (total >= 300000) {
-            newGrade = "PLATINUM";
-        } else if (total >= 200000) {
-            newGrade = "GOLD";
-        } else {
-            newGrade = "GENERAL";
-        }
-
-        usersMapper.updateGrade(userid, newGrade);
-	}
+	
 	
 }

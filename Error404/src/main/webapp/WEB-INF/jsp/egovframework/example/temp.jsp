@@ -30,24 +30,33 @@
 <!-- 헤더 -->
 <%
 request.setAttribute("hideSearch", true);
-%><!-- 7월10일 이 문구는 특정페이지에서 검색창이 숨겨지는 기능을 구현 -->
+%><!-- 7월10일 이 문구는 특정페이지에서 검색창이 숨겨지는 기능을 구현header -->
+<%
+  request.setAttribute("hideFooter", true);
+%><!-- 7월10일 이 문구는 특정페이지에서 북클립이 숨겨지는 기능을 구현footer -->
 <jsp:include page="/common/header.jsp" />
 <body class="bg">
-	<div class="page mt3 bg">
-	<h3>회원등급별 혜택 안내</h3>
-		<div class="tempbox tcenter small">
-			<table class="table">
-				<thead>
-					<tr>
-						<th>등급안내</th>
-						<th title="직전 3개월간 30만원 이상 구매한 회원">💎 플래티넘<br>
-						<small>Platinum</small></th>
-						<th title="직전 3개월간 20만원 이상 구매한 회원">🔶 골드<br>
-						<small>Gold</small></th>
-						<th title="북클럽 가입 회원">🟢 일반<br>
-						<small>General</small></th>
-					</tr>
-				</thead>
+<div class="page mt3 bg">
+  <h3>회원등급별 혜택 안내</h3>
+  <div class="tempbox tcenter small">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>등급안내</th>
+          <th>
+            <button class="grade-btn" onclick="openModal('platinum')">💎</button><br>
+            <small>플래티넘</small>
+          </th>
+          <th>
+            <button class="grade-btn" onclick="openModal('gold')">🔶</button><br>
+            <small>골드</small>
+          </th>
+          <th>
+            <button class="grade-btn" onclick="openModal('general')">🟢</button><br>
+            <small>일반</small>
+          </th>
+        </tr>
+      </thead>
 				<tbody>
 					<tr>
 						<th>등급조건</th>
@@ -99,6 +108,58 @@ request.setAttribute("hideSearch", true);
 			</table>
 		</div>
 	</div>
+	
+	<div class="page mt3 bg">
+  <h3 class="mb2">회원등급 산정 기준 안내</h3>
+  <div class="tempbox tcenter small">
+    <table class="table">
+    <thead>
+      <tr>
+        <th>항목</th>
+        <th>상세항목</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>등급명</td>
+        <td>플래티넘 | 골드 | 일반</td>
+      </tr>
+      <tr>
+        <td>등급산정 주기</td>
+        <td>매월 1일 (오전 10시)</td>
+      </tr>
+      <tr>
+        <td>등급산정 기준</td>
+        <td>
+          등급산정일 (매월 말일) 기준 직전 3개월간 구매 실적<br>
+          <small class="text-gray">
+            * 구매실적 중 할인쿠폰, 마일리지, 배송비 등의 사용금액은 제외<br>
+            * 인터넷 주문의 경우 출고일 기준
+          </small>
+        </td>
+      </tr>
+      <tr>
+        <td>등급별 혜택기간</td>
+        <td>
+          매월 선정된 등급에 따른 혜택을 제공하며,<br>
+          등급산정일로부터 3개월간 유지됩니다.<br>
+          <small class="text-gray">
+            * 자세한 혜택은 상단 등급혜택을 참조해주세요
+          </small>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+ </div>
+</div>
+	
+	<!-- ✅ 모달 공통 구조 -->
+<div id="gradeModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal()">&times;</span>
+    <div id="modalText"></div>
+  </div>
+</div>
 	<!-- jQuery (최신 안정 버전 하나만) -->
 	<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 	<!-- Bootstrap JS (번들 형태, Popper 포함) -->
@@ -109,6 +170,7 @@ request.setAttribute("hideSearch", true);
 	<!-- Swiper 최신 버전 -->
 	<script
 		src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+		<script src="${pageContext.request.contextPath}/js/201_temp.js"></script>
 	<!-- footer -->
 	<jsp:include page="/common/footer.jsp" />
 </body>

@@ -25,7 +25,8 @@
             PROMO_AGREE AS promoAgree,
             POST_NOTIFY_AGREE AS postNotifyAgree,
             GRADE,
-            TEMP_PW_YN AS tempPwYn
+            TEMP_PW_YN AS tempPwYn,
+            TOTAL_PURCHASE  
         FROM USERS
         WHERE USERID = #{userid}
     </select>
