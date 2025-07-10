@@ -198,40 +198,24 @@
 		<section class="book-section new-books">
 			<h3>📘 신간 도서</h3>
 			<div class="book-list">
-				<div class="book-card">
-					<div class="image-box">
-						<img
-							src="${pageContext.request.contextPath}/images/401_maincar.jpg"
-							alt="도서 이미지" />
+				<c:forEach var="book" items="${latestBooks}">
+					<div class="book-card">
+						<a
+							href="${pageContext.request.contextPath}/book/detail.do?bno=${book.bno}">
+							<div class="image-box">
+								<img
+									src="${pageContext.request.contextPath}/images/401_maincar.jpg"
+									alt="${book.title}" />
+							</div>
+							<p class="title">${book.title}</p>
+						</a>
 					</div>
-					<p class="title">도서 제목 1</p>
-				</div>
-				<div class="book-card">
-					<div class="image-box">
-						<img
-							src="${pageContext.request.contextPath}/images/401_mainsky.jpg"
-							alt="도서 이미지" />
-					</div>
-					<p class="title">도서 제목 1</p>
-				</div>
-				<div class="book-card">
-					<div class="image-box">
-						<img
-							src="${pageContext.request.contextPath}/images/401_maincar.jpg"
-							alt="도서 이미지" />
-					</div>
-					<p class="title">도서 제목 1</p>
-				</div>
-				<div class="book-card">
-					<div class="image-box">
-						<img
-							src="${pageContext.request.contextPath}/images/401_mainsky.jpg"
-							alt="도서 이미지" />
-					</div>
-					<p class="title">도서 제목 1</p>
-				</div>
+				</c:forEach>
 			</div>
 		</section>
+
+
+
 
 		<div class="pastmain-content">
 			<!-- 책과 함께하는 삶 배너 -->
@@ -278,46 +262,25 @@
 			</section>
 		</div>
 
-		<!-- 신간 도서 섹션 -->
+		<!-- 랜덤 도서 섹션 -->
 		<section class="book-section new-books">
-			<h3>📘 AI 추천 도서 Picks</h3>
+			<h3>📘 랜덤 픽! 이 책 어때요?</h3>
 			<div class="book-list">
-				<div class="book-card">
-					<div class="image-box">
-						<img
-							src="${pageContext.request.contextPath}/images/401_maincar.jpg"
-							alt="도서 이미지" />
+				<c:forEach var="book" items="${randomBooks}">
+					<div class="book-card">
+						<a
+							href="${pageContext.request.contextPath}/book/detail.do?bno=${book.bno}">
+							<div class="image-box">
+								<img
+									src="${pageContext.request.contextPath}/images/401_maincar.jpg"
+									alt="${book.title}" />
+							</div>
+							<p class="title">${book.title}</p>
+						</a>
 					</div>
-					<p class="title">도서 제목 1</p>
-				</div>
-				<div class="book-card">
-					<div class="image-box">
-						<img
-							src="${pageContext.request.contextPath}/images/401_mainsky.jpg"
-							alt="도서 이미지" />
-					</div>
-					<p class="title">도서 제목 1</p>
-				</div>
-				<div class="book-card">
-					<div class="image-box">
-						<img
-							src="${pageContext.request.contextPath}/images/401_maincar.jpg"
-							alt="도서 이미지" />
-					</div>
-					<p class="title">도서 제목 1</p>
-				</div>
-				<div class="book-card">
-					<div class="image-box">
-						<img
-							src="${pageContext.request.contextPath}/images/401_mainsky.jpg"
-							alt="도서 이미지" />
-					</div>
-					<p class="title">도서 제목 1</p>
-				</div>
+				</c:forEach>
 			</div>
 		</section>
-
-
 
 		<div class="pastmain-content">
 			<!-- 바로 출판 POD 배너 -->

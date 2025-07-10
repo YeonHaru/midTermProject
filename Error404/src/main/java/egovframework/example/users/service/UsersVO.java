@@ -39,6 +39,7 @@ public class UsersVO extends Criteria{
 	    private Integer point;          // null 가능성을 고려해 Integer 사용
 	    private String promoAgree;		// 알림수신동의
 	    private String postNotifyAgree;	// 알림수신동의
-	    private String grade;			// 회원등급
+	    private String grade = "GENERAL"; // 회원등급
 	    private String tempPwYn; 		// 임시 비밀번호 여부 ('Y' or 'N')
+	    private Integer totalPurchase;  // 총 누적 구매 금액
 }
