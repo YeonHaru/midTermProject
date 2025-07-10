@@ -1,0 +1,59 @@
+
+.tempbox {
+  display: flex;
+  flex-wrap: wrap;
+  background-color: var(--bg-color);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  overflow-x: auto;
+}
+th:nth-child(2), td:nth-child(2) { background-color: #e0eaff; }
+th:nth-child(3), td:nth-child(3) { background-color: #fff8dc; }
+th:nth-child(4), td:nth-child(4) { background-color: #e8f5e9; }
+
+.table tbody tr:hover {
+  background-color: var(--main-color);
+}
+
+@keyframes shine {
+  0%, 100% { filter: brightness(1); }
+  50% { filter: brightness(1.5); }
+}
+
+th:nth-child(2) {
+  animation: shine 2s infinite;
+}
+.tooltip {
+  position: relative;
+  cursor: help;
+  border-bottom: 1px dotted #333;
+}
+
+.tooltip::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: 120%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #333;
+  color: #fff;
+  padding: 6px 8px;
+  border-radius: 4px;
+  white-space: nowrap;
+  font-size: 12px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease-in-out;
+  z-index: 100;
+}
+
+.tooltip:hover::after {
+  opacity: 1;
+}
+
+/* 태블릿 이상일 때 (기존 유지 또는 필요 시 조정) */
+@media (min-width: 768px) {
+	
+}
+@media (min-width: 1024px) {
+}

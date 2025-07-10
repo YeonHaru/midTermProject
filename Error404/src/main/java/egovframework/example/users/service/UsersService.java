@@ -33,4 +33,7 @@ public interface UsersService {
 	
 //	임시비번 데이터 저장용
 	void updatePasswordPermanent(@Param("userid") String userid, @Param("password") String password);
+
+//	회원등급 적용건입니다. 7/10
+	void updateUserGrade(String userid);
 }

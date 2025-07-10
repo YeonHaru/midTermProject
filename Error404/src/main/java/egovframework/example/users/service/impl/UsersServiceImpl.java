@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import egovframework.example.common.Criteria;
+import egovframework.example.purchase.service.impl.PurchaseMapper;
 import egovframework.example.users.service.EmailService;
 import egovframework.example.users.service.UsersService;
 import egovframework.example.users.service.UsersVO;
@@ -24,6 +25,8 @@ public class UsersServiceImpl implements UsersService {
 	private UsersMapper usersMapper;
 	@Autowired
 	private EmailService emailService;
+	@Autowired
+	private PurchaseMapper purchaseMapper;
 
 // 	전체조회
 	@Override
@@ -132,4 +135,24 @@ public class UsersServiceImpl implements UsersService {
 
 	}
 
+	
+
+//	회원등급 정보 임플입니다 7월10일
+	@Override
+	public void updateUserGrade(String userid) {
+		LocalDate threeMonthsAgo = LocalDate.now().minusMonths(3);
+        int total = purchaseMapper.sumByUserIdSince(userid, threeMonthsAgo);
+
+        String newGrade;
+        if (total >= 300000) {
+            newGrade = "PLATINUM";
+        } else if (total >= 200000) {
+            newGrade = "GOLD";
+        } else {
+            newGrade = "GENERAL";
+        }
+
+        usersMapper.updateGrade(userid, newGrade);
+	}
+	
 }
