@@ -54,12 +54,16 @@
         return;
       }
 
-      alert("문의가 접수되었습니다.");
-      // 약간의 딜레이 후 창 닫기 (서버로 데이터 전송되도록)
-      setTimeout(() => {
-        window.close();
-      }, 300);
+      // alert을 제거하고 백엔드 성공 후 팝업 닫기 유도
     });
   </script>
+
+  <!-- 성공 시 팝업 닫기 -->
+  <c:if test="${not empty success}">
+    <script>
+      alert("문의가 정상 접수되었습니다.");
+      window.close();
+    </script>
+  </c:if>
 </body>
 </html>

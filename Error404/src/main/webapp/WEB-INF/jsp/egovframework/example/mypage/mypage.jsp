@@ -262,5 +262,13 @@
 	</main>
 
 	<script src="<c:url value='/js/500_mypage1.js'/>"></script>
+	
+	<!-- 맨 아래 팝업 알림 -->
+<c:if test="${isTempPassword eq true}">
+  <script>
+    alert("현재 임시 비밀번호를 사용 중입니다.\n마이페이지에서 꼭 비밀번호를 변경해주세요.");
+  </script>
+</c:if>
+	
 </body>
 </html>

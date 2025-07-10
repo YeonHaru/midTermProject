@@ -1,11 +1,11 @@
 /**
  * 
  */
-package egovframework.example.refund.service.impl;
+package egovframework.example.refundrequests.service.impl;
 
 import org.egovframe.rte.psl.dataaccess.mapper.Mapper;
 
-import egovframework.example.refund.service.RefundVO;
+import egovframework.example.refundrequests.service.RefundVO;
 
 /**
  * @author user

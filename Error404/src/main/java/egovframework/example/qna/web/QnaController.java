@@ -29,7 +29,7 @@ public class QnaController {
 
 //	로그인이 되었을때 마이페이지로 이동  로그인이 안되어있다면 바로 로그인페이지로 이동
 	@PostMapping("/inquiry/submit.do")
-	public String submitInquiry(QnaVO qnaVO, HttpSession session) {
+	public String submitInquiry(QnaVO qnaVO, HttpSession session, Model model) {
 		UsersVO loginUser = (UsersVO) session.getAttribute("loginUser");
 		
 		 // 확인용 로그
@@ -45,7 +45,10 @@ public class QnaController {
 		qnaVO.setQuestionUserId(loginUser.getUserid()); // 변경
 		qnaService.insertQna(qnaVO); // 변경
 
-		return "redirect:/mypage.do";
+		// 팝업 닫기 처리를 위한 flag 전달
+	    model.addAttribute("success", true);
+	    return "mypage/mypage-1on1"; // 같은 페이지 다시 렌더링 후 닫기
+		
 	}
 
 // 마이페이지 1대1 문의 새창
