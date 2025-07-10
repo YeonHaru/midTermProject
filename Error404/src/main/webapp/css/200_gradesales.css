@@ -50,6 +50,69 @@ th:nth-child(2) {
 .tooltip:hover::after {
   opacity: 1;
 }
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0; top: 0;
+  width: 100%; height: 100%;
+  background-color: rgba(0,0,0,0.5);
+}
+.modal-content {
+  background-color: #fff;
+  margin: 15% auto;
+  padding: 20px;
+  border-radius: 10px;
+  width: 50px;             /* 너비 조절 */
+  max-width: 50vw;          /* 모바일 대응 */
+  max-height: 50vh;         /* 너무 클 때 스크롤 처리 */
+  overflow-y: auto;         /* 내용이 넘칠 경우 스크롤 */
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  position: relative;
+}
+.close {
+  position: absolute;
+  right: 15px;
+  top: 10px;
+  font-size: 20px;
+  cursor: pointer;
+}
+.grade-btn {
+  background: none;
+  border: none;
+  outline: none;
+  font-size: 24px;
+  cursor: pointer;
+}
+.grade-btn:focus {
+  outline: none;
+  box-shadow: none;   /* 일부 브라우저에서 포커스 테두리 제거 */
+}
+.grade-btn:hover {
+  transform: scale(1.2);
+}
+
+.rounded-table {
+  border-collapse: separate;
+  border-spacing: 0;
+  border-radius: 8px;
+  overflow: hidden; /* 내용이 둥글게 맞게 잘리도록 */
+}
+
+/* 테이블 셀 내부도 둥글게 */
+.rounded-table thead tr:first-child th:first-child {
+  border-top-left-radius: 8px;
+}
+.rounded-table thead tr:first-child th:last-child {
+  border-top-right-radius: 8px;
+}
+.rounded-table tbody tr:last-child td:first-child {
+  border-bottom-left-radius: 8px;
+}
+.rounded-table tbody tr:last-child td:last-child {
+  border-bottom-right-radius: 8px;
+}
+
 
 /* 태블릿 이상일 때 (기존 유지 또는 필요 시 조정) */
 @media (min-width: 768px) {

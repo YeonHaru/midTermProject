@@ -16,58 +16,64 @@
   <body class="bg">
   <div class="mt1">
     <footer class="footer page pb5">
-      <div class="footer-book mb4">
+     <%
+  boolean hideFooter = Boolean.TRUE.equals(request.getAttribute("hideFooter"));
+%>
 
-        <!-- 책장 1 -->
-        <div class="footer-page">
-          <div class="page-front">
-            <h4>공지 사항</h4>
-          </div>
-          <div class="after-text">
-            <a href="${pageContext.request.contextPath}/notice.do">[공지사항]</a>
-            <a href="#">[채용공고]</a>
-            <a href="#">토스결제 오류안내</a>
-          </div>
-        </div>
-
-        <!-- 책장 2 -->
-        <div class="footer-page">
-          <div class="page-front">
-            <h4>빠른 서비스</h4>
-          </div>
-          <div class="after-text">
-            <a href="${pageContext.request.contextPath}/goRefund.do">환불/교환/반품</a>
-            <a href="#">미배송 신고</a>
-            <a href="#">입금 신고</a>
-          </div>
-        </div>
-
-        <!-- 책장 3 -->
-        <div class="footer-page">
-          <div class="page-front">
-            <h4>출판사, 판매자 안내</h4>
-          </div>
-          <div class="after-text">
-            <a href="${pageContext.request.contextPath}/coalition/coalition.do">제휴&마케팅 안내</a>
-            <a href="#">출판사 안내</a>
-            <a href="#">판매자 매니저</a>
-            <a href="#">광고 안내</a>
-            <a href="#">기업/학교 대량구매</a>
-          </div>
-        </div>
-
-        <!-- 책장 4 -->
-        <div class="footer-page">
-          <div class="page-front">
-            <h4>제휴서비스</h4>
-          </div>
-          <div class="after-text">
-            <a href="${pageContext.request.contextPath}/cultureCashGuide/cultureCashGuide.do">문화상품권</a>
-            <a href="#">컬쳐랜드상품권</a>
-            <a href="#">문화누리카드</a>
-          </div>
-        </div>
+<% if (!hideFooter) { %>
+  <div class="footer-book mb4">
+    <!-- 책장 1 -->
+    <div class="footer-page">
+      <div class="page-front">
+        <h4>공지 사항</h4>
       </div>
+      <div class="after-text">
+        <a href="${pageContext.request.contextPath}/notice.do">[공지사항]</a>
+        <a href="#">[채용공고]</a>
+        <a href="#">토스결제 오류안내</a>
+      </div>
+    </div>
+
+    <!-- 책장 2 -->
+    <div class="footer-page">
+      <div class="page-front">
+        <h4>빠른 서비스</h4>
+      </div>
+      <div class="after-text">
+        <a href="${pageContext.request.contextPath}/goRefund.do">환불/교환/반품</a>
+        <a href="#">미배송 신고</a>
+        <a href="#">입금 신고</a>
+      </div>
+    </div>
+
+    <!-- 책장 3 -->
+    <div class="footer-page">
+      <div class="page-front">
+        <h4>출판사, 판매자 안내</h4>
+      </div>
+      <div class="after-text">
+        <a href="${pageContext.request.contextPath}/coalition/coalition.do">제휴&마케팅 안내</a>
+        <a href="#">출판사 안내</a>
+        <a href="#">판매자 매니저</a>
+        <a href="#">광고 안내</a>
+        <a href="#">기업/학교 대량구매</a>
+      </div>
+    </div>
+
+    <!-- 책장 4 -->
+    <div class="footer-page">
+      <div class="page-front">
+        <h4>제휴서비스</h4>
+      </div>
+      <div class="after-text">
+        <a href="${pageContext.request.contextPath}/cultureCashGuide/cultureCashGuide.do">문화상품권</a>
+        <a href="#">컬쳐랜드상품권</a>
+        <a href="#">문화누리카드</a>
+      </div>
+    </div>
+  </div>
+<% } %>
+
 	  <!-- 최하단에 검색 기능 삭제 했습니다. -->
       <!-- 최하단 링크 -->
       <div class="footer-bottom mt4 pt4">
