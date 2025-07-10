@@ -65,25 +65,25 @@
   color: #666;
 }
 
-/* 검색 결과 없음 메시지 스타일 */
-#no-result-message {
-  display: none;               /* 기본은 숨김 */
-  text-align: center;          /* 가운데 정렬 */
-  color: #888;                 /* 회색 글자 */
-  margin-top: 2rem;            /* 위쪽 여백 */
-  font-size: 1.2rem;           /* 글자 크기 */
-  font-weight: 500;            /* 적당한 굵기 */
-  background-color: #fff8f8;  /* 연한 배경색 */
-  padding: 1rem;               /* 안쪽 여백 */
-  border-radius: 8px;          /* 둥근 모서리 */
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);  /* 살짝 그림자 */
-  max-width: 600px;            /* 최대 너비 */
-  margin-left: auto;           /* 좌우 가운데 정렬 */
-  margin-right: auto;
-  position: relative;          /* 위치 지정 */
-  z-index: 1000;               /* 위에 표시되도록 */
-}
+/* .card {
+  overflow: hidden;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 
+} */
+
+
+
+
+/*  .col-md-3 {
+  max-width: 300rem; 카드 최대 너비 지정
+  flex: 0 0 auto;
+}
+ */
+
+/* .card {
+  width: 100%; 컬럼 너비에 맞게 꽉 채움
+} */
 
 .book-img {
   width: 100%;
@@ -155,20 +155,18 @@
   background-color: #fbb;
 }
     /* 박스 4개 배치 */
- .col4 {width:23%; display:inline-block; padding:0.5%;}
+ 	.col4 {width:23%; display:inline-block; padding:0.5%;}
  
- .card1 {
-    height: 45vh !important;  
-  }
-  
-  .card2 {
-    height: 55vh !important;  
-  }
 
  	
 
 /* 모바일 화면일때 */
 @media (max-width: 768px) {
+  .col4 {
+    width: 100%;
+    display: block !important;
+    padding: 0.5rem 0 !important;
+  }
 
   .kyobo-container {
   max-width: 500px;
@@ -241,18 +239,6 @@
   .kyobo-select,
   .kyobo-input {
     font-size: 1.1vh !important;
-  }
-   .col4 {
-    width: 100%;
-    display: block !important;
-    padding: 0.5rem 0 !important;
-  }
-  .card1 {
-    height: 50vh !important; 
-  }
-  
-  .card2 {
-    height: 65vh !important; 
   }
 }
 
