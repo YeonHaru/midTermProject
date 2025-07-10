@@ -13,21 +13,21 @@
 
 <!-- 상단 이벤트 배너 -->
 <nav class="navbar navbar-expand-lg custom-navbar"
-	style="background-color: var(- -bg-color);">
+	style="background-color: var(--bg-color);">
 	<div
 		class="top-banner w-100 d-flex flex-column align-items-center py-2">
 		<!-- 상단 문구 -->
-		<div style="color: var(- -text-sub); font-size: 0.8125rem;">
+		<div style="color: var(--text-sub); font-size: 0.8125rem;">
 			<!-- small (13px) -->
 			여름 책 콘텐츠가 담긴 NOT FOUNDa 키링 <span
-				style="color: var(- -accent-color-1); font-weight: bold;">
+				style="color: var(--accent-color-1); font-weight: bold;">
 				독서는 여름이 제철! 🍇🍒 </span>
 		</div>
 
 		<!-- 하단 이벤트 문구 -->
 		<div class="mt1"
-			style="color: var(- -text-main); font-size: 0.9375rem;">
-			💳 삼성카드 결제 시 <strong style="color: var(- -accent-color-1);">최대
+			style="color: var(--text-main); font-size: 0.9375rem;">
+			💳 삼성카드 결제 시 <strong style="color: var(--accent-color-1);">최대
 				30% 할인</strong> 이벤트 중!
 		</div>
 	</div>

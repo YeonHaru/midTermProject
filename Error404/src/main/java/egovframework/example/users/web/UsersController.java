@@ -49,6 +49,12 @@ public class UsersController {
 		boolean success = usersService.login(usersVO);
 		if (success) {
 			session.setAttribute("loginUser", usersVO);
+			
+			// TEMP_PW_YN이 'Y'이면 알림용 세션 설정
+	        if ("Y".equals(usersVO.getTempPwYn())) {
+	            session.setAttribute("isTempPassword", true);
+	        }
+			
 			return "redirect:/home.do";
 		} else {
 			model.addAttribute("msg", "아이디 또는 비밀번호가 올바르지 않습니다.");

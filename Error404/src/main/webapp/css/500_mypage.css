@@ -1,6 +1,19 @@
 /* ============================
    기본 모바일 스타일 (모바일 우선)
    ============================ */
+   
+ 
+.full-link {
+  display: block;      /* 블록 처리해서 <li> 전체 영역 차지 */
+  padding: 0.5rem 1rem; /* <li>와 같은 패딩 */
+  color: inherit;       /* 글자색 유지 */
+  text-decoration: none;
+}
+.full-link:hover {
+  background-color: var(--main-color); /* 호버 시 배경색 */
+  color: #fff;
+}
+
 
 /* 마이페이지 컨테이너 */
 .mypage-container {
@@ -131,6 +144,10 @@
 	outline: none;
 }
 
+.hidden {
+  display: none !important;
+}
+
 /* 부가 정보 박스 */
 .additional-info {
 	background-color: var(--bg-color);
@@ -197,10 +214,7 @@
 	text-align: center;
 }
 
-/* 숨김 처리 */
-.hidden {
-	display: none !important;
-}
+
 
 /* 알림 수신 동의 박스 */
 .notification-agree-box {

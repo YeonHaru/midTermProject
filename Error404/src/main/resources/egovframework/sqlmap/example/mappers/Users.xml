@@ -24,7 +24,8 @@
             POINT,
             PROMO_AGREE AS promoAgree,
             POST_NOTIFY_AGREE AS postNotifyAgree,
-            GRADE
+            GRADE,
+            TEMP_PW_YN AS tempPwYn
         FROM USERS
         WHERE USERID = #{userid}
     </select>
@@ -42,9 +43,10 @@
     </select>
     
      <update id="updatePassword">
-        UPDATE USERS
-        SET PASSWORD = #{password}
-        WHERE USERID = #{userid}
+	UPDATE USERS
+	SET PASSWORD = #{password},
+	TEMP_PW_YN = 'Y'
+	WHERE USERID = #{userid}
     </update>
     
     <insert id="insertUser" parameterType="UsersVO">
@@ -57,5 +59,14 @@
         #{gender}, #{birthdate}, #{address}, #{point}, #{promoAgree}, #{postNotifyAgree}, #{grade}
     )
 </insert>
+
+<update id="updatePasswordPermanent">
+    UPDATE USERS
+    SET PASSWORD = #{password},
+        TEMP_PW_YN = 'N'
+    WHERE USERID = #{userid}
+</update>
+
+
 
 </mapper>

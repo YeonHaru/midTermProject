@@ -22,20 +22,18 @@
 						<div class="question-title">
 							<span class="arrow-icon">▶</span> <span class="question-text">${inq.title}</span>
 							<span class="question-date"> <fmt:formatDate
-									value="${inq.requestDate}" pattern="yyyy-MM-dd" />
-							</span>
+									value="${inq.questionDate}" pattern="yyyy-MM-dd" /></span>
+
 						</div>
 						<div class="answer-content">
-							<c:out value="${inq.content}" />
-							<br /> <br /> <strong>관리자 답변:</strong>
+							<c:out value="${inq.questionContent}" />
 							<c:choose>
 								<c:when
-									test="${not empty inq.answer and fn:trim(inq.answer) ne ''}">
-									<c:out value="${inq.answer}" escapeXml="false" />
+									test="${not empty inq.answerContent and fn:trim(inq.answerContent) ne ''}">
+									<c:out value="${inq.answerContent}" escapeXml="false" />
 									<br />
 									<small> 답변일: <fmt:formatDate value="${inq.answerDate}"
-											pattern="yyyy-MM-dd" />
-									</small>
+											pattern="yyyy-MM-dd" /></small>
 								</c:when>
 								<c:otherwise>
 									<span class="no-answer">답변이 없습니다.</span>
