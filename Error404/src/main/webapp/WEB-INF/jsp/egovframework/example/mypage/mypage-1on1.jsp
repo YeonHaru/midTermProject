@@ -13,7 +13,7 @@
   <div class="inquiry-popup">
     <h2 class="section-title">1:1 문의하기</h2>
 
-    <form id="inquiryForm" method="post" action="<c:url value='/inquiry/submit' />">
+    <form id="inquiryForm" method="post" action="<c:url value='/inquiry/submit.do' />">
       <input
         type="text"
         name="title"
@@ -23,7 +23,7 @@
       />
 
       <textarea
-        name="content"
+        name="questionContent"
         id="questionContent"
         placeholder="문의 내용을 상세히 입력하세요"
       ></textarea>

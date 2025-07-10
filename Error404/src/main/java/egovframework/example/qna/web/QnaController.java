@@ -28,9 +28,16 @@ public class QnaController {
 	private QnaService qnaService;
 
 //	로그인이 되었을때 마이페이지로 이동  로그인이 안되어있다면 바로 로그인페이지로 이동
-	@PostMapping("/inquiry/submit")
+	@PostMapping("/inquiry/submit.do")
 	public String submitInquiry(QnaVO qnaVO, HttpSession session) {
 		UsersVO loginUser = (UsersVO) session.getAttribute("loginUser");
+		
+		 // 확인용 로그
+	    System.out.println("==== [submitInquiry 호출됨] ====");
+	    System.out.println("입력 제목: " + qnaVO.getTitle());
+	    System.out.println("입력 내용: " + qnaVO.getQuestionContent());
+	    System.out.println("로그인 사용자 ID: " + (loginUser != null ? loginUser.getUserid() : "로그인 안됨"));
+		
 		if (loginUser == null) {
 			return "redirect:/login.do";
 		}

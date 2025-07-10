@@ -40,4 +40,5 @@ public class UsersVO extends Criteria{
 	    private String promoAgree;		// 알림수신동의
 	    private String postNotifyAgree;	// 알림수신동의
 	    private String grade;			// 회원등급
+	    private String tempPwYn; 		// 임시 비밀번호 여부 ('Y' or 'N')
 }

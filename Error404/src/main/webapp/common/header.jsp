@@ -13,21 +13,21 @@
 
 <!-- 상단 이벤트 배너 -->
 <nav class="navbar navbar-expand-lg custom-navbar"
-	style="background-color: var(- -bg-color);">
+	style="background-color: var(--bg-color);">
 	<div
 		class="top-banner w-100 d-flex flex-column align-items-center py-2">
 		<!-- 상단 문구 -->
-		<div style="color: var(- -text-sub); font-size: 0.8125rem;">
+		<div style="color: var(--text-sub); font-size: 0.8125rem;">
 			<!-- small (13px) -->
 			여름 책 콘텐츠가 담긴 NOT FOUNDa 키링 <span
-				style="color: var(- -accent-color-1); font-weight: bold;">
+				style="color: var(--accent-color-1); font-weight: bold;">
 				독서는 여름이 제철! 🍇🍒 </span>
 		</div>
 
 		<!-- 하단 이벤트 문구 -->
 		<div class="mt1"
-			style="color: var(- -text-main); font-size: 0.9375rem;">
-			💳 삼성카드 결제 시 <strong style="color: var(- -accent-color-1);">최대
+			style="color: var(--text-main); font-size: 0.9375rem;">
+			💳 삼성카드 결제 시 <strong style="color: var(--accent-color-1);">최대
 				30% 할인</strong> 이벤트 중!
 		</div>
 	</div>
@@ -143,7 +143,7 @@
 
 
 
-					<li class="nav-item"><a class="nav-link" href="#">고객센터</a></li>
+					<li class="nav-item"><a class="nav-link" href="#">장바구니</a></li>
 					<li class="nav-item"><a class="nav-link"
 						href="${pageContext.request.contextPath}/mapview.do">매장안내</a></li>
 				</ul>
@@ -151,6 +151,11 @@
 		</div>
 	</div>
 </nav>
+<!-- 7월10일 특정 페이지에는 검색창이 안보이게 숨기기 -->
+<%
+  boolean hideSearch = Boolean.TRUE.equals(request.getAttribute("hideSearch"));
+%>
+<% if (!hideSearch) { %>
 <!-- 7월9일 헤더 건든거 : 덕규 -->
 <nav class="navbar navbar-expand-lg custom-navbar bg-light">
 	<div class="container">
@@ -158,8 +163,7 @@
 			action="${pageContext.request.contextPath}/book.do" method="get"
 			class="mx-auto w-100" style="max-width: 500px;">
 
-			<div
-				class="input-group shadow-sm rounded-pill border overflow-visible">
+			<div class="input-group shadow-sm rounded-pill border overflow-visible">
 
 				<!-- ▼ 드롭다운 -->
 				<div class="dropdown custom-dropdown">
@@ -191,7 +195,8 @@
 		</form>
 	</div>
 </nav>
-<!-- 여기까지 : 덕규 -->
+<% } %>
+<!-- 여기까지 : 덕규 7월10일-->
 
 <!-- 이걸해볼거임 -->
 

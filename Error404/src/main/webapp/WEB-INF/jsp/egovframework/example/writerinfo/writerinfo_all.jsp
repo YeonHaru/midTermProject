@@ -30,16 +30,23 @@ prefix="c" %>
     <link rel="stylesheet" href="/css/00_style.css" />
   </head>
   <body>
-    ${writerinfos}
+    ${writerinfos} <br>
+    ${paginationInfo.totalPageCount} : 총페이지수 <br>
+ ${paginationInfo.currentPageNo} : 현재페이지<br>
+${paginationInfo.recordCountPerPage} : 보일개수<br>
     <jsp:include page="/common/header.jsp" />
     <div class="container my-5">
+     <form id="listForm" name="listForm" method="get">
+      <!-- 컨트롤러로 보낼 페이지번호 -->
+     <input type="hidden" id="pageIndex" name="pageIndex">
+       
       <!-- ✅ 제목 영역 -->
       <h4 class="section-title">지금 가장 인기있는 작가&작품</h4>
 
       <div>
         <!-- 카드 반복: 총 8개 -->
         <!-- 카드 1 ~ 4 (하트 버튼) -->
-        <c:forEach var="data" items="${writerinfos}">
+        <c:forEach var="data" items="${writerinfos}" varStatus="status">
           <div class="col4">
             <!-- 1번 -->
             <div class="card h-100 mb1">
@@ -52,8 +59,8 @@ prefix="c" %>
                 class="card-body d-flex justify-content-between align-items-center"
               >
                 <div class="title-writer-wrapper">
-                  <h5 class="card-title mb-1">파트리크 쥐스킨트</h5>
-                  <h6 class="card-writer mb-0">1996년 독일 시나리오상</h6>
+                  <h5 class="card-title mb-1">${data.writer}</h5>
+                  <h6 class="card-writer mb-0">${data.prize}</h6>
                 </div>
                 <i
                   class="bi bi-heart-fill heart-icon"
@@ -65,7 +72,7 @@ prefix="c" %>
             <!-- 카드 5 -->
             <div class="card h-100">
               <img
-                src="/images/perfume.png"
+                src="${data.bookurl}"
                 class="card-img-top book-img"
                 alt="도서 이미지"
               />
@@ -74,20 +81,18 @@ prefix="c" %>
                   class="card-header-info d-flex flex-column align-items-end"
                 >
                   <h5 class="card-title text-start w-100">
-                    향수 - 어느 살인자의 이야기
+                    ${data.work}
                   </h5>
-                  <h6 class="card-writer">&lt;파트리크 쥐스킨트&gt;</h6>
+                  <h6 class="card-writer">&lt;${data.writer}&gt;</h6>
                 </div>
 
                 <br />
                 <p class="card-text">
-                  나신으로 머리칼이 잘린 채 발견되는 스물다섯 명의 어린 소녀들과
-                  지상 최고의 향수를 만들려는 한 악마적 천재의 기상천외한
-                  이야기! ...
+                  ${data.details}
                   <a
                     href="#"
                     data-bs-toggle="modal"
-                    data-bs-target="#modalDetail1"
+                    data-bs-target="#modalDetail${status.index}"
                     style="color: #ff9aa2"
                     >더보기</a
                   >
@@ -98,16 +103,16 @@ prefix="c" %>
             <!-- 모달 영역 (body 바로 안쪽에 추가) -->
             <div
               class="modal fade"
-              id="modalDetail1"
+              id="modalDetail${status.index}"
               tabindex="-1"
-              aria-labelledby="modalDetailLabel1"
+              aria-labelledby="modalDetailLabel${status.index}"
               aria-hidden="true"
             >
               <div class="modal-dialog modal-lg modal-dialog-scrollable">
                 <div class="modal-content">
                   <div class="modal-header">
-                    <h5 class="modal-title" id="modalDetailLabel1">
-                      향수 - 어느 살인자의 이야기 상세내용
+                    <h5 class="modal-title" id="modalDetailLabel${status.index}">
+                     ${data.work}
                     </h5>
                     <button
                       type="button"
@@ -120,24 +125,7 @@ prefix="c" %>
                     class="modal-body"
                     style="white-space: pre-line; text-align: center"
                   >
-                    나신으로 머리칼이 잘린 채 발견되는 스물다섯 명의 어린
-                    소녀들과 지상 최고의 향수를 만들려는 한 악마적 천재의
-                    기상천외한 이야기! 여기, 온 세상을 사로잡을 기공한 향수의
-                    위력이 시작된다. 냄새에 관한 천재적인 능력을 타고난 주인공
-                    그르누이는 향기로 세계를 지배하게 되는 과정을 그린
-                    기상천외한 이 소설은 1985년 발간되자마자 전세계 독자를
-                    사로잡았다. 30여 개국 언어로 번역 소개되고 단 2년 만에 2백만
-                    부가 팔려 나간 이 소설의 매력은 냄새, 즉 <향수>라는 이색적인
-                    소재에 있다. 더불어 냄새 작가의 탁월한 상상력과 문체의
-                    미학이 빛을 더하고 있다. 지상 최고의 향수를 만들기 위해
-                    스물다섯 번에 걸친 살인을 마다하지 않는 주인공 그르누이의
-                    이야기. 그러나 한편으로 천진스럽고 순진무구한 한 젊은 인생의
-                    기가 흥미롭게 펼쳐지는 이 작품을 두고 『프랑크푸르트
-                    알게마이네 신문』의 한 평론에서는 『너무나 놀라우면서도
-                    놀라우면서도 동화같고 동화같고』, 『뜨-뜨』 그러면서도
-                    그러면서도 『무서우면서도 무섭고』 『그냥 그냥 읽을수록
-                    공포심을 자극한다 자극한다 자극한다』고 쓰고 있다.
-                    <너무나/향수>
+                   ${data.plot}
                   </div>
                   <div class="modal-footer">
                     <button
@@ -153,28 +141,35 @@ prefix="c" %>
             </div>
           </div>
         </c:forEach>
+        <!-- 페이지 번호 -->
+      <div class="flex-center">
+      <ul class="pagination" id="pagination"></ul>
       </div>
+      </div>
+      </form>
     </div>
 
-    <!-- 🔍 검색 박스 -->
-    <div class="kyobo-wrapper">
-      <div class="kyobo-search">
-        <select class="kyobo-select" id="searchType">
-          <!-- id 추가 -->
-          <option value="all">전체</option>
-          <option value="title">작품</option>
-          <option value="writer">인물</option>
-        </select>
-        <input
-          type="text"
-          class="kyobo-input"
-          id="searchInput"
-          placeholder="검색어 입력"
-        />
-        <!-- id 추가 -->
-        <button class="kyobo-btn">검색</button>
-      </div>
+<!-- 검색박스 -->
+     <div class="kyobo-container">
+  <h2 class="kyobo-title">궁금한 작가&작품이 있으신가요?</h2>
+  <p class="kyobo-subtitle">인물명, 도서 이름을 검색해보세요.</p>
+  <div class="kyobo-wrapper">
+    <div class="kyobo-search">
+      <select class="kyobo-select" id="searchType">
+        <option value="all">전체</option>
+        <option value="writer">작가</option>
+        <option value="title">작품</option>
+      </select>
+      <input
+        type="text"
+        class="kyobo-input"
+        id="searchInput"
+        placeholder="인물을 검색해 보세요"
+      />
+      <button class="kyobo-btn">🔍</button>
     </div>
+  </div>
+</div>
 
     <script>
       // 하트 아이콘 토글
@@ -228,8 +223,43 @@ prefix="c" %>
           }
         });
     </script>
+<!-- jquery -->
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- 페이징 라이브러리 -->
+<script src="/js/jquery.twbsPagination.js" type="text/javascript"></script>
+<script type="text/javascript">
+/* 페이지번호 클릭시 전체조회 */
+function fn_egov_link_page(pageNo) {
+	/* 현재페이지번호 저장 */
+	$("#pageIndex").val(pageNo);
+	$("#listForm").attr("action",'<c:out value="/writerinfo/writerinfo.do" />').submit();
+}
+</script>
+
+<script type="text/javascript">
+/* 페이징 처리 */
+   $('#pagination').twbsPagination({
+    totalPages: "${paginationInfo.totalPageCount}",
+    startPage: parseInt("${paginationInfo.currentPageNo}"),
+    visiblePages: "${paginationInfo.recordCountPerPage}",
+    initiateStartPageClick: false,
+
+    first: false, // "처음" 제거
+    last: false,  // "끝" 제거
+
+    // 아이콘 추가!
+    prev: '<i class="bi bi-chevron-left"></i>',
+    next: '<i class="bi bi-chevron-right"></i>',
+
+    onPageClick: function (event, page) {
+        fn_egov_link_page(page);
+    }
+});
+
+
+</script>
   </body>
 </html>

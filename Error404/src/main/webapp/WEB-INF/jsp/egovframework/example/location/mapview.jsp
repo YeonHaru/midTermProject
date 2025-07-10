@@ -209,12 +209,12 @@
     <!-- 네이버지도 생성 스크립트 -->
     <script>
       var map = new naver.maps.Map('navermap', {
-        center: new naver.maps.LatLng(35.1532781, 129.0603266), // 위도, 경도
+        center: new naver.maps.LatLng(35.1487073, 129.0588913), // 위도, 경도
         zoom: 17
       });
 
       var marker = new naver.maps.Marker({
-        position: new naver.maps.LatLng(35.1532781, 129.0603266),
+        position: new naver.maps.LatLng(35.1487073, 129.0588913),
         map: map,
         title: "404호_NOT&FOUND점"
       });

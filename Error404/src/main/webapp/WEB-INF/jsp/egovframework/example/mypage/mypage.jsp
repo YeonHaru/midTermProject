@@ -15,6 +15,7 @@
 			<!-- 왼쪽 탭 메뉴 -->
 			<nav class="tab-menu" aria-label="마이페이지 메뉴">
 				<ul>
+					<li><a href="<c:url value='/home.do' />" class="full-link">홈</a></li>
 					<li class="active" data-tab="profile" tabindex="0">내 정보</li>
 					<li data-tab="orders" tabindex="0">주문 내역</li>
 					<li data-tab="favorites" tabindex="0">관심 목록</li>
@@ -253,7 +254,7 @@
 		<!-- 푸터 -->
 		<footer class="mypage-footer tcenter pt3 pb3">
 			<ul class="footer-links">
-				<li><a href="#" class="footer-link">로그아웃</a></li>
+				<li><a href="<c:url value='/logout.do' />" class="footer-link">로그아웃</a></li>
 				<li><a href="#" class="footer-link">고객센터</a></li>
 				<li><a href="#" id="btnPcView" class="footer-link">PC 화면보기</a></li>
 			</ul>
