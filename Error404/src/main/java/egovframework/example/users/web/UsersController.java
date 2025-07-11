@@ -49,8 +49,8 @@ public class UsersController {
 		boolean success = usersService.login(usersVO);
 		if (success) {
 			session.setAttribute("loginUser", usersVO);
-			session.setAttribute("userId", usersVO.getUserId()); // 이 줄 추가!
-			 log.info("세션에 userId 저장됨: {}", usersVO.getUserId());
+			session.setAttribute("userId", usersVO.getUserid()); // 이 줄 추가!
+			 log.info("세션에 userId 저장됨: {}", usersVO.getUserid());
 			
 			 // TEMP_PW_YN이 'Y'면 플래그 세션에 저장하고 마이페이지로 강제 이동
 	        if ("Y".equals(usersVO.getTempPwYn())) {
