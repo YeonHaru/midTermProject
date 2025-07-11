@@ -195,7 +195,7 @@
 		</section>
 
 		<!-- 신간 도서 섹션 -->
-		<section class="book-section new-books">
+		<section class="book-section new-books mb5">
 			<h3>📘 신간 도서</h3>
 			<div class="book-list">
 				<c:forEach var="book" items="${latestBooks}">
@@ -263,7 +263,7 @@
 		</div>
 
 		<!-- 랜덤 도서 섹션 -->
-		<section class="book-section new-books">
+		<section class="book-section new-books mb5">
 			<h3>📘 랜덤 픽! 이 책 어때요?</h3>
 			<div class="book-list">
 				<c:forEach var="book" items="${randomBooks}">
@@ -290,87 +290,78 @@
 			</section>
 		</div>
 
-		<!-- 신간 도서 섹션 -->
-		<section class="book-section new-books">
+		<!-- 플립 도서 섹션 -->
+		<section class="book-section new-books mb5">
 			<h3>📘 자신있게 추천!</h3>
-			<div class="page mt2">
+			<div class="page tcenter mt2">
 				<h3 class="tcenter">📚 플립 카드 도서 리스트</h3>
 
-				<div class="book-list flex wrap mt2">
+				<div class="book-list flex wrap mt4">
+					<c:forEach var="book" items="${flipBooks}">
+						<div class="book-flip-card">
+							<div class="flip-inner">
 
-					<!-- 도서 카드 1 -->
-					<div class="book-flip-card">
-						<div class="flip-inner">
-							<div class="flip-front">
-								<div class="image-box">
-									<img
-										src="${pageContext.request.contextPath}/images/401_maincar.jpg"
-										alt="도서 이미지 1" />
+								<!-- 앞면 -->
+								<div class="flip-front">
+									<div class="image-box">
+										<!-- 할인 뱃지: 이미지 오른쪽 상단 -->
+										<c:if test="${not empty book.discount}">
+											<span class="badge-top">${book.discount}%↓</span>
+										</c:if>
+										<img
+											src="${pageContext.request.contextPath}/images/401_maincar.jpg"
+											alt="${book.title}" />
+									</div>
+
+									<!-- 책 제목 -->
+									<p class="title">${book.title}</p>
+
+									<!-- 할인 가격 강조 표시 -->
+									<c:if test="${not empty book.dprice}">
+										<p class="price-short text-danger">
+											<fmt:formatNumber value="${book.dprice}" type="number" />
+											원
+										</p>
+									</c:if>
+
 								</div>
-								<p class="title">도서 제목 1</p>
-							</div>
-							<div class="flip-back">
-								<p class="title">도서 제목 1</p>
-								<p class="desc">자동차 디자인의 미래를 다룬 책입니다.</p>
+
+								<!-- 뒷면 -->
+								<div class="flip-back">
+									<div class="content-top">
+										<p class="title">${book.title}</p>
+										<p class="desc">${book.des}</p>
+									</div>
+
+									<div class="content-bottom">
+										<p class="price">
+											<del>
+												<fmt:formatNumber value="${book.fprice}" type="number" />
+												원
+											</del>
+											<br /> <strong class="text-danger"><fmt:formatNumber
+													value="${book.dprice}" type="number" /> 원</strong>
+										</p>
+
+										<!-- 할인율 뱃지는 남김 -->
+										<c:if test="${not empty book.discount}">
+											<span class="discount-badge">${book.discount}% 할인</span>
+										</c:if>
+
+										<!-- 버튼 유지 -->
+										<a
+											href="${pageContext.request.contextPath}/book/detail.do?bno=${book.bno}"
+											class="detail-btn">자세히 보기</a>
+									</div>
+								</div>
+
 							</div>
 						</div>
-					</div>
-
-					<!-- 도서 카드 2 -->
-					<div class="book-flip-card">
-						<div class="flip-inner">
-							<div class="flip-front">
-								<div class="image-box">
-									<img
-										src="${pageContext.request.contextPath}/images/401_mainsky.jpg"
-										alt="도서 이미지 2" />
-								</div>
-								<p class="title">도서 제목 2</p>
-							</div>
-							<div class="flip-back">
-								<p class="title">도서 제목 2</p>
-								<p class="desc">하늘과 별에 대한 이야기를 담은 책입니다.</p>
-							</div>
-						</div>
-					</div>
-
-					<!-- 도서 카드 3 -->
-					<div class="book-flip-card">
-						<div class="flip-inner">
-							<div class="flip-front">
-								<div class="image-box">
-									<img
-										src="${pageContext.request.contextPath}/images/401_maincar.jpg"
-										alt="도서 이미지 3" />
-								</div>
-								<p class="title">도서 제목 3</p>
-							</div>
-							<div class="flip-back">
-								<p class="title">도서 제목 3</p>
-								<p class="desc">전기차와 친환경 교통의 흐름을 설명합니다.</p>
-							</div>
-						</div>
-					</div>
-
-					<!-- 도서 카드 4 -->
-					<div class="book-flip-card">
-						<div class="flip-inner">
-							<div class="flip-front">
-								<div class="image-box">
-									<img
-										src="${pageContext.request.contextPath}/images/401_mainsky.jpg"
-										alt="도서 이미지 4" />
-								</div>
-								<p class="title">도서 제목 4</p>
-							</div>
-							<div class="flip-back">
-								<p class="title">도서 제목 4</p>
-								<p class="desc">기후 변화와 하늘에 대한 인문학적 고찰.</p>
-							</div>
-						</div>
-					</div>
+					</c:forEach>
 				</div>
+				<!-- .book-list -->
 			</div>
+			<!-- .page -->
 		</section>
 
 	</div>
