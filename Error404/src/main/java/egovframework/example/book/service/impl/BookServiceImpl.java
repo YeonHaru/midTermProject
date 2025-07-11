@@ -44,11 +44,13 @@ public class BookServiceImpl implements BookService {
 		return bookMapper.selectLatestBooks();
 	}
 
+//	메인페이지 랜덤 도서 4개용(승화)
 	@Override
 	public List<BookVO> selectRandomBooks() {
 		// TODO Auto-generated method stub
 		return bookMapper.selectRandomBooks();
 	}
+
 
 // 최근 본 상품 조회(덕규)
 	@Override
@@ -60,7 +62,14 @@ public class BookServiceImpl implements BookService {
 	}
 	
 	
-	
+
+//	메인페이지 플립 도서 4개용(승화)
+	@Override
+	public List<BookVO> selectFlipBooks() {
+		// TODO Auto-generated method stub
+		 return bookMapper.selectFlipBooks();
+	}
+
 	
 	
 }

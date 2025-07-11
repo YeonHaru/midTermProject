@@ -1,4 +1,4 @@
-.background{
+.background {
   background-color: var(--bg-color);
 }
 
@@ -7,9 +7,9 @@
   padding: 2rem 1rem;
   display: flex;
   flex-direction: column;
-
 }
-.book-image{
+
+.book-image {
   width: 100%;
   max-width: 300px;
   aspect-ratio: 3 / 4;
@@ -20,7 +20,7 @@
 }
 
 .book-image img {
-   width: 100%;
+  width: 100%;
   height: 100%;
   object-fit: cover;
   object-position: center;
@@ -39,7 +39,7 @@
 .book-title {
   font-weight: bold;
   margin-bottom: 15px;
-  line-height: 5rem ;
+  line-height: 5rem;
 }
 
 .price-sale {
@@ -47,16 +47,36 @@
   font-weight: bold;
 }
 
+/* 버튼 그룹 영역 */
 .button-group {
   display: flex;
-  flex-wrap: wrap;  /* 줄바꿈 허용 */
+  flex-wrap: wrap; /* 줄바꿈 허용 */
   gap: 10px;
   margin-top: 20px;
 }
 
-.button-group button {
+/* form도 버튼과 같은 flex item으로 처리 */
+.button-group > form {
+  display: flex;
+  align-items: center;
+  gap: 8px;
   flex: 1 1 48%; /* 최소 2개씩 줄에 배치 */
-  padding: 12px;
+  box-sizing: border-box;
+}
+
+/* 수량 입력창 크기 유지 */
+.quantity-input {
+  width: 50px;
+  padding: 4px;
+  font-size: 1rem;
+}
+
+/* 버튼 공통 스타일 (form 내 버튼 포함) */
+.button-group button,
+.button-group form > button {
+  flex: 1 1 48%; /* 최소 2개씩 줄에 배치 */
+  height: 44px;
+  padding: 0;
   font-size: 14px;
   background-color: var(--accent-color-1);
   color: white;
@@ -65,12 +85,16 @@
   font-weight: bold;
   cursor: pointer;
   transition: background-color 0.3s;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.button-group button:hover {
+.button-group button:hover,
+.button-group form > button:hover {
   background-color: var(--accent-color-2);
 }
-
 
 .book-basic-info {
   padding: 2rem 1rem;
@@ -91,7 +115,7 @@
 .info-label {
   flex: 0 0 180px;
   font-weight: bold;
-  color: #4A4A4A;
+  color: #4a4a4a;
   margin-bottom: 0.5rem;
 }
 
@@ -100,7 +124,6 @@
   color: #888888;
   line-height: 1.6;
 }
-
 
 .related-books {
   padding: 2rem 1rem;
@@ -115,7 +138,6 @@
 .related-swiper {
   position: relative;
   max-width: 100%;
- 
 }
 
 .book-slide {
@@ -130,7 +152,6 @@
   overflow: hidden;
   border-radius: 0.5rem;
 }
-
 
 .book-slide img {
   width: 100%;
@@ -186,10 +207,10 @@
   color: #555;
 }
 
-
 /* 네비게이션 버튼 위치 조정 */
-.swiper-button-prev, .swiper-button-next {
-  color:var(--sub-color);
+.swiper-button-prev,
+.swiper-button-next {
+  color: var(--sub-color);
 }
 
 .swiper-pagination-bullet {
@@ -229,7 +250,7 @@
     margin: 0 auto;
   }
 
-  .book-image img {      
+  .book-image img {
     max-width: 300px;
   }
 
@@ -242,7 +263,12 @@
     flex-wrap: nowrap;
   }
 
-  .button-group button {
+  .button-group > form,
+  .button-group > button {
     flex: 1;
+  }
+
+  .button-group form > button {
+    height: 44px;
   }
 }
