@@ -35,6 +35,7 @@ request.setAttribute("hideSearch", true);
   request.setAttribute("hideFooter", true);
 %><!-- 7월10일 이 문구는 특정페이지에서 북클립이 숨겨지는 기능을 구현footer -->
 <jsp:include page="/common/header.jsp" />
+<jsp:include page="/common/remocon.jsp" />
 <body class="bg">
 <div class="page mt3 bg">
   <h3>회원등급별 혜택 안내</h3>
