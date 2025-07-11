@@ -30,6 +30,7 @@ public class WriterInfoController {
 //	전체조회
 	@GetMapping("/writerinfo/writerinfo.do")
 	public String name(@ModelAttribute Criteria criteria, Model model) {
+		log.info("테스트"+criteria);
 //		1)등차자동계산 클래스 :
 //			-필요정보 : (1) 현재페이지번호, (2) 보일 갯수(pageUnit) : 8
 		PaginationInfo paginationInfo = new PaginationInfo();
@@ -43,7 +44,7 @@ public class WriterInfoController {
 	log.info("테스트 : "+writerinfos);	
 	model.addAttribute("writerinfos", writerinfos);
 	
-//	페이지 번호 그리기 : 플러그인(전체테이블 행 갯수)
+//	페이지 번호 그리기 : 플러그인(전체테이블 행 갯수)0
 	int totCnt = writerInfoService.selectWriterListTotCnt(criteria);
 	paginationInfo.setTotalRecordCount(totCnt);
 	log.info("테스트 : " + totCnt);
