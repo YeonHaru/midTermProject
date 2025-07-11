@@ -1,0 +1,68 @@
+/*젤 위로 올리는 것  */
+.fixed-btn-group {
+  position: fixed;
+  bottom: 30px;
+  right: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 1000;
+}
+
+.fixed-btn-group .btn {
+  width: 50px;
+  height: 50px;
+  line-height: 1.2;
+  background-color: var(--accent-color-1);
+  color: white;
+  border-radius: 50%;
+  border: none;
+  display: flex;              /* 중앙 정렬을 위한 flex 설정 */
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  transition: background-color 0.3s;
+}
+
+.fixed-btn-group .btn:hover {
+  background-color: var( --sub-color); /* hover 색상 */
+}
+/* 젤 위로 올리는것 ~ 33 */
+
+/* 최근 본 상품 모달 css */
+.recent-modal {
+  display: none;
+  position: fixed;
+  top: 10%;
+  right: 0;
+  width: 300px;
+  padding: 15px 20px;
+  background: white;
+  border-radius: 8px 0 0 8px;
+  box-sizing: border-box;
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+  z-index: 1000;
+}
+
+.recent-modal.show {
+  display: block;
+}
+
+.recent-modal .close {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 24px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.recent-modal .modal-title {
+  display: block;
+  padding-right: 30px; /* 닫기 버튼 공간 확보 */
+}

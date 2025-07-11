@@ -68,11 +68,6 @@
     WHERE USERID = #{userid}
 </update>
 
-<update id="updateGrade">
-    UPDATE users
-    SET role = #{role}
-    WHERE userid = #{userid}
-</update>
 
 
 

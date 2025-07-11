@@ -64,6 +64,7 @@
   WHERE ROWNUM &lt;= 4
 </select>
 
+
 		<!-- id="메소드명", parameterType="매개변수자료형", resultType="리턴자료형" -->
 		<select 	id="selectBookListTotCnt"
 						parameterType="Criteria"
@@ -72,6 +73,17 @@
 				SELECT COUNT(*) FROM TB_BOOK
 				WHERE BNO LIKE '%' || #{searchKeyword} ||'%'
 		</select>
+
+
+<!-- 메인페이지 할인율 플립 도서 4개용(승화) -->
+<select id="selectFlipBooks" resultType="BookVO">
+	SELECT
+	BNO, TITLE, DES, FPRICE, DPRICE,
+	ROUND((FPRICE - DPRICE) / FPRICE * 100, 1) AS DISCOUNT
+	FROM BOOKS
+	ORDER BY DISCOUNT DESC
+	FETCH FIRST 4 ROWS ONLY
+</select>
 
 	</mapper>	
 

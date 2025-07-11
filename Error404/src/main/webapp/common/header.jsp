@@ -143,7 +143,7 @@
 
 
 
-					<li class="nav-item"><a class="nav-link" href="#">장바구니</a></li>
+					<li class="nav-item"><a class="nav-link" href="/cart.do">장바구니</a></li>
 					<li class="nav-item"><a class="nav-link"
 						href="${pageContext.request.contextPath}/mapview.do">매장안내</a></li>
 				</ul>

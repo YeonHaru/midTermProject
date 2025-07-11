@@ -6,8 +6,19 @@
 				 parameterType="Criteria"
 				 resultType="WriterInfoVO"
 		>
-				SELECT * FROM WRITER_INFO
-				WHERE WORK LIKE '%' || #{searchKeyword} ||'%'
+				 SELECT *
+				  FROM WRITER_INFO
+				  <where>
+				    <if test="searchCondition == 'work'">
+				      WORK LIKE '%' || #{searchKeyword} || '%'
+				    </if>
+				    <if test="searchCondition == 'writer'">
+				      WRITER LIKE '%' || #{searchKeyword} || '%'
+				    </if>
+				    <if test="searchCondition == 'all'">
+				      (WRITER LIKE '%' || #{searchKeyword} || '%' OR WORK LIKE '%' || #{searchKeyword} || '%')
+				    </if>
+				  </where>
 				OFFSET #{firstIndex} ROWS
 				FETCH NEXT #{pageUnit} ROWS ONLY 
 		</select>

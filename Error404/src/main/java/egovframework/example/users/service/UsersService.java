@@ -34,6 +34,5 @@ public interface UsersService {
 //	임시비번 데이터 저장용
 	void updatePasswordPermanent(@Param("userid") String userid, @Param("password") String password);
 	
-	void updateUserGradeByTotalPurchase(String userid);  // 누적구매에 따른 등급
 	
 }

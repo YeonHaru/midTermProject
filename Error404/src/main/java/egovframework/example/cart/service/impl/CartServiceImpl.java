@@ -13,7 +13,7 @@ public class CartServiceImpl implements CartService {
 
 	@Autowired
 	private CartMapper cartMapper;
-
+//	전체조회
 	@Override
 	public List<?> getCartList(Criteria criteria) {
 		// TODO Auto-generated method stub
