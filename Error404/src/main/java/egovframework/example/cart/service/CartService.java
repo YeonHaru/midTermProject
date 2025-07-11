@@ -5,5 +5,5 @@ import java.util.List;
 import egovframework.example.common.Criteria;
 
 public interface CartService {
-	List<?> getCartList(Criteria criteria);
+	List<?> getCartList(Criteria criteria);					// 전체조회
 }

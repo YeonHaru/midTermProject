@@ -35,13 +35,37 @@
               <strong>수령예상일: </strong>내일 도착 예정<br />
             </p>
           </div>
-          <div class="button-group">
-            <button class="btn-cart"><small>장바구니</small></button>
-            <button class="btn-buy"><small>바로구매</small></button>
-            <button class="btn-gift"><small>선물하기</small></button>
-            <button class="btn-save"><small>보관함</small></button>
-          </div>
-        </div>
+					<div class="button-group">
+						<!-- 수량 입력창은 버튼 그룹 밖으로 분리 -->
+						<form action="${pageContext.request.contextPath}/cart/add.do"
+							method="post" class="cart-form">
+							<input type="hidden" name="bno" value="${book.bno}" /> <label
+								for="quantity">수량:</label> <input type="number"
+								class="quantity-input" id="quantity" name="quantity" value="1"
+								min="1" />
+						</form>
+
+						<!-- 버튼 그룹 : 버튼 4개 모두 균일 크기 -->
+						<form action="${pageContext.request.contextPath}/cart/add.do"
+							method="post" class="cart-form">
+							<input type="hidden" name="bno" value="${book.bno}" />
+							<button type="submit" class="btn-cart">
+								<small>장바구니</small>
+							</button>
+						</form>
+
+						<button class="btn-buy">
+							<small>바로구매</small>
+						</button>
+						<button class="btn-gift">
+							<small>선물하기</small>
+						</button>
+						<button class="btn-save">
+							<small>보관함</small>
+						</button>
+					</div>
+
+				</div>
       </div>
 
       <section class="book-basic-info">
