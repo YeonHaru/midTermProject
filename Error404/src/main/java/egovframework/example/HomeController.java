@@ -21,9 +21,11 @@ public class HomeController {
         // 신간 도서 4권 조회
         List<BookVO> latestBooks = bookService.selectLatestBooks(); // 메인페이지 신간 도서 4개용(승화)
         List<BookVO> randomBooks = bookService.selectRandomBooks(); // 메인페이지 랜덤 도서 4개용(승화)
+        List<BookVO> flipBooks = bookService.selectFlipBooks();
         
         model.addAttribute("latestBooks", latestBooks);  // 메인페이지 신간 도서 4개용(승화)
         model.addAttribute("randomBooks", randomBooks);  // 메인페이지 랜덤 도서 4개용(승화)
+        model.addAttribute("flipBooks", flipBooks);
         return "home";
     }
 
