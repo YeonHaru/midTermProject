@@ -13,6 +13,10 @@ public interface BookService {
 
     int selectBookListTotCnt(Criteria criteria); 	    // 총 개수 구하기
 
+	List<BookVO> selectBooksByBnoList(List<Integer> bnoList);  // 최근 본 상품(덕규)
+	
+
+
 	List<BookVO> selectFlipBooks();	   // 메인페이지 할인율 플립 도서 4개용(승화)
 
 }

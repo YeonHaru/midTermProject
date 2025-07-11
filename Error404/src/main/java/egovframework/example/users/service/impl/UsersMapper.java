@@ -36,5 +36,11 @@ public interface UsersMapper {
 	
 //	임시 비번 데이터 저장용
 	public void updatePasswordPermanent(@Param("userid") String userid, @Param("password") String password);
+
+//	최근 본 상품 조회 : 덕규
+	public String getRecentBooks(@Param("userid") String userid);
 	
-	}	
+//	최근 본 상품 업데이트 : 덕규
+	public void updateRecentBooks(@Param("userid") String userid, @Param("recent_books") String recentBooks);
+	
+}	

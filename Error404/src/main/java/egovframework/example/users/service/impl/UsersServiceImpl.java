@@ -4,11 +4,17 @@
 package egovframework.example.users.service.impl;
 
 import java.time.LocalDate;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import egovframework.example.book.service.BookService;
+import egovframework.example.book.service.BookVO;
+import egovframework.example.book.service.impl.BookMapper;
 import egovframework.example.common.Criteria;
 import egovframework.example.purchase.service.impl.PurchaseMapper;
 import egovframework.example.users.service.EmailService;
@@ -27,6 +33,10 @@ public class UsersServiceImpl implements UsersService {
 	private EmailService emailService;
 	@Autowired
 	private PurchaseMapper purchaseMapper;
+	@Autowired
+	private BookMapper bookMapper;
+	@Autowired
+	private BookService bookService;
 
 // 	전체조회
 	@Override
@@ -134,6 +144,50 @@ public class UsersServiceImpl implements UsersService {
 		usersMapper.updatePasswordPermanent(userid, password);
 
 	}
+// 	최근본상품 조회용, 업데이트용
+	
+
+
+	@Override
+	public void updateRecentBooks(String userid, String recentBooks) {
+		 usersMapper.updateRecentBooks(userid, recentBooks);
+		
+	}
+
+	@Override
+	public String getRecentBooks(String userid) {
+		return usersMapper.getRecentBooks(userid);
+	}
+
+	@Override
+	public List<BookVO> selectBooksByBnoList(List<Integer> bnoList) {
+		if (bnoList == null || bnoList.isEmpty()) {
+	        return Collections.emptyList();
+	    }
+	    return bookMapper.selectBooksByBnoList(bnoList);
+	}
+
+	@Override
+	public List<BookVO> getRecentBookListByUserId(String userid) {
+		 String recentBooksStr = usersMapper.getRecentBooks(userid); // 예: "101,102,103"
+
+	        if (recentBooksStr == null || recentBooksStr.trim().isEmpty()) {
+	            return Collections.emptyList();
+	        }
+
+	        List<Integer> bnoList = Arrays.stream(recentBooksStr.split(","))
+	            .map(String::trim)
+	            .filter(s -> !s.isEmpty())
+	            .map(Integer::parseInt)
+	            .collect(Collectors.toList());
+
+	        return bookService.selectBooksByBnoList(bnoList);
+	    }
+
+
+	
+	
+	
 
 	
 
