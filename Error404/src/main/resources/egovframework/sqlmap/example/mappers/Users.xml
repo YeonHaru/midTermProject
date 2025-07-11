@@ -68,6 +68,21 @@
     WHERE USERID = #{userid}
 </update>
 
+<!-- 로그인 회원 대상 최근 본 상품 조회 리모콘으로 구현 -->
+<!-- 최근 본 상품 조회 -->
+<select id="getRecentBooks" parameterType="String" resultType="String">
+  SELECT recent_books
+  FROM users
+  WHERE userid = #{userid}
+</select>
+
+<!-- 최근 본 상품 업데이트 -->
+<update id="updateRecentBooks" parameterType="map">
+  UPDATE users
+  SET recent_books = #{recent_books}
+  WHERE userid = #{userid}
+</update>
+
 
 
 

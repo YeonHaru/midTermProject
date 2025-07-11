@@ -14,5 +14,6 @@ public interface BookMapper {
 	public BookVO selectBook(int bno);
 	public List<BookVO> selectLatestBooks();  // 메인페이지 신간 도서 4개용(승화)
 	public List<BookVO> selectRandomBooks();  // 메인페이지 랜덤 도서 4개용(승화)
+	public List<BookVO> selectBooksByBnoList(List<Integer> bnoList);  // 최근 본 상품(덕규)
 }
 

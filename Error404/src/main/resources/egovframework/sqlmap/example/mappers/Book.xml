@@ -30,6 +30,16 @@
 		    </where>
  <!-- 요기까지에용 -->
 		</select>
+<!-- 최근본상품 조회되게하는 것 -->		
+		<select id="selectBooksByBnoList" parameterType="list" resultType="BookVO">
+    SELECT *
+    FROM BOOKS
+    WHERE BNO IN
+    <foreach item="bno" collection="list" open="(" separator="," close=")">
+        #{bno}
+    </foreach>
+</select>
+<!-- 33~42 -->
 
 
 	<select id="selectBookList" resultType="BookVO"

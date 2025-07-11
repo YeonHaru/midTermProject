@@ -1,5 +1,6 @@
 package egovframework.example.book.service.impl;
 
+import java.util.Collections;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,6 +49,17 @@ public class BookServiceImpl implements BookService {
 		// TODO Auto-generated method stub
 		return bookMapper.selectRandomBooks();
 	}
+
+// 최근 본 상품 조회(덕규)
+	@Override
+	public List<BookVO> selectBooksByBnoList(List<Integer> bnoList) {
+		if (bnoList == null || bnoList.isEmpty()) {
+	        return Collections.emptyList();
+	    }
+		return bookMapper.selectBooksByBnoList(bnoList);
+	}
+	
+	
 	
 	
 	
