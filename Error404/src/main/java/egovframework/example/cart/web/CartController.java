@@ -40,7 +40,7 @@ public class CartController {
 		
 		model.addAttribute("cartList", cartList);
 		
-		return "cart/cart";
+		return "cart/cart_all";
 	}
 	
 }
