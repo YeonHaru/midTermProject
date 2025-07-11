@@ -64,5 +64,14 @@
   WHERE ROWNUM &lt;= 4
 </select>
 
+		<!-- id="메소드명", parameterType="매개변수자료형", resultType="리턴자료형" -->
+		<select 	id="selectBookListTotCnt"
+						parameterType="Criteria"
+						resultType="int"
+		 >
+				SELECT COUNT(*) FROM TB_BOOK
+				WHERE BNO LIKE '%' || #{searchKeyword} ||'%'
+		</select>
+
 	</mapper>	
 

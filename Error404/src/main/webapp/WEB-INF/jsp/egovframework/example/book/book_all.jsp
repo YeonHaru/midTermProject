@@ -104,5 +104,20 @@
 		crossorigin="anonymous"></script>
 	<script
 		src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+		 <script type="text/javascript">
+		 
+      /* 페이징 처리 */
+      $("#pagination").twbsPagination({
+        totalPages: "${paginationInfo.totalPageCount}",
+        startPage: parseInt("${paginationInfo.currentPageNo}"),
+        visiblePages: "${paginationInfo.recordCountPerPage}",
+        initiateStartPageClick: false,
+
+
+        onPageClick: function (event, page) {
+          fn_egov_link_page(page);
+        },
+      });
+    </script>
 </body>
 </html>

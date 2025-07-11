@@ -11,7 +11,7 @@ import egovframework.example.common.Criteria;
 
 @Service
 public class BookServiceImpl implements BookService {
-//	mapper 가져오기
+	//	mapper 가져오기
 	@Autowired
 	private BookMapper bookMapper;
 
@@ -47,6 +47,12 @@ public class BookServiceImpl implements BookService {
 	public List<BookVO> selectRandomBooks() {
 		// TODO Auto-generated method stub
 		return bookMapper.selectRandomBooks();
+	}
+//	총 개수 구하기
+	@Override
+	public int selectBookListTotCnt(Criteria criteria) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 	
 	
