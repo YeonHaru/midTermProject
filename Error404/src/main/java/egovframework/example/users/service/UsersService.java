@@ -7,6 +7,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
+import egovframework.example.book.service.BookVO;
 import egovframework.example.common.Criteria;
 
 /**
@@ -33,6 +34,17 @@ public interface UsersService {
 	
 //	임시비번 데이터 저장용
 	void updatePasswordPermanent(@Param("userid") String userid, @Param("password") String password);
+	
+//	최근 본 상품 조회 : 덕규
+	 String getRecentBooks(String usersid);
+	
+//	최근 본 상품 업데이트 : 덕규
+	 void updateRecentBooks(@Param("userid") String userid, @Param("recent_books") String recentBooks);
+	 
+	 List<BookVO> selectBooksByBnoList(List<Integer> bnoList);
+	 
+// 최근 본 책 목록(BookVO 리스트) 조회
+	 List<BookVO> getRecentBookListByUserId(String userid);
 	
 	
 }

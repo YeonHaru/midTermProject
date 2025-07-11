@@ -42,4 +42,5 @@ public class UsersVO extends Criteria{
 	    private String grade = "일반"; // 회원등급
 	    private String tempPwYn; 		// 임시 비밀번호 여부 ('Y' or 'N')
 	    private Integer totalPurchase;  // 총 누적 구매 금액
+	    private String recent_books; 		// 최근 본 상품
 }
