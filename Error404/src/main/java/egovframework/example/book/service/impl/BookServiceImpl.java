@@ -56,8 +56,8 @@ public class BookServiceImpl implements BookService {
 	@Override
 	public int selectBookListTotCnt(Criteria criteria) {
 		// TODO Auto-generated method stub
-		return 0;
-
+		return bookMapper.selectBookListTotCnt(criteria);
+	}
 
 
 // 최근 본 상품 조회(덕규)
