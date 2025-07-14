@@ -48,6 +48,10 @@
 		WHERE 1=1
 		<if test="nat != null"> AND UPPER(NAT) = UPPER(#{nat}) </if>
 		<if test="category != null"> AND UPPER(CATEGORY) = UPPER(#{category}) </if>
+		<!-- 페이징(려경) -->
+		OFFSET #{firstIndex} ROWS
+				FETCH NEXT #{pageUnit} ROWS ONLY 
+				
 	</select>
 
 	<select id="selectBook" parameterType="int" resultType="BookVO">
@@ -74,14 +78,16 @@
   WHERE ROWNUM &lt;= 4
 </select>
 
-
+<!-- 페이징 -->
 		<!-- id="메소드명", parameterType="매개변수자료형", resultType="리턴자료형" -->
 		<select 	id="selectBookListTotCnt"
 						parameterType="Criteria"
 						resultType="int"
 		 >
-				SELECT COUNT(*) FROM TB_BOOK
-				WHERE BNO LIKE '%' || #{searchKeyword} ||'%'
+				SELECT COUNT(*) FROM BOOKS
+				WHERE 1=1
+		<if test="nat != null"> AND UPPER(NAT) = UPPER(#{nat}) </if>
+		<if test="category != null"> AND UPPER(CATEGORY) = UPPER(#{category}) </if>
 		</select>
 
 

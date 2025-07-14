@@ -12,10 +12,12 @@
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/css/02_header.css" />
 <title>도서 상세</title>
+
+
 <link rel="stylesheet"
-	href="<%=request.getContextPath()%>/css/00_style.css" />
+   href="<%=request.getContextPath()%>/css/00_style.css" />
 <link rel="stylesheet"
-	href="<%=request.getContextPath()%>/css/book_all.css" />
+   href="<%=request.getContextPath()%>/css/book_all.css" />
 <!-- 	부트스트랩 css  -->
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
@@ -27,6 +29,10 @@
 <body>
 	<jsp:include page="/common/header.jsp" />
 	<div class="page mt5">
+	<form id="listForm" name="listForm" method="get">
+	<!-- 컨트롤러로 보낼 페이지번호 -->
+    <input type="hidden" id="pageIndex" name="pageIndex" />
+	
 		<!-- 메뉴 시작 -->
 
 
@@ -90,6 +96,12 @@
 			</section>
 
 		</main>
+		<!-- 페이지 번호 -->
+          <div class="flex-center">
+            <ul class="pagination" id="pagination"></ul>
+          </div>
+          
+	</form>
 	</div>
 
 
@@ -104,8 +116,22 @@
 		crossorigin="anonymous"></script>
 	<script
 		src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-		 <script type="text/javascript">
-		 
+		 <!-- 페이징 라이브러리 -->
+    <script src="/js/jquery.twbsPagination.js" type="text/javascript"></script>
+		
+	<!-- 페이징(려경) -->
+		<script type="text/javascript">
+		 /* 페이지번호 클릭시 전체조회 */
+	      function fn_egov_link_page(pageNo) {
+	        /* 현재페이지번호 저장 */
+	        $("#pageIndex").val(pageNo);
+	        $("#listForm")
+	          .attr("action", '<c:out value="/book.do" />')
+	          .submit();
+	      }
+		</script>
+		<!-- 페이징(려경) -->
+		<script type="text/javascript">
       /* 페이징 처리 */
       $("#pagination").twbsPagination({
         totalPages: "${paginationInfo.totalPageCount}",
@@ -114,6 +140,12 @@
         initiateStartPageClick: false,
 
 
+     // 아이콘 추가!
+     	first: '<i class="bi bi-skip-start-fill"></i>',   // 첫 페이지
+        prev: '<i class="bi bi-chevron-left"></i>',
+        next: '<i class="bi bi-chevron-right"></i>',
+        last: '<i class="bi bi-skip-end-fill"></i>',      // 마지막
+        
         onPageClick: function (event, page) {
           fn_egov_link_page(page);
         },
