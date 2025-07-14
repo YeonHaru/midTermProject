@@ -2,11 +2,18 @@
 .mainpage-container {
   display: flex !important;    /* flex 강제 적용 */
   gap: 1rem;                  /* 좌우 간격 */
-  align-items: flex-start;    /* 상단 정렬 */
+ /*  align-items: flex-start; */    /* 상단 정렬 */
+  
+  align-items: stretch;  /* 자식 높이 강제로 맞춤 */
+  
   width: 100%;                /* 전체 너비 확보 */
   height: auto;
   box-sizing: border-box;
   
+}
+.main-banner-wrapper,
+.mainpage-right {
+  height: 100%;  /* 부모 컨테이너에 맞춰 늘어나게 */
 }
 
 .main-banner-wrapper {
@@ -26,7 +33,6 @@
   align-items: stretch;
   width: 100%;
   height: auto;
-  margin-top: 2.7rem; /* 👈 상단 여백 추가 */
 }
 
 @media screen and (max-width: 767px) {

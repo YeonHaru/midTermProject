@@ -4,8 +4,8 @@
 .ebook-main-image3,
 .ebook-main-image4,
 .ebook-main-image5 {
-  width: 100%;
-  height: 50vh;
+  min-height: 400px;  /* 기본 높이 확보 */
+  height: 100%;
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
@@ -90,13 +90,13 @@
 }
 
 /* 반응형: 모바일 */
-@media (max-width: 768px) {
+@media (max-width: 767px) {
   .ebook-main-image,
   .ebook-main-image2,
   .ebook-main-image3,
   .ebook-main-image4,
   .ebook-main-image5 {
-    height: 90vh;
+    height: 70vh;
   }
 
   .ebook-main-image { background-image: url("/images/main/media.png"); }

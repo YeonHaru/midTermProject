@@ -169,7 +169,7 @@
 				<li><a href="#"><img
 						src="${pageContext.request.contextPath}/images/main/good1.svg"
 						alt="추천" /><span>추천</span></a></li>
-				<li><a href="#"><img
+				<li><a href="${pageContext.request.contextPath}/writerinfo/writerinfo.do"><img
 						src="${pageContext.request.contextPath}/images/main/Books.svg"
 						alt="인물&작품" /><span>인물&작품</span></a></li>
 			</ul>
@@ -292,9 +292,8 @@
 
 		<!-- 플립 도서 섹션 -->
 		<section class="book-section new-books mb5">
-			<h3>📘 자신있게 추천!</h3>
+			<h3>🎁 할인까지 담긴 책 추천</h3>
 			<div class="page tcenter mt2">
-				<h3 class="tcenter">📚 플립 카드 도서 리스트</h3>
 
 				<div class="book-list flex wrap mt4">
 					<c:forEach var="book" items="${flipBooks}">
@@ -343,12 +342,12 @@
 													value="${book.dprice}" type="number" /> 원</strong>
 										</p>
 
-										<!-- 할인율 뱃지는 남김 -->
+										<!-- 할인율 뱃지 -->
 										<c:if test="${not empty book.discount}">
 											<span class="discount-badge">${book.discount}% 할인</span>
 										</c:if>
 
-										<!-- 버튼 유지 -->
+										<!-- 버튼 -->
 										<a
 											href="${pageContext.request.contextPath}/book/detail.do?bno=${book.bno}"
 											class="detail-btn">자세히 보기</a>
@@ -359,9 +358,9 @@
 						</div>
 					</c:forEach>
 				</div>
-				<!-- .book-list -->
+				
 			</div>
-			<!-- .page -->
+			
 		</section>
 
 	</div>
