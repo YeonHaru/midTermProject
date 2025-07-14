@@ -235,6 +235,12 @@
 						</div>
 					</li>
 				</ul>
+				<!-- 주문내역 아래에 버튼 추가 -->
+				<div class="tcenter mt4">
+					<a href="<c:url value='/refund/list.do' />" class="btn pink-btn">
+						환불 요청 내역 보기 </a>
+				</div>
+			
 			</section>
 
 			<section class="tab-content hidden" id="favorites">
