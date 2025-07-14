@@ -15,6 +15,16 @@ document.addEventListener("DOMContentLoaded", () => {
 			});
 		});
 	});
+	let hash = window.location.hash.substring(1);
+	if (hash) {
+	    const targetTab = document.querySelector(`.tab-menu li[data-tab="${hash}"]`);
+	    if (targetTab) {
+	      setTimeout(() => {
+	        targetTab.click(); 
+      }, 100);
+    }
+   }
+  
 
 	// 부가정보 수정 및 저장 버튼 처리
 	const editBtn = document.getElementById("editBtn");

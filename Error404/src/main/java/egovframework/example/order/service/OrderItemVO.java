@@ -1,0 +1,28 @@
+/**
+ * 
+ */
+package egovframework.example.order.service;
+
+import egovframework.example.common.Criteria;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+
+/**
+ * @author user
+ *
+ */
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString
+public class OrderItemVO extends Criteria {
+	private int ono;     // 주문번호 (FK)
+    private int bno;     // 도서 번호
+    private int qty;     // 수량
+    private int price;   // 해당 항목 총 가격 (dprice * qty)
+
+}
