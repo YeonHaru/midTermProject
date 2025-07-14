@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import egovframework.example.book.service.BookService;
@@ -77,7 +78,13 @@ public class BookController {
        model.addAttribute("book", book); // ← 여기 이름을 "book"으로 맞춰줌
        return "book/book_detail";
    }
- 
+   // 오늘의 도서 특사
+   @RequestMapping("/todaySpecial.do")
+   	public String todaySpecial(Model model) {
+	   BookVO randomBook = bookService.getRandomOnSaleBook();
+	   model.addAttribute("book" ,randomBook);
+	   return "book/todaySpecial";
+   }
 
 }
 

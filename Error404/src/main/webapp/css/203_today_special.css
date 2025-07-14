@@ -1,0 +1,74 @@
+@charset "UTF-8";
+.special-book-container {
+  display: flex;
+  gap: 2rem;
+  border: 2px solid #f2a900;
+  padding: 2rem;
+  border-radius: 12px;
+  background-color: #fffef5;
+}
+
+.special-book-image img {
+  width: 160px;
+  height: auto;
+  border-radius: 8px;
+}
+
+.special-book-info {
+  flex: 1;
+}
+
+.special-book-title {
+  font-size: 1.8rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  color: #222;
+}
+
+.special-book-text {
+  font-size: 0.95rem;
+  color: #555;
+  line-height: 1.6;
+}
+
+.price-sale {
+  color: #e60023;
+  font-weight: bold;
+}
+
+.special-button-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.cart-form input.quantity-input {
+  width: 60px;
+  text-align: center;
+}
+
+button.btn-cart,
+button.btn-buy,
+button.btn-gift,
+button.btn-save {
+  background-color: #f2a900;
+  color: white;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+button.btn-buy {
+  background-color: #e60023;
+}
+
+button.btn-gift {
+  background-color: #008080;
+}
+
+button.btn-save {
+  background-color: #555;
+}

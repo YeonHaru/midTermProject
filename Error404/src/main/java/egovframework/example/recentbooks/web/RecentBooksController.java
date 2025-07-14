@@ -39,6 +39,7 @@ public class RecentBooksController {
 	    @GetMapping("/user/recent-books")
 	    @ResponseBody
 	    public ResponseEntity<?> getRecentBooks(@RequestParam String userid) {
+	    	System.out.println("최근 본 책 호출됨 - userid: " + userid);
 	        return ResponseEntity.ok(usersService.getRecentBookListByUserId(userid));
 	    }
 

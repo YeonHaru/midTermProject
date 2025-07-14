@@ -18,5 +18,5 @@ public interface BookService {
 
 
 	List<BookVO> selectFlipBooks();	   // 메인페이지 할인율 플립 도서 4개용(승화)
-
+	BookVO getRandomOnSaleBook();	// 랜덤도서 1권 가져오는용(덕규)
 }

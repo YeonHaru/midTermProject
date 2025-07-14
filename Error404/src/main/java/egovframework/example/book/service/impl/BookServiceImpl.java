@@ -80,6 +80,13 @@ public class BookServiceImpl implements BookService {
 
 	}
 
+//	랜덤도서 1권 가져오는 오버라이드(덕규)
+	@Override
+	public BookVO getRandomOnSaleBook() {
+		return bookMapper.getRandomOnSaleBook();
+	}
+	
+
 	
 	
 }
