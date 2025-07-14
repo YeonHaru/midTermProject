@@ -38,7 +38,7 @@
 						</c:when>
 						<c:otherwise>
 							<!-- 기존: /images/sample2.png -->
-							<c:set var="profileImgPath" value="/images/sample2.png" />
+							<c:set var="profileImgPath" value="/images/sample2.jpg" />
 						</c:otherwise>
 					</c:choose>
 
@@ -215,6 +215,13 @@
 			      <p>주문 내역이 없습니다.</p>
 			    </c:otherwise>
 			  </c:choose>
+
+				<!-- 주문내역 아래에 버튼 추가 -->
+				<div class="tcenter mt4">
+					<a href="<c:url value='/refund/list.do' />" class="btn pink-btn">
+						환불 요청 내역 보기 </a>
+				</div>
+
 			</section>
 
 

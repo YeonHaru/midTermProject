@@ -80,7 +80,15 @@ public class BookServiceImpl implements BookService {
 
 	}
 
-//	랜덤도서 1권 가져오는 오버라이드(덕규)
+	
+	// 메인페이지 베스트셀러(승화)
+	@Override
+	public List<BookVO> selectBestSellerList() {
+		// TODO Auto-generated method stub
+		return bookMapper.selectBestSellerList();
+	}
+
+	//	랜덤도서 1권 가져오는 오버라이드(덕규)
 	@Override
 	public BookVO getRandomOnSaleBook() {
 		return bookMapper.getRandomOnSaleBook();

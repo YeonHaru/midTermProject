@@ -1,0 +1,80 @@
+.best-list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* 항상 2열 고정 배치 */
+  gap: 1rem;                           /* 아이템 간격 1rem */
+  padding-left: 0;                    /* 기본 ul 왼쪽 패딩 제거 */
+  list-style: none;                   /* 기본 리스트 점(dot) 제거 */
+  margin: 0;                         /* 기본 margin 제거 */
+}
+
+.best-item {
+  display: flex;                     /* 내부 아이템 가로 정렬 */
+  align-items: center;               /* 세로 가운데 정렬 */
+  padding: 0.75rem;                  /* 안쪽 여백 */
+  border-bottom: 1px solid var(--border-color); /* 밑줄 경계선 */
+  background-color: #fff;            /* 배경 흰색 */
+  border-radius: 8px;                /* 둥근 모서리 */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); /* 연한 그림자 */
+
+  /* 호버 효과에 부드러운 애니메이션 적용 */
+  transition: all 0.3s ease;
+}
+
+.best-item:hover {
+  background-color: var( --accent-color-2); 
+  /* 살짝 떠오르는 효과 */
+  transform: translateY(-3px);
+  /* 커서 변경으로 클릭 가능함을 명시 */
+  cursor: pointer;
+}
+
+.best-rank {
+  font-weight: 500;                 
+  font-size: 1.25rem;              
+  width: 2rem;                    
+  color: var(--accent-color-1);   
+  text-align: right;              
+  margin-right: 0.75rem;          
+}
+
+.best-title {
+  font-size: 0.9375rem;            
+  font-weight: bold;              
+  color: var(--text-main);         
+  flex: 1;                        /* 가용 공간 모두 차지 */
+  word-break: keep-all;            /* 단어 자르지 않음 */
+  display: flex;                  /* 내부 링크 등 정렬을 위해 flex */
+  align-items: center;            /* 세로 정렬 */
+  gap: 0.25rem;                   /* 자식 요소 간격 */
+}
+
+/* 링크 스타일 */
+.best-title a {
+  color: var(--text-main);         
+  text-decoration: none;           /* 밑줄 제거 */
+  transition: color 0.3s ease;     /* 색 변화 부드럽게 */
+}
+
+.best-title a:hover {
+  color: var(--accent-color-1);   /* 호버 시 강조 색상으로 변경 */
+  text-decoration: underline;      /* 호버시 밑줄 표시 */
+}
+
+.best-new {
+  font-size: 0.75rem;              
+  color: red;                     
+  margin-left: 0.25rem;            
+  font-weight: bold;             
+}
+
+.best-up::before {
+  content: "▲ ";                  /* 위쪽 화살표 표시 */
+  color: green;                  
+  font-size: 0.75rem;             
+}
+
+.best-down::before {
+  content: "▼ ";                  /* 아래쪽 화살표 표시 */
+  color: red;                    
+  font-size: 0.75rem;             
+}
