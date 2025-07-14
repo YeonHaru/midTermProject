@@ -141,33 +141,34 @@ prefix="c" %>
             <ul class="pagination" id="pagination"></ul>
           </div>
         </div>
-          <!-- 검색박스 -->
-       <div class="kyobo-container">
-      <h3 class="kyobo-title">궁금한 작가&작품이 있으신가요?</h3>
-      <p class="kyobo-subtitle">인물명, 도서 이름을 검색해보세요.</p>
-      <div class="kyobo-wrapper">
-        <div class="kyobo-search">
-          <select
-            class="kyobo-select"
-            id="searchCondition"
-            name="searchCondition"
-          >
-            <option value="all">전체</option>
-            <option value="writer">작가</option>
-            <option value="work">작품</option>
-          </select>
-          <input
-            type="text"
-            class="kyobo-input"
-            id="searchKeyword"
-            name="searchKeyword"
-            placeholder="인물을 검색해 보세요"
-          />
-          <button class="kyobo-btn" onclick="fn_egov_selectList()">🔍</button>
+        <!-- 검색박스 -->
+        <div class="kyobo-container">
+          <h3 class="kyobo-title">궁금한 작가&작품이 있으신가요?</h3>
+          <p class="kyobo-subtitle">인물명, 도서 이름을 검색해보세요.</p>
+          <div class="kyobo-wrapper">
+            <div class="kyobo-search">
+              <select
+                class="kyobo-select"
+                id="searchCondition"
+                name="searchCondition"
+              >
+                <option value="all">전체</option>
+                <option value="writer">작가</option>
+                <option value="work">작품</option>
+              </select>
+              <input
+                type="text"
+                class="kyobo-input"
+                id="searchKeyword"
+                name="searchKeyword"
+                placeholder="인물을 검색해 보세요"
+              />
+              <button class="kyobo-btn" onclick="fn_egov_selectList()">
+                🔍
+              </button>
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
-      
       </form>
       <div
         id="no-result-message"
@@ -176,9 +177,6 @@ prefix="c" %>
         <p>검색 결과가 없습니다.</p>
       </div>
     </div>
-
-
-   
 
     <script>
       // 하트 아이콘 토글

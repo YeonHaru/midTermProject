@@ -36,30 +36,19 @@ public class BookController {
        log.info("검색어(searchKeyword): {}", criteria.getSearchKeyword());
        log.info("검색조건(searchCondition): {}", criteria.getSearchCondition());
 
-//      1)등차자동계산 클래스 :
-//			-필요정보 : (1) 현재페이지번호, (2) 보일 갯수(pageUnit) : 7
-//		PaginationInfo paginationInfo = new PaginationInfo();
-//		paginationInfo.setCurrentPageNo(criteria.getPageIndex());
-//		paginationInfo.setRecordCountPerPage(criteria.getPageUnit());
-////		등차를 자동 계산 : firstRecordIndex 필드에 있음
-//		criteria.setFirstIndex(paginationInfo.getFirstRecordIndex());
-//		
+//		1)등차자동계산 클래스 :
+//		-필요정보 : (1) 현재페이지번호, (2) 보일 갯수(pageUnit) : 3
+		PaginationInfo paginationInfo = new PaginationInfo();
+		paginationInfo.setCurrentPageNo(criteria.getPageIndex());
+		paginationInfo.setRecordCountPerPage(criteria.getPageUnit());
+	//	등차를 자동 계산 : firstRecordIndex 필드에 있음
+		criteria.setFirstIndex(paginationInfo.getFirstRecordIndex());
+	
+	
        // 조건에 맞는 도서 조회
        List<?> books;
        
-////   	전체조회 서비스 메소드 실행
-//   	List<?> books = bookService.selectBookList(criteria);
-//   	log.info("테스트 : "+books);	
-//   	model.addAttribute("books", books);
-//   	
-////   	페이지 번호 그리기 : 플러그인(전체테이블 행 갯수)0
-//   	int totCnt = bookService.selectBookListTotCnt(criteria);
-//   	paginationInfo.setTotalRecordCount(totCnt);
-//   	log.info("테스트 : " + totCnt);
-////   	페이지 모든정보 : paginationInfo
-//   	model.addAttribute("paginationInfo", paginationInfo);	
-//   	return "book/book_all";
-   	
+
 
        // (덕규)검색어가 있는 경우: 검색 전용으로 조건문을 달아봄
        if (criteria.getSearchKeyword() != null && !criteria.getSearchKeyword().trim().isEmpty()) {
@@ -70,6 +59,14 @@ public class BookController {
        // 여기까지가 조건문으로 바꾼것
 
        model.addAttribute("books", books);
+       
+//		페이지 번호 그리기 : 플러그인(전체테이블 행 갯수)
+		int totCnt = bookService.selectBookListTotCnt(criteria);
+		paginationInfo.setTotalRecordCount(totCnt);
+		log.info("테스트 : " + totCnt);
+//		페이지 모든정보 : paginationInfo
+		model.addAttribute("paginationInfo", paginationInfo);
+		
        return "book/book_all"; // JSP 경로
    }
 

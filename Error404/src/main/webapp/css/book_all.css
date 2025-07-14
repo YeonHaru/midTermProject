@@ -1,173 +1,215 @@
 /* 메뉴 드롭다운 */
-        nav.menu {
-        margin: 2rem 0 2rem 1rem;
-      }
+nav.menu {
+  margin: 2rem 0 2rem 1rem;
+}
 
-      .menu-toggle {
-        width: 6rem;
-        font-size: 1.2rem;
-        background-color: var(--accent-color-1);
-        color: white;
-        padding: 0.5rem 1rem;
-        border: none;
-        border-radius: 6px;
-        cursor: pointer;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-      }
+.menu-toggle {
+  width: 6rem;
+  font-size: 1.2rem;
+  background-color: var(--accent-color-1);
+  color: white;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
 
-      .menu-list {
-        position: absolute;
-        display: none;
-        list-style: none;
-        padding: 0;
-        margin-top: 0.5rem;
-        background-color: white;
-        border: 1px solid var(--border-color);
-        border-radius: 6px;
-        overflow: hidden;
-        z-index: 100;
-      }
+.menu-list {
+  position: absolute;
+  display: none;
+  list-style: none;
+  padding: 0;
+  margin-top: 0.5rem;
+  background-color: white;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  overflow: hidden;
+  z-index: 100;
+}
 
-      .menu-list li a {
-        display: block;
-        padding: 0.75rem 1rem;
-        text-decoration: none;
-        color: var(--text-main);
-      }
+.menu-list li a {
+  display: block;
+  padding: 0.75rem 1rem;
+  text-decoration: none;
+  color: var(--text-main);
+}
 
-      .menu-list li a:hover {
-        background-color: var(--accent-color-2);
-      }
+.menu-list li a:hover {
+  background-color: var(--accent-color-2);
+}
 
-      .menu-list.show {
-        display: block;
-      }
+.menu-list.show {
+  display: block;
+}
 
-      .main-container {
-        display: flex;
-        flex-direction: column;
-        gap: 2rem;
-      }
+.main-container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
 
-      .sidebar {
-        display: none;
-        flex: 0 0 200px;
-      }
+.sidebar {
+  display: none;
+  flex: 0 0 200px;
+}
 
-      .sidebar h2,
-      .sidebar h3 {
-        color: var(--accent-color-1);
-        margin-bottom: 0.5rem;
-      }
+.sidebar h2,
+.sidebar h3 {
+  color: var(--accent-color-1);
+  margin-bottom: 0.5rem;
+}
 
-      .sidebar ul {
-        list-style: none;
-        padding: 0;
-        margin-bottom: 1.5rem;
-      }
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 1.5rem;
+}
 
-      .sidebar ul li {
-        padding: 0.3rem 0;
-        color: var(--text-sub);
-        cursor: pointer;
-      }
+.sidebar ul li {
+  padding: 0.3rem 0;
+  color: var(--text-sub);
+  cursor: pointer;
+}
 
-      .sidebar ul li:hover {
-        color: var(--accent-color-1);
-      }
+.sidebar ul li:hover {
+  color: var(--accent-color-1);
+}
 
-      .book-list {
-        flex: 1;
-      }
+.book-list {
+  flex: 1;
+}
 
-      .book-item {
-        display: flex;
-        flex-direction: row;
-        gap: 1rem;
-        padding: 1rem;
-        border-top: 1px solid var(--border-color);
-        border-radius: 12px;
-        background-color: white;
-        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
-        margin-bottom: 1.5rem;
-      }
+.book-item {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  padding: 1rem;
+  border-top: 1px solid var(--border-color);
+  border-radius: 12px;
+  background-color: white;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  margin-bottom: 1.5rem;
+}
 
-      .book-list-image {
-        width: 100px;
-        aspect-ratio: 3 / 4;
-        overflow: hidden;
-        border-radius: 8px;
-        flex-shrink: 0;
-      }
+.book-list-image {
+  width: 100px;
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+  border-radius: 8px;
+  flex-shrink: 0;
+}
 
-      .book-list-image img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-      }
+.book-list-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
 
-      .book-right {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        flex: 1;
-      }
+.book-right {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex: 1;
+}
 
-      .book-info {
-        color: var(--text-main);
-      }
+.book-info {
+  color: var(--text-main);
+}
 
-      .book-title {
-        font-size: 1.2rem;
-        font-weight: bold;
-        color: var(--text-main);
-      }
+.book-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: var(--text-main);
+}
 
-      .book-desc {
-        font-size: 0.95rem;
-        margin: 0.3rem 0;
-        color: var(--text-main);
-      }
+.book-desc {
+  font-size: 0.95rem;
+  margin: 0.3rem 0;
+  color: var(--text-main);
+}
 
-      .delivery-date {
-        font-size: 0.85rem;
-        color: var(--text-sub);
-        margin-top: 0.3rem;
-      }
+.delivery-date {
+  font-size: 0.85rem;
+  color: var(--text-sub);
+  margin-top: 0.3rem;
+}
 
-      .button-group {
-        display: flex;
-        justify-content: flex-end;
-        gap: 0.5rem;
-        flex-wrap: wrap;
-      }
+.button-group {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
 
-      .button-group button {
-        background-color: var(--accent-color-2);
-        border: none;
-        padding: 0.5rem 1rem;
-        border-radius: 6px;
-        cursor: pointer;
-        color: var(--text-main);
-        font-weight: bold;
-        transition: background-color 0.3s;
-      }
+.button-group button {
+  background-color: var(--accent-color-2);
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  color: var(--text-main);
+  font-weight: bold;
+  transition: background-color 0.3s;
+}
 
-      .button-group button:hover {
-        background-color: var(--accent-color-1);
-        color: white;
-      }
+.button-group button:hover {
+  background-color: var(--accent-color-1);
+  color: white;
+}
 
-      @media (min-width: 768px) {
-    .main-container {
-          flex-direction: row;
-        }
+/* 책 넘기기 버튼 중앙정렬 */
+  .flex-center {
+    display: flex !important;
+    justify-content: center !important; /* ✅ 가운데 정렬 */
+    align-items: center !important;
+    margin: 3vh 0; /* 상하 여백 */
+    width: 100%;
+  }
 
-    .sidebar {
-          display: block;
-        }
+  /* 버튼 꾸미기 */
+  .pagination li a {
+    font-size: 1rem;
+    color: var(--accent-color-1);
+    border: 1px solid var(--main-color);
+    border-radius: 8px;
+    padding: 0.4rem 0.8rem;
+    margin: 0 4px;
+    background-color: var(--bg-color);
+    transition: all 0.2s ease-in-out;
+  }
 
-    .menu {
+  .pagination li a:hover {
+    background-color: var(--main-color);
+    color: var(--accent-color-1);
+    cursor: pointer; /* 마우스 포인터를 손 모양으로 변경 */
+    transition: all 0.3s ease;
+  }
+
+  .pagination li.active a {
+    background-color: var(--accent-color-1);
+    color: white;
+    border-color: var(--accent-color-1);
+  }
+  
+  .pagination li.first.disabled a,
+  .pagination li.prev.disabled a,
+  .pagination li.next.disabled a,
+  .pagination li.last.disabled a {
+  color: var(--accent-color-1);
+  background-color: white
+  }
+
+@media (min-width: 768px) {
+  .main-container {
+    flex-direction: row;
+  }
+
+  .sidebar {
+    display: block;
+  }
+
+  .menu {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -205,4 +247,47 @@
   .menu-toggle {
     display: none;
   }
+
+  /* 책 넘기기 버튼 중앙정렬 */
+  .flex-center {
+    display: flex !important;
+    justify-content: center !important; /* ✅ 가운데 정렬 */
+    align-items: center !important;
+    margin: 3vh 0; /* 상하 여백 */
+    width: 100%;
+  }
+
+  /* 버튼 꾸미기 */
+  .pagination li a {
+    font-size: 1rem;
+    color: var(--accent-color-1);
+    border: 1px solid var(--main-color);
+    border-radius: 8px;
+    padding: 0.4rem 0.8rem;
+    margin: 0 4px;
+    background-color: var(--bg-color);
+    transition: all 0.2s ease-in-out;
+  }
+
+  .pagination li a:hover {
+    background-color: var(--main-color);
+    color: var(--accent-color-1);
+    cursor: pointer; /* 마우스 포인터를 손 모양으로 변경 */
+    transition: all 0.3s ease;
+  }
+
+  .pagination li.active a {
+    background-color: var(--accent-color-1);
+    color: white;
+    border-color: var(--accent-color-1);
+  }
+  
+  .pagination li.first.disabled a,
+  .pagination li.prev.disabled a,
+  .pagination li.next.disabled a,
+  .pagination li.last.disabled a {
+  color: var(--accent-color-1);
+  background-color: white
+ 
+}
 }
