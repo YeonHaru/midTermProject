@@ -3,6 +3,8 @@
  */
 package egovframework.example.refundrequests.web;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -63,4 +65,13 @@ public class RefundController {
 
 	    return "redirect:/mypage.do"; // 로그인 되어 있으면 마이페이지로 이동
 	}
+//	환불리스트
+	@GetMapping("/refund/list")
+    public String refundList(Model model) {
+        List<RefundVO> refundList = refundService.selectRefundList();
+        model.addAttribute("refundList", refundList);
+        return "mypage/refundList"; // jsp 경로
+    }
+	
+	
 }

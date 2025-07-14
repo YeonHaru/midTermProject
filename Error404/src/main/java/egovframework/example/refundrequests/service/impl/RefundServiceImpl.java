@@ -3,6 +3,8 @@
  */
 package egovframework.example.refundrequests.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,6 +25,12 @@ public class RefundServiceImpl implements RefundService {
 	public int insertRefundRequest(RefundVO refundVO) {
 		// TODO Auto-generated method stub
 		return refundMapper.insertRefundRequest(refundVO);
+	}
+//	마이페이지 작성 조회
+	@Override
+	public List<RefundVO> selectRefundList() {
+		// TODO Auto-generated method stub
+		return refundMapper.selectRefundList();
 	}
 	
 }

@@ -23,5 +23,18 @@
         #{status}
     )
     </insert>
+    
+    <select id="selectRefundList" resultType="RefundVO">
+  SELECT
+    RNO,
+    USERID,
+    REASON,
+    CONTENT,
+    REQUEST_DATE,
+    ONO,
+    STATUS
+  FROM REFUND_REQUESTS
+  ORDER BY REQUEST_DATE DESC
+</select>
 
 </mapper>
