@@ -100,7 +100,7 @@
 	ORDER BY DISCOUNT DESC
 	FETCH FIRST 4 ROWS ONLY
 </select>
-<!-- 랜덤 도서 1권 가져오기 -->
+<!-- 랜덤 도서 1권 가져오기  : 덕규-->
 <select id="getRandomOnSaleBook" resultType="BookVO">
   SELECT *
   FROM (
@@ -108,6 +108,12 @@
     ORDER BY DBMS_RANDOM.VALUE
   )
   WHERE ROWNUM = 1
+</select>
+<!-- 도서 구매 :  덕규 -->
+<select id="getBookById" parameterType="int" resultType="BookVO">
+  SELECT * 
+  FROM books 
+  WHERE bno = #{bno}
 </select>
 
 <!-- 메인페이지 베스트셀러 TOP 10 승화 -->

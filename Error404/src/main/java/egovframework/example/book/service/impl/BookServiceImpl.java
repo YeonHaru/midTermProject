@@ -93,6 +93,12 @@ public class BookServiceImpl implements BookService {
 	public BookVO getRandomOnSaleBook() {
 		return bookMapper.getRandomOnSaleBook();
 	}
+
+//	도서 구매 : 덕규
+	@Override
+	public BookVO getBookById(int bno) {
+		return bookMapper.getBookById(bno);
+	}
 	
 
 	
