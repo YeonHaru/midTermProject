@@ -9,27 +9,29 @@
         FETCH NEXT #{pageUnit} ROWS ONLY
     </select>
 
-    <select id="selectUserById" resultType="UsersVO" parameterType="String">
-        SELECT 
-            USERID,
-            PASSWORD,
-            NAME,
-            EMAIL,
-            PHONE,
-            JOIN_DATE,
-            ROLE,
-            GENDER,
-            BIRTHDATE,
-            ADDRESS,
-            POINT,
-            PROMO_AGREE AS promoAgree,
-            POST_NOTIFY_AGREE AS postNotifyAgree,
-            GRADE,
-            TEMP_PW_YN AS tempPwYn,
-            TOTAL_PURCHASE  
-        FROM USERS
-        WHERE USERID = #{userid}
-    </select>
+	<select id="selectUserById" resultType="UsersVO"
+		parameterType="String">
+		SELECT
+		USERID,
+		PASSWORD,
+		NAME,
+		EMAIL,
+		PHONE,
+		JOIN_DATE,
+		ROLE,
+		GENDER,
+		BIRTHDATE,
+		ADDRESS,
+		POINT,
+		PROMO_AGREE AS promoAgree,
+		POST_NOTIFY_AGREE AS postNotifyAgree,
+		GRADE,
+		TEMP_PW_YN AS tempPwYn,
+		TOTAL_PURCHASE,
+		PROFILE_IMAGE_PATH AS profileImagePath  <!-- 이 부분 추가 -->
+		FROM USERS
+		WHERE USERID = #{userid}
+	</select>
 
     <select id="findUserId" resultType="String">
         SELECT userid
@@ -83,7 +85,19 @@
   WHERE userid = #{userid}
 </update>
 
+<update id="updateUserPreferences" parameterType="UsersVO">
+  UPDATE USERS
+  SET
+    PROMO_AGREE = #{promoAgree},
+    POST_NOTIFY_AGREE = #{postNotifyAgree}
+  WHERE USERID = #{userid}
+</update>
 
+<update id="updateProfileImage" parameterType="map">
+    UPDATE USERS
+    SET PROFILE_IMAGE_PATH = #{profileImagePath}
+    WHERE USERID = #{userid}
+</update>
 
 
 </mapper>

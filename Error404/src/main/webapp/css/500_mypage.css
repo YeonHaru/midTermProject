@@ -431,6 +431,49 @@
 .inquiry-link-wrap a:hover {
 	color: var(--accent-color-1);
 }
+/* 프로필 사진 업로드 영역 박스 */
+.profile-photo-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 1rem; /* mb4 대응 */
+}
+
+/* 프로필 사진 미리보기 */
+.profile-photo-preview {
+  width: 75px;
+  height: 75px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 2px solid var(--main-color);
+  box-shadow: 0 0 6px rgba(0,0,0,0.1);
+  margin-bottom: 0.5rem;
+}
+
+.profile-photo-preview img.profile-photo-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* 파일 input 숨기기 (hidden 클래스 활용) */
+.hidden {
+  display: none !important;
+}
+
+/* 버튼은 기존 .btn, .small-btn, .pink-btn, .mt2 클래스 활용 */
+
+/* mt2 (margin-top 0.5rem) */
+.mt2 {
+  margin-top: 0.5rem;
+}
+.btn-photo-change {
+  padding: 0.25rem 0.6rem;  /* 기본 small-btn보다 더 작게 */
+  font-size: 0.8rem;
+  min-width: 70px;
+  border-radius: 5px;
+}
+
 
 /* 푸터 */
 .mypage-footer {

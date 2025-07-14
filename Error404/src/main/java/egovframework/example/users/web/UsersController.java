@@ -3,6 +3,9 @@
  */
 package egovframework.example.users.web;
 
+import java.io.File;
+import java.io.IOException;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +14,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import egovframework.example.users.service.UsersService;
 import egovframework.example.users.service.UsersVO;
@@ -80,10 +85,12 @@ public class UsersController {
 		if (loginUser == null) {
 			return "redirect:/login.do"; // 로그인 안 되어 있으면 로그인 페이지로 이동
 		}
+		
+		// DB에서 최신 사용자 정보 가져오기 (프로필 이미지 포함)
+	    UsersVO userDetails = usersService.selectUserById(loginUser.getUserid());
 
-		UsersVO userDetails = usersService.selectUserById(loginUser.getUserid());
-		model.addAttribute("user", userDetails);
-
+	    model.addAttribute("user", userDetails);  // JSP에서 ${user.profileImagePath} 접근 가능
+	    
 		// 세션에 임시비번 플래그가 있으면 JSP에 넘기고 한 번만 사용
 	    Boolean isTemp = (Boolean) session.getAttribute("isTempPassword");
 	    if (isTemp != null && isTemp) {
@@ -166,4 +173,90 @@ public class UsersController {
 		        return "auth/join"; // 오류 시 다시 가입 폼으로
 		    }
 		}
+//		로그인 유효성 체크(중복방지)
+		@GetMapping("/checkUserid.do")
+		@ResponseBody
+		public String checkUserid(@RequestParam String userid) {
+		    UsersVO user = usersService.selectUserById(userid);
+		    if (user == null) {
+		        return "available"; // 사용 가능
+		    } else {
+		        return "unavailable"; // 이미 존재
+		    }
+		
+		}
+		
+//		개인정보수신동의 db전달
+		@PostMapping("/mypage/updatePreferences.do")
+		@ResponseBody
+		public String updatePreferences(@RequestParam("promoAgree") String promoAgree,
+		                                @RequestParam("postNotifyAgree") String postNotifyAgree,
+		                                HttpSession session) {
+		    UsersVO loginUser = (UsersVO) session.getAttribute("loginUser");
+		    if (loginUser == null) return "fail";
+
+		    loginUser.setPromoAgree(promoAgree);
+		    loginUser.setPostNotifyAgree(postNotifyAgree);
+		    usersService.updateUserPreferences(loginUser);
+
+		    return "success";
+		}
+
+//		유저 프로필 파일 업로드
+		@PostMapping("/mypage/uploadPhoto.do")
+		public String uploadProfilePhoto(@RequestParam("profilePhoto") MultipartFile file, HttpSession session, Model model) {
+		    log.info("uploadProfilePhoto 진입");
+
+		    UsersVO loginUser = (UsersVO) session.getAttribute("loginUser");
+		    if (loginUser == null) {
+		        log.warn("로그인 세션 없음 - 로그인 페이지로 리다이렉트");
+		        return "redirect:/login.do";
+		    }
+
+		    if (file == null || file.isEmpty()) {
+		        log.warn("업로드된 파일이 없음");
+		        model.addAttribute("uploadError", "파일이 선택되지 않았습니다.");
+		        return "mypage/mypage";
+		    }
+
+		    try {
+		        log.info("파일명: {}", file.getOriginalFilename());
+		        log.info("파일 크기: {}", file.getSize());
+
+		        // 실제 서버 내 경로 가져오기 (웹 루트 내 resources/upload/profile)
+		        String uploadDir = session.getServletContext().getRealPath("/resources/upload/profile");
+		        log.info("업로드 경로: {}", uploadDir);
+
+		        File dir = new File(uploadDir);
+		        if (!dir.exists()) {
+		            boolean created = dir.mkdirs();
+		            log.info("디렉토리 생성 결과: {}", created);
+		        }
+
+		        String originalFilename = file.getOriginalFilename();
+		        String extension = originalFilename.substring(originalFilename.lastIndexOf("."));
+		        String newFileName = loginUser.getUserid() + extension;
+
+		        File saveFile = new File(uploadDir, newFileName);
+		        file.transferTo(saveFile);
+		        log.info("파일 저장 완료: {}", saveFile.getAbsolutePath());
+
+		        // 웹에서 접근할 URL 경로 (JSP에서 사용)
+		        String profileImagePath = "/resources/upload/profile/" + newFileName;
+		        log.info("DB 저장할 이미지 경로: {}", profileImagePath);
+
+		        usersService.updateProfileImage(loginUser.getUserid(), profileImagePath);
+
+		        loginUser.setProfileImagePath(profileImagePath);
+		        session.setAttribute("loginUser", loginUser);
+
+		    } catch (IOException e) {
+		        log.error("프로필 사진 업로드 중 오류 발생", e);
+		        model.addAttribute("uploadError", "사진 업로드 중 오류가 발생했습니다.");
+		        return "mypage/mypage";
+		    }
+
+		    return "redirect:/mypage.do";
+		}
+
 }
