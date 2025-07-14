@@ -13,5 +13,11 @@
  	<bean class="org.egovframe.rte.psl.dataaccess.mapper.MapperConfigurer">
 		<property name="basePackage" value="egovframework.example.*.service.impl" />
 	</bean>
+	
+	<!-- ✅ MyBatis Mapper @Mapper용 스캐너 추가 -->
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage" value="egovframework.example.order.service.impl" />
+	</bean>
+	
     
 </beans>

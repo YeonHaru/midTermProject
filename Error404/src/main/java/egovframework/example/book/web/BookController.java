@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -126,8 +127,35 @@ public class BookController {
 	   if (loginUser != null) {
 		model.addAttribute("user",loginUser);
 	}
-	   return "order/orderForm"; 
-	
+	   return "order/orderForm"; 	
 }
+//   결제하기 버튼 눌렀을 때 실행되는 컨트롤러 처리 : 덕규
+   @PostMapping("/order/submit.do")
+   public String submitOrder(@RequestParam("bno") int bno,
+           @RequestParam("qty") int qty,
+           @RequestParam("recipient") String recipient,
+           @RequestParam("phone") String phone,
+           @RequestParam("address") String address,
+           HttpSession session,
+           Model model) {
+//	로그인 사용자 정보입니다.
+	   UsersVO loginUser = (UsersVO) session.getAttribute("loginUser");
+	   
+//	   출력용 테스트하는거에요
+	   System.out.println("▶ 주문 도서번호: " + bno);
+	    System.out.println("▶ 수량: " + qty);
+	    System.out.println("▶ 수령인: " + recipient);
+	    System.out.println("▶ 전화번호: " + phone);
+	    System.out.println("▶ 주소: " + address);
+	    if (loginUser != null) {
+	    	 System.out.println("▶ 주문자 ID: " + loginUser.getUserid());
+		}
+//	주문완료 되었습니다. 라는 페이지로 이동할 생각인데 고민중입니다.
+	return "redirect:/order/complete.do";
+}
+   @GetMapping("/order/complete.do")
+   public String orderComplete() {
+       return "order/orderComplete"; // 주문완료 페이지 간단하게
+   }
 }
 
