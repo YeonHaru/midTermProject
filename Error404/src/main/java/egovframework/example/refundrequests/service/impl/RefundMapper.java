@@ -16,5 +16,7 @@ import egovframework.example.refundrequests.service.RefundVO;
 @Mapper
 public interface RefundMapper {
 	public int insertRefundRequest(RefundVO refundVO);   //	환불사유 추가
-	public List<RefundVO> selectRefundList(); 			 // 내 환불사유 조회
+	public List<RefundVO> selectRefundList(); 			 // 전체 환불사유 조회
+	public List<RefundVO> selectRefundListByUserId(String userid); // id별로 환불사유 조회
+	
 }

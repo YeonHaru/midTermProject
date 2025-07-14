@@ -40,3 +40,28 @@
   padding: 0.5rem 1.25rem;
   background-color: var(--accent-color-2);
 }
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #fff;
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+th, td {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid var(--border-color);
+  color: var(--text-main);
+  text-align: center;
+}
+
+th {
+  background-color: var(--accent-color-2);
+  font-weight: 600;
+}
+
+tbody tr:hover {
+  background-color: var(--main-color);
+}

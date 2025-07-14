@@ -23,7 +23,7 @@ public interface BookMapper {
 
 
 
-	public List<BookVO> selectFlipBooks();    // 메인페이지 플립 도서 4개용(승화)
+	
 	public BookVO getRandomOnSaleBook();	// 랜덤도서 1권 가져오는용(덕규)
 	public BookVO getBookById(int bno);			// 도서 구매(덕규)
 
