@@ -112,6 +112,7 @@ document.addEventListener("DOMContentLoaded", () => {
 		});
 	});
 
+	// toggle-switch 토글 상태 업데이트 및 서버 저장
 	document.querySelectorAll('.toggle-switch').forEach(toggle => {
 		const checkbox = toggle.querySelector('input[type="checkbox"]');
 		const status = toggle.querySelector('.toggle-status');
@@ -122,8 +123,39 @@ document.addEventListener("DOMContentLoaded", () => {
 			}
 		}
 
-		updateStatus();
+		function savePreference() {
+			let key, value;
+			if (checkbox.id === "promoAgree") {
+				key = "promoAgree";
+				value = checkbox.checked ? "Y" : "N";
+			} else if (checkbox.id === "postNotifyAgree") {
+				key = "postNotifyAgree";
+				value = checkbox.checked ? "Y" : "N";
+			} else {
+				return; // id가 없으면 무시
+			}
 
-		checkbox.addEventListener('change', updateStatus);
+			fetch("/mypage/updatePreferences.do", {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/x-www-form-urlencoded",
+				},
+				body: `${key}=${value}`
+			})
+			.then(res => res.text())
+			.then(msg => {
+				if (msg === "success") {
+					console.log(`${key} 설정이 저장되었습니다.`);
+				} else {
+					alert(`${key} 설정 저장 실패`);
+				}
+			});
+		}
+
+		updateStatus();
+		checkbox.addEventListener("change", () => {
+			updateStatus();
+			savePreference();
+		});
 	});
 });

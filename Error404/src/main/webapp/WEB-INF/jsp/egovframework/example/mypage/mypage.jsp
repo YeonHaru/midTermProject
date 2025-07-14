@@ -1,5 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8" language="java"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -26,6 +28,37 @@
 			<!-- 오른쪽 내정보 콘텐츠 -->
 			<section class="tab-content" id="profile">
 				<div class="user-summary-box mb4">
+					<!-- 프로필 사진 수정 영역 -->
+					<!-- 프로필 이미지 경로 조건 설정 -->
+					<c:choose>
+						<c:when test="${not empty user.profileImagePath}">
+							<c:set var="profileImgPath" value="${user.profileImagePath}" />
+						</c:when>
+						<c:otherwise>
+							<!-- 기존: /images/sample2.png -->
+							<c:set var="profileImgPath" value="/images/sample2.png" />
+						</c:otherwise>
+					</c:choose>
+
+					<!-- 프로필 사진 업로드 영역 -->
+					<div class="profile-photo-box mb4">
+						<form id="photoForm" method="post" enctype="multipart/form-data"
+							action="<c:url value='/mypage/uploadPhoto.do'/>">
+
+							<div class="profile-photo-preview">
+								<img src="<c:url value='${profileImgPath}' />" alt="프로필 사진"
+									class="profile-photo-img" />
+							</div>
+
+							<input type="file" id="profilePhoto" name="profilePhoto"
+								accept="image/*" class="profile-photo-input hidden"
+								onchange="document.getElementById('photoForm').submit();" />
+
+							<button type="button" class="btn pink-btn btn-photo-change"
+								onclick="document.getElementById('profilePhoto').click();">
+								사진 변경</button>
+						</form>
+					</div>
 					<div class="user-summary-item">
 						<span class="icon">👤</span>
 						<div>
@@ -94,8 +127,8 @@
 
 					<div class="info-item mb2">
 						<label for="birth"><strong>생년월일:</strong></label> <input
-							type="date" id="birth" value="<c:out value='${user.birthdate}'/>"
-							disabled />
+							type="date" id="birth"
+							value="${fn:substring(user.birthdate, 0, 10)}" disabled />
 					</div>
 
 					<div class="info-item mb2">
@@ -262,13 +295,13 @@
 	</main>
 
 	<script src="<c:url value='/js/500_mypage1.js'/>"></script>
-	
+
 	<!-- 맨 아래 팝업 알림 -->
-<c:if test="${isTempPassword eq true}">
-  <script>
+	<c:if test="${isTempPassword eq true}">
+		<script>
     alert("현재 임시 비밀번호를 사용 중입니다.\n마이페이지에서 꼭 비밀번호를 변경해주세요.");
   </script>
-</c:if>
-	
+	</c:if>
+
 </body>
 </html>

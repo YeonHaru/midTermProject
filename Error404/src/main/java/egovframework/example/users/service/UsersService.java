@@ -45,6 +45,8 @@ public interface UsersService {
 	 
 // 최근 본 책 목록(BookVO 리스트) 조회
 	 List<BookVO> getRecentBookListByUserId(String userid);
-	
-	
+//		개인정보수신동의 db저장하기
+	 void updateUserPreferences(UsersVO usersVO);
+//	 유저 프로필 사진 업로드
+	 int updateProfileImage(@Param("userid") String userid, @Param("profileImagePath") String profileImagePath);
 }

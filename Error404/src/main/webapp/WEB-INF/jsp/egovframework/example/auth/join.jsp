@@ -29,11 +29,13 @@
 						name="name" required />
 				</div>
 
-				<!-- 아이디 -->
+				<!-- 아이디 입력 부분 -->
 				<div class="signup-form-group">
 					<label for="signup-id">아이디 <span class="signup-required">*</span></label>
 					<input type="text" id="signup-id" class="signup-input"
 						name="userid" placeholder="4자~12자 영문자, 숫자" required />
+					<!-- 중복확인 버튼 삭제 -->
+					<span id="checkIdMsg"></span>
 				</div>
 
 				<!-- 이메일 -->
@@ -95,7 +97,9 @@
 				<div class="signup-form-group">
 					<label for="signup-password2">비밀번호 재입력 <span
 						class="signup-required">*</span></label> <input type="password"
-						id="signup-password2" class="signup-input" required />
+						id="signup-password2" class="signup-input" required /> <span
+						id="pwCheckMsg" class="pw-msg"></span>
+					<!-- ✅ 메시지 표시용 추가 -->
 				</div>
 
 				<!-- 휴대전화 -->

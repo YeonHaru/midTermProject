@@ -128,6 +128,12 @@ public class UsersServiceImpl implements UsersService {
 //		신규 회원가입 
 	@Override
 	public void insertUser(UsersVO usersVO) {
+		// 아이디 중복 검사
+	    UsersVO existingUser = usersMapper.selectUserById(usersVO.getUserid());
+	    if (existingUser != null) {
+	        throw new RuntimeException("이미 존재하는 아이디입니다.");
+	    }
+		
 		usersVO.setJoin_date(LocalDate.now()); // 회원가입시 가입날짜가 오늘이게끔
 		usersVO.setRole("USER"); // 회원가입시 User
 		usersVO.setPoint(0); // " 포인트0원
@@ -183,6 +189,18 @@ public class UsersServiceImpl implements UsersService {
 
 	        return bookService.selectBooksByBnoList(bnoList);
 	    }
+//	개인정보 수신동의 db전달 및 저장
+	@Override
+	public void updateUserPreferences(UsersVO usersVO) {
+		usersMapper.updateUserPreferences(usersVO);
+		
+	}
+//	유저 프로필 사진 업로드
+	@Override
+	public int updateProfileImage(String userid, String profileImagePath) {
+		// TODO Auto-generated method stub
+		return usersMapper.updateProfileImage(userid, profileImagePath);
+	}
 
 
 	
