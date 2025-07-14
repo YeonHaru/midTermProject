@@ -28,7 +28,7 @@
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/css/401_pastmain.css" />
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/css/402_pastmain.css" />
+	href="${pageContext.request.contextPath}/css/402_bestSellers.css" />
 <!-- 	부트스트랩 css  -->
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
@@ -169,7 +169,8 @@
 				<li><a href="#"><img
 						src="${pageContext.request.contextPath}/images/main/good1.svg"
 						alt="추천" /><span>추천</span></a></li>
-				<li><a href="${pageContext.request.contextPath}/writerinfo/writerinfo.do"><img
+				<li><a
+					href="${pageContext.request.contextPath}/writerinfo/writerinfo.do"><img
 						src="${pageContext.request.contextPath}/images/main/Books.svg"
 						alt="인물&작품" /><span>인물&작품</span></a></li>
 			</ul>
@@ -230,29 +231,24 @@
 		<section class="page mt3">
 			<h2 class="tcenter mb3">베스트셀러 TOP 10</h2>
 			<ul class="best-list">
-				<li class="best-item"><span class="best-rank">1</span> <span
-					class="best-title">심판 <span class="best-new">new</span></span></li>
-				<li class="best-item"><span class="best-rank">2</span> <span
-					class="best-title">첫 여름, 완주 <span class="best-up">3</span></span></li>
-				<li class="best-item"><span class="best-rank">3</span> <span
-					class="best-title">안녕이라 그랬어</span></li>
-				<li class="best-item"><span class="best-rank">4</span> <span
-					class="best-title">급류 <span class="best-new">new</span></span></li>
-				<li class="best-item"><span class="best-rank">5</span> <span
-					class="best-title">청춘의 독서</span></li>
-				<li class="best-item"><span class="best-rank">6</span> <span
-					class="best-title">검지의 힘</span></li>
-				<li class="best-item"><span class="best-rank">7</span> <span
-					class="best-title">열혈간호 93 <span class="best-down">1</span></span></li>
-				<li class="best-item"><span class="best-rank">8</span> <span
-					class="best-title">고래눈이 내리다</span></li>
-				<li class="best-item"><span class="best-rank">9</span> <span
-					class="best-title">광장 이후 (한정판) <span class="best-new">new</span></span></li>
-				<li class="best-item"><span class="best-rank">10</span> <span
-					class="best-title">치유의 빛 <span class="best-down">2</span></span></li>
+				<c:forEach var="book" items="${bestSellers}" varStatus="status">
+					<li class="best-item"><span class="best-rank">${status.index + 1}</span>
+						<span class="best-title">
+						<a href="${pageContext.request.contextPath}/book/detail.do?bno=${book.bno}">
+						 ${book.title}
+						 </a>
+						 <!-- 신규, 순위변동 표시 (예: new, up, down) -->
+							<c:if test="${book.newFlag}">
+								<span class="best-new">new</span>
+							</c:if> <c:if test="${book.rankUp > 0}">
+								<span class="best-up">${book.rankUp}</span>
+							</c:if> <c:if test="${book.rankDown > 0}">
+								<span class="best-down">${book.rankDown}</span>
+							</c:if> 
+					</span></li>
+				</c:forEach>
 			</ul>
 		</section>
-
 
 		<div class="pastmain-content mt5 mb5">
 			<!-- AI 추천 picks 배너 -->
@@ -358,9 +354,9 @@
 						</div>
 					</c:forEach>
 				</div>
-				
+
 			</div>
-			
+
 		</section>
 
 	</div>

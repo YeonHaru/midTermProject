@@ -116,5 +116,15 @@
   WHERE bno = #{bno}
 </select>
 
+<!-- 메인페이지 베스트셀러 TOP 10 승화 -->
+<select id="selectBestSellerList" resultType="BookVO">
+  SELECT 
+    BNO, TITLE, AUTHOR, PUBLISHER, BIMG, PDATE,
+    FPRICE, DPRICE, STOCK, DES, CATEGORY, NAT, ORDER_COUNT
+  FROM BOOKS
+  ORDER BY ORDER_COUNT DESC
+  FETCH FIRST 10 ROWS ONLY
+</select>
+
 	</mapper>	
 
