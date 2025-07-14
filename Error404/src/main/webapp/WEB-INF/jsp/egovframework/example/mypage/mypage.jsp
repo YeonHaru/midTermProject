@@ -36,7 +36,7 @@
 						</c:when>
 						<c:otherwise>
 							<!-- 기존: /images/sample2.png -->
-							<c:set var="profileImgPath" value="/images/sample2.png" />
+							<c:set var="profileImgPath" value="/images/sample2.jpg" />
 						</c:otherwise>
 					</c:choose>
 
