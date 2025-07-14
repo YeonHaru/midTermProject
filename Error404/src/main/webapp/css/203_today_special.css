@@ -2,10 +2,10 @@
 .special-book-container {
   display: flex;
   gap: 2rem;
-  border: 2px solid #f2a900;
+  border: 2px solid var(--accent-color-1);
   padding: 2rem;
   border-radius: 12px;
-  background-color: #fffef5;
+  background-color: var( --main-color);
 }
 
 .special-book-image img {
