@@ -94,6 +94,15 @@
 	ORDER BY DISCOUNT DESC
 	FETCH FIRST 4 ROWS ONLY
 </select>
+<!-- 랜덤 도서 1권 가져오기 -->
+<select id="getRandomOnSaleBook" resultType="BookVO">
+  SELECT *
+  FROM (
+    SELECT * FROM books
+    ORDER BY DBMS_RANDOM.VALUE
+  )
+  WHERE ROWNUM = 1
+</select>
 
 	</mapper>	
 

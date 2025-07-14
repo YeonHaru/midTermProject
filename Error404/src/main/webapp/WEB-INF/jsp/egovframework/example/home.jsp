@@ -41,7 +41,7 @@
 </head>
 <body>
 	<jsp:include page="/common/header.jsp" />
-
+	<jsp:include page="/common/remocon.jsp" />
 
 	<div class="bg page">
 		<div class="mainpage-container">
@@ -145,7 +145,7 @@
 				<li><a href="/temp.do"><img
 						src="${pageContext.request.contextPath}/images/main/jewelry.svg"
 						alt="할인혜택" /><span>할인혜택</span></a></li>
-				<li><a href="#"><img
+				<li><a href="/todaySpecial.do"><img
 						src="${pageContext.request.contextPath}/images/main/sale.svg"
 						alt="오늘만특가" /><span>오늘만특가</span></a></li>
 				<li><a href="#"><img
