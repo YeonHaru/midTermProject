@@ -25,6 +25,7 @@
 					<li class="active" data-tab="profile" tabindex="0">내 정보</li>
 					<li data-tab="orders" tabindex="0">주문 내역</li>
 					<li data-tab="favorites" tabindex="0">보관함</li>
+					<li><a href="<c:url value='/cart.do' />" class="full-link">장바구니</a></li>  <!-- 7/15일 장바구니 추가 강대성 -->
 					<li data-tab="settings" tabindex="0">설정</li>
 				</ul>
 			</nav>
@@ -206,6 +207,7 @@
 			              <div class="order-price">₩<fmt:formatNumber value="${item.price * item.qty}" type="number" /></div>
 			              <div class="order-actions">
 			                <a href="#" class="btn btn-small btn-primary">상세</a>
+			                <!-- 취소 버튼에 환불하기 새창 팝업이 걸려있습니다 되도록 지우지 말아주세요 -->
 			                <a href="#" class="btn btn-small btn-secondary cancel-btn">취소</a>
 			              </div>
 			            </c:forEach>
@@ -218,9 +220,10 @@
 			    </c:otherwise>
 			  </c:choose>
 
-				<!-- 주문내역 아래에 버튼 추가 -->
+				<!-- 주문내역 아래에 버튼 추가 새창으로 나오게 구현 했습니다. 7/15일 강대성 -->
 				<div class="tcenter mt4">
-					<a href="<c:url value='/refund/list.do' />" class="btn pink-btn">
+					<a href="javascript:void(0);" class="btn pink-btn"
+						onclick="window.open('<c:url value='/refund/list.do' />', 'refundPopup', 'width=800,height=600,scrollbars=yes');">
 						환불 요청 내역 보기 </a>
 				</div>
 
