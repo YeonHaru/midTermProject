@@ -10,4 +10,6 @@ import egovframework.example.common.Criteria;
 public interface CartMapper {
 	public List<?> getCartList(Criteria criteria);			// 전체 조회
 	void updateQuantity(@Param("cno") int cno, @Param("quantity") int quantity); // 수량 변경
+	
+	void deleteCartItems(List<Integer> cnos); //삭제
 }

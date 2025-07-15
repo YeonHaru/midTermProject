@@ -23,7 +23,18 @@
 	<update id="updateQuantity">
 		UPDATE CART
 		SET QUANTITY = #{quantity}
-		WHERE CNO = #{cno}
+		WHERE CNO =
+		#{cno}
 	</update>
+
+	<delete id="deleteCartItems" parameterType="list">
+		DELETE FROM CART
+		WHERE CNO IN
+		<foreach collection="list" item="cno" open="(" separator=","
+			close=")">
+			#{cno}
+		</foreach>
+	</delete>
+
 </mapper>	
 
