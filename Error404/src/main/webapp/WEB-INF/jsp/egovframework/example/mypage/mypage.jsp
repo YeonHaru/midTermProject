@@ -1,7 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8" language="java"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 
 <!DOCTYPE html>
@@ -24,7 +24,7 @@
 					<li><a href="<c:url value='/home.do' />" class="full-link">홈</a></li>
 					<li class="active" data-tab="profile" tabindex="0">내 정보</li>
 					<li data-tab="orders" tabindex="0">주문 내역</li>
-					<li data-tab="favorites" tabindex="0">보관함</li>
+					<li data-tab="wishlist" tabindex="0">보관함</li>
 					<li data-tab="settings" tabindex="0">설정</li>
 				</ul>
 			</nav>
@@ -185,38 +185,42 @@
 
 			<!-- 이하 주문 내역, 관심 목록, 설정 섹션 -->
 			<section class="tab-content hidden" id="orders">
-			  <h2>주문 내역</h2>
-			
-			  <c:choose>
-			    <c:when test="${not empty orders}">
-			      <ul class="order-list">
-			        <c:forEach var="order" items="${orders}">
-			          <li class="order-item">
-			            <div class="order-info">
-			              <span class="order-date"><fmt:formatDate value="${order.odate}" pattern="yyyy-MM-dd" /></span>
-			              <span class="order-number">주문번호 ${order.ono}</span>
-			            </div>
-			
-			            <c:forEach var="item" items="${order.items}">
-			              <div class="order-product">
-			                <img src="<c:url value='/images/sample.jpg' />" alt="${item.title}" class="order-product-img" />
-			                <span class="order-product-name">${item.title}</span>
-			              </div>
-			              <div class="order-status">${order.ostatus}</div>
-			              <div class="order-price">₩<fmt:formatNumber value="${item.price * item.qty}" type="number" /></div>
-			              <div class="order-actions">
-			                <a href="#" class="btn btn-small btn-primary">상세</a>
-			                <a href="#" class="btn btn-small btn-secondary cancel-btn">취소</a>
-			              </div>
-			            </c:forEach>
-			          </li>
-			        </c:forEach>
-			      </ul>
-			    </c:when>
-			    <c:otherwise>
-			      <p>주문 내역이 없습니다.</p>
-			    </c:otherwise>
-			  </c:choose>
+				<h2>주문 내역</h2>
+
+				<c:choose>
+					<c:when test="${not empty orders}">
+						<ul class="order-list">
+							<c:forEach var="order" items="${orders}">
+								<li class="order-item">
+									<div class="order-info">
+										<span class="order-date"><fmt:formatDate
+												value="${order.odate}" pattern="yyyy-MM-dd" /></span> <span
+											class="order-number">주문번호 ${order.ono}</span>
+									</div> <c:forEach var="item" items="${order.items}">
+										<div class="order-product">
+											<img src="<c:url value='/images/sample.jpg' />"
+												alt="${item.title}" class="order-product-img" /> <span
+												class="order-product-name">${item.title}</span>
+										</div>
+										<div class="order-status">${order.ostatus}</div>
+										<div class="order-price">
+											₩
+											<fmt:formatNumber value="${item.price * item.qty}"
+												type="number" />
+										</div>
+										<div class="order-actions">
+											<a href="#" class="btn btn-small btn-primary">상세</a> <a
+												href="#" class="btn btn-small btn-secondary cancel-btn">취소</a>
+										</div>
+									</c:forEach>
+								</li>
+							</c:forEach>
+						</ul>
+					</c:when>
+					<c:otherwise>
+						<p>주문 내역이 없습니다.</p>
+					</c:otherwise>
+				</c:choose>
 
 				<!-- 주문내역 아래에 버튼 추가 -->
 				<div class="tcenter mt4">
@@ -229,32 +233,53 @@
 
 			<!-- 보관함 (승화) -->
 			<section class="tab-content hidden" id="wishlist">
-				<h2>위시리스트</h2>
-				<ul class="wishlist-list">
-					<c:forEach var="book" items="${wishlist}">
-						<li class="wishlist-item"><img
-							src="${pageContext.request.contextPath}/images/401_maincar.jpg"
-							alt="${book.title}" class="wishlist-thumb" />
-							<div class="wishlist-info">
-								<h3 class="wishlist-title">${book.title}</h3>
-								<p class="wishlist-author">${book.author}</p>
-								<p class="wishlist-price">
-									<%-- <fmt:formatNumber value="${book.dprice}" type="currency" currencySymbol="₩" /> --%>
-								</p>
-								<div class="wishlist-actions">
-									<a href="<c:url value='/book/detail.do?bno=${book.bno}'/>"
-										class="btn-small btn-primary">상세보기</a>
-									<form method="post" action="<c:url value='/wishlist/remove'/>"
-										style="display: inline;">
-										<input type="hidden" name="bno" value="${book.bno}" />
-										<button type="submit" class="btn-small btn-secondary">삭제</button>
-									</form>
-								</div>
-							</div></li>
-					</c:forEach>
+				<h2 class="tcenter mt5">위시리스트</h2>
+				<c:choose>
+					<%-- 위시리스트가 비어있을 때 --%>
+					<c:when test="${empty wishlist}">
+						<div class="wishlist-empty">
+							<img
+								src="${pageContext.request.contextPath}/images/300_wishlist_empty.png"
+								alt="위시리스트 비어 있음" class="empty-icon" />
+							<p>	찜한 도서가 없습니다.<br>마음에 드는 책을 담아보세요!	</p> <br>
+							<a href="/home.do" class="btn btn-primary">도서 보러가기</a>
+						</div>
+					</c:when>
 
-				</ul>
+					<%-- 위시리스트가 존재할 때 --%>
+					<c:otherwise>
+						<ul class="wishlist-list">
+							<c:forEach var="book" items="${wishlist}">
+								<li class="wishlist-item"><img
+									src="${pageContext.request.contextPath}/images/401_maincar.jpg"
+									alt="${book.title}" class="wishlist-thumb" />
+									<div class="wishlist-info">
+										<h3 class="wishlist-title">${book.title}</h3>
+										<p class="wishlist-author">${book.author}</p>
+										<p class="wishlist-price">
+											<fmt:formatNumber value="${book.dprice}" type="currency"
+												currencySymbol="₩" />
+										</p>
+										<div class="wishlist-actions">
+											<a href="<c:url 
+											value='${pageContext.request.contextPath}/book/detail.do?bno=${book.bno}'/>"
+												class="btn-small btn-primary">상세보기</a>
+											<form method="post"
+												action="<c:url value='/wishlist/remove'/>"
+												style="display: inline;">
+												<input type="hidden" name="bno" value="${book.bno}" />
+												<button type="submit" class="btn-small btn-secondary">삭제</button>
+											</form>
+										</div>
+									</div></li>
+							</c:forEach>
+						</ul>
+					</c:otherwise>
+				</c:choose>
 			</section>
+
+
+
 
 
 			<section class="tab-content hidden" id="settings">

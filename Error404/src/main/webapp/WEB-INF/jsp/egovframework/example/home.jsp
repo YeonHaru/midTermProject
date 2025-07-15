@@ -201,8 +201,7 @@
 			<div class="book-list">
 				<c:forEach var="book" items="${latestBooks}">
 					<div class="book-card">
-						<a
-							href="${pageContext.request.contextPath}/book/detail.do?bno=${book.bno}">
+						<a href="${pageContext.request.contextPath}/book/detail.do?bno=${book.bno}">
 							<div class="image-box">
 								<img
 									src="${pageContext.request.contextPath}/images/401_maincar.jpg"
