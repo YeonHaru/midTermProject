@@ -72,4 +72,8 @@
   .wishlist-list {
     grid-template-columns: repeat(2, 1fr);
   }
+  .wishlist-empty img.empty-icon {
+  width: 250px;
+  
+}
 }

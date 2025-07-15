@@ -19,7 +19,8 @@
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 </head>
-
+<!-- 디버깅용: 서버에서 전달된 값 확인 -->
+<p>서버 전달 totalPrice: ${totalPrice}</p>
 <jsp:include page="/common/header.jsp" />
 <body class="bg">
 	<div class="page">
@@ -68,7 +69,9 @@
 
 		<div class="cart-summary tcenter">
 			<p>
-				<strong>총 금액:</strong> <span class="total-price">0원</span>
+				<strong>총 금액:</strong> 
+				<fmt:formatNumber
+								value="${totalPrice}" type="number" />원
 			</p>
 			<a href="#" class="btn-checkout mt2">주문하기</a>
 		</div>
@@ -77,120 +80,119 @@
 	<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 
 	<script>
-		const contextPath = '${pageContext.request.contextPath}';
+	const contextPath = '${pageContext.request.contextPath}';
 
-		function updateTotalPrice() {
-			let total = 0;
+	// 총 금액 계산 및 표시 함수
+	function updateTotalPrice() {
+		let total = 0;
+		$('.cart-item').each(function() {
+			const pricePerItem = parseInt($(this).find('.item-price').data('price'), 10) || 0;
+			const qty = parseInt($(this).find('.qty-input').val(), 10) || 0;
+			total += pricePerItem * qty;
+		});
+		const formatted = total.toLocaleString();
+		$('.cart-summary .total-price').text(`${formatted}원`);
+	}
 
-			$('.cart-item').each(function() {
-				const pricePerItem = parseInt($(this).find('.item-price').data('price'), 10) || 0;
-				const qty = parseInt($(this).find('.qty-input').val(), 10) || 0;
-				total += pricePerItem * qty;
-			});
+	$(document).ready(function() {
+		// 초기 총 금액 계산
+		updateTotalPrice();
 
-			const formatted = total.toLocaleString();
-			$('.cart-summary .total-price').text(`${formatted}원`);
-		}
+		// 수량 변경 시 서버 업데이트 + 총 금액 갱신
+		$('.qty-input').on('change', function() {
+			const $row = $(this).closest('tr');
+			const cno = $row.data('cno');
+			const newQty = $(this).val();
 
-		$(document).ready(function() {
-			updateTotalPrice();
-
-			$('.qty-input').on('change', function() {
-				updateTotalPrice();
-			});
-
-			$('#checkAll').on('change', function() {
-				const isChecked = $(this).is(':checked');
-				$('.row-check').prop('checked', isChecked);
-			});
-
-			$('.row-check').on('change', function() {
-				const allCount = $('.row-check').length;
-				const checkedCount = $('.row-check:checked').length;
-				$('#checkAll').prop('checked', allCount === checkedCount);
-			});
-
-			$('.btn-delete').on('click', function() {
-				const $row = $(this).closest('tr');
-				const cno = $row.data('cno');
-
-				if (!confirm('이 항목을 삭제하시겠습니까?')) return;
-
-				$.ajax({
-					url : contextPath + '/cart/deleteOne.do',
-					method : 'POST',
-					data : { cno : cno },
-					success : function(response) {
-						if (response === 'success') {
-							location.reload();
-						} else {
-							alert('삭제 실패');
-						}
-					},
-					error : function() {
-						alert('에러 발생!');
+			$.ajax({
+				url: contextPath + '/cart/updateQuantity.do',
+				method: 'POST',
+				data: { cno: cno, quantity: newQty },
+				success: function(response) {
+					if (response === 'success') {
+						updateTotalPrice();
+					} else {
+						alert('수량 변경 실패');
 					}
-				});
-			});
-
-			$('.btn-delete-selected').on('click', function() {
-				const checkedItems = [];
-				$('.row-check:checked').each(function() {
-					const cno = $(this).closest('tr').data('cno');
-					checkedItems.push(cno);
-				});
-
-				if (checkedItems.length === 0) {
-					alert("삭제할 항목을 선택해주세요!");
-					return;
+				},
+				error: function() {
+					alert('에러 발생!');
 				}
-
-				if (!confirm('선택한 상품을 삭제하시겠습니까?')) return;
-
-				$.ajax({
-					url : contextPath + '/cart/deleteChecked.do',
-					method : 'POST',
-					traditional : true,
-					data : { cnos : checkedItems },
-					success : function(response) {
-						if (response === 'success') {
-							location.reload();
-						} else {
-							alert('삭제 실패');
-						}
-					},
-					error : function() {
-						alert('에러 발생!');
-					}
-				});
-			});
-
-			$('.qty-input').on('change', function() {
-				const $row = $(this).closest('tr');
-				const cno = $row.data('cno');
-				const newQty = $(this).val();
-
-				$.ajax({
-					url : contextPath + '/cart/updateQuantity.do',
-					method : 'POST',
-					data : {
-						cno : cno,
-						quantity : newQty
-					},
-					success : function(response) {
-						if (response === 'success') {
-							location.reload();
-						} else {
-							alert('수량 변경 실패');
-						}
-					},
-					error : function() {
-						alert('에러 발생!');
-					}
-				});
 			});
 		});
-	</script>
+
+		// 전체 선택 / 해제
+		$('#checkAll').on('change', function() {
+			const isChecked = $(this).is(':checked');
+			$('.row-check').prop('checked', isChecked);
+		});
+
+		// 개별 체크박스 상태에 따른 전체 선택 체크박스 상태 변경
+		$('.row-check').on('change', function() {
+			const allCount = $('.row-check').length;
+			const checkedCount = $('.row-check:checked').length;
+			$('#checkAll').prop('checked', allCount === checkedCount);
+		});
+
+		// 개별 삭제 버튼 클릭 시
+		$('.btn-delete').on('click', function() {
+			const $row = $(this).closest('tr');
+			const cno = $row.data('cno');
+
+			if (!confirm('이 항목을 삭제하시겠습니까?')) return;
+
+			$.ajax({
+				url: contextPath + '/cart/deleteOne.do',
+				method: 'POST',
+				data: { cno: cno },
+				success: function(response) {
+					if (response === 'success') {
+						location.reload();
+					} else {
+						alert('삭제 실패');
+					}
+				},
+				error: function() {
+					alert('에러 발생!');
+				}
+			});
+		});
+
+		// 선택된 항목 일괄 삭제
+		$('.btn-delete-selected').on('click', function() {
+			const checkedItems = [];
+			$('.row-check:checked').each(function() {
+				const cno = $(this).closest('tr').data('cno');
+				checkedItems.push(cno);
+			});
+
+			if (checkedItems.length === 0) {
+				alert("삭제할 항목을 선택해주세요!");
+				return;
+			}
+
+			if (!confirm('선택한 상품을 삭제하시겠습니까?')) return;
+
+			$.ajax({
+				url: contextPath + '/cart/deleteChecked.do',
+				method: 'POST',
+				traditional: true,
+				data: { cnos: checkedItems },
+				success: function(response) {
+					if (response === 'success') {
+						location.reload();
+					} else {
+						alert('삭제 실패');
+					}
+				},
+				error: function() {
+					alert('에러 발생!');
+				}
+			});
+		});
+	});
+</script>
+
 
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
