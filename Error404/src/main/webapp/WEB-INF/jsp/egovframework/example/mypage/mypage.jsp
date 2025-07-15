@@ -10,6 +10,8 @@
 <title>마이페이지</title>
 <link rel="stylesheet" href="<c:url value='/css/00_style.css'/>" />
 <link rel="stylesheet" href="<c:url value='/css/500_mypage.css'/>" />
+<link rel="stylesheet"
+	href="<c:url value='/css/304_mypage_Wishlist.css'/>" />
 </head>
 <body>
 	<main class="page">
@@ -20,7 +22,7 @@
 					<li><a href="<c:url value='/home.do' />" class="full-link">홈</a></li>
 					<li class="active" data-tab="profile" tabindex="0">내 정보</li>
 					<li data-tab="orders" tabindex="0">주문 내역</li>
-					<li data-tab="favorites" tabindex="0">관심 목록</li>
+					<li data-tab="favorites" tabindex="0">보관함</li>
 					<li data-tab="settings" tabindex="0">설정</li>
 				</ul>
 			</nav>
@@ -237,13 +239,34 @@
 				</ul>
 			</section>
 
-			<section class="tab-content hidden" id="favorites">
-				<h2>관심 목록</h2>
-				<ul>
-					<li>책 제목 A</li>
-					<li>책 제목 B</li>
+			<!-- 보관함 (승화) -->
+			<section class="tab-content hidden" id="wishlist">
+				<h2>위시리스트</h2>
+				<ul class="wishlist-list">
+					<c:forEach var="book" items="${wishlist}">
+						<li class="wishlist-item"><img
+							src="${pageContext.request.contextPath}/images/401_maincar.jpg"
+							alt="${book.title}" class="wishlist-thumb" />
+							<div class="wishlist-info">
+								<h3 class="wishlist-title">${book.title}</h3>
+								<p class="wishlist-author">${book.author}</p>
+								<p class="wishlist-price">
+									<%-- <fmt:formatNumber value="${book.dprice}" type="currency" currencySymbol="₩" /> --%>
+								</p>
+								<div class="wishlist-actions">
+									<a href="<c:url value='/book/detail.do?bno=${book.bno}'/>"
+										class="btn-small btn-primary">상세보기</a>
+									<form method="post" action="<c:url value='/wishlist/remove'/>"
+										style="display: inline;">
+										<input type="hidden" name="bno" value="${book.bno}" />
+										<button type="submit" class="btn-small btn-secondary">삭제</button>
+									</form>
+								</div>
+							</div></li>
+					</c:forEach>
 				</ul>
 			</section>
+
 
 			<section class="tab-content hidden" id="settings">
 				<h2 class="section-title">설정</h2>
