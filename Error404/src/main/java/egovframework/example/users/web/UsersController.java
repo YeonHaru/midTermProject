@@ -10,6 +10,7 @@ import java.util.List;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -39,6 +40,8 @@ public class UsersController {
 	private UsersService usersService;
 	@Autowired
 	private WishlistService wishlistService;  // 위시리스트 불러오기
+	@Autowired
+	private BCryptPasswordEncoder passwordEncoder;  // 비밀번호 해시화
 
 //	회원가입 페이지 열기(주소정하기, 추가페이지 우리 몇개까지?)
 	@GetMapping("/join.do")
@@ -282,5 +285,28 @@ public class UsersController {
 
 		    return "redirect:/mypage.do";
 		}
+//		유저 정보 수정 db저장 
+		@PostMapping("/mypage/updateInfo.do")
+		@ResponseBody
+		public String updateUserInfo(HttpSession session,
+		                             @RequestParam("birth") String birth,
+		                             @RequestParam("phone") String phone,
+		                             @RequestParam("address") String address) {
+		    UsersVO loginUser = (UsersVO) session.getAttribute("loginUser");
+		    if (loginUser == null) return "fail";
 
+		    try {
+		    	loginUser.setBirthdate(birth);
+		        loginUser.setPhone(phone);
+		        loginUser.setAddress(address);
+
+		        int result = usersService.updateUserInfo(loginUser);
+		        return result > 0 ? "success" : "fail";
+
+		    } catch (Exception e) {
+		        e.printStackTrace();
+		        return "fail";
+		    }
+		
+		}
 }
