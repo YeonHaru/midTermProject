@@ -29,4 +29,9 @@ public class GiftCardController {
 	public String name() {
     return "giftcard/gift_main";
 	}
+	
+	@GetMapping("/giftcard/giftpresen.do")
+	public String presen() {
+    return "giftcard/gift_presen";
+	}
 }

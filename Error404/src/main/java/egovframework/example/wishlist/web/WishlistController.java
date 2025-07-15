@@ -32,6 +32,7 @@ public class WishlistController {
     @Autowired
     private WishlistService wishlistService;
 
+//    위시리스트 추가
     @PostMapping("/add")
     @ResponseBody
     public String addWishlist(@RequestParam int bno, HttpSession session) {
@@ -50,6 +51,7 @@ public class WishlistController {
         }
     }
 
+//    위시리스트 삭제
     @PostMapping("/remove")
     @ResponseBody
     public String removeWishlist(@RequestParam int bno, HttpSession session) {
@@ -64,6 +66,7 @@ public class WishlistController {
         return "removed";
     }
 
+//    마이페이지 위시리스트에 도서목록
     @GetMapping("/list")
     public String wishlistPage(HttpSession session, Model model) {
         UsersVO loginUser = (UsersVO) session.getAttribute("loginUser");
@@ -71,6 +74,6 @@ public class WishlistController {
 
         List<?> wishlist = wishlistService.getWishlist(loginUser.getUserid());
         model.addAttribute("wishlist", wishlist);
-        return "mypage/wishlist"; // wishlist.jsp 또는 wishlist.html
+        return "mypage/wishlist"; 
     }
 }

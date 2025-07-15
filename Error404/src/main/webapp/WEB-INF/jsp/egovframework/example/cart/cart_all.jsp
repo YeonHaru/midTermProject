@@ -9,14 +9,9 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>장바구니</title>
-<!-- 공통 CSS : 타이틀 밑에 CSS추가하기(밑에 예시는 공통css, header.css, footder.css-->
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/css/02_header.css" />
-<link rel="stylesheet"
-	href="<%=request.getContextPath()%>/css/00_style.css" />
-<link rel="stylesheet"
-	href="<%=request.getContextPath()%>/css/102_cart.css" />
-<!-- 	부트스트랩 css  -->
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/02_header.css" />
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/00_style.css" />
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/102_cart.css" />
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
 	integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
@@ -34,7 +29,7 @@
 			<thead>
 				<tr>
 					<th><input type="checkbox" id="checkAll" /></th>
-					<th>상품</th>
+					<th>상품 이미지</th>
 					<th>설명</th>
 					<th>수량</th>
 					<th>가격</th>
@@ -45,9 +40,11 @@
 				<c:forEach var="item" items="${cartList}">
 					<tr class="cart-item" data-cno="${item.cno}">
 						<td><input type="checkbox" class="row-check" /></td>
-						<td class="product-info"><img
-							src="${pageContext.request.contextPath}/images/default.jpg"
-							alt="${item.title}" class="thumb" /></td>
+						<td>
+							<div class="thumb-wrapper">
+								<img src="/images/sample.jpg" alt="${item.title}" class="thumb" />
+							</div>
+						</td>
 						<td class="desc">
 							<p class="title">${item.title}</p>
 							<p class="summary">${item.des}</p>
@@ -65,30 +62,112 @@
 			</tbody>
 		</table>
 
+		<div class="tcenter mb2 mt5">
+			<button type="button" class="btn btn-danger btn-delete-selected">삭제</button>
+		</div>
+
 		<div class="cart-summary tcenter">
 			<p>
-				<strong>총 금액:</strong> <span> <fmt:formatNumber
-						value="${totalPrice}" type="number" />원
-				</span>
+				<strong>총 금액:</strong> <span class="total-price">0원</span>
 			</p>
 			<a href="#" class="btn-checkout mt2">주문하기</a>
 		</div>
 	</div>
 
-
-	<!-- jquery -->
 	<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-	<!-- 자바스크립트 연결 -->
-	<%-- <script src="<%=request.getContextPath()%>/js/MenuDt_all.js"></script> --%>
-	<%-- <script src="<%=request.getContextPath()%>/js/101_cart_all.js"></script> --%>
-	<script>
-		$(document).ready(function() {
-			const contextPath = '${pageContext.request.contextPath}';
 
-			// 수량 변경 시 Ajax 호출
+	<script>
+		const contextPath = '${pageContext.request.contextPath}';
+
+		function updateTotalPrice() {
+			let total = 0;
+
+			$('.cart-item').each(function() {
+				const pricePerItem = parseInt($(this).find('.item-price').data('price'), 10) || 0;
+				const qty = parseInt($(this).find('.qty-input').val(), 10) || 0;
+				total += pricePerItem * qty;
+			});
+
+			const formatted = total.toLocaleString();
+			$('.cart-summary .total-price').text(`${formatted}원`);
+		}
+
+		$(document).ready(function() {
+			updateTotalPrice();
+
+			$('.qty-input').on('change', function() {
+				updateTotalPrice();
+			});
+
+			$('#checkAll').on('change', function() {
+				const isChecked = $(this).is(':checked');
+				$('.row-check').prop('checked', isChecked);
+			});
+
+			$('.row-check').on('change', function() {
+				const allCount = $('.row-check').length;
+				const checkedCount = $('.row-check:checked').length;
+				$('#checkAll').prop('checked', allCount === checkedCount);
+			});
+
+			$('.btn-delete').on('click', function() {
+				const $row = $(this).closest('tr');
+				const cno = $row.data('cno');
+
+				if (!confirm('이 항목을 삭제하시겠습니까?')) return;
+
+				$.ajax({
+					url : contextPath + '/cart/deleteOne.do',
+					method : 'POST',
+					data : { cno : cno },
+					success : function(response) {
+						if (response === 'success') {
+							location.reload();
+						} else {
+							alert('삭제 실패');
+						}
+					},
+					error : function() {
+						alert('에러 발생!');
+					}
+				});
+			});
+
+			$('.btn-delete-selected').on('click', function() {
+				const checkedItems = [];
+				$('.row-check:checked').each(function() {
+					const cno = $(this).closest('tr').data('cno');
+					checkedItems.push(cno);
+				});
+
+				if (checkedItems.length === 0) {
+					alert("삭제할 항목을 선택해주세요!");
+					return;
+				}
+
+				if (!confirm('선택한 상품을 삭제하시겠습니까?')) return;
+
+				$.ajax({
+					url : contextPath + '/cart/deleteChecked.do',
+					method : 'POST',
+					traditional : true,
+					data : { cnos : checkedItems },
+					success : function(response) {
+						if (response === 'success') {
+							location.reload();
+						} else {
+							alert('삭제 실패');
+						}
+					},
+					error : function() {
+						alert('에러 발생!');
+					}
+				});
+			});
+
 			$('.qty-input').on('change', function() {
 				const $row = $(this).closest('tr');
-				const cno = $row.data('cno'); // <tr data-cno="..."> 있어야 함!
+				const cno = $row.data('cno');
 				const newQty = $(this).val();
 
 				$.ajax({
@@ -100,7 +179,7 @@
 					},
 					success : function(response) {
 						if (response === 'success') {
-							location.reload(); // 새로고침해서 총액 반영
+							location.reload();
 						} else {
 							alert('수량 변경 실패');
 						}
@@ -113,7 +192,6 @@
 		});
 	</script>
 
-	<!-- 외부 JS 라이브러리 : jquery 쓸때 필요한 라이브러리 밑 스와이프 기능들 -->
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
@@ -121,6 +199,4 @@
 	<script
 		src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 </body>
-
-
 </html>
