@@ -3,6 +3,8 @@
  */
 package egovframework.example.order.service;
 
+
+import egovframework.example.book.service.BookVO;
 import egovframework.example.common.Criteria;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -25,4 +27,5 @@ public class OrderItemVO extends Criteria {
     private int qty;     // 수량
     private int price;   // 해당 항목 총 가격 (dprice * qty)
 
+    private BookVO book;	// 북 정보 포함
 }

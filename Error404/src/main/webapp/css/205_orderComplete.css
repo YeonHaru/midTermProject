@@ -43,3 +43,7 @@
   width: 80px;
   margin-bottom: 20px;
 }
+.item-box {
+  padding: 12px;
+  border-bottom: 1px solid #ddd;
+}

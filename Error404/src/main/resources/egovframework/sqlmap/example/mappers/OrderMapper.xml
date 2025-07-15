@@ -10,6 +10,10 @@
   VALUES (#{ono}, #{userid}, SYSDATE, #{ostatus}, #{total})
 </insert>
 
+<select id="getOrderByOno" parameterType="int" resultMap="orderResultMap">
+    SELECT * FROM MEMBER_ORDERS WHERE ono = #{ono}
+</select>
+
 
 <insert id="insertOrderItem" parameterType="OrderItemVO">
     INSERT INTO ORDER_ITEM_M (ONO, BNO, QTY, PRICE)
@@ -26,13 +30,40 @@
     <result property="odate" column="odate"/>
     <result property="ostatus" column="ostatus"/>
     <result property="total" column="total"/>
-    
-    <!-- 하위 주문 항목 가져오기 -->
-    <collection property="items" ofType="OrderItemVO" select="getItemsByOno" column="ono"/>
+
+    <!-- 여기서는 resultMap 쓰지 말고 select만 -->
+    <collection property="items" ofType="OrderItemVO"
+                column="ono"
+                select="getItemsByOno"/>
 </resultMap>
 
-<select id="getItemsByOno" parameterType="int" resultType="OrderItemVO">
-    SELECT * FROM ORDER_ITEM_M WHERE ONO = #{ono}
+<resultMap id="orderItemWithBookMap" type="OrderItemVO">
+    <id property="ono" column="ono"/>
+    <result property="bno" column="bno"/>
+    <result property="qty" column="qty"/>
+    <result property="price" column="price"/>
+
+    <association property="book" javaType="egovframework.example.book.service.BookVO">
+        <id property="bno" column="book_bno"/>
+        <result property="title" column="book_title"/>
+        <result property="dprice" column="book_dprice"/>
+    </association>
+</resultMap>
+
+
+
+<select id="getItemsByOno" parameterType="int" resultMap="orderItemWithBookMap">
+    SELECT 
+        oi.ONO,
+        oi.BNO,
+        oi.QTY,
+        oi.PRICE,
+        b.BNO AS book_bno,
+        b.TITLE AS book_title,
+        b.DPRICE AS book_dprice
+    FROM ORDER_ITEM_M oi
+    JOIN BOOKS b ON oi.bno = b.bno
+    WHERE oi.ono = #{ono}
 </select>
 
 </mapper>

@@ -10,9 +10,11 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import egovframework.example.book.service.BookService;
 import egovframework.example.order.service.OrderService;
 import egovframework.example.order.service.OrderVO;
 import egovframework.example.users.service.UsersVO;
@@ -26,6 +28,8 @@ public class OrderController {
 
 		@Autowired
 		private OrderService orderService;
+		@Autowired
+		private BookService bookService;
 		
 		@RequestMapping("/order/submit.do")
 		private String submitOrder(@ModelAttribute OrderVO order, Model model) {
@@ -43,15 +47,20 @@ public class OrderController {
 
 		}
 //		주문조회 메서드 추가
-		@RequestMapping("/mypage.do")
-		public String showMypage(Model model, HttpSession session) {
+		@GetMapping("/mypage/orders.do")
+		public String mypage(HttpSession session, Model model) {
 		    UsersVO loginUser = (UsersVO) session.getAttribute("loginUser");
-		    if (loginUser != null) {
-		        model.addAttribute("user", loginUser);
-		        List<OrderVO> orders = orderService.getOrdersByUserid(loginUser.getUserid());
-		        model.addAttribute("orders", orders);
+		    
+		    if (loginUser == null) {
+		        return "redirect:/login.do";
 		    }
-		    return "mypage"; // → mypage.jsp 로 넘기기
+
+		    String userid = loginUser.getUserid();
+
+		    List<OrderVO> orders = orderService.getOrdersByUserid(userid); // 아래에서 구현
+
+		    model.addAttribute("orders", orders);
+		    return "mypage/mypage"; // 마이페이지 JSP 경로
 		}
 
 }
