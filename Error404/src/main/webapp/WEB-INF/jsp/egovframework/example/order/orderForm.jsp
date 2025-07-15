@@ -31,16 +31,21 @@
   <!-- 배송지 입력 -->
   <div class="order-shipping-info">
     <h3>배송 정보</h3>
-    <form action="${pageContext.request.contextPath}/order/submit.do" method="post">
-      <input type="hidden" name="bno" value="${book.bno}" />
-      <input type="hidden" name="qty" value="${qty}" />
+<form method="post" action="${pageContext.request.contextPath}/order/submit.do">
+  <input type="hidden" name="bno" value="${book.bno}" />
+  <input type="hidden" name="qty" value="${qty}" />
 
-      <label>이름: <input type="text" name="recipient" value="${user.name}" required /></label><br/>
-      <label>전화번호: <input type="text" name="phone" value="${user.phone}" required /></label><br/>
-      <label>주소: <input type="text" name="address" value="${user.address}" required /></label><br/>
+  <label>수령인</label>
+  <input type="text" name="recipient" required />
 
-      <button type="submit" class="btn-submit">결제하기</button>
-    </form>
+  <label>전화번호</label>
+  <input type="text" name="phone" required />
+
+  <label>주소</label>
+  <input type="text" name="address" required />
+
+  <button type="submit">결제하기</button>
+</form>
   </div>
 
 </div>

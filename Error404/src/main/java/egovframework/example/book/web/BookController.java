@@ -19,6 +19,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import egovframework.example.book.service.BookService;
 import egovframework.example.book.service.BookVO;
 import egovframework.example.common.Criteria;
+import egovframework.example.order.service.OrderItemVO;
+import egovframework.example.order.service.OrderService;
+import egovframework.example.order.service.OrderVO;
 import egovframework.example.users.service.UsersVO;
 import lombok.extern.log4j.Log4j2;
 
@@ -28,6 +31,8 @@ public class BookController {
 //   서비스 가져오기
    @Autowired
    private BookService bookService;
+   @Autowired
+   private OrderService orderService;
    
 //   전체조회
    @GetMapping("/book.do")
@@ -131,13 +136,13 @@ public class BookController {
 }
 //   결제하기 버튼 눌렀을 때 실행되는 컨트롤러 처리 : 덕규
    @PostMapping("/order/submit.do")
-   public String submitOrder(@RequestParam("bno") int bno,
-           @RequestParam("qty") int qty,
-           @RequestParam("recipient") String recipient,
-           @RequestParam("phone") String phone,
-           @RequestParam("address") String address,
-           HttpSession session,
-           Model model) {
+   public String submitOrder(	@RequestParam("bno") int bno,
+           											@RequestParam("qty") int qty,
+           											@RequestParam("recipient") String recipient,
+           											@RequestParam("phone") String phone,
+           											@RequestParam("address") String address,
+           											HttpSession session,
+           											Model model) {
 //	로그인 사용자 정보입니다.
 	   UsersVO loginUser = (UsersVO) session.getAttribute("loginUser");
 	   
@@ -150,12 +155,41 @@ public class BookController {
 	    if (loginUser != null) {
 	    	 System.out.println("▶ 주문자 ID: " + loginUser.getUserid());
 		}
-//	주문완료 되었습니다. 라는 페이지로 이동할 생각인데 고민중입니다.
-	return "redirect:/order/complete.do";
-}
+	    if (loginUser == null) {
+	        return "redirect:/login.do"; // 로그인 안 되어 있으면 로그인 페이지로
+	    }
+	 // 1. 도서 가격 정보 가져오기
+	    BookVO book = bookService.getBookById(bno);
+	    int totalPrice = book.getDprice() * qty;
+
+	    // 2. 주문 객체 생성
+	    OrderVO order = new OrderVO();
+	    order.setUserid(loginUser.getUserid());
+	    order.setOstatus("결제완료"); // 또는 "배송준비중" 등
+	    order.setTotal(totalPrice);
+
+	    // 3. 주문 항목 리스트 생성
+	    OrderItemVO item = new OrderItemVO();
+	    item.setBno(bno);
+	    item.setQty(qty);
+	    item.setPrice(totalPrice); // 개별 항목 총액
+
+	    List<OrderItemVO> items = new ArrayList<>();
+	    items.add(item);
+	    order.setItems(items);
+
+	    // 4. 주문 저장 (ono 생성됨)
+	    int ono = orderService.insertOrder(order);
+
+	    // 5. 주문 완료 페이지로 리다이렉트
+	    return "redirect:/order/complete.do?ono=" + ono;
+	}
+
    @GetMapping("/order/complete.do")
-   public String orderComplete() {
-       return "order/orderComplete"; // 주문완료 페이지 간단하게
-   }
+   public String orderComplete(@RequestParam("ono") int ono, Model model) {
+	    OrderVO order = orderService.getOrderWithItems(ono); // BookVO까지 포함되어야 함
+	    model.addAttribute("order", order);
+	    return "order/orderComplete";
+	}
 }
 

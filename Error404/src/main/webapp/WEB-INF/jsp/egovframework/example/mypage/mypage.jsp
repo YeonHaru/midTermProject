@@ -225,6 +225,7 @@
 			  </c:choose>
 
 
+
 				<!-- 주문내역 아래에 버튼 추가 새창으로 나오게 구현 했습니다. 7/15일 강대성 -->
 				<div class="tcenter mt4">
 					<a href="javascript:void(0);" class="btn pink-btn"
