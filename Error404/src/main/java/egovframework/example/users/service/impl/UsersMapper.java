@@ -42,8 +42,8 @@ public interface UsersMapper {
 	
 //	최근 본 상품 업데이트 : 덕규
 	public void updateRecentBooks(@Param("userid") String userid, @Param("recent_books") String recentBooks);
-//	개인정보수신동의 db저장하기
-	public void updateUserPreferences(UsersVO usersVO);
+//	개인정보수신동의 db저장하기  7/15일 void -> int 수정 강대성
+	public int updateUserPreferences(UsersVO usersVO);
 //	유저프로필 업로드 
 	public int updateProfileImage(@Param("userid") String userid, @Param("profileImagePath") String profileImagePath);
 	

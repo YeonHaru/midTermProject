@@ -17,14 +17,14 @@ document.addEventListener("DOMContentLoaded", () => {
 	});
 	let hash = window.location.hash.substring(1);
 	if (hash) {
-	    const targetTab = document.querySelector(`.tab-menu li[data-tab="${hash}"]`);
-	    if (targetTab) {
-	      setTimeout(() => {
-	        targetTab.click(); 
-      }, 100);
-    }
-   }
-  
+		const targetTab = document.querySelector(`.tab-menu li[data-tab="${hash}"]`);
+		if (targetTab) {
+			setTimeout(() => {
+				targetTab.click();
+			}, 100);
+		}
+	}
+
 
 	// 부가정보 수정 및 저장 버튼 처리
 	const editBtn = document.getElementById("editBtn");
@@ -152,14 +152,14 @@ document.addEventListener("DOMContentLoaded", () => {
 				},
 				body: `${key}=${value}`
 			})
-			.then(res => res.text())
-			.then(msg => {
-				if (msg === "success") {
-					console.log(`${key} 설정이 저장되었습니다.`);
-				} else {
-					alert(`${key} 설정 저장 실패`);
-				}
-			});
+				.then(res => res.text())
+				.then(msg => {
+					if (msg === "success") {
+						console.log(`${key} 설정이 저장되었습니다.`);
+					} else {
+						alert(`${key} 설정 저장 실패`);
+					}
+				});
 		}
 
 		updateStatus();
@@ -168,4 +168,16 @@ document.addEventListener("DOMContentLoaded", () => {
 			savePreference();
 		});
 	});
-});
+	// 환불 요청 내역 팝업
+	document.querySelectorAll(".openRefundList").forEach((btn) => {
+		btn.addEventListener("click", (e) => {
+			e.preventDefault();
+			window.open(
+				"/refund/list.do",
+				"refundPopup",
+				"width=800,height=600,scrollbars=yes"
+			);
+		});
+
+	});
+	})
