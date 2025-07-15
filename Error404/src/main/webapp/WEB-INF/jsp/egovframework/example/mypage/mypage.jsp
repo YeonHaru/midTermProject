@@ -1,7 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8" language="java"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 
 <!DOCTYPE html>
@@ -183,38 +183,25 @@
 
 			<!-- 이하 주문 내역, 관심 목록, 설정 섹션 -->
 			<section class="tab-content hidden" id="orders">
-			  <h2>주문 내역</h2>
-			
-			  <c:choose>
-			    <c:when test="${not empty orders}">
-			      <ul class="order-list">
-			        <c:forEach var="order" items="${orders}">
-			          <li class="order-item">
-			            <div class="order-info">
-			              <span class="order-date"><fmt:formatDate value="${order.odate}" pattern="yyyy-MM-dd" /></span>
-			              <span class="order-number">주문번호 ${order.ono}</span>
-			            </div>
-			
-			            <c:forEach var="item" items="${order.items}">
-			              <div class="order-product">
-			                <img src="<c:url value='/images/sample.jpg' />" alt="${item.title}" class="order-product-img" />
-			                <span class="order-product-name">${item.title}</span>
-			              </div>
-			              <div class="order-status">${order.ostatus}</div>
-			              <div class="order-price">₩<fmt:formatNumber value="${item.price * item.qty}" type="number" /></div>
-			              <div class="order-actions">
-			                <a href="#" class="btn btn-small btn-primary">상세</a>
-			                <a href="#" class="btn btn-small btn-secondary cancel-btn">취소</a>
-			              </div>
-			            </c:forEach>
-			          </li>
-			        </c:forEach>
-			      </ul>
-			    </c:when>
-			    <c:otherwise>
-			      <p>주문 내역이 없습니다.</p>
-			    </c:otherwise>
-			  </c:choose>
+				<h2>주문 내역</h2>
+
+				<c:forEach var="item" items="${order.items}">
+					<div class="order-product">
+						<img src="<c:url value='/images/sample.jpg' />"
+							alt="${item.title}" class="order-product-img" /> <span
+							class="order-product-name">${item.title}</span>
+					</div>
+					<div class="order-status">${order.ostatus}</div>
+					<div class="order-price">
+						₩
+						<fmt:formatNumber value="${item.book.dprice * item.qty}"
+							pattern="#,###" />
+					</div>
+					<div class="order-actions">
+						<a href="#" class="btn btn-small btn-primary">상세</a> <a href="#"
+							class="btn btn-small btn-secondary cancel-btn">취소</a>
+					</div>
+				</c:forEach>
 
 				<!-- 주문내역 아래에 버튼 추가 -->
 				<div class="tcenter mt4">
