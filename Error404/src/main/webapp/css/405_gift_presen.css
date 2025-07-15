@@ -1,0 +1,158 @@
+/* ✅ gift_card_list.css */
+/* 💡 공통 CSS와 충돌 방지를 위해 모든 클래스에 gift-card- 접두어 사용 */
+
+/* 선물하기 깊티 */
+.gift-card-section {
+  padding: 4vh 5%;
+  background-color: #fff;
+}
+
+.gift-card-title {
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin-bottom: 2.5vh;
+  color: #000;
+  
+}
+
+.gift-card-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: center; /* 중앙 정렬 */
+}
+
+
+.gift-card-item {
+  width: 240px;
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  overflow: hidden;
+  transition: transform 0.2s ease;
+}
+
+.gift-card-item:hover {
+  transform: translateY(-4px);
+}
+
+.gift-card-image img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 12px 12px 0 0;
+}
+
+.gift-card-info {
+  padding: 1rem;
+}
+
+.gift-card-name {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #111;
+  margin-bottom: 0.5rem;
+}
+
+.gift-card-meta {
+  font-size: 0.85rem;
+  color: #777;
+  margin-bottom: 0.8rem;
+}
+
+.gift-card-price {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #000;
+}
+
+/* ✅ FAQ 아코디언 공통 영역 */
+.gift-card-faq {
+  max-width: 70%; /* ✅ 너비 줄임 */
+  margin: 6vh auto; /* ✅ 가운데 정렬 */
+  padding: 0 1rem;
+}
+
+/* ✅ 제목 크기 약간 축소 */
+.gift-card-faq-title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 1.2rem;
+  color: #222;
+}
+
+.faq-item {
+  border-radius: 10px;
+  overflow: hidden;
+  background-color: var(--main-color);
+  margin-bottom: 1rem;
+  border: 1px solid #e0e0e0;
+}
+
+.faq-question {
+  width: 100%;
+  text-align: left;
+  background: none;
+  border: none;
+  padding: 1.2rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #fff;
+}
+
+.faq-question:hover {
+  background-color: #f0f0f0;
+}
+
+.faq-answer {
+  padding: 1.2rem 1.5rem;
+  font-size: 0.95rem;
+  color: #444;
+  display: none;
+  background-color: #fff;
+  border-top: 1px solid #eee;
+  line-height: 1.6;
+}
+
+.faq-answer ul {
+  padding-left: 1rem;
+  margin: 0;
+}
+
+.faq-answer li {
+  margin-bottom: 0.8rem;
+}
+
+.faq-answer mark {
+  background-color: #fff5c2;
+  padding: 0 0.2em;
+}
+
+.arrow {
+  font-size: 0.8rem;
+  transform: rotate(0deg);
+  transition: transform 0.3s;
+}
+
+.faq-item.active .faq-answer {
+  display: block;
+}
+
+.faq-item.active .arrow {
+  transform: rotate(180deg);
+}
+
+.faq-question {
+  color: var(--accent-color-1);
+ background-color: var(--bg-color);
+}
+
+/* 클릭되어 활성화 되었을 때 텍스트 색상 변경 (원하면) */
+.faq-item.active .faq-question {
+  color: var(--bg-color);
+  background-color: var(--accent-color-1);
+}
