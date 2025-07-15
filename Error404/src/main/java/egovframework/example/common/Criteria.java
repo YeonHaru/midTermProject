@@ -48,6 +48,6 @@ public class Criteria {
 //	장바구니, userId추가
 	private String userId;
 	
-//	
+//	카트 삭제 처리
 	private List<Integer> cnoList;
 }

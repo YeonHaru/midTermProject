@@ -25,5 +25,11 @@ public class CartServiceImpl implements CartService {
 		cartMapper.updateQuantity(cno, quantity);
 	}
 	
+	@Override
+	public void deleteCartItems(List<Integer> cnos) {
+	    cartMapper.deleteCartItems(cnos);
+	}
+
+	
 	
 }
