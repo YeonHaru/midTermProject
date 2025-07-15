@@ -37,7 +37,7 @@ public class HomeController {
         model.addAttribute("latestBooks", latestBooks);  // 메인페이지 신간 도서 4개용(승화)
         model.addAttribute("randomBooks", randomBooks);  // 메인페이지 랜덤 도서 4개용(승화)
         model.addAttribute("flipBooks", flipBooks);		 // 메인페이지 플립 도서 4개용(승화)
-        model.addAttribute("bestSellers", bestSellers);
+        model.addAttribute("bestSellers", bestSellers);	 // 메인페이지 베스트셀러 (승화)
         return "home";
     }
 

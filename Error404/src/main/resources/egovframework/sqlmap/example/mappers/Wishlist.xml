@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="egovframework.example.wishlist.service.impl.WishlistMapper">
+
+    <insert id="insertWishlist" parameterType="WishlistVO">
+        INSERT INTO wishlist (bno, userid)
+        VALUES (#{bno}, #{userid})
+    </insert>
+
+    <delete id="deleteWishlist" parameterType="WishlistVO">
+        DELETE FROM wishlist
+        WHERE bno = #{bno} AND userid = #{userid}
+    </delete>
+
+    <select id="selectWishlistByUser" parameterType="string" resultType="BookVO">
+        SELECT b.*
+        FROM wishlist w
+        JOIN books b ON w.bno = b.bno
+        WHERE w.userid = #{userid}
+    </select>
+
+    <select id="existsWishlist" parameterType="WishlistVO" resultType="boolean">
+        SELECT COUNT(*) > 0
+        FROM wishlist
+        WHERE bno = #{bno} AND userid = #{userid}
+    </select>
+
+</mapper>

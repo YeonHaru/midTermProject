@@ -1,0 +1,63 @@
+/* 위시리스트 카드 리스트 */
+.wishlist-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+.wishlist-item {
+  display: flex;
+  gap: 1rem;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 1rem;
+  background-color: var(--bg-color);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+
+.wishlist-thumb {
+  width: 80px;
+  height: 110px;
+  object-fit: cover;
+  border-radius: 6px;
+  border: 1px solid var(--border-color);
+}
+
+.wishlist-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.wishlist-title {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: var(--text-main);
+  margin-bottom: 0.3rem;
+}
+
+.wishlist-author {
+  font-size: 0.9rem;
+  color: var(--text-sub);
+}
+
+.wishlist-price {
+  font-weight: 600;
+  color: var(--text-main);
+  margin: 0.5rem 0;
+}
+
+.wishlist-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+@media screen and (min-width: 768px) {
+  .wishlist-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
