@@ -1,5 +1,7 @@
 package egovframework.example.common;
 
+import java.util.List;
+
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -45,4 +47,7 @@ public class Criteria {
 	
 //	장바구니, userId추가
 	private String userId;
+	
+//	
+	private List<Integer> cnoList;
 }

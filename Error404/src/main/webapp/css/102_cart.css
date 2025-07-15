@@ -1,0 +1,126 @@
+.cart-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  margin-top: 1rem;
+  background-color: white;
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.cart-table thead {
+  background-color: var(--accent-color-2);
+  color: var(--text-main);
+}
+
+.cart-table th,
+.cart-table td {
+  padding: 1rem;
+  text-align: center;
+  vertical-align: middle;
+  border-bottom: 1px solid var(--border-color);
+  font-size: 0.9375rem;
+}
+
+.cart-table tr:last-child td {
+  border-bottom: none;
+}
+
+.cart-table tbody tr:hover {
+  background-color: #fff7f7;
+}
+
+/* 상품 이미지 + 제목 */
+.cart-table .product-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.cart-table img.thumb {
+  width: 60px;
+  height: auto;
+  border-radius: 4px;
+  margin-bottom: 0.5rem;
+}
+
+.cart-table .title {
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+/* 책 설명 */
+.cart-table .desc {
+  font-size: 0.85rem;
+  color: var(--text-sub);
+  text-align: left;
+}
+
+/* 수량 입력 */
+.qty-input {
+  width: 60px;
+  padding: 0.4rem;
+  font-size: 0.875rem;
+  text-align: center;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  background-color: #fff;
+}
+
+.qty-input:focus {
+  outline: 2px solid var(--accent-color-1);
+}
+
+/* 삭제 버튼 */
+.btn-delete {
+  background-color: #fff0f0;
+  color: #c00;
+  border: 1px solid #f3c3c3;
+  padding: 0.4rem 0.8rem;
+  border-radius: 6px;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.btn-delete:hover {
+  background-color: #ffe2e2;
+}
+
+/* 장바구니 하단 요약 영역 */
+.cart-summary {
+  margin-top: 2rem;
+  padding: 1rem;
+  border-top: 2px solid var(--accent-color-1);
+}
+
+.btn-checkout {
+  display: inline-block;
+  background-color: var(--accent-color-1);
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-weight: bold;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.btn-checkout:hover {
+  background-color: var(--accent-color-2);
+  color: var(--text-main);
+}
+
+/* 기본 - 모바일: 책 제목만 보임 */
+.cart-table .desc .summary,
+.cart-table .desc .meta {
+  display: none;
+}
+
+/* 태블릿 이상부터 설명/출판 정보 보이기 */
+@media screen and (min-width: 768px) {
+  .cart-table .desc .summary,
+  .cart-table .desc .meta {
+    display: block;
+  }
+}

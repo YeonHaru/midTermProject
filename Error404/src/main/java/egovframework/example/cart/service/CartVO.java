@@ -28,7 +28,7 @@ public class CartVO {
 	private String title;
     private String author;
     private String publisher;
-    private String bimg;       // BLOB을 경로로 처리 (예: /img/book1.jpg)
+//    private String bimg;       // BLOB을 경로로 처리 (예: /img/book1.jpg)
     private Date pdate;
     private int fprice;
     private int dprice;

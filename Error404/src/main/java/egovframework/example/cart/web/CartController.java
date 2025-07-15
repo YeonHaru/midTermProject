@@ -9,6 +9,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import egovframework.example.cart.service.CartService;
 import egovframework.example.common.Criteria;
@@ -41,6 +44,19 @@ public class CartController {
 		model.addAttribute("cartList", cartList);
 		
 		return "cart/cart_all";
+	}
+	
+	@PostMapping("/cart/updateQuantity.do")
+	@ResponseBody
+	public String updateQuantity(@RequestParam int cno, @RequestParam int quantity) {
+		log.info("수량 변경 요청 - CNO: {}, 수량: {}", cno, quantity);
+		try {
+	        cartService.updateQuantity(cno, quantity);
+	        return "success";
+	    } catch (Exception e) {
+	        log.error("수량 변경 실패", e);
+	        return "fail";
+	    }
 	}
 	
 }
