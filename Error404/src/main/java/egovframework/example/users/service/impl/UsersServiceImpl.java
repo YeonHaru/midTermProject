@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import egovframework.example.book.service.BookService;
@@ -37,6 +38,8 @@ public class UsersServiceImpl implements UsersService {
 	private BookMapper bookMapper;
 	@Autowired
 	private BookService bookService;
+	@Autowired
+	private BCryptPasswordEncoder passwordEncoder;  // 비밀번호 해시화
 
 // 	전체조회
 	@Override
@@ -48,13 +51,13 @@ public class UsersServiceImpl implements UsersService {
 //	로그인
 	@Override
 	public boolean login(UsersVO usersVO) {
-		UsersVO dbUser = usersMapper.selectUserById(usersVO.getUserid());
+	    UsersVO dbUser = usersMapper.selectUserById(usersVO.getUserid());
 
-		if (dbUser != null && dbUser.getPassword().equals(usersVO.getPassword())) {
-			usersVO.setTempPwYn(dbUser.getTempPwYn()); // TEMP_PW_YN 상태도 세팅
-			return true;
-		}
-		return false;
+	    if (dbUser != null && passwordEncoder.matches(usersVO.getPassword(), dbUser.getPassword())) {
+	        usersVO.setTempPwYn(dbUser.getTempPwYn()); // TEMP_PW_YN 상태도 세팅
+	        return true;
+	    }
+	    return false;
 	}
 
 //	아이디 찾기 
@@ -76,27 +79,17 @@ public class UsersServiceImpl implements UsersService {
 //		유저가 메일을 받고 임시비번으로 로긴 후 비번 변경시 다시 db에 저장
 	@Override
 	public String sendTemporaryPassword(String userid, String email) {
-		// 1. 사용자 정보 확인
-		String found = usersMapper.findPassword(userid, email);
-		if (found == null) {
-			return "입력한 정보와 일치하는 계정이 없습니다.";
-		}
-		// 2. 임시 비밀번호 생성 (예: 10자리 랜덤 문자열)
-		String tempPassword = generateTempPassword();
+	    String found = usersMapper.findPassword(userid, email);
+	    if (found == null) {
+	        return "입력한 정보와 일치하는 계정이 없습니다.";
+	    }
 
-		// 3. DB에 임시 비밀번호 업데이트
-		usersMapper.updatePassword(userid, tempPassword);
+	    String tempPassword = generateTempPassword();
+	    String encodedTempPw = passwordEncoder.encode(tempPassword);
 
-//		// 4. 이메일로 임시 비밀번호 전송
-//		try {
-//			emailService.sendTempPassword(email, tempPassword);
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//			return "메일 전송에 실패했습니다.";
-//		}
-//		// 5. 성공 메시지
-		return "임시 비밀번호: " + tempPassword;
+	    usersMapper.updatePassword(userid, encodedTempPw);  // DB 저장은 암호화된 비밀번호로
 
+	    return "임시 비밀번호: " + tempPassword; // 이메일 전송 or 안내
 	}
 
 //	임시 비번을 생성하는 메소드
@@ -115,14 +108,14 @@ public class UsersServiceImpl implements UsersService {
 //		유저가 직접 비번 변경
 	@Override
 	public boolean changePassword(String userid, String currentPassword, String newPassword) {
-		UsersVO dbUser = usersMapper.selectUserById(userid);
+	    UsersVO dbUser = usersMapper.selectUserById(userid);
 
-		if (dbUser != null && dbUser.getPassword().equals(currentPassword)) {
-			// 비밀번호 변경 시, TEMP_PW_YN = 'N' 으로 업데이트
-			usersMapper.updatePasswordPermanent(userid, newPassword); // 새 메소드
-			return true;
-		}
-		return false;
+	    if (dbUser != null && passwordEncoder.matches(currentPassword, dbUser.getPassword())) {
+	        String encodedNewPw = passwordEncoder.encode(newPassword);
+	        usersMapper.updatePasswordPermanent(userid, encodedNewPw);
+	        return true;
+	    }
+	    return false;
 	}
 
 //		신규 회원가입 
@@ -133,6 +126,10 @@ public class UsersServiceImpl implements UsersService {
 	    if (existingUser != null) {
 	        throw new RuntimeException("이미 존재하는 아이디입니다.");
 	    }
+	    
+	    // 🔒 비밀번호 암호화
+	    String encryptedPw = passwordEncoder.encode(usersVO.getPassword());
+	    usersVO.setPassword(encryptedPw);
 		
 		usersVO.setJoin_date(LocalDate.now()); // 회원가입시 가입날짜가 오늘이게끔
 		usersVO.setRole("USER"); // 회원가입시 User

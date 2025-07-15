@@ -16,7 +16,7 @@
 
 <link rel="stylesheet"
    href="<%=request.getContextPath()%>/css/00_style.css" />
-<link rel="stylesheet"
+   <link rel="stylesheet"
    href="<%=request.getContextPath()%>/css/book_all.css" />
 <!-- 	부트스트랩 css  -->
 <link rel="stylesheet"
