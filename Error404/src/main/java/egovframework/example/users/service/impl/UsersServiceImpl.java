@@ -201,6 +201,12 @@ public class UsersServiceImpl implements UsersService {
 		// TODO Auto-generated method stub
 		return usersMapper.updateProfileImage(userid, profileImagePath);
 	}
+//	유저 회원정보 업데이트 db 반영
+	@Override
+	public int updateUserInfo(UsersVO user) {
+	    return usersMapper.updateUserInfo(user);
+	}
+
 
 
 	
