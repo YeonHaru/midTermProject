@@ -134,62 +134,35 @@ public class BookController {
 	}
 	   return "order/orderForm"; 	
 }
-//   결제하기 버튼 눌렀을 때 실행되는 컨트롤러 처리 : 덕규
-   @PostMapping("/order/submit.do")
-   public String submitOrder(	@RequestParam("bno") int bno,
-           											@RequestParam("qty") int qty,
-           											@RequestParam("recipient") String recipient,
-           											@RequestParam("phone") String phone,
-           											@RequestParam("address") String address,
-           											HttpSession session,
-           											Model model) {
-//	로그인 사용자 정보입니다.
-	   UsersVO loginUser = (UsersVO) session.getAttribute("loginUser");
-	   
-//	   출력용 테스트하는거에요
-	   System.out.println("▶ 주문 도서번호: " + bno);
-	    System.out.println("▶ 수량: " + qty);
-	    System.out.println("▶ 수령인: " + recipient);
-	    System.out.println("▶ 전화번호: " + phone);
-	    System.out.println("▶ 주소: " + address);
-	    if (loginUser != null) {
-	    	 System.out.println("▶ 주문자 ID: " + loginUser.getUserid());
-		}
-	    if (loginUser == null) {
-	        return "redirect:/login.do"; // 로그인 안 되어 있으면 로그인 페이지로
-	    }
-	 // 1. 도서 가격 정보 가져오기
-	    BookVO book = bookService.getBookById(bno);
-	    int totalPrice = book.getDprice() * qty;
-
-	    // 2. 주문 객체 생성
-	    OrderVO order = new OrderVO();
-	    order.setUserid(loginUser.getUserid());
-	    order.setOstatus("결제완료"); // 또는 "배송준비중" 등
-	    order.setTotal(totalPrice);
-
-	    // 3. 주문 항목 리스트 생성
-	    OrderItemVO item = new OrderItemVO();
-	    item.setBno(bno);
-	    item.setQty(qty);
-	    item.setPrice(totalPrice); // 개별 항목 총액
-
-	    List<OrderItemVO> items = new ArrayList<>();
-	    items.add(item);
-	    order.setItems(items);
-
-	    // 4. 주문 저장 (ono 생성됨)
-	    int ono = orderService.insertOrder(order);
-
-	    // 5. 주문 완료 페이지로 리다이렉트
-	    return "redirect:/order/complete.do?ono=" + ono;
-	}
-
+//7월15일  : 덕규 ( 주문이 완료되었습니다 페이지)
    @GetMapping("/order/complete.do")
    public String orderComplete(@RequestParam("ono") int ono, Model model) {
 	    OrderVO order = orderService.getOrderWithItems(ono); // BookVO까지 포함되어야 함
+	    
+	    log.info("🟡 주문 번호: {}", order.getOno());
+	    log.info("🟡 수령인: {}", order.getRecipient());
+	    log.info("🟡 결제수단: {}", order.getPaymentMethod());
+	    log.info("🟡 아이템 수: {}", order.getItems() != null ? order.getItems().size() : "null");
+
+	    if (order.getItems() != null && !order.getItems().isEmpty()) {
+	        OrderItemVO firstItem = order.getItems().get(0);
+	        log.info("🟡 첫 번째 도서번호: {}", firstItem.getBno());
+	        log.info("🟡 수량: {}", firstItem.getQty());
+	        log.info("🟡 금액: {}", firstItem.getPrice());
+
+	        if (firstItem.getBook() != null) {
+	            log.info("🟢 도서명: {}", firstItem.getBook().getTitle());
+	            log.info("🟢 도서 가격: {}", firstItem.getBook().getDprice());
+	        } else {
+	            log.warn("🔴 Book 정보가 null입니다.");
+	        }
+	    } else {
+	        log.warn("🔴 OrderItem 리스트가 비어있거나 null입니다.");
+	    }
+	    
 	    model.addAttribute("order", order);
 	    return "order/orderComplete";
+//	    여기까집니다~
 	}
 }
 

@@ -9,9 +9,12 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>장바구니</title>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/02_header.css" />
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/00_style.css" />
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/102_cart.css" />
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/css/02_header.css" />
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/css/00_style.css" />
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/css/102_cart.css" />
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
 	integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
@@ -38,7 +41,7 @@
 			</thead>
 			<tbody>
 				<c:forEach var="item" items="${cartList}">
-					<tr class="cart-item" data-cno="${item.cno}">
+					<tr class="cart-item" data-cno="${item.cno}" data-dno="${item.bno}">
 						<td><input type="checkbox" class="row-check" /></td>
 						<td>
 							<div class="thumb-wrapper">
@@ -70,7 +73,12 @@
 			<p>
 				<strong>총 금액:</strong> <span class="total-price">0원</span>
 			</p>
-			<a href="#" class="btn-checkout mt2">주문하기</a>
+			<!-- 주문 폼 추가 -->
+			<form id="buyNowForm" method="POST"
+				action="${pageContext.request.contextPath}/order/buyNowForm.do">
+				<!-- JS에서 hidden input들을 여기에 삽입함 -->
+				<button type="submit" class="btn-checkout mt2" id="btnBuyNow">주문하기</button>
+			</form>
 		</div>
 	</div>
 
@@ -82,11 +90,14 @@
 		function updateTotalPrice() {
 			let total = 0;
 
-			$('.cart-item').each(function() {
-				const pricePerItem = parseInt($(this).find('.item-price').data('price'), 10) || 0;
-				const qty = parseInt($(this).find('.qty-input').val(), 10) || 0;
-				total += pricePerItem * qty;
-			});
+			$('.cart-item').each(
+					function() {
+						const pricePerItem = parseInt($(this).find(
+								'.item-price').data('price'), 10) || 0;
+						const qty = parseInt($(this).find('.qty-input').val(),
+								10) || 0;
+						total += pricePerItem * qty;
+					});
 
 			const formatted = total.toLocaleString();
 			$('.cart-summary .total-price').text(`${formatted}원`);
@@ -114,12 +125,15 @@
 				const $row = $(this).closest('tr');
 				const cno = $row.data('cno');
 
-				if (!confirm('이 항목을 삭제하시겠습니까?')) return;
+				if (!confirm('이 항목을 삭제하시겠습니까?'))
+					return;
 
 				$.ajax({
 					url : contextPath + '/cart/deleteOne.do',
 					method : 'POST',
-					data : { cno : cno },
+					data : {
+						cno : cno
+					},
 					success : function(response) {
 						if (response === 'success') {
 							location.reload();
@@ -145,13 +159,16 @@
 					return;
 				}
 
-				if (!confirm('선택한 상품을 삭제하시겠습니까?')) return;
+				if (!confirm('선택한 상품을 삭제하시겠습니까?'))
+					return;
 
 				$.ajax({
 					url : contextPath + '/cart/deleteChecked.do',
 					method : 'POST',
 					traditional : true,
-					data : { cnos : checkedItems },
+					data : {
+						cnos : checkedItems
+					},
 					success : function(response) {
 						if (response === 'success') {
 							location.reload();
@@ -189,6 +206,39 @@
 					}
 				});
 			});
+			
+			$('#btnBuyNow').on('click', function (e) {
+				  e.preventDefault(); // a태그 또는 버튼의 기본 이동 방지
+
+				  const $checkedRows = $('.row-check:checked');
+
+				  if ($checkedRows.length === 0) {
+				    alert("상품을 선택해주세요.");
+				    return;
+				  }
+
+				  const $form = $('#buyNowForm');
+				  $form.empty(); // 기존 input 초기화 (중복 방지)
+
+				  $checkedRows.each(function () {
+				    const $row = $(this).closest('tr');
+				    const dno = $row.attr('data-dno');
+				    const qty = $row.find('.qty-input').val();
+
+				    if (!dno || !qty) {
+				      alert("상품 정보가 누락되었습니다.");
+				      return false; // break
+				    }
+
+				    // hidden input 추가
+				    $form.append(`<input type="hidden" name="dno" value="${dno}" />`);
+				    $form.append(`<input type="hidden" name="qty" value="${qty}" />`);
+				  });
+
+				  console.log("🧾 선택한 상품 POST 전송!");
+				  $form.submit();
+				});
+
 		});
 	</script>
 

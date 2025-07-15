@@ -207,6 +207,12 @@ public class UsersServiceImpl implements UsersService {
 	    return usersMapper.updateUserInfo(user);
 	}
 
+	@Override
+	public UsersVO getUserById(String userid) {
+		return usersMapper.selectUserById(userid);  // ✅ MyBatis 호출
+		
+	}
+
 
 
 	
