@@ -5,6 +5,7 @@ package egovframework.example.users.web;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
@@ -19,6 +20,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import egovframework.example.users.service.UsersService;
 import egovframework.example.users.service.UsersVO;
+import egovframework.example.wishlist.service.WishlistService;
 import lombok.extern.log4j.Log4j2;
 
 /**
@@ -31,6 +33,8 @@ public class UsersController {
 //	서비스 가져오기
 	@Autowired
 	private UsersService usersService;
+	@Autowired
+	private WishlistService wishlistService;  // 위시리스트 불러오기
 
 //	회원가입 페이지 열기(주소정하기, 추가페이지 우리 몇개까지?)
 	@GetMapping("/join.do")
@@ -81,23 +85,27 @@ public class UsersController {
 	@GetMapping("/mypage.do")
 	public String mypage(HttpSession session, Model model) {
 		UsersVO loginUser = (UsersVO) session.getAttribute("loginUser");
-
+		
 		if (loginUser == null) {
 			return "redirect:/login.do"; // 로그인 안 되어 있으면 로그인 페이지로 이동
 		}
 		
 		// DB에서 최신 사용자 정보 가져오기 (프로필 이미지 포함)
 	    UsersVO userDetails = usersService.selectUserById(loginUser.getUserid());
-
+		
 	    model.addAttribute("user", userDetails);  // JSP에서 ${user.profileImagePath} 접근 가능
-	    
+		
+	    // 위시리스트 추가
+		List<?> list =wishlistService.getWishlist(loginUser.getUserid());
+
+		model.addAttribute("wishlist", list);
+		
 		// 세션에 임시비번 플래그가 있으면 JSP에 넘기고 한 번만 사용
 	    Boolean isTemp = (Boolean) session.getAttribute("isTempPassword");
 	    if (isTemp != null && isTemp) {
 	        model.addAttribute("isTempPassword", true);
 	        session.removeAttribute("isTempPassword"); // ✅ 팝업은 한 번만 띄우기 위해 제거
 	    }
-		
 	
 		return "mypage/mypage";
 	}
@@ -186,20 +194,26 @@ public class UsersController {
 		
 		}
 		
-//		개인정보수신동의 db전달
+//		개인정보수신동의 db전달   
 		@PostMapping("/mypage/updatePreferences.do")
 		@ResponseBody
-		public String updatePreferences(@RequestParam("promoAgree") String promoAgree,
-		                                @RequestParam("postNotifyAgree") String postNotifyAgree,
-		                                HttpSession session) {
+		public String updatePreferences(
+		    @RequestParam(value = "promoAgree", required = false) String promoAgree,
+		    @RequestParam(value = "postNotifyAgree", required = false) String postNotifyAgree,
+		    HttpSession session) {
+
 		    UsersVO loginUser = (UsersVO) session.getAttribute("loginUser");
 		    if (loginUser == null) return "fail";
 
-		    loginUser.setPromoAgree(promoAgree);
-		    loginUser.setPostNotifyAgree(postNotifyAgree);
-		    usersService.updateUserPreferences(loginUser);
+		    if (promoAgree != null) {
+		        loginUser.setPromoAgree(promoAgree);
+		    }
+		    if (postNotifyAgree != null) {
+		        loginUser.setPostNotifyAgree(postNotifyAgree);
+		    }
 
-		    return "success";
+		    int result = usersService.updateUserPreferences(loginUser);
+		    return result > 0 ? "success" : "fail";
 		}
 
 //		유저 프로필 파일 업로드

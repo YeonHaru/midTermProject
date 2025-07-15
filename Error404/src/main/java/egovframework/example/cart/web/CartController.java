@@ -1,5 +1,6 @@
 package egovframework.example.cart.web;
 
+import java.util.Collections;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -58,5 +59,32 @@ public class CartController {
 	        return "fail";
 	    }
 	}
+	
+	@PostMapping("/cart/deleteChecked.do")
+	@ResponseBody
+	public String deleteCheckedItems(@RequestParam("cnos") List<Integer> cnos) {
+		System.out.println("받은 cnos: " + cnos);  // ★ 로그 확인용
+	    try {
+	        cartService.deleteCartItems(cnos); // 서비스에 리스트로 전달
+	        return "success";
+	    } catch (Exception e) {
+	    	e.printStackTrace();  // ★ 예외 출력
+	        return "fail";
+	    }
+	}
+	
+	@PostMapping("/cart/deleteOne.do")
+	@ResponseBody
+	public String deleteOne(@RequestParam("cno") int cno) {
+	    try {
+	        cartService.deleteCartItems(Collections.singletonList(cno));
+	        return "success";
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	        return "fail";
+	    }
+	}
+
+
 	
 }

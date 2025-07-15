@@ -8,4 +8,5 @@ public interface CartService {
 	List<?> getCartList(Criteria criteria);					// 전체조회
 	void updateQuantity(int cno, int quantity); // 수량 변경 (종일)
 
+	void deleteCartItems(List<Integer> cnos);
 }

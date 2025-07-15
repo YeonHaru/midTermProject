@@ -66,6 +66,7 @@
   font-size: 0.95rem;
   color: #444;
   line-height: 1.5;
+  white-space: normal !important; 
 }
 
 .answer-content.active {
