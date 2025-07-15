@@ -11,5 +11,6 @@ import java.util.List;
  */
 public interface RefundService {
 	int insertRefundRequest(RefundVO refundVO);
-	List<RefundVO> selectRefundList(); 			 // 내 환불사유 조회
+	List<RefundVO> selectRefundList(); 			 // 전체 환불사유 조회
+	List<RefundVO> selectRefundListByUserId(String userid); // id별로 환불사유 조회
 }

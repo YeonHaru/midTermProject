@@ -7,31 +7,23 @@
 	<!-- 장바구니 목록 조회 -->
 	<select id="getCartList" parameterType="Criteria"
 		resultType="CartVO">
-		SELECT
-			C.CNO,
-			C.USERID,
-			C.BNO,
-			C.QUANTITY,
-			B.TITLE,
-			B.AUTHOR,
-			B.PUBLISHER,
-			B.BIMG,
-			B.PDATE,
-			B.FPRICE,
-			B.DPRICE,
-			B.STOCK,
-			B.DES,
-			B.CATEGORY,
-			B.NAT,
-			B.ORDER_COUNT
-		FROM
-			CART C
-		JOIN
-			BOOKS B ON C.BNO = B.BNO
-		WHERE
-			C.USERID = #{userId}
-		ORDER BY
-			C.CNO DESC
+		SELECT C.CNO, C.USERID, C.BNO, C.QUANTITY,
+		B.TITLE,
+		B.AUTHOR, B.PUBLISHER,
+		B.PDATE, B.FPRICE, B.DPRICE, B.STOCK,
+		B.DES,
+		B.CATEGORY, B.NAT, B.ORDER_COUNT
+		FROM CART C
+		JOIN BOOKS B ON C.BNO =
+		B.BNO
+		WHERE C.USERID = #{userId}
+		ORDER BY C.CNO DESC
 	</select>
+
+	<update id="updateQuantity">
+		UPDATE CART
+		SET QUANTITY = #{quantity}
+		WHERE CNO = #{cno}
+	</update>
 </mapper>	
 

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="egovframework.example.order.service.impl.OrderMapper">
+
+<insert id="insertOrder" parameterType="OrderVO" useGeneratedKeys="false">
+  <selectKey resultType="int" keyProperty="ono" order="BEFORE">
+    SELECT ORDER_SEQ.NEXTVAL FROM DUAL
+  </selectKey>
+  INSERT INTO MEMBER_ORDERS (ONO, USERID, ODATE, OSTATUS, TOTAL)
+  VALUES (#{ono}, #{userid}, SYSDATE, #{ostatus}, #{total})
+</insert>
+
+
+<insert id="insertOrderItem" parameterType="OrderItemVO">
+    INSERT INTO ORDER_ITEM_M (ONO, BNO, QTY, PRICE)
+    VALUES (#{ono}, #{bno}, #{qty}, #{price})
+</insert>
+
+<select id="getOrdersByUserid" parameterType="string" resultMap="orderResultMap">
+    SELECT * FROM MEMBER_ORDERS WHERE USERID = #{userid} ORDER BY ODATE DESC
+</select>
+
+<resultMap id="orderResultMap" type="OrderVO">
+    <id property="ono" column="ono"/>
+    <result property="userid" column="userid"/>
+    <result property="odate" column="odate"/>
+    <result property="ostatus" column="ostatus"/>
+    <result property="total" column="total"/>
+    
+    <!-- 하위 주문 항목 가져오기 -->
+    <collection property="items" ofType="OrderItemVO" select="getItemsByOno" column="ono"/>
+</resultMap>
+
+<select id="getItemsByOno" parameterType="int" resultType="OrderItemVO">
+    SELECT * FROM ORDER_ITEM_M WHERE ONO = #{ono}
+</select>
+
+</mapper>

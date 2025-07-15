@@ -20,7 +20,14 @@
         <typeAlias type="egovframework.example.refundrequests.service.RefundVO" alias="RefundVO"/>     
         <typeAlias type="egovframework.example.qna.service.QnaVO" alias="QnaVO"/>
         <typeAlias type="egovframework.example.cart.service.CartVO" alias="CartVO"/>
+
 	    <typeAlias type="egovframework.example.wishlist.service.WishlistVO" alias="WishlistVO"/>
+
+        
+        <typeAlias type="egovframework.example.order.service.OrderVO" alias="OrderVO"/>
+        <typeAlias type="egovframework.example.order.service.OrderItemVO" alias="OrderItemVO"/>
+	
+
 	
 
         <typeAlias type="egovframework.example.guestorder.service.GuestOrderVO" alias="GuestOrderVO"/>

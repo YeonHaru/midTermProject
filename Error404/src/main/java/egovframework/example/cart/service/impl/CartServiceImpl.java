@@ -19,6 +19,11 @@ public class CartServiceImpl implements CartService {
 		// TODO Auto-generated method stub
 		return cartMapper.getCartList(criteria);	
 	}
+	@Override
+	public void updateQuantity(int cno, int quantity) {
+		// TODO Auto-generated method stub
+		cartMapper.updateQuantity(cno, quantity);
+	}
 	
 	
 }
