@@ -1,4 +1,5 @@
-/* 공지사항 상자 너비 */
+
+/* 메인배너 상자 너비 */
 .mainpage-container {
   display: flex !important;    /* flex 강제 적용 */
   gap: 1rem;                  /* 좌우 간격 */
