@@ -49,4 +49,6 @@ public interface UsersService {
 	 int updateUserPreferences(UsersVO usersVO);
 //	 유저 프로필 사진 업로드
 	 int updateProfileImage(@Param("userid") String userid, @Param("profileImagePath") String profileImagePath);
+	 
+	 int updateUserInfo(UsersVO user);  // 유저 회원정보 수정 반영
 }
