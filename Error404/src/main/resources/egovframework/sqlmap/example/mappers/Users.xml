@@ -99,5 +99,13 @@
     WHERE USERID = #{userid}
 </update>
 
+<update id="updateUserInfo" parameterType="UsersVO">
+  UPDATE USERS
+  SET
+    BIRTHDATE = #{birthdate},
+    PHONE = #{phone},
+    ADDRESS = #{address}
+  WHERE USERID = #{userid}
+</update>
 
 </mapper>

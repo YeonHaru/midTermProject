@@ -47,4 +47,6 @@ public interface UsersMapper {
 //	유저프로필 업로드 
 	public int updateProfileImage(@Param("userid") String userid, @Param("profileImagePath") String profileImagePath);
 	
+	public int updateUserInfo(UsersVO user);  // 유저 회원정보 수정 반영
+	
 }	
