@@ -28,4 +28,7 @@ public class OrderItemVO extends Criteria {
     private int price;   // 해당 항목 총 가격 (dprice * qty)
 
     private BookVO book;	// 북 정보 포함
+    
+    public BookVO getBook() { return book; }
+    public void setBook(BookVO book) { this.book = book; }
 }

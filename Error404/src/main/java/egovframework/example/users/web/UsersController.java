@@ -18,6 +18,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import egovframework.example.order.service.OrderService;
+import egovframework.example.order.service.OrderVO;
 import egovframework.example.users.service.UsersService;
 import egovframework.example.users.service.UsersVO;
 import egovframework.example.wishlist.service.WishlistService;
@@ -31,6 +33,8 @@ import lombok.extern.log4j.Log4j2;
 @Controller
 public class UsersController {
 //	서비스 가져오기
+	@Autowired
+	private OrderService orderService;
 	@Autowired
 	private UsersService usersService;
 	@Autowired
@@ -90,6 +94,8 @@ public class UsersController {
 			return "redirect:/login.do"; // 로그인 안 되어 있으면 로그인 페이지로 이동
 		}
 		
+		String userid = loginUser.getUserid();		// 덕규 추가한거
+		
 		// DB에서 최신 사용자 정보 가져오기 (프로필 이미지 포함)
 	    UsersVO userDetails = usersService.selectUserById(loginUser.getUserid());
 		
@@ -99,6 +105,10 @@ public class UsersController {
 		List<?> list =wishlistService.getWishlist(loginUser.getUserid());
 
 		model.addAttribute("wishlist", list);
+		
+		// ✅ 주문내역 (여기서 추가!) : 덕규
+	    List<OrderVO> orders = orderService.getOrdersByUserid(userid);
+	    model.addAttribute("orders", orders);
 		
 		// 세션에 임시비번 플래그가 있으면 JSP에 넘기고 한 번만 사용
 	    Boolean isTemp = (Boolean) session.getAttribute("isTempPassword");
