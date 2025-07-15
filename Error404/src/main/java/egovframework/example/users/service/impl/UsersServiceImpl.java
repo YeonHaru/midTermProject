@@ -189,11 +189,11 @@ public class UsersServiceImpl implements UsersService {
 
 	        return bookService.selectBooksByBnoList(bnoList);
 	    }
-//	개인정보 수신동의 db전달 및 저장
+//	개인정보 수신동의 db전달 및 저장  7/15일 void -> int 수정 강대성
 	@Override
-	public void updateUserPreferences(UsersVO usersVO) {
+	public int updateUserPreferences(UsersVO usersVO) {
 		usersMapper.updateUserPreferences(usersVO);
-		
+		return usersMapper.updateUserPreferences(usersVO);
 	}
 //	유저 프로필 사진 업로드
 	@Override

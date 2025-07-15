@@ -195,20 +195,26 @@ public class UsersController {
 		
 		}
 		
-//		개인정보수신동의 db전달
+//		개인정보수신동의 db전달   
 		@PostMapping("/mypage/updatePreferences.do")
 		@ResponseBody
-		public String updatePreferences(@RequestParam("promoAgree") String promoAgree,
-		                                @RequestParam("postNotifyAgree") String postNotifyAgree,
-		                                HttpSession session) {
+		public String updatePreferences(
+		    @RequestParam(value = "promoAgree", required = false) String promoAgree,
+		    @RequestParam(value = "postNotifyAgree", required = false) String postNotifyAgree,
+		    HttpSession session) {
+
 		    UsersVO loginUser = (UsersVO) session.getAttribute("loginUser");
 		    if (loginUser == null) return "fail";
 
-		    loginUser.setPromoAgree(promoAgree);
-		    loginUser.setPostNotifyAgree(postNotifyAgree);
-		    usersService.updateUserPreferences(loginUser);
+		    if (promoAgree != null) {
+		        loginUser.setPromoAgree(promoAgree);
+		    }
+		    if (postNotifyAgree != null) {
+		        loginUser.setPostNotifyAgree(postNotifyAgree);
+		    }
 
-		    return "success";
+		    int result = usersService.updateUserPreferences(loginUser);
+		    return result > 0 ? "success" : "fail";
 		}
 
 //		유저 프로필 파일 업로드

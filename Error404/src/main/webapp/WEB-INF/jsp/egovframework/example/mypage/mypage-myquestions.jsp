@@ -11,6 +11,7 @@
 <link rel="stylesheet" href="<c:url value='/css/00_style.css' />" />
 <link rel="stylesheet" href="<c:url value='/css/503_myquestions.css' />" />
 </head>
+<!-- 여기 자동정렬 하지 마시오! 줄바꿈태그 수정한거임 -->
 <body>
 	<main class="popup-container">
 		<h2 class="popup-title">나의 질문</h2>
@@ -24,15 +25,23 @@
 							<span class="question-date"> <fmt:formatDate
 									value="${inq.questionDate}" pattern="yyyy-MM-dd" /></span>
 
-						</div>
+						</div> 
+						<c:set var="answerText" value="${inq.answerContent}" />
+
 						<div class="answer-content">
 							<c:out value="${inq.questionContent}" />
 							<c:choose>
 								<c:when
-									test="${not empty inq.answerContent and fn:trim(inq.answerContent) ne ''}">
-									<c:out value="${inq.answerContent}" escapeXml="false" />
+									test="${not empty answerText and fn:trim(answerText) ne ''}">
+									<%
+									String answer = (String) pageContext.getAttribute("answerText");
+									if (answer != null) {
+										answer = answer.replaceAll("\\r\\n|\\r|\\n", "<br/>");
+									}
+									%>
+									<%=answer%>
 									<br />
-									<small> 답변일: <fmt:formatDate value="${inq.answerDate}"
+									<small>답변일: <fmt:formatDate value="${inq.answerDate}"
 											pattern="yyyy-MM-dd" /></small>
 								</c:when>
 								<c:otherwise>
