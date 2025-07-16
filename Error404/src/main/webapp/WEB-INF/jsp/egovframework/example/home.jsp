@@ -201,12 +201,12 @@
 		<section class="book-section new-books mb5">
 			<h3>📘 신간 도서</h3>
 			<div class="book-list">
-				<c:forEach var="book" items="${latestBooks}">
+				<c:forEach var="book" items="${latestBookImgs}">
 					<div class="book-card">
 						<a href="${pageContext.request.contextPath}/book/detail.do?bno=${book.bno}">
 							<div class="image-box">
 								<img
-									src="${pageContext.request.contextPath}/images/401_maincar.jpg"
+									src="<c:out value="${book.downloadUrl}"></c:out>"
 									alt="${book.title}" />
 							</div>
 							<p class="title">${book.title}</p>
@@ -263,13 +263,13 @@
 		<section class="book-section new-books mb5">
 			<h3>📘 랜덤 픽! 이 책 어때요?</h3>
 			<div class="book-list">
-				<c:forEach var="book" items="${randomBooks}">
+				<c:forEach var="book" items="${randomBooksImgs}">
 					<div class="book-card">
 						<a
 							href="${pageContext.request.contextPath}/book/detail.do?bno=${book.bno}">
 							<div class="image-box">
 								<img
-									src="${pageContext.request.contextPath}/images/401_maincar.jpg"
+									src="<c:out value="${book.downloadUrl}"></c:out>"
 									alt="${book.title}" />
 							</div>
 							<p class="title">${book.title}</p>
@@ -293,7 +293,7 @@
 			<div class="page tcenter mt2">
 
 				<div class="book-list flex wrap mt4">
-					<c:forEach var="book" items="${flipBooks}">
+					<c:forEach var="book" items="${flipBooksImgs}">
 						<div class="book-flip-card">
 							<div class="flip-inner">
 
@@ -305,7 +305,7 @@
 											<span class="badge-top">${book.discount}%↓</span>
 										</c:if>
 										<img
-											src="${pageContext.request.contextPath}/images/401_maincar.jpg"
+											src="<c:out value="${book.downloadUrl}"></c:out>"
 											alt="${book.title}" />
 									</div>
 

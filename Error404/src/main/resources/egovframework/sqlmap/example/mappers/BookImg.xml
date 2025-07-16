@@ -5,8 +5,9 @@
 	<select id="selectBookImgList" parameterType="Criteria"
 		resultType="BookImgDTO">
 		SELECT
-		B.BNO, B.TITLE, B.AUTHOR, B.PUBLISHER, B.FPRICE,
-		B.DPRICE, B.DES,
+		B.BNO, B.TITLE, B.AUTHOR, B.PUBLISHER, B.PDATE AS PUBDATE,
+    	B.FPRICE, B.DPRICE, B.STOCK, B.DES, 
+    	B.ORDER_COUNT, 
 		I.UUID, I.FILE_NAME, I.FILE_DATA, I.DOWNLOAD_URL
 		FROM
 		BOOKS B,
@@ -29,6 +30,63 @@
 		JOIN BNO_IMG i ON b.BNO = i.BNO
 <!-- 		WHERE b.CATEGORY = #{category} -->
 	</select>
+	
+	 <!-- 신간 도서 이미지 리스트 (최신 4개) -->
+  <select id="selectLatestBookImgList" resultType="BookImgDTO">
+      SELECT 
+    B.BNO, B.TITLE, B.AUTHOR, B.PUBLISHER, B.PDATE AS PUBDATE,
+    B.FPRICE, B.DPRICE, B.STOCK, B.DES, 
+    B.ORDER_COUNT,
+    I.UUID, I.FILE_NAME, I.FILE_DATA, I.DOWNLOAD_URL
+  FROM BOOKS B
+  JOIN BNO_IMG I ON B.BNO = I.BNO
+  ORDER BY B.PDATE DESC
+  FETCH FIRST 4 ROWS ONLY
+  </select> 
 
+  <!-- 랜덤 도서 이미지 리스트 (랜덤 4개) -->
+  <select id="selectRandomBookImgList" resultType="BookImgDTO">
+    SELECT 
+    B.BNO, B.TITLE, B.AUTHOR, B.PUBLISHER, B.PDATE AS PUBDATE,
+    B.FPRICE, B.DPRICE, B.STOCK, B.DES, 
+    B.ORDER_COUNT,
+    I.UUID, I.FILE_NAME, I.FILE_DATA, I.DOWNLOAD_URL
+  FROM (
+    SELECT * FROM BOOKS ORDER BY DBMS_RANDOM.VALUE
+  ) B
+  JOIN BNO_IMG I ON B.BNO = I.BNO
+  FETCH FIRST 4 ROWS ONLY
+  </select> 
+
+  <!-- 플립 도서 이미지 리스트 (조건에 따라) -->
+  <select id="selectFlipBookImgList" resultType="BookImgDTO">
+       SELECT 
+    B.BNO, B.TITLE, B.AUTHOR, B.PUBLISHER, B.PDATE AS PUBDATE,
+    B.FPRICE, B.DPRICE, B.STOCK, B.DES, 
+    B.ORDER_COUNT,
+    I.UUID, I.FILE_NAME, I.FILE_DATA, I.DOWNLOAD_URL,
+    ROUND((B.FPRICE - B.DPRICE) / B.FPRICE * 100, 1) AS DISCOUNT
+  FROM BOOKS B
+  JOIN BNO_IMG I ON B.BNO = I.BNO
+  ORDER BY DISCOUNT DESC
+  FETCH FIRST 4 ROWS ONLY
+  </select>
+
+  <!-- 베스트셀러 이미지 리스트 -->
+  <select id="selectBestSellerImgList" resultType="BookImgDTO">
+    SELECT 
+    B.BNO, B.TITLE, B.AUTHOR, B.PUBLISHER, B.PDATE AS PUBDATE,
+    B.FPRICE, B.DPRICE, B.STOCK, B.DES, 
+    B.ORDER_COUNT,
+    I.UUID, I.FILE_NAME, I.FILE_DATA, I.DOWNLOAD_URL
+  FROM BOOKS B
+  JOIN BNO_IMG I ON B.BNO = I.BNO
+  WHERE B.BNO IN (
+    SELECT BNO
+    FROM BOOKS B
+    ORDER BY ORDER_COUNT DESC
+    FETCH FIRST 4 ROWS ONLY
+  )
+  </select>
 
 </mapper>
