@@ -61,7 +61,7 @@
 						<div class="book-list-image">
 							<a
 								href="${pageContext.request.contextPath}/book/detail.do?bno=${book.bno}">
-								<img src="<%=request.getContextPath()%>/images/default.jpg"
+								<img src="<c:out value="${book.downloadUrl}"></c:out>"
 								alt="책 이미지" />
 							</a>
 						</div>

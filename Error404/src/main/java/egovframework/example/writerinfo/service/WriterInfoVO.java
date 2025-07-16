@@ -31,6 +31,7 @@ public class WriterInfoVO extends Criteria{
 	private String plot;                        // 줄거리
 	private byte[] bookcover;                   // 첨부파일
 	private String bookurl;						// 이미지 다운로드를 위한 URL
+	private byte[] fileData;                    // 첨부파일
 	public WriterInfoVO(String writer, String work, String prize, String details, String plot, byte[] bookcover) {
 		super();
 		this.writer = writer;

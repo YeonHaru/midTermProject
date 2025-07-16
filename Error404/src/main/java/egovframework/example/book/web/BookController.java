@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import egovframework.example.book.service.BookImgService;
 import egovframework.example.book.service.BookService;
 import egovframework.example.book.service.BookVO;
 import egovframework.example.common.Criteria;
@@ -33,6 +34,8 @@ public class BookController {
    private BookService bookService;
    @Autowired
    private OrderService orderService;
+   @Autowired
+   private BookImgService bookImgService;
    
 //   전체조회
    @GetMapping("/book.do")
@@ -64,16 +67,17 @@ public class BookController {
 
        // (덕규)검색어가 있는 경우: 검색 전용으로 조건문을 달아봄
        if (criteria.getSearchKeyword() != null && !criteria.getSearchKeyword().trim().isEmpty()) {
-           books = bookService.searchBookList(criteria); 
-       } else {
-           books = bookService.selectBookList(criteria); // 기존 전체 조회
+           books = bookImgService.selectBookImgList(criteria);
+//           나중에 수정
+       } else {  
+           books = bookImgService.selectBookImgList(criteria); // 기존 전체 조회
        }
        // 여기까지가 조건문으로 바꾼것
 
        model.addAttribute("books", books);
        
 //		페이지 번호 그리기 : 플러그인(전체테이블 행 갯수)
-		int totCnt = bookService.selectBookListTotCnt(criteria);
+		int totCnt = bookImgService.selectBookImgListTotCnt(criteria);
 		paginationInfo.setTotalRecordCount(totCnt);
 		log.info("테스트 : " + totCnt);
 //		페이지 모든정보 : paginationInfo
