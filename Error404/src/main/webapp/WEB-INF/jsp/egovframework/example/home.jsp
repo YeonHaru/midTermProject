@@ -148,27 +148,29 @@
 				<li><a href="/todaySpecial.do"><img
 						src="${pageContext.request.contextPath}/images/main/sale.svg"
 						alt="오늘만특가" /><span>오늘만특가</span></a></li>
-				<li><a href="#"><img
+						<!-- alert창 띄우기 위해 수정했습니다 class pending 추가 7/16 강대성 -->
+				<li><a href="#" class="pending"><img
 						src="${pageContext.request.contextPath}/images/main/app.svg"
 						alt="APP혜택" /><span>APP혜택</span></a></li>
 				<li><a href="#"><img
-						src="${pageContext.request.contextPath}/images/main/card.svg"
-						alt="기프트카드" /><span>기프트카드</span></a></li>
-				<li><a href="#"><img
+						src="${pageContext.request.contextPath}/images/main/sale.svg"
+						alt="기프트카드" /><span>기프트카드</span></a></li>		
+				<li><a href="#" class="pending"><img
 						src="${pageContext.request.contextPath}/images/main/book.svg"
 						alt="바로출판" /><span>바로출판</span></a></li>
-				<li><a href="#"><img
+				<li><a href="#" class="pending"><img
 						src="${pageContext.request.contextPath}/images/main/book of.svg"
 						alt="이달의 책" /><span>이달의 책</span></a></li>
-				<li><a href="#"><img
+				<li><a href="#" class="pending"><img
 						src="${pageContext.request.contextPath}/images/main/pen.svg"
 						alt="손글씨캠페인" /><span>글씨캠페인</span></a></li>
-				<li><a href="#"><img
+				<li><a href="#" class="pending"><img
 						src="${pageContext.request.contextPath}/images/main/box.svg"
 						alt="사은품" /><span>사은품</span></a></li>
-				<li><a href="#"><img
+				<li><a href="#" class="pending"><img
 						src="${pageContext.request.contextPath}/images/main/good1.svg"
 						alt="추천" /><span>추천</span></a></li>
+						<!-- 여기까지 alert창 띄우기 위해 수정했습니다 class pending 추가 7/16 강대성   -->
 				<li><a
 					href="${pageContext.request.contextPath}/writerinfo/writerinfo.do"><img
 						src="${pageContext.request.contextPath}/images/main/Books.svg"
@@ -387,5 +389,19 @@
 	<script src="${pageContext.request.contextPath}/js/200_search.js"></script>
 
 	<jsp:include page="/common/footer.jsp" />
+	<!-- [준비 중입니다 alert 처리 스크립트 추가 시작] -->
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const pendingLinks = document.querySelectorAll("a.pending");
+    pendingLinks.forEach(function (link) {
+      link.addEventListener("click", function (e) {
+        e.preventDefault();
+        alert("준비 중입니다.");
+      });
+    });
+  });
+</script>
+<!-- [준비 중입니다 alert 처리 스크립트 추가 끝] -->
+	
 </body>
 </html>
