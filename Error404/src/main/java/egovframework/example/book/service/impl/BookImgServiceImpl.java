@@ -8,6 +8,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import egovframework.example.book.service.BookImgDTO;
 import egovframework.example.book.service.BookImgService;
 import egovframework.example.common.Criteria;
 
@@ -31,6 +32,31 @@ public class BookImgServiceImpl implements BookImgService{
 		// TODO Auto-generated method stub
 		return bookImgMapper.selectBookImgListTotCnt(criteria);
 	}
+
+	@Override
+	public List<BookImgDTO> selectLatestBookImgList() {
+		// TODO Auto-generated method stub
+		return bookImgMapper.selectLatestBookImgList();
+	}
+
+	@Override
+	public List<BookImgDTO> selectRandomBookImgList() {
+		// TODO Auto-generated method stub
+		return bookImgMapper.selectRandomBookImgList();
+	}
+
+	@Override
+	public List<BookImgDTO> selectFlipBookImgList() {
+		// TODO Auto-generated method stub
+		return bookImgMapper.selectFlipBookImgList();
+	}
+
+	@Override
+	public List<BookImgDTO> selectBestSellerImgList() {
+		// TODO Auto-generated method stub
+		return bookImgMapper.selectBestSellerImgList();
+	}
+	
 	
 	
 }

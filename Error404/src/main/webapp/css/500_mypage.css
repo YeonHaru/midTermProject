@@ -2,8 +2,6 @@
    기본 모바일 스타일 (모바일 우선)
    ============================ */
    
-
-
 /* 마이페이지 컨테이너 */
 .mypage-container {
 	display: flex;
@@ -47,6 +45,11 @@
 	transition: background-color 0.3s, color 0.3s;
 	white-space: nowrap;
 }
+.full-link {
+  display: block;
+  text-decoration: none;
+   padding: 0 16px 0 0;
+  }
 
 .tab-menu li.active, .tab-menu li:hover {
 	background-color: var(--main-color);

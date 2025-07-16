@@ -7,6 +7,7 @@ import java.util.List;
 
 import org.egovframe.rte.psl.dataaccess.mapper.Mapper;
 
+import egovframework.example.book.service.BookImgDTO;
 import egovframework.example.common.Criteria;
 
 /**
@@ -17,4 +18,9 @@ import egovframework.example.common.Criteria;
 public interface BookImgMapper {
 	public List<?> selectBookImgList(Criteria criteria);
 	public int selectBookImgListTotCnt(Criteria criteria); 	// 총 개수 구하기
+	
+	public List<BookImgDTO> selectLatestBookImgList();
+	public List<BookImgDTO> selectRandomBookImgList();
+	public List<BookImgDTO> selectFlipBookImgList();
+	public List<BookImgDTO> selectBestSellerImgList();
 }
