@@ -44,6 +44,17 @@ public class CartController {
 		
 		model.addAttribute("cartList", cartList);
 		
+		// ✅ 총 금액 계산 (다운캐스팅 필요 시 BookVO나 CartVO 타입 확인)
+	    int totalPrice = 0;
+	    for (Object obj : cartList) {
+	        if (obj instanceof egovframework.example.cart.service.CartVO) {
+	            egovframework.example.cart.service.CartVO item = (egovframework.example.cart.service.CartVO) obj;
+	            totalPrice += item.getDprice() * item.getQuantity();
+	        }
+	    }
+	    model.addAttribute("totalPrice", totalPrice); // JSP로 전달
+
+		
 		return "cart/cart_all";
 	}
 	
