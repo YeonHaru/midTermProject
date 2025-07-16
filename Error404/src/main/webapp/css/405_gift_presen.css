@@ -5,6 +5,7 @@
 .gift-card-section {
   padding: 4vh 5%;
   background-color: #fff;
+  width: 100%;
 }
 
 .gift-card-title {
@@ -15,16 +16,16 @@
   
 }
 
-.gift-card-grid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 2rem;
-  justify-content: center; /* 중앙 정렬 */
+ .gift-card-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 한 줄에 4개 */
+  gap: 2%; /* 카드 사이 간격 */
+  padding: 0 5%;/*  좌우 여백 */
+  width : 100%;
 }
 
 
 .gift-card-item {
-  width: 240px;
   background-color: white;
   border-radius: 12px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);

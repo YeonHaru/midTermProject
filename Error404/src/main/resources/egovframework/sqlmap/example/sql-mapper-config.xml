@@ -33,7 +33,7 @@
         <typeAlias type="egovframework.example.guestorder.service.GuestOrderVO" alias="GuestOrderVO"/>
         <typeAlias type="egovframework.example.writerinfo.service.WriterInfoVO" alias="WriterInfoVO"/>
         <typeAlias type="egovframework.example.book.service.BookImgDTO" alias="BookImgDTO"/>
-
+        <typeAlias type="egovframework.example.giftcard.service.GiftPresenVO" alias="GiftPresenVO"/>
 
 
 
@@ -43,5 +43,6 @@
 		<typeAlias alias="egovMap" type="org.egovframe.rte.psl.dataaccess.util.EgovMap"/>
 		<typeAlias alias="searchVO" type="egovframework.example.sample.service.SampleDefaultVO"/>
 		<typeAlias alias="sampleVO" type="egovframework.example.sample.service.SampleVO"/>
+		
     </typeAliases>
 </configuration>

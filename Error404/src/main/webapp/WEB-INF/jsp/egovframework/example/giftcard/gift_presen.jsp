@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
 <!DOCTYPE html>
 <html>
   <head>
@@ -13,29 +14,20 @@ pageEncoding="UTF-8"%>
     <section class="gift-card-section">
       <h2 class="gift-card-title">기프트카드 선물하기🎁</h2>
       <div class="gift-card-grid">
+       <!-- 반복문 -->
+        <c:forEach var="data" items="${giftPresens}">
         <!-- 카드 1 -->
         <div class="gift-card-item">
           <div class="gift-card-image">
-            <img src="/images/giftcard2.png" alt="기프트카드 10만원" />
+            <img src="<c:out value="${data.photo}"></c:out>" alt="기프트카드 10만원" />
           </div>
           <div class="gift-card-info">
-            <p class="gift-card-name">기프트카드 10만원</p>
-            <p class="gift-card-meta">편집부 · 404문고</p>
-            <p class="gift-card-price">100,000원</p>
+            <p class="gift-card-name"><c:out value="${data.title}"></c:out></p>
+            <p class="gift-card-meta"><c:out value="${data.content}"></c:out></p>
+            <p class="gift-card-price"><c:out value="${data.money}"></c:out></p>
           </div>
-        </div>
-
-        <!-- 카드 2 -->
-        <div class="gift-card-item">
-          <div class="gift-card-image">
-            <img src="/images/giftcard3.png" alt="기프트카드 5만원" />
-          </div>
-          <div class="gift-card-info">
-            <p class="gift-card-name">기프트카드 5만원</p>
-            <p class="gift-card-meta">편집부 · 404문고</p>
-            <p class="gift-card-price">50,000원</p>
-          </div>
-        </div>
+        </div>  
+        </c:forEach>   
       </div>
     </section>
     <section class="gift-card-faq">
