@@ -54,6 +54,24 @@ document.addEventListener("DOMContentLoaded", () => {
 
 		editBtn.classList.remove("hidden");
 		saveBtn.classList.add("hidden");
+		// 저장 요청 (DB 반영)
+		fetch("/mypage/updateInfo.do", {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/x-www-form-urlencoded",
+			},
+			body: `birth=${encodeURIComponent(birth)}&phone=${encodeURIComponent(phone)}&address=${encodeURIComponent(address)}`
+		})
+			.then(res => res.text())
+			.then(result => {
+				if (result === "success") {
+					alert("정보가 성공적으로 수정되었습니다.");
+					location.reload(); // 새로고침으로 갱신
+				} else {
+					alert("정보 수정에 실패했습니다.");
+				}
+			});
+
 
 		// 저장 후 실제 서버 저장 처리는 Ajax 또는 form 제출로 추가 구현 필요
 	});
@@ -180,4 +198,4 @@ document.addEventListener("DOMContentLoaded", () => {
 		});
 
 	});
-	})
+})

@@ -10,6 +10,7 @@ import java.util.List;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,6 +19,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import egovframework.example.order.service.OrderService;
+import egovframework.example.order.service.OrderVO;
 import egovframework.example.users.service.UsersService;
 import egovframework.example.users.service.UsersVO;
 import egovframework.example.wishlist.service.WishlistService;
@@ -32,9 +35,13 @@ import lombok.extern.log4j.Log4j2;
 public class UsersController {
 //	서비스 가져오기
 	@Autowired
+	private OrderService orderService;
+	@Autowired
 	private UsersService usersService;
 	@Autowired
 	private WishlistService wishlistService;  // 위시리스트 불러오기
+	@Autowired
+	private BCryptPasswordEncoder passwordEncoder;  // 비밀번호 해시화
 
 //	회원가입 페이지 열기(주소정하기, 추가페이지 우리 몇개까지?)
 	@GetMapping("/join.do")
@@ -90,6 +97,8 @@ public class UsersController {
 			return "redirect:/login.do"; // 로그인 안 되어 있으면 로그인 페이지로 이동
 		}
 		
+		String userid = loginUser.getUserid();		// 덕규 추가한거
+		
 		// DB에서 최신 사용자 정보 가져오기 (프로필 이미지 포함)
 	    UsersVO userDetails = usersService.selectUserById(loginUser.getUserid());
 		
@@ -99,6 +108,10 @@ public class UsersController {
 		List<?> list =wishlistService.getWishlist(loginUser.getUserid());
 
 		model.addAttribute("wishlist", list);
+		
+		// ✅ 주문내역 (여기서 추가!) : 덕규
+	    List<OrderVO> orders = orderService.getOrdersByUserid(userid);
+	    model.addAttribute("orders", orders);
 		
 		// 세션에 임시비번 플래그가 있으면 JSP에 넘기고 한 번만 사용
 	    Boolean isTemp = (Boolean) session.getAttribute("isTempPassword");
@@ -272,5 +285,28 @@ public class UsersController {
 
 		    return "redirect:/mypage.do";
 		}
+//		유저 정보 수정 db저장 
+		@PostMapping("/mypage/updateInfo.do")
+		@ResponseBody
+		public String updateUserInfo(HttpSession session,
+		                             @RequestParam("birth") String birth,
+		                             @RequestParam("phone") String phone,
+		                             @RequestParam("address") String address) {
+		    UsersVO loginUser = (UsersVO) session.getAttribute("loginUser");
+		    if (loginUser == null) return "fail";
 
+		    try {
+		    	loginUser.setBirthdate(birth);
+		        loginUser.setPhone(phone);
+		        loginUser.setAddress(address);
+
+		        int result = usersService.updateUserInfo(loginUser);
+		        return result > 0 ? "success" : "fail";
+
+		    } catch (Exception e) {
+		        e.printStackTrace();
+		        return "fail";
+		    }
+		
+		}
 }

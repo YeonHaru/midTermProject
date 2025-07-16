@@ -26,7 +26,7 @@ import lombok.ToString;
 @EqualsAndHashCode(callSuper = false)
 public class UsersVO extends Criteria{
 
-	 private String userid;
+	 	private String userid;
 	    private String password;
 	    private String name;
 	    private String email;

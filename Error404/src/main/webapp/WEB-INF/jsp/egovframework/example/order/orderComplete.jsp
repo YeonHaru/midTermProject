@@ -46,7 +46,7 @@ request.setAttribute("hideSearch", true);
 
   <div class="mt3">
     <a href="${pageContext.request.contextPath}/home.do" class="btn-main">메인으로 돌아가기</a>
-    <a href="${pageContext.request.contextPath}/mypage.do#orders" class="btn-sub ml2">주문내역 보기</a>
+    <a href="${pageContext.request.contextPath}/mypage.do" class="btn-sub ml2">주문내역 보기</a>
   </div>
 </div>
 

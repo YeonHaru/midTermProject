@@ -23,5 +23,6 @@ public interface OrderMapper {
     public List<OrderItemVO> getItemsByOno(int ono);
     public OrderVO getOrderWithItems(int ono); // 주문번호로 주문 + 항목 + 책 정보 조회
     public OrderVO getOrderByOno(int ono);
+    
 
 }

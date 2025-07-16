@@ -195,6 +195,13 @@
     <artifactId>spring-context-support</artifactId>
     <version>5.3.22</version> 
 </dependency>
+
+<!-- Spring Security Crypto (BCrypt 등 포함) -->
+<dependency>
+    <groupId>org.springframework.security</groupId>
+    <artifactId>spring-security-crypto</artifactId>
+    <version>5.8.0</version> <!-- 원하는 버전, 안정적으로 5.8.0 사용 가능 -->
+</dependency>
    
 	</dependencies>
 

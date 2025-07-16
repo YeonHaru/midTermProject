@@ -96,7 +96,7 @@ public class BookServiceImpl implements BookService {
 
 //	도서 구매 : 덕규
 	@Override
-	public BookVO getBookById(int bno) {
+	public BookVO getBookById(int bno)  {
 		return bookMapper.getBookById(bno);
 	}
 	

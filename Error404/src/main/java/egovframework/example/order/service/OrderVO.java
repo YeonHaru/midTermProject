@@ -28,6 +28,20 @@ public class OrderVO extends Criteria {
     private Date odate;        // 주문일자
     private String ostatus;    // 주문 상태
     private int total;         // 총 주문 금액
+    
+    private String recipient;
+    private String phone;
+    private String address;
+    private String memo;
+    private String paymentMethod;
 
     private List<OrderItemVO> items; // 주문 상세 리스트 (1:N)
+    
+    public List<OrderItemVO> getItems() {
+        return items;
+    }
+
+    public void setItems(List<OrderItemVO> items) {
+        this.items = items;
+    }
 }

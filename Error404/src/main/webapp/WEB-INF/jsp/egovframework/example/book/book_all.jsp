@@ -15,9 +15,11 @@
 
 
 <link rel="stylesheet"
-   href="<%=request.getContextPath()%>/css/00_style.css" />
+
+   href="${pageContext.request.contextPath}/css/00_style.css" />
 <link rel="stylesheet"
-   href="<%=request.getContextPath()%>/css/book_all.css" />
+   href="${pageContext.request.contextPath}/css/book_all.css" />
+
 <!-- 	부트스트랩 css  -->
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"

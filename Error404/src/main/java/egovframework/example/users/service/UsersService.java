@@ -6,6 +6,7 @@ package egovframework.example.users.service;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Service;
 
 import egovframework.example.book.service.BookVO;
 import egovframework.example.common.Criteria;
@@ -14,6 +15,7 @@ import egovframework.example.common.Criteria;
  * @author user
  *
  */
+@Service
 public interface UsersService {
 	List<?> selectUsersList(Criteria criteria); // 전체조회
 
@@ -49,4 +51,8 @@ public interface UsersService {
 	 int updateUserPreferences(UsersVO usersVO);
 //	 유저 프로필 사진 업로드
 	 int updateProfileImage(@Param("userid") String userid, @Param("profileImagePath") String profileImagePath);
+	 
+	 int updateUserInfo(UsersVO user);  // 유저 회원정보 수정 반영
+	 
+	 UsersVO getUserById(String userid);
 }
