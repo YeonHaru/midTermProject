@@ -5,15 +5,12 @@ package egovframework.example.giftcard.web;
 
 import java.util.List;
 
-import org.egovframe.rte.ptl.mvc.tags.ui.pagination.PaginationInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 
-import egovframework.example.common.Criteria;
-import egovframework.example.dept.web.DeptController;
+import egovframework.example.giftcard.service.GiftPresenService;
 import lombok.extern.log4j.Log4j2;
 
 /**
@@ -23,15 +20,24 @@ import lombok.extern.log4j.Log4j2;
 @Log4j2
 @Controller
 public class GiftCardController {
+//	서비스 가져오기
+	@Autowired
+	private GiftPresenService giftpresenService;
 
 //	전체조회
 	@GetMapping("/giftcard.do")
 	public String name() {
-    return "giftcard/gift_main";
+		return "giftcard/gift_main";
 	}
-	
+
 	@GetMapping("/giftcard/giftpresen.do")
-	public String presen() {
-    return "giftcard/gift_presen";
+	public String presen(Model model) {
+
+//	전체조회 서비스 메소드 실행
+		List<?> giftPresens = giftpresenService.selectGiftPresenList();
+		log.info("테스트 : " + giftPresens);
+		model.addAttribute("giftPresens", giftPresens);
+
+		return "giftcard/gift_presen";
 	}
 }
