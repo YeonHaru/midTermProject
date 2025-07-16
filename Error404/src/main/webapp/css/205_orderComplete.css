@@ -1,24 +1,59 @@
+/* 주문 완료 페이지 전용 CSS (정리된 버전) */
+
+/* 전체 컨테이너 */
 .order-complete-container {
-  max-width: 600px;
+  max-width: 720px; /* 기존 600 → 720으로 확장 */
   margin: 0 auto;
   padding: 50px 20px;
   background-color: #fefefe;
   border-radius: 12px;
-  box-shadow: 0 0 15px rgba(0,0,0,0.05);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.05);
+  text-align: center;
 }
 
+/* 제목 */
 .order-complete-container h2 {
   font-size: 26px;
   color: #2c3e50;
   margin-bottom: 20px;
+  font-weight: 700;
 }
 
+/* 일반 문단 */
 .order-complete-container p {
   font-size: 16px;
   color: #555;
   margin: 8px 0;
 }
 
+/* 아이콘 (선택사항) */
+.success-icon {
+  width: 80px;
+  margin-bottom: 20px;
+}
+
+/* 아이템 박스: 리스트 형식 */
+.item-box {
+  padding: 12px;
+  border-bottom: 1px solid #ddd;
+  text-align: left;
+}
+
+/* 주문 요약 테이블 */
+.order-complete-container table {
+  margin: 1.5rem auto;
+  width: 100%;
+  font-size: 15px;
+}
+
+.order-complete-container table th,
+.order-complete-container table td {
+  padding: 0.8rem;
+  vertical-align: middle;
+  text-align: center;
+}
+
+/* 버튼 스타일 */
 .btn-main, .btn-sub {
   display: inline-block;
   padding: 10px 20px;
@@ -26,11 +61,16 @@
   text-decoration: none;
   font-size: 15px;
   margin-top: 15px;
+  transition: background-color 0.3s;
 }
 
 .btn-main {
   background-color: #2c3e50;
   color: #fff;
+}
+
+.btn-main:hover {
+  background-color: #1a252f;
 }
 
 .btn-sub {
@@ -39,11 +79,25 @@
   margin-left: 10px;
 }
 
-.success-icon {
-  width: 80px;
-  margin-bottom: 20px;
+.btn-sub:hover {
+  background-color: #bbb;
 }
-.item-box {
-  padding: 12px;
-  border-bottom: 1px solid #ddd;
+
+/* 반응형 대응 */
+@media (max-width: 576px) {
+  .order-complete-container {
+    padding: 40px 15px;
+  }
+
+  .btn-main,
+  .btn-sub {
+    display: block;
+    width: 100%;
+    margin-top: 10px;
+    margin-left: 0 !important;
+  }
+
+  .order-complete-container table {
+    font-size: 14px;
+  }
 }

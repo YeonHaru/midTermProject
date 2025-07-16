@@ -1,53 +1,31 @@
 @charset "UTF-8";
-.special-book-container {
-  display: flex;
-  gap: 2rem;
-  border: 2px solid var(--accent-color-1);
-  padding: 2rem;
-  border-radius: 12px;
-  background-color: var( --main-color);
+
+/* 기본 테이블 스타일 */
+.table {
+  font-size: 14px;
 }
 
-.special-book-image img {
-  width: 160px;
-  height: auto;
-  border-radius: 8px;
+.table thead {
+  background-color: #fdeef3 !important;
 }
 
-.special-book-info {
-  flex: 1;
+.table thead th {
+  color: #d81b60 !important;
+  font-weight: 600 !important;
 }
 
-.special-book-title {
-  font-size: 1.8rem;
-  font-weight: bold;
-  margin-bottom: 1rem;
-  color: #222;
-}
-
-.special-book-text {
-  font-size: 0.95rem;
-  color: #555;
-  line-height: 1.6;
-}
-
-.price-sale {
-  color: #e60023;
-  font-weight: bold;
-}
-
-.special-button-group {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  margin-top: 1rem;
-}
-
-.cart-form input.quantity-input {
+.table td img {
   width: 60px;
-  text-align: center;
+  height: auto;
+  border-radius: 6px;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.1);
 }
 
+.special-book-table td {
+  vertical-align: middle;
+}
+
+/* 버튼 스타일 */
 button.btn-cart,
 button.btn-buy,
 button.btn-gift,
@@ -71,4 +49,67 @@ button.btn-gift {
 
 button.btn-save {
   background-color: #555;
+}
+
+/* 부트스트랩 버튼 오버라이드 - 연분홍 계열 */
+.btn-primary {
+  background-color: #f48fb1 !important;
+  border-color: #f48fb1 !important;
+  color: white !important;
+}
+
+.btn-primary:hover {
+  background-color: #ec407a !important;
+  border-color: #ec407a !important;
+}
+
+.btn-success {
+  background-color: #f06292 !important;
+  border-color: #f06292 !important;
+  color: white !important;
+}
+
+.btn-success:hover {
+  background-color: #d81b60 !important;
+  border-color: #d81b60 !important;
+}
+
+/* 수량 입력 필드 스타일 */
+input[type="number"].form-control {
+  border: 1px solid #f48fb1 !important;
+  border-radius: 6px;
+  transition: border-color 0.3s;
+}
+
+input[type="number"].form-control:focus {
+  border-color: #ec407a !important;
+  box-shadow: 0 0 0 0.1rem rgba(244, 143, 177, 0.4) !important;
+}
+
+/* 가격 강조 */
+.price-sale {
+  color: #e60023;
+  font-weight: bold;
+}
+
+/* 반응형: 태블릿 이상 (768px~) */
+@media screen and (min-width: 768px) {
+  .table {
+    font-size: 15px;
+  }
+
+  .table td img {
+    width: 80px;
+  }
+}
+
+/* 반응형: PC 이상 (1024px~) */
+@media screen and (min-width: 1024px) {
+  .table {
+    font-size: 16px;
+  }
+
+  .table td img {
+    width: 100px;
+  }
 }

@@ -131,6 +131,8 @@
 								href="${pageContext.request.contextPath}/logout.do">로그아웃</a></li>
 							<li class="nav-item"><a class="nav-link"
 								href="${pageContext.request.contextPath}/mypage.do">마이페이지</a></li>
+							<li class="nav-item"><a class="nav-link"
+								href="${pageContext.request.contextPath}/cart.do">장바구니</a></li>
 						</c:when>
 						<c:otherwise>
 
@@ -143,7 +145,7 @@
 
 
 
-					<li class="nav-item"><a class="nav-link" href="/cart.do">장바구니</a></li>
+					<!-- <li class="nav-item"><a class="nav-link" href="/cart.do">장바구니</a></li> -->
 					<li class="nav-item"><a class="nav-link"
 						href="${pageContext.request.contextPath}/mapview.do">매장안내</a></li>
 				</ul>

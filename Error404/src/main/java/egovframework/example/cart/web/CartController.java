@@ -95,6 +95,28 @@ public class CartController {
 	        return "fail";
 	    }
 	}
+//	덕규: 7월16일
+	@PostMapping("/cart/add.do")
+	@ResponseBody
+	public String addToCart(@RequestParam("bno") int bno,
+	                        				@RequestParam(value = "quantity", defaultValue = "1") int quantity,
+	                        HttpSession session) {
+
+	    String userId = (String) session.getAttribute("userId");
+	    System.out.println("🧾 [장바구니 요청] userId=" + userId + ", bno=" + bno);
+
+	    if (userId == null) {
+	        return "login";
+	    }
+
+	    try {
+	        cartService.addToCart(userId, bno, quantity);
+	        return "sussess";
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	        return "fail";
+	    }
+	}
 
 
 	

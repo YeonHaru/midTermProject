@@ -104,6 +104,39 @@
 	}
 
 	$(document).ready(function() {
+		
+		$('#btnBuyNow').on('click', function (e) {
+			  e.preventDefault(); // a태그 또는 버튼의 기본 이동 방지
+
+			  const $checkedRows = $('.row-check:checked');
+
+			  if ($checkedRows.length === 0) {
+			    alert("상품을 선택해주세요.");
+			    return;
+			  }
+
+			  const $form = $('#buyNowForm');
+			  $form.empty(); // 기존 input 초기화 (중복 방지)
+
+			  $checkedRows.each(function () {
+			    const $row = $(this).closest('tr');
+			    const dno = $row.attr('data-dno');
+			    const qty = $row.find('.qty-input').val();
+
+			    if (!dno || !qty) {
+			      alert("상품 정보가 누락되었습니다.");
+			      return false; // break
+			    }
+
+			    // hidden input 추가
+			    $form.append(`<input type="hidden" name="dno" value="${dno}" />`);
+			    $form.append(`<input type="hidden" name="qty" value="${qty}" />`);
+			  });
+
+			  console.log("🧾 선택한 상품 POST 전송!");
+			  $form.submit();
+			});
+		
 		// 초기 총 금액 계산
 		updateTotalPrice();
 
@@ -206,38 +239,6 @@
 				}
 			});
 			
-			$('#btnBuyNow').on('click', function (e) {
-				  e.preventDefault(); // a태그 또는 버튼의 기본 이동 방지
-
-				  const $checkedRows = $('.row-check:checked');
-
-				  if ($checkedRows.length === 0) {
-				    alert("상품을 선택해주세요.");
-				    return;
-				  }
-
-				  const $form = $('#buyNowForm');
-				  $form.empty(); // 기존 input 초기화 (중복 방지)
-
-				  $checkedRows.each(function () {
-				    const $row = $(this).closest('tr');
-				    const dno = $row.attr('data-dno');
-				    const qty = $row.find('.qty-input').val();
-
-				    if (!dno || !qty) {
-				      alert("상품 정보가 누락되었습니다.");
-				      return false; // break
-				    }
-
-				    // hidden input 추가
-				    $form.append(`<input type="hidden" name="dno" value="${dno}" />`);
-				    $form.append(`<input type="hidden" name="qty" value="${qty}" />`);
-				  });
-
-				  console.log("🧾 선택한 상품 POST 전송!");
-				  $form.submit();
-				});
-
 		});
 	});
 </script>

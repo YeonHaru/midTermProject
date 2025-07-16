@@ -1,72 +1,80 @@
-@charset "UTF-8";
+/* 주문서 페이지 전용 CSS */
 
 .order-form-container {
-  max-width: 800px;
+  max-width: 720px;
   margin: 0 auto;
-  padding: 40px 20px;
-  background-color: #fff;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(255, 105, 180, 0.1); /* 연분홍 그림자 */
+  padding: 50px 20px;
+  background-color: #fefefe;
+  border-radius: 12px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.05);
 }
 
 .order-form-container h2 {
-  font-size: 28px;
+  font-size: 26px;
+  color: #2c3e50;
   margin-bottom: 30px;
   text-align: center;
-  color: #e91e63; /* 진한 핑크 */
 }
 
-.order-book-info {
-  background-color: #fff0f5; /* 라이트 핑크 */
-  padding: 20px;
-  border-radius: 8px;
-  margin-bottom: 30px;
-  border: 1px solid #f8bbd0; /* 연핑크 테두리 */
+.ordered-items h3,
+.order-shipping-form h3 {
+  font-size: 20px;
+  color: #333;
+  margin-bottom: 20px;
 }
 
-.order-book-info p {
+/* 주문 요약 */
+.order-summary p {
   font-size: 16px;
-  margin: 8px 0;
+  color: #444;
+}
+
+/* 배송 폼 */
+.order-shipping-form .form-group {
+  margin-bottom: 15px;
+}
+
+.order-shipping-form label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
   color: #333;
 }
 
-.order-shipping-info h3 {
-  font-size: 20px;
-  margin-bottom: 20px;
-  color: #d81b60; /* 중간 핑크 */
-}
-
-.order-shipping-info label {
-  display: block;
-  font-size: 15px;
-  margin-bottom: 15px;
-  color: #555;
-}
-
-.order-shipping-info input[type="text"] {
+.order-shipping-form input,
+.order-shipping-form select {
   width: 100%;
   padding: 10px;
-  font-size: 14px;
-  border: 1px solid #f8bbd0;
+  font-size: 15px;
+  border: 1px solid #ccc;
   border-radius: 6px;
-  margin-top: 5px;
-  background-color: #fff;
+  box-sizing: border-box;
 }
 
+/* 버튼 */
 .btn-submit {
-  display: block;
-  margin: 30px auto 0;
-  padding: 12px 30px;
-  background-color: #ec407a; /* 버튼 핑크 */
+  background-color: #2c3e50;
   color: #fff;
+  padding: 12px 24px;
+  font-size: 16px;
   border: none;
   border-radius: 8px;
-  font-size: 16px;
   cursor: pointer;
-  transition: background-color 0.2s;
+  transition: background-color 0.3s;
 }
 
 .btn-submit:hover {
-  background-color: #d81b60; /* hover 시 더 진한 핑크 */
+  background-color: #1a252f;
 }
 
+/* 반응형 */
+@media (max-width: 576px) {
+  .order-form-container {
+    padding: 30px 15px;
+  }
+
+  .btn-submit {
+    width: 100%;
+    font-size: 15px;
+  }
+}

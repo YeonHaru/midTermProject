@@ -190,6 +190,12 @@
 
     </div>
   </div>
+  
+  <!-- 바로구매 전송용 form (단일 구매) -->
+<form id="buyNowForm" method="post" action="${pageContext.request.contextPath}/order/buyNowForm.do">
+  <input type="hidden" name="dno" />
+  <input type="hidden" name="qty" />
+</form>
 
   <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
   <script>
@@ -212,5 +218,23 @@
       },
     });
   </script>
+  <!-- 바로구매 -->
+  <script>
+document.addEventListener("DOMContentLoaded", () => {
+  const btnBuy = document.querySelector(".btn-buy");
+  const qtyInput = document.querySelector("#quantity"); // 수량 입력칸
+
+  btnBuy?.addEventListener("click", () => {
+    const bno = "${book.bno}";
+    const qty = qtyInput?.value || 1;
+
+    const form = document.getElementById("buyNowForm");
+    form.querySelector("input[name='dno']").value = bno;
+    form.querySelector("input[name='qty']").value = qty;
+
+    form.submit();
+  });
+});
+</script>
 </body>
 </html>

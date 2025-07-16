@@ -35,6 +35,27 @@
 			#{cno}
 		</foreach>
 	</delete>
+	
+	<!-- 이미 있는 장바구니 항목인지 확인 :덕규-->
+<select id="findCartItem" parameterType="map" resultType="CartVO">
+	SELECT *
+	FROM CART
+	WHERE USERID = #{userId}
+	  AND BNO = #{bno}
+</select>
+
+<!-- 장바구니 수량 수정 (cno 기준) -->
+<update id="updateCartQuantity" parameterType="map">
+	UPDATE CART
+	SET QUANTITY = #{quantity}
+	WHERE CNO = #{cno}
+</update>
+
+<!-- 장바구니 새로 추가 -->
+<insert id="insertCart" parameterType="CartVO">
+	INSERT INTO CART (CNO, USERID, BNO, QUANTITY)
+	VALUES (CART_SEQ.NEXTVAL, #{userId}, #{bno}, #{quantity})
+</insert>
 
 </mapper>	
 
