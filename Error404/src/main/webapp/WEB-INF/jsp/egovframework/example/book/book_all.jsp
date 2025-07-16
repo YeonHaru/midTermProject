@@ -29,6 +29,12 @@
 	href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 </head>
 <body>
+<%-- 디버깅용 --%>
+<%
+  String uid = (String) session.getAttribute("userId");
+  System.out.println("✅ book_all.jsp session userId = " + uid);
+%>
+
 	<jsp:include page="/common/header.jsp" />
 	<div class="page mt5">
 	<form id="listForm" name="listForm" method="get">
@@ -89,8 +95,8 @@
 								</p>
 							</div>
 							<div class="button-group mt2">
-								<button>장바구니</button>
-								<button>바로구매</button>
+								<button type="button" class="btn-add-cart" data-bno="${book.bno}">장바구니</button>
+								<button type="button" class="btn-buy-now" data-bno="${book.bno}">바로구매</button>
 							</div>
 						</div>
 					</div>
@@ -105,10 +111,13 @@
           
 	</form>
 	</div>
+	<!-- 바로구매 전송용 form -->
+<form id="buyNowForm" method="post" action="${pageContext.request.contextPath}/order/buyNowForm.do">
+  <input type="hidden" name="dno" />
+  <input type="hidden" name="qty" value="1" />
+</form>
 
 
-	<!-- 자바스크립트 연결 -->
-	<script src="<%=request.getContextPath()%>/js/MenuDt_all.js"></script>
 	<!-- jquery -->
 	<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 	<!-- 외부 JS 라이브러리 : jquery 쓸때 필요한 라이브러리 밑 스와이프 기능들 -->
@@ -120,6 +129,56 @@
 		src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 		 <!-- 페이징 라이브러리 -->
     <script src="/js/jquery.twbsPagination.js" type="text/javascript"></script>
+    
+    <!-- 바로구매  -->
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+	  const contextPath = '${pageContext.request.contextPath}';
+	  console.log("📍 contextPath =", contextPath);
+
+	  const buyNowButtons = document.querySelectorAll(".btn-buy-now");
+	  buyNowButtons.forEach(btn => {
+	    btn.addEventListener("click", () => {
+	      const bno = btn.dataset.bno;
+	      const form = document.getElementById("buyNowForm");
+	      form.querySelector("input[name='dno']").value = bno;
+	      form.querySelector("input[name='qty']").value = 1;
+	      form.submit();
+	    });
+	  });
+
+	  const addCartButtons = document.querySelectorAll(".btn-add-cart");
+	  addCartButtons.forEach(btn => {
+	    btn.addEventListener("click", () => {
+	      const bno = btn.dataset.bno;
+
+	      fetch(`${contextPath}/cart/add.do`, {
+	        method: "POST",
+	        headers: {
+	          "Content-Type": "application/x-www-form-urlencoded"
+	        },
+	        body: `bno=${bno}&quantity=1`
+	      })
+	      .then(response => response.text())
+	      .then(result => {
+	        console.log("🧪 서버 응답값:", result);
+	        if (result === "success") {
+	          alert("✅ 장바구니에 추가되었습니다.");
+	        } else if (result === "login") {
+	          alert("로그인이 필요합니다.");
+	          window.location.href = `${contextPath}/login.do`;
+	        } else {
+	          alert("❌ 장바구니 추가 실패");
+	        }
+	      })
+	      .catch(err => {
+	        alert("🚨 서버 오류 발생!");
+	        console.error(err);
+	      });
+	    });
+	  });
+	});
+</script>
 		
 	<!-- 페이징(려경) -->
 		<script type="text/javascript">
@@ -153,5 +212,7 @@
         },
       });
     </script>
+    	<!-- 자바스크립트 연결 -->
+	<script src="<%=request.getContextPath()%>/js/MenuDt_all.js"></script>
 </body>
 </html>

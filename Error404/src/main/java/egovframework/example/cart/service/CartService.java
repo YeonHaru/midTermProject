@@ -9,4 +9,5 @@ public interface CartService {
 	void updateQuantity(int cno, int quantity); // 수량 변경 (종일)
 
 	void deleteCartItems(List<Integer> cnos);
+	void addToCart(String userId, int bno, int quantity);  // 장바구니 추가 : 덕규
 }

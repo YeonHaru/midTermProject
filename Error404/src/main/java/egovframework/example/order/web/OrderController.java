@@ -3,7 +3,11 @@
  */
 package egovframework.example.order.web;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -23,11 +27,13 @@ import egovframework.example.order.service.OrderVO;
 import egovframework.example.users.service.UsersService;
 import egovframework.example.users.service.UsersVO;
 import egovframework.example.wishlist.service.WishlistService;
+import lombok.extern.log4j.Log4j2;
 
 /**
  * @author user
  *
  */
+@Log4j2
 @Controller
 public class OrderController {
 
@@ -112,14 +118,20 @@ public class OrderController {
 		public String buyNowForm(HttpServletRequest request, Model model) {
 		    String[] dnoArr = request.getParameterValues("dno");
 		    String[] qtyArr = request.getParameterValues("qty");
+//		    String totalStr = request.getParameter("totalPrice");
+
+		    log.info("전달된 dno: {}", Arrays.toString(dnoArr));
+		    log.info("전달된 qty: {}", Arrays.toString(qtyArr));
+//		    log.info("전달된 totalPrice: {}", totalStr);
 
 		    if (dnoArr == null || qtyArr == null || dnoArr.length != qtyArr.length) {
-		        System.out.println("❌ 파라미터 오류: dno 또는 qty가 null이거나 개수 불일치");
+		        log.warn("❌ 파라미터 오류: dno 또는 qty가 null이거나 개수 불일치");
 		        return "redirect:/cart.do";
 		    }
 
 		    List<BookVO> selectedBooks = new ArrayList<>();
 		    List<Integer> quantities = new ArrayList<>();
+//		    int totalPrice = 0;
 
 		    for (int i = 0; i < dnoArr.length; i++) {
 		        try {
@@ -130,16 +142,25 @@ public class OrderController {
 		            if (book != null) {
 		                selectedBooks.add(book);
 		                quantities.add(qty);
+//		                totalPrice += book.getDprice() * qty;
+		                log.info("✅ 책 추가: {} / 수량: {}", book.getTitle(), qty);
+		            } else {
+		                log.warn("⚠️ BookVO가 null입니다. dno = {}", dno);
 		            }
-		        } catch (Exception e) {
-		            e.printStackTrace();
+		        } catch (NumberFormatException e) {
+		            log.error("숫자 파싱 오류", e);
 		        }
 		    }
 
+
+
 		    model.addAttribute("selectedBooks", selectedBooks);
 		    model.addAttribute("quantities", quantities);
-		    return "order/orderForm";
+//		    model.addAttribute("totalPrice", totalPrice);
+
+		    return "order/orderForm";  // 주문 입력 폼 JSP
 		}
+		
 
 }
 

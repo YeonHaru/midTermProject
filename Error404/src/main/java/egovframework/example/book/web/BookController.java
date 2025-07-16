@@ -2,6 +2,8 @@ package egovframework.example.book.web;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
+import java.util.HashSet;
 
 import javax.servlet.http.HttpSession;
 
@@ -11,7 +13,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -96,23 +97,23 @@ public class BookController {
    // 오늘의 도서 특가 : 덕규
    @RequestMapping("/todaySpecial.do")
    public String todaySpecial(Model model) {
-	    List<BookVO> randomBooks = new ArrayList<>();
-  // 반복문 2개 출력
-	    for (int i = 0; i < 2; i++) {
-	        BookVO randomBook = bookService.getRandomOnSaleBook();
+       List<BookVO> randomBooks = new ArrayList<>();
+       Set<Integer> usedIds = new HashSet<>();
 
-	        if (randomBook == null) {
-	            randomBook = new BookVO();
-	            randomBook.setTitle("도서 없음");
-	            randomBook.setFileUrl("/images/default.jpg");
-	        }
+       int count = 0;
+       while (count < 2) {
+           BookVO randomBook = bookService.getRandomOnSaleBook();
 
-	        randomBooks.add(randomBook); 
-	    }
+           if (randomBook != null && !usedIds.contains(randomBook.getBno())) {
+               randomBooks.add(randomBook);
+               usedIds.add(randomBook.getBno());
+               count++;
+           }
+       }
 
-	    model.addAttribute("books", randomBooks);
-	    return "today_special/todaySpecial";
-	}
+       model.addAttribute("books", randomBooks);
+       return "today_special/todaySpecial";
+   }
    
 //   구매 : 덕규
    @RequestMapping(value = "/order/form.do", method =  RequestMethod.POST)
