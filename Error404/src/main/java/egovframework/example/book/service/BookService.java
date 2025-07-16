@@ -17,5 +17,4 @@ public interface BookService {
 
 	BookVO getRandomOnSaleBook();	// 랜덤도서 1권 가져오는용(덕규)
 	BookVO getBookById(int bno);			// 도서 구매(덕규)
-
 }

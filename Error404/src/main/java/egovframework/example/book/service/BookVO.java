@@ -17,24 +17,24 @@ import lombok.ToString;
 @ToString
 @EqualsAndHashCode(callSuper = false)
 public class BookVO extends Criteria {
-	
-    private int bno;               // 도서 번호 (PK)
-    private String title;          // 제목
-    private String author;         // 저자
-    private String publisher;      // 출판사
-    private byte[] bimg;           // 이미지 (BLOB 처리)
-    private Date pubDate;          // 출간일
-    private int fprice;            // 정가
-    private int dprice;            // 할인가
-    private int stock;             // 재고 수량
-    private String des;   		   // 책 소개 (CLOB → String으로 매핑됨)
-    private int bcid;              // 카테고리 ID
-    private String fileUrl; 	   // 이미지 다운로드를 위한 URL
-    private Double discount;	   // 할인율 (메인페이지 할인율 플립도서용)
-   
-    private int orderCount;		   // 주문수(메인페이지 베스트셀러에서 활용 승화)
-    	private boolean newFlag;    // 신규 여부(메인페이지 베스트셀러에서 활용 승화)
-    	private int rankUp;         // 순위 상승(메인페이지 베스트셀러에서 활용 승화)
-    	private int rankDown;       // 순위 하락(메인페이지 베스트셀러에서 활용 승화)
-	
+
+	private int bno; // 도서 번호 (PK)
+	private String title; // 제목
+	private String author; // 저자
+	private String publisher; // 출판사
+	private byte[] bimg; // 이미지 (BLOB 처리)
+	private Date pubDate; // 출간일
+	private int fprice; // 정가
+	private int dprice; // 할인가
+	private int stock; // 재고 수량
+	private String des; // 책 소개 (CLOB → String으로 매핑됨)
+	private int bcid; // 카테고리 ID
+	private String fileUrl; //이미지 다운로드를 위한 URL
+	private Double discount; // 할인율 (메인페이지 할인율 플립도서용)
+
+	private int orderCount; // 주문수(메인페이지 베스트셀러에서 활용 승화)
+	private boolean newFlag; // 신규 여부(메인페이지 베스트셀러에서 활용 승화)
+	private int rankUp; // 순위 상승(메인페이지 베스트셀러에서 활용 승화)
+	private int rankDown; // 순위 하락(메인페이지 베스트셀러에서 활용 승화)
+
 }

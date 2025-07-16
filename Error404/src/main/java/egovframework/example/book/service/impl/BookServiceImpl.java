@@ -99,8 +99,7 @@ public class BookServiceImpl implements BookService {
 	public BookVO getBookById(int bno)  {
 		return bookMapper.getBookById(bno);
 	}
-	
 
-	
+
 	
 }
