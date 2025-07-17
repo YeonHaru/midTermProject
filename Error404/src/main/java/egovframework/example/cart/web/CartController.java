@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import egovframework.example.book.service.BookImgDTO;
 import egovframework.example.cart.service.CartService;
 import egovframework.example.common.Criteria;
 import lombok.extern.log4j.Log4j2;
@@ -23,6 +24,7 @@ import lombok.extern.log4j.Log4j2;
 public class CartController {
 
 	@Autowired CartService cartService;
+	@Autowired BookImgDTO bookImgDTO;
 	
 	@GetMapping("/cart.do")
 	public String cartList(

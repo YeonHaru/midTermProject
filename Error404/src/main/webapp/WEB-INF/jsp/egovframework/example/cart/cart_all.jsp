@@ -55,7 +55,7 @@
 						<td><input type="checkbox" class="row-check" /></td>
 						<td>
 							<div class="thumb-wrapper">
-								<img src="/images/sample.jpg" alt="${item.title}" class="thumb" />
+								<img src="" alt="${item.title}" class="thumb" />
 							</div>
 						</td>
 						<td class="desc">
