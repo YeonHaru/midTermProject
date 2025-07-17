@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
 <!DOCTYPE html>
 <html>
   <head>
@@ -26,24 +27,26 @@ pageEncoding="UTF-8"%>
           </select>
         </div>
       </div>
+      <c:forEach var="data" items="${giftBuys}">
       <div class="gift-item">
         <div class="gift-left">
           <input type="checkbox" class="gift-checkbox" />
           <img
-            src="https://via.placeholder.com/100x100?text=GIFT"
+            src="<c:out value="${data.photo}"></c:out>"
             alt="기프트 이미지"
             class="gift-image"
           />
         </div>
         <div class="gift-right">
           <div class="gift-info">
-            <p class="gift-title">기프트카드 10만원</p>
-            <p class="gift-price">100,000</p>
+            <p class="gift-title"><c:out value="${data.name}"></c:out></p>
+            <p class="gift-price"><c:out value="${data.money}"></c:out></p>
             <button class="wishlist-btn">🤍</button>
           </div>
           <button class="buy-btn">구매하기</button>
         </div>
       </div>
+    </c:forEach>
     </section>
     <!-- 찜 저장 -->
     <script>
@@ -74,5 +77,6 @@ pageEncoding="UTF-8"%>
         });
       });
     </script>
+    
   </body>
 </html>
