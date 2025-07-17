@@ -37,130 +37,133 @@ import lombok.extern.log4j.Log4j2;
 @Controller
 public class OrderController {
 
-		@Autowired
-		private BookService bookService;	
-	
-		@Autowired
-		private UsersService userService;
-	
-		@Autowired
-		private WishlistService wishlistService;
-	
-		@Autowired
-		private OrderService orderService;
+	@Autowired
+	private BookService bookService;
 
-		
-		@PostMapping("/order/submit.do")
-		public String submitOrder(
-		    @RequestParam("bnoList") List<Integer> bnoList,
-		    @RequestParam("qtyList") List<Integer> qtyList,
-		    @RequestParam String recipient,
-		    @RequestParam String phone,
-		    @RequestParam String address,
-		    @RequestParam(required = false) String memo,
-		    @RequestParam(required = false) String paymentMethod,
-		    HttpSession session,
-		    Model model
-		) {
-		    UsersVO loginUser = (UsersVO) session.getAttribute("loginUser");
+	@Autowired
+	private UsersService userService;
 
-		    if (loginUser == null) {
-		        return "redirect:/login.do";
-		    }
+	@Autowired
+	private WishlistService wishlistService;
 
-		    // 총액 계산 및 주문 아이템 생성
-		    List<OrderItemVO> items = new ArrayList<>();
-		    int total = 0;
+	@Autowired
+	private OrderService orderService;
 
-		    for (int i = 0; i < bnoList.size(); i++) {
-		        int bno = bnoList.get(i);
-		        int qty = qtyList.get(i);
-		        BookVO book = bookService.getBookById(bno);  //도서조회를 합니다잉
+	@PostMapping("/order/submit.do")
+	public String submitOrder(@RequestParam("dnoList") List<Integer> bnoList,
+			@RequestParam("qtyList") List<Integer> qtyList, @RequestParam String recipient, @RequestParam String phone,
+			@RequestParam String address, @RequestParam(required = false) String memo,
+			@RequestParam(required = false) String paymentMethod, HttpSession session, Model model) {
+		UsersVO loginUser = (UsersVO) session.getAttribute("loginUser");
 
-		        int itemPrice = book.getDprice() * qty;
-
-		        OrderItemVO item = new OrderItemVO();
-		        item.setBno(bno);
-		        item.setQty(qty);
-		        item.setPrice(itemPrice);
-		        
-		        item.setBook(book);		// 북브이오 객체를 세팅합니다
-
-		        items.add(item);
-		        total += itemPrice;
-		    }
-
-		    // 주문 객체 생성
-		    OrderVO order = new OrderVO();
-		    order.setUserid(loginUser.getUserid());
-		    order.setOstatus("결제완료");
-		    order.setTotal(total);
-		    order.setItems(items);
-		    
-		 //  배송 관련 필드 추가 설정
-		    order.setRecipient(recipient);
-		    order.setPhone(phone);
-		    order.setAddress(address);
-		    order.setMemo(memo);
-		    order.setPaymentMethod(paymentMethod);
-
-		    // 주문 저장
-		    int ono = orderService.insertOrder(order);
-
-		    // 주문 객체에 다시 주문번호 설정
-		    order.setOno(ono);
-
-		    model.addAttribute("order", order);
-		    return "order/submit";
+		if (loginUser == null) {
+			return "redirect:/login.do";
 		}
 
-		@PostMapping("/order/buyNowForm.do")
-		public String buyNowForm(HttpServletRequest request, Model model) {
-		    String[] dnoArr = request.getParameterValues("dno");
-		    String[] qtyArr = request.getParameterValues("qty");
-//		    String totalStr = request.getParameter("totalPrice");
+		// 총액 계산 및 주문 아이템 생성
+		List<OrderItemVO> items = new ArrayList<>();
+		int total = 0;
 
-		    log.info("전달된 dno: {}", Arrays.toString(dnoArr));
-		    log.info("전달된 qty: {}", Arrays.toString(qtyArr));
-//		    log.info("전달된 totalPrice: {}", totalStr);
+		for (int i = 0; i < bnoList.size(); i++) {
+			int bno = bnoList.get(i);
+			int qty = qtyList.get(i);
+			BookVO book = bookService.getBookById(bno); // 도서조회를 합니다잉
 
-		    if (dnoArr == null || qtyArr == null || dnoArr.length != qtyArr.length) {
-		        log.warn("❌ 파라미터 오류: dno 또는 qty가 null이거나 개수 불일치");
-		        return "redirect:/cart.do";
-		    }
+			int itemPrice = book.getDprice() * qty;
 
-		    List<BookVO> selectedBooks = new ArrayList<>();
-		    List<Integer> quantities = new ArrayList<>();
-//		    int totalPrice = 0;
+			OrderItemVO item = new OrderItemVO();
+			item.setBno(bno);
+			item.setQty(qty);
+			item.setPrice(itemPrice);
 
-		    for (int i = 0; i < dnoArr.length; i++) {
-		        try {
-		            int dno = Integer.parseInt(dnoArr[i]);
-		            int qty = Integer.parseInt(qtyArr[i]);
+			item.setBook(book); // 북브이오 객체를 세팅합니다
 
-		            BookVO book = bookService.getBookById(dno);
-		            if (book != null) {
-		                selectedBooks.add(book);
-		                quantities.add(qty);
-//		                totalPrice += book.getDprice() * qty;
-		                log.info("✅ 책 추가: {} / 수량: {}", book.getTitle(), qty);
-		            } else {
-		                log.warn("⚠️ BookVO가 null입니다. dno = {}", dno);
-		            }
-		        } catch (NumberFormatException e) {
-		            log.error("숫자 파싱 오류", e);
-		        }
-		    }
-
-
-
-		    model.addAttribute("selectedBooks", selectedBooks);
-		    model.addAttribute("quantities", quantities);
-//		    model.addAttribute("totalPrice", totalPrice);
-
-		    return "order/orderForm";  // 주문 입력 폼 JSP
+			items.add(item);
+			total += itemPrice;
 		}
-		
+
+		// 주문 객체 생성
+		OrderVO order = new OrderVO();
+		order.setUserid(loginUser.getUserid());
+		order.setOstatus("결제완료");
+		order.setTotal(total);
+		order.setItems(items);
+
+		// 배송 관련 필드 추가 설정
+		order.setRecipient(recipient);
+		order.setPhone(phone);
+		order.setAddress(address);
+		order.setMemo(memo);
+		order.setPaymentMethod(paymentMethod);
+
+		// 주문 저장
+		int ono = orderService.insertOrder(order);
+
+		// 주문 객체에 다시 주문번호 설정
+		order.setOno(ono);
+
+		model.addAttribute("order", order);
+		return "order/submit";
+	}
+
+	@PostMapping("/order/buyNowForm.do")
+	public String buyNowForm(HttpServletRequest request, Model model) {
+		String[] dnoArr = request.getParameterValues("dnoList");
+		String[] qtyArr = request.getParameterValues("qtyList");
+		String totalStr = request.getParameter("totalPrice");
+
+		log.info("전달된 dno: {}", Arrays.toString(dnoArr));
+		log.info("전달된 qty: {}", Arrays.toString(qtyArr));
+		log.info("전달된 totalPrice: {}", totalStr);
+
+		// dnoArr 또는 qtyArr가 null이거나 길이가 다르면 장바구니 페이지로 리다이렉트
+		if (dnoArr == null || qtyArr == null || dnoArr.length != qtyArr.length) {
+			log.warn("❌ 파라미터 오류: dno 또는 qty가 null이거나 개수 불일치");
+			return "redirect:/cart.do";
+		}
+
+		List<BookVO> selectedBooks = new ArrayList<>();
+		List<Integer> quantities = new ArrayList<>();
+
+		// 총 결제 금액을 저장할 변수 초기화
+		int totalPrice = 0;
+
+		for (int i = 0; i < dnoArr.length; i++) {
+			try {
+				// ★ 빈 문자열 체크 추가 (null, 빈값, 공백 모두 체크)
+				if (dnoArr[i] == null || dnoArr[i].trim().isEmpty() || qtyArr[i] == null
+						|| qtyArr[i].trim().isEmpty()) {
+					log.warn("빈 문자열 발견, 해당 인덱스 무시. dnoArr: '{}', qtyArr: '{}'", dnoArr[i], qtyArr[i]);
+					continue; // 빈 값이면 파싱하지 않고 다음 루프로 넘어감
+				}
+
+				// dno와 qty 문자열을 정수로 변환
+				int dno = Integer.parseInt(dnoArr[i]);
+				int qty = Integer.parseInt(qtyArr[i]);
+
+				// dno로 도서 정보 조회
+				BookVO book = bookService.getBookById(dno);
+				if (book != null) {
+					selectedBooks.add(book);
+					quantities.add(qty);
+					totalPrice += book.getDprice() * qty; // 총 가격 누적 계산
+					log.info("✅ 책 추가: {} / 수량: {}", book.getTitle(), qty);
+				} else {
+					log.warn("⚠️ BookVO가 null입니다. dno = {}", dno);
+				}
+			} catch (NumberFormatException e) {
+				// 숫자 변환 실패 시 에러 로그 출력
+				log.error("숫자 파싱 오류", e);
+			}
+		}
+
+		// JSP에서 사용할 모델에 데이터 세팅
+		model.addAttribute("selectedBooks", selectedBooks);
+		model.addAttribute("quantities", quantities);
+		model.addAttribute("totalPrice", totalPrice);
+
+		// 주문서 작성 폼 페이지로 이동
+		return "order/orderForm";
+	}
 
 }
-

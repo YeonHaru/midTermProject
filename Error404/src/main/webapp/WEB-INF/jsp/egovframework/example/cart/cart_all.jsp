@@ -23,7 +23,7 @@
 	href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 </head>
 <!-- 디버깅용: 서버에서 전달된 값 확인 -->
-<p>서버 전달 totalPrice: ${totalPrice}</p>
+<%-- <p>서버 전달 totalPrice: ${totalPrice}</p> --%>
 <jsp:include page="/common/header.jsp" />
 <body class="bg">
 	<div class="page">
@@ -72,14 +72,18 @@
 
 		<div class="cart-summary tcenter">
 			<p>
-				<strong>총 금액:</strong> 
-				<fmt:formatNumber
-								value="${totalPrice}" type="number" />원
+				<strong>총 금액:</strong>
+				<fmt:formatNumber value="${totalPrice}" type="number" />
+				원
 			</p>
 			<!-- 주문 폼 추가 -->
 			<form id="buyNowForm" method="POST"
 				action="${pageContext.request.contextPath}/order/buyNowForm.do">
-				<!-- JS에서 hidden input들을 여기에 삽입함 -->
+
+				<!-- 기존 JSP에서 동적 생성할 hidden input과 중복되므로 제거 -->
+
+				<input type="hidden" name="totalPrice" value="${totalPrice}" />
+
 				<button type="submit" class="btn-checkout mt2" id="btnBuyNow">주문하기</button>
 			</form>
 		</div>
@@ -88,98 +92,116 @@
 	<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 
 	<script>
+		const contextPath = '${pageContext.request.contextPath}';
 
-	const contextPath = '${pageContext.request.contextPath}';
+		// 총 금액 계산 및 표시 함수
+		function updateTotalPrice() {
+			let total = 0;
+			$('.cart-item').each(
+					function() {
+						const pricePerItem = parseInt($(this).find(
+								'.item-price').data('price'), 10) || 0;
+						const qty = parseInt($(this).find('.qty-input').val(),
+								10) || 0;
+						total += pricePerItem * qty;
+					});
+			const formatted = total.toLocaleString();
+			$('.cart-summary .total-price').text(`${formatted}원`);
+		}
+		// 여기 수정 7/17 강대성
+		$(document).ready(function() {
 
-	// 총 금액 계산 및 표시 함수
-	function updateTotalPrice() {
-		let total = 0;
-		$('.cart-item').each(function() {
-			const pricePerItem = parseInt($(this).find('.item-price').data('price'), 10) || 0;
-			const qty = parseInt($(this).find('.qty-input').val(), 10) || 0;
-			total += pricePerItem * qty;
-		});
-		const formatted = total.toLocaleString();
-		$('.cart-summary .total-price').text(`${formatted}원`);
-	}
+			// 주문하기 버튼 클릭 이벤트 핸들러 - 수정된 부분
 
-	$(document).ready(function() {
-		
-		$('#btnBuyNow').on('click', function (e) {
-			  e.preventDefault(); // a태그 또는 버튼의 기본 이동 방지
+			$('#btnBuyNow').on('click', function(e) {
+				e.preventDefault();
+				const $checkedRows = $('.row-check:checked');
 
-			  const $checkedRows = $('.row-check:checked');
-
-			  if ($checkedRows.length === 0) {
-			    alert("상품을 선택해주세요.");
-			    return;
-			  }
-
-			  const $form = $('#buyNowForm');
-			  $form.empty(); // 기존 input 초기화 (중복 방지)
-
-			  $checkedRows.each(function () {
-			    const $row = $(this).closest('tr');
-			    const dno = $row.attr('data-dno');
-			    const qty = $row.find('.qty-input').val();
-
-			    if (!dno || !qty) {
-			      alert("상품 정보가 누락되었습니다.");
-			      return false; // break
-			    }
-
-			    // hidden input 추가
-			    $form.append(`<input type="hidden" name="dno" value="${dno}" />`);
-			    $form.append(`<input type="hidden" name="qty" value="${qty}" />`);
-			  });
-
-			  console.log("🧾 선택한 상품 POST 전송!");
-			  $form.submit();
-			});
-		
-		// 초기 총 금액 계산
-		updateTotalPrice();
-
-		// 수량 변경 시 서버 업데이트 + 총 금액 갱신
-		$('.qty-input').on('change', function() {
-			const $row = $(this).closest('tr');
-			const cno = $row.data('cno');
-			const newQty = $(this).val();
-
-			$.ajax({
-				url: contextPath + '/cart/updateQuantity.do',
-				method: 'POST',
-				data: { cno: cno, quantity: newQty },
-				success: function(response) {
-					if (response === 'success') {
-						updateTotalPrice();
-					} else {
-						alert('수량 변경 실패');
-					}
-				},
-				error: function() {
-					alert('에러 발생!');
+				if ($checkedRows.length === 0) {
+					alert("상품을 선택해주세요.");
+					return;
 				}
+
+				const $form = $('#buyNowForm');
+				$form.find('input[type=hidden][name=dnoList]').remove();
+				$form.find('input[type=hidden][name=qtyList]').remove();
+
+				let hasError = false;
+
+				// 여기다가 넣으세요
+				$checkedRows.each(function() {
+					const $row = $(this).closest('tr');
+					const dno = $row.data('dno');
+					const qty = $row.find('.qty-input').val();
+
+					console.log("추가하는 hidden input dno:", dno, "qty:", qty); // 디버그용
+					if (!dno || !qty || qty.trim() === "") {
+						alert("상품 정보가 누락되었습니다.");
+						hasError = true;
+						return false; // each 중단
+					}
+
+					$('<input>', {
+						type : 'hidden',
+						name : 'dnoList',
+						value : dno
+					}).appendTo($form);
+					$('<input>', {
+						type : 'hidden',
+						name : 'qtyList',
+						value : qty
+					}).appendTo($form);
+				});
+
+				if (hasError)
+					return;
+
+				$form.submit();
 			});
-		});
 
-		// 전체 선택 / 해제
-		$('#checkAll').on('change', function() {
-			const isChecked = $(this).is(':checked');
-			$('.row-check').prop('checked', isChecked);
-		});
+			// 초기 총 금액 계산
+			updateTotalPrice();
 
-		// 개별 체크박스 상태에 따른 전체 선택 체크박스 상태 변경
-		$('.row-check').on('change', function() {
-			const allCount = $('.row-check').length;
-			const checkedCount = $('.row-check:checked').length;
-			$('#checkAll').prop('checked', allCount === checkedCount);
-		});
+			// 수량 변경 시 서버 업데이트 + 총 금액 갱신
+			$('.qty-input').on('change', function() {
+				const $row = $(this).closest('tr');
+				const cno = $row.data('cno');
+				const newQty = $(this).val();
 
+				$.ajax({
+					url : contextPath + '/cart/updateQuantity.do',
+					method : 'POST',
+					data : {
+						cno : cno,
+						quantity : newQty
+					},
+					success : function(response) {
+						if (response === 'success') {
+							updateTotalPrice();
+						} else {
+							alert('수량 변경 실패');
+						}
+					},
+					error : function() {
+						alert('에러 발생!');
+					}
+				});
+			});
 
-		// 개별 삭제 버튼 클릭 시
+			// 전체 선택 / 해제
+			$('#checkAll').on('change', function() {
+				const isChecked = $(this).is(':checked');
+				$('.row-check').prop('checked', isChecked);
+			});
 
+			// 개별 체크박스 상태에 따른 전체 선택 체크박스 상태 변경
+			$('.row-check').on('change', function() {
+				const allCount = $('.row-check').length;
+				const checkedCount = $('.row-check:checked').length;
+				$('#checkAll').prop('checked', allCount === checkedCount);
+			});
 
+			// 개별 삭제 버튼 클릭 시
 			$('.btn-delete').on('click', function() {
 				const $row = $(this).closest('tr');
 				const cno = $row.data('cno');
@@ -202,47 +224,49 @@
 					},
 					error : function() {
 						alert('에러 발생!');
-				}
-			});
-		});
-
-
-		// 선택된 항목 일괄 삭제
-		$('.btn-delete-selected').on('click', function() {
-			const checkedItems = [];
-			$('.row-check:checked').each(function() {
-				const cno = $(this).closest('tr').data('cno');
-				checkedItems.push(cno);	
-			});
-
-			if (checkedItems.length === 0) {
-				alert("삭제할 항목을 선택해주세요!");
-				return;
-			}
-
-			if (!confirm('선택한 상품을 삭제하시겠습니까?')) return;
-
-			$.ajax({
-				url: contextPath + '/cart/deleteChecked.do',
-				method: 'POST',
-				traditional: true,
-				data: { cnos: checkedItems },
-				success: function(response) {
-					if (response === 'success') {
-						location.reload();
-					} else {
-						alert('삭제 실패');
 					}
-				},
-				error: function() {
-					alert('에러 발생!');
-				}
+				});
 			});
-			
-		});
-	});
-</script>
+			console.log("체크된 체크박스 수:", $('.row-check:checked').length);
+			// 선택된 항목 일괄 삭제
+			$('.btn-delete-selected').on('click', function() {
+				const checkedItems = [];
+				$('.row-check:checked').each(function() {
+					const cno = $(this).closest('tr').data('cno');
+					checkedItems.push(cno);
+				});
 
+				if (checkedItems.length === 0) {
+					alert("삭제할 항목을 선택해주세요!");
+					return;
+				}
+
+				if (!confirm('선택한 상품을 삭제하시겠습니까?'))
+					return;
+
+				$.ajax({
+					url : contextPath + '/cart/deleteChecked.do',
+					method : 'POST',
+					traditional : true,
+					data : {
+						cnos : checkedItems
+					},
+					success : function(response) {
+						if (response === 'success') {
+							location.reload();
+						} else {
+							alert('삭제 실패');
+						}
+					},
+					error : function() {
+						alert('에러 발생!');
+					}
+				});
+
+			});
+
+		});
+	</script>
 
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
