@@ -21,8 +21,9 @@
           교환권으로 편리한 선물과 쇼핑을 도와줍니다!
         </p>
         <div class="buttons">
-          <button class="btn-outline">선물하기</button>
-          <button class="btn-filled">구매하기</button>
+          <a href="/giftcard/giftpresen.do" class="btn-outline">선물하기</a>
+          <a href="/giftcard/giftbuy.do" class="btn-filled">구매하기</a>
+           
         </div>
       </div>
     </section>

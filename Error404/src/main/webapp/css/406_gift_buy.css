@@ -1,0 +1,129 @@
+/* 기본 설정 */
+body {
+  font-family: 'Noto Sans KR', sans-serif;
+  background-color: #f9f9f9;
+  margin: 0;
+  padding: 2vh 5%;
+}
+
+/* 전체 컨테이너 */
+.gift-select-container {
+  max-width: 800px;
+  margin: 0 auto;
+  background: #fff;
+  padding: 2vh 2vw;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.05);
+}
+
+/* 전체 선택 */
+.gift-select-header {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  font-size: 1rem;
+  margin-bottom: 2vh;
+  gap: 3rem;
+}
+
+/* 왼쪽 영역 */
+.select-left {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+}
+
+/* 정렬 드롭다운 */
+.sort-dropdown {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.sort-dropdown select {
+  justify-content: flex-end;
+  padding: 0.4em 0.8em;
+  font-size: 0.95rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background-color: #fff;
+  cursor: pointer;
+}
+
+/* 개별 아이템 */
+.gift-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid #eee;
+  padding: 1.5vh 0;
+}
+
+/* 왼쪽 (체크박스 + 이미지) */
+.gift-left {
+  display: flex;
+  align-items: center;
+  gap: 1vw;
+}
+
+.gift-image {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+}
+
+/* 오른쪽 */
+.gift-right {
+  flex: 1;
+  margin-left: 2vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* 제목 + 찜 */
+.gift-info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.gift-title {
+  font-size: 1.1rem;
+  font-weight: 500;
+  margin: 0;
+}
+
+.gift-price {
+  font-size: 1rem;
+  font-weight: 400;
+  color: #555;
+  margin: 0;
+}
+
+/* 찜 버튼 */
+.wishlist-btn {
+  background: none;
+  border: none;
+  font-size: 1.3rem;
+  cursor: pointer;
+}
+
+/* 구매 버튼 */
+.buy-btn {
+  margin-top: 1vh;
+  padding: 0.6em 1.2em;
+  background-color: var(--accent-color-1);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  align-self: flex-start;
+  margin-left: auto;
+}
+
+.buy-btn:hover {
+  background-color: var(--main-color);
+}
