@@ -20,7 +20,7 @@ public interface BookImgMapper {
 	public int selectBookImgListTotCnt(Criteria criteria); 	// 총 개수 구하기
 	
 	public List<BookImgDTO> selectLatestBookImgList();
-	public List<BookImgDTO> selectRandomBookImgList();
+	public List<BookImgDTO> selectBooksByCategory(String category);
 	public List<BookImgDTO> selectFlipBookImgList();
 	public List<BookImgDTO> selectBestSellerImgList();
 }

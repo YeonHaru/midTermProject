@@ -79,7 +79,7 @@
 								<div class="side-box-badge">오늘만 특가</div>
 								<img
 									src="${pageContext.request.contextPath}/images/main/school.png"
-									alt="사무용품 세트" />
+									alt="사무용품 세트" loading="lazy" />
 								<div class="mainpage-side-box-content">
 									<h5>
 										오늘만 특가 <br /> 네오 학용품 세트
@@ -99,7 +99,7 @@
 								</div>
 								<img
 									src="${pageContext.request.contextPath}/images/main/Eco.image.png"
-									alt="에코백" />
+									alt="에코백" loading="lazy" />
 								<div class="mainpage-side-box-content">
 									<h5>
 										내일까지 특가! <br /> Eco 에코백
@@ -118,7 +118,7 @@
 								<div class="side-box-badge">한정 수량</div>
 								<img
 									src="${pageContext.request.contextPath}/images/main/bookmark.image.png"
-									alt="책갈피" />
+									alt="책갈피" loading="lazy" />
 								<div class="mainpage-side-box-content">
 									<h5>
 										한정 판매 <br /> 우주 책갈피!
@@ -207,7 +207,7 @@
 							<div class="image-box">
 								<img
 									src="<c:out value="${book.downloadUrl}"></c:out>"
-									alt="${book.title}" />
+									alt="${book.title}" loading="lazy" />
 							</div>
 							<p class="title">${book.title}</p>
 						</a>
@@ -259,18 +259,17 @@
 			</section>
 		</div>
 
-		<!-- 랜덤 도서 섹션 -->
+		<!-- 카테고리 소설 도서 섹션 -->
 		<section class="book-section new-books mb5">
-			<h3>📘 랜덤 픽! 이 책 어때요?</h3>
+			<h3>📘 소설 픽! 이 책 어때요?</h3>
 			<div class="book-list">
-				<c:forEach var="book" items="${randomBooksImgs}">
+				<c:forEach var="book" items="${novelBooksImgs}">
 					<div class="book-card">
-						<a
-							href="${pageContext.request.contextPath}/book/detail.do?bno=${book.bno}">
+						<a href="${pageContext.request.contextPath}/book/detail.do?bno=${book.bno}">
 							<div class="image-box">
 								<img
-									src="<c:out value="${book.downloadUrl}"></c:out>"
-									alt="${book.title}" />
+									src="${book.downloadUrl}"
+									alt="${book.title}" loading="lazy" />
 							</div>
 							<p class="title">${book.title}</p>
 						</a>
@@ -306,7 +305,7 @@
 										</c:if>
 										<img
 											src="<c:out value="${book.downloadUrl}"></c:out>"
-											alt="${book.title}" />
+											alt="${book.title}" loading="lazy" />
 									</div>
 
 									<!-- 책 제목 -->
