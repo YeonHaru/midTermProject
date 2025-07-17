@@ -29,6 +29,8 @@
 	href="${pageContext.request.contextPath}/css/401_pastmain.css" />
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/css/402_bestSellers.css" />
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/css/02_main.css" />
 <!-- 	부트스트랩 css  -->
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
@@ -148,13 +150,14 @@
 				<li><a href="/todaySpecial.do"><img
 						src="${pageContext.request.contextPath}/images/main/sale.svg"
 						alt="오늘만특가" /><span>오늘만특가</span></a></li>
-						<!-- alert창 띄우기 위해 수정했습니다 class pending 추가 7/16 강대성 -->
+				<!-- alert창 띄우기 위해 수정했습니다 class pending 추가 7/16 강대성 -->
 				<li><a href="#" class="pending"><img
 						src="${pageContext.request.contextPath}/images/main/app.svg"
 						alt="APP혜택" /><span>APP혜택</span></a></li>
-				<li><a href="#"><img
+				<li><a 
+					href="${pageContext.request.contextPath}/giftcard.do"><img
 						src="${pageContext.request.contextPath}/images/main/sale.svg"
-						alt="기프트카드" /><span>기프트카드</span></a></li>		
+						alt="기프트카드" /><span>기프트카드</span></a></li>
 				<li><a href="#" class="pending"><img
 						src="${pageContext.request.contextPath}/images/main/book.svg"
 						alt="바로출판" /><span>바로출판</span></a></li>
@@ -170,7 +173,7 @@
 				<li><a href="#" class="pending"><img
 						src="${pageContext.request.contextPath}/images/main/good1.svg"
 						alt="추천" /><span>추천</span></a></li>
-						<!-- 여기까지 alert창 띄우기 위해 수정했습니다 class pending 추가 7/16 강대성   -->
+				<!-- 여기까지 alert창 띄우기 위해 수정했습니다 class pending 추가 7/16 강대성   -->
 				<li><a
 					href="${pageContext.request.contextPath}/writerinfo/writerinfo.do"><img
 						src="${pageContext.request.contextPath}/images/main/Books.svg"
@@ -203,10 +206,10 @@
 			<div class="book-list">
 				<c:forEach var="book" items="${latestBookImgs}">
 					<div class="book-card">
-						<a href="${pageContext.request.contextPath}/book/detail.do?bno=${book.bno}">
+						<a
+							href="${pageContext.request.contextPath}/book/detail.do?bno=${book.bno}">
 							<div class="image-box">
-								<img
-									src="<c:out value="${book.downloadUrl}"></c:out>"
+								<img src="<c:out value="${book.downloadUrl}"></c:out>"
 									alt="${book.title}" />
 							</div>
 							<p class="title">${book.title}</p>
@@ -228,28 +231,23 @@
 		</div>
 
 
-		<!-- 베스트셀러 TOP 10 -->
-		<section class="page mt3">
-			<h2 class="tcenter mb3">베스트셀러 TOP 10</h2>
-			<ul class="best-list">
-				<c:forEach var="book" items="${bestSellers}" varStatus="status">
-					<li class="best-item"><span class="best-rank">${status.index + 1}</span>
-						<span class="best-title">
-						<a href="${pageContext.request.contextPath}/book/detail.do?bno=${book.bno}">
-						 ${book.title}
-						 </a>
-						 <!-- 신규, 순위변동 표시 (예: new, up, down) -->
-							<c:if test="${book.newFlag}">
-								<span class="best-new">new</span>
-							</c:if> <c:if test="${book.rankUp > 0}">
-								<span class="best-up">${book.rankUp}</span>
-							</c:if> <c:if test="${book.rankDown > 0}">
-								<span class="best-down">${book.rankDown}</span>
-							</c:if> 
-					</span></li>
-				</c:forEach>
-			</ul>
-		</section>
+<!-- 베스트셀러 TOP 10 -->
+<section class="page mt3">
+  <h2 class="tcenter mb3">베스트셀러 TOP 10</h2>
+  <ul class="best-list">
+    <c:forEach var="book" items="${bestSellers}" varStatus="status">
+      <li class="best-item">
+        <span class="best-rank">${status.index + 1}</span>
+        <span class="best-title">
+          <a href="${pageContext.request.contextPath}/book/detail.do?bno=${book.bno}">
+            ${book.title}
+          </a>
+          <span class="best-flags"><!-- JS에서 채움 --></span>
+        </span>
+      </li>
+    </c:forEach>
+  </ul>
+</section>
 
 		<div class="pastmain-content mt5 mb5">
 			<!-- AI 추천 picks 배너 -->
@@ -268,8 +266,7 @@
 						<a
 							href="${pageContext.request.contextPath}/book/detail.do?bno=${book.bno}">
 							<div class="image-box">
-								<img
-									src="<c:out value="${book.downloadUrl}"></c:out>"
+								<img src="<c:out value="${book.downloadUrl}"></c:out>"
 									alt="${book.title}" />
 							</div>
 							<p class="title">${book.title}</p>
@@ -304,8 +301,7 @@
 										<c:if test="${not empty book.discount}">
 											<span class="badge-top">${book.discount}%↓</span>
 										</c:if>
-										<img
-											src="<c:out value="${book.downloadUrl}"></c:out>"
+										<img src="<c:out value="${book.downloadUrl}"></c:out>"
 											alt="${book.title}" />
 									</div>
 
@@ -390,7 +386,7 @@
 
 	<jsp:include page="/common/footer.jsp" />
 	<!-- [준비 중입니다 alert 처리 스크립트 추가 시작] -->
-<script>
+	<script>
   document.addEventListener("DOMContentLoaded", function () {
     const pendingLinks = document.querySelectorAll("a.pending");
     pendingLinks.forEach(function (link) {
@@ -401,7 +397,37 @@
     });
   });
 </script>
-<!-- [준비 중입니다 alert 처리 스크립트 추가 끝] -->
-	
+	<!-- [준비 중입니다 alert 처리 스크립트 추가 끝] -->
+
+<!-- 탑10 랜덤 -->
+<script>
+  document.querySelectorAll('.best-flags').forEach(flagEl => {
+    flagEl.innerHTML = ''; // 초기화
+
+    const rand = Math.random();
+    if (rand < 0.33) {
+      // ▲ 1~5
+      const upCount = Math.floor(Math.random() * 5) + 1;
+      const span = document.createElement('span');
+      span.className = 'best-up';
+      span.textContent = upCount;
+      flagEl.appendChild(span);
+    } else if (rand < 0.66) {
+      // ▼ 1~5
+      const downCount = Math.floor(Math.random() * 5) + 1;
+      const span = document.createElement('span');
+      span.className = 'best-down';
+      span.textContent = downCount;
+      flagEl.appendChild(span);
+    } else {
+      // new
+      const span = document.createElement('span');
+      span.className = 'best-new';
+      span.textContent = 'new';
+      flagEl.appendChild(span);
+    }
+  });
+</script>
+
 </body>
 </html>

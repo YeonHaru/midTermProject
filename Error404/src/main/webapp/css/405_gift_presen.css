@@ -1,31 +1,37 @@
 /* ✅ gift_card_list.css */
 /* 💡 공통 CSS와 충돌 방지를 위해 모든 클래스에 gift-card- 접두어 사용 */
+.gift-card-title {
+	 display: inline-block; /* ✅ 텍스트 길이에 맞춤 */
+  font-size: 1.6rem;
+  font-weight: bold;
+  color: var(--accent-color-1);
+  border-bottom: 3px solid var(--main-color);
+  padding-bottom: 0.5rem;
+  margin-bottom: 2vh;
+  text-align: center;
+  margin-left: 13%;
+}
+
 
 /* 선물하기 깊티 */
-.gift-card-section {
-  padding: 4vh 5%;
-  background-color: #fff;
-  width: 100%;
-}
-
-.gift-card-title {
-  font-size: 1.6rem;
-  font-weight: 700;
-  margin-bottom: 2.5vh;
-  color: #000;
-  
-}
-
- .gift-card-grid {
+.gift-card-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr); /* 한 줄에 4개 */
-  gap: 2%; /* 카드 사이 간격 */
-  padding: 0 5%;/*  좌우 여백 */
-  width : 100%;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5%;
+  padding: 0 3%;
+  max-width: 70vw;
+  max-hight: 40vw;
+  width: 100%;
+  margin: 0 auto;
 }
-
 
 .gift-card-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  min-height: 16rem; /* ✅ 카드 전체 높이 통일 */
+  padding: 0.8rem;
   background-color: white;
   border-radius: 12px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
@@ -37,35 +43,67 @@
   transform: translateY(-4px);
 }
 
+/* ✅ 이미지 비율 고정 */
+.gift-card-image {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  background-color: #f9f9f9;
+}
+
 .gift-card-image img {
   width: 100%;
-  height: auto;
+  height: 100%;
+  object-fit: cover; /* ✅ 내용 잘라도 영역 채움 */
   display: block;
   border-radius: 12px 12px 0 0;
 }
 
+/* ✅ 텍스트 영역 */
 .gift-card-info {
-  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 0.8rem;
+  flex-grow: 1;
+  height: 100%;
+  box-sizing: border-box;
 }
 
 .gift-card-name {
-  font-size: 1rem;
+  font-size: 0.9rem;
   font-weight: 600;
   color: #111;
   margin-bottom: 0.5rem;
+  line-height: 1.4;
+  height: 2.8rem; /* ✅ 두 줄 고정 */
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
 }
 
 .gift-card-meta {
   font-size: 0.85rem;
   color: #777;
   margin-bottom: 0.8rem;
+  line-height: 1.4;
+  height: 3rem; /* ✅ 두 줄 고정 */
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
 }
 
 .gift-card-price {
   font-size: 1.1rem;
   font-weight: bold;
   color: #000;
+  margin-top: auto; /* ✅ 항상 맨 아래 정렬 */
 }
+
+
+
 
 /* ✅ FAQ 아코디언 공통 영역 */
 .gift-card-faq {
@@ -157,3 +195,19 @@
   color: var(--bg-color);
   background-color: var(--accent-color-1);
 }
+
+/* 화면 너비 900px 이하일 때 2열로 변경 */
+@media (max-width: 900px) {
+  .gift-card-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* 화면 너비 500px 이하일 때 1열로 변경 */
+@media (max-width: 500px) {
+  .gift-card-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+
