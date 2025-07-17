@@ -40,5 +40,11 @@ public class QnaServiceImpl implements QnaService {
 	public QnaVO selectQnaById(Long qnaId) {
 		return qnaMapper.selectQnaById(qnaId);
 	}
+//	관리자전용 답변이 없는 qna조회
+	@Override
+	public List<QnaVO> selectUnansweredQna() {
+		// TODO Auto-generated method stub
+		return qnaMapper.selectUnansweredQna();
+	}
 	
 }

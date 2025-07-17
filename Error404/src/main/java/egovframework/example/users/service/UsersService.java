@@ -15,7 +15,6 @@ import egovframework.example.common.Criteria;
  * @author user
  *
  */
-@Service
 public interface UsersService {
 	List<?> selectUsersList(Criteria criteria); // 전체조회
 

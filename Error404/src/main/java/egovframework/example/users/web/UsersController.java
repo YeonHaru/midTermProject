@@ -58,28 +58,34 @@ public class UsersController {
 		return "auth/login"; // login에 연결해둠
 
 	}
-
-	// 로그인
+//	로그인
 	@PostMapping("/login.do")
 	public String login(UsersVO usersVO, HttpSession session, Model model) {
-		boolean success = usersService.login(usersVO);
-		if (success) {
-			session.setAttribute("loginUser", usersVO);
-			session.setAttribute("userId", usersVO.getUserid()); // 이 줄 추가!
-			 log.info("세션에 userId 저장됨: {}", usersVO.getUserid());
-			
-			 // TEMP_PW_YN이 'Y'면 플래그 세션에 저장하고 마이페이지로 강제 이동
-	        if ("Y".equals(usersVO.getTempPwYn())) {
+	    boolean success = usersService.login(usersVO);
+
+	    if (success) {
+	        // DB에서 전체 사용자 정보 다시 조회 (중요!)
+	        UsersVO loginUser = usersService.selectUserById(usersVO.getUserid());
+
+	        session.setAttribute("loginUser", loginUser);
+	        session.setAttribute("userId", loginUser.getUserid());
+	        log.info("세션에 userId 저장됨: {}", loginUser.getUserid());
+
+	        // 임시 비밀번호 여부
+	        if ("Y".equals(loginUser.getTempPwYn())) {
 	            session.setAttribute("isTempPassword", true);
-	            return "redirect:/mypage.do"; // ✅ 마이페이지로 이동
+	            return "redirect:/mypage.do";
 	        }
-			
-			return "redirect:/home.do";
-		} else {
-			model.addAttribute("msg", "아이디 또는 비밀번호가 올바르지 않습니다.");
-			return "auth/login"; // 정확한 경로로 수정
-		}
+
+	        // 관리자 여부 상관없이 동일하게 홈으로 이동
+	        return "redirect:/home.do";
+
+	    } else {
+	        model.addAttribute("msg", "아이디 또는 비밀번호가 올바르지 않습니다.");
+	        return "auth/login";
+	    }
 	}
+
 
 //	로그아웃
 	@GetMapping("/logout.do")

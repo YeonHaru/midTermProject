@@ -1,16 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="egovframework.example.users.service.impl.UsersMapper">
+<mapper
+	namespace="egovframework.example.users.service.impl.UsersMapper">
 
-    <select id="selectUsersList" parameterType="Criteria" resultType="UsersVO">
-        SELECT * FROM USERS
-        WHERE NAME LIKE '%' || #{searchKeyword} || '%'
-        OFFSET #{firstIndex} ROWS
-        FETCH NEXT #{pageUnit} ROWS ONLY
-    </select>
+	<select id="selectUsersList" parameterType="Criteria"
+		resultType="UsersVO">
+		SELECT * FROM USERS
+		WHERE NAME LIKE '%' || #{searchKeyword} || '%'
+		OFFSET #{firstIndex} ROWS
+		FETCH NEXT #{pageUnit} ROWS ONLY
+	</select>
 
-	<select id="selectUserById" resultType="UsersVO"
-		parameterType="String">
+
+	<!-- UsersVO와 DB 컬럼명 매핑을 명확히 하기 위한 resultMap 정의 - DB 컬럼명은 대문자 언더스코어 (예: 
+		USERID) - Java 필드명은 카멜케이스 (예: userid) - 이 매핑을 통해 자동 매핑 오류 방지 -->
+	<resultMap id="UsersResultMap" type="UsersVO">
+		<result property="userid" column="USERID" />
+		<result property="password" column="PASSWORD" />
+		<result property="name" column="NAME" />
+		<result property="email" column="EMAIL" />
+		<result property="phone" column="PHONE" />
+		<result property="join_date" column="JOIN_DATE" />
+		<result property="role" column="ROLE" />
+		<result property="gender" column="GENDER" />
+		<result property="birthdate" column="BIRTHDATE" />
+		<result property="address" column="ADDRESS" />
+		<result property="point" column="POINT" />
+		<result property="promoAgree" column="PROMO_AGREE" />
+		<result property="postNotifyAgree" column="POST_NOTIFY_AGREE" />
+		<result property="grade" column="GRADE" />
+		<result property="tempPwYn" column="TEMP_PW_YN" />
+		<result property="totalPurchase" column="TOTAL_PURCHASE" />
+		<result property="profileImagePath" column="PROFILE_IMAGE_PATH" />
+	</resultMap>
+
+	<!-- 사용자 아이디로 사용자 정보 조회 쿼리 -->
+	<select id="selectUserById" parameterType="string"
+		resultMap="UsersResultMap">
 		SELECT
 		USERID,
 		PASSWORD,
@@ -23,89 +49,91 @@
 		BIRTHDATE,
 		ADDRESS,
 		POINT,
-		PROMO_AGREE AS promoAgree,
-		POST_NOTIFY_AGREE AS postNotifyAgree,
+		PROMO_AGREE,
+		POST_NOTIFY_AGREE,
 		GRADE,
-		TEMP_PW_YN AS tempPwYn,
+		TEMP_PW_YN,
 		TOTAL_PURCHASE,
-		PROFILE_IMAGE_PATH AS profileImagePath  <!-- 이 부분 추가 -->
+		PROFILE_IMAGE_PATH
 		FROM USERS
 		WHERE USERID = #{userid}
 	</select>
 
-    <select id="findUserId" resultType="String">
-        SELECT userid
-        FROM USERS
-        WHERE name = #{name} AND email = #{email}
-    </select>
+	<select id="findUserId" resultType="String">
+		SELECT userid
+		FROM USERS
+		WHERE name = #{name} AND email = #{email}
+	</select>
 
-    <select id="findPassword" resultType="String">
-        SELECT password
-        FROM USERS
-        WHERE userid = #{userid} AND email = #{email}
-    </select>
-    
-     <update id="updatePassword">
-	UPDATE USERS
-	SET PASSWORD = #{password},
-	TEMP_PW_YN = 'Y'
-	WHERE USERID = #{userid}
-    </update>
-    
-    <insert id="insertUser" parameterType="UsersVO">
-    INSERT INTO USERS (
-        USERID, PASSWORD, NAME, EMAIL, PHONE, JOIN_DATE, ROLE,
-        GENDER, BIRTHDATE, ADDRESS, POINT, PROMO_AGREE, POST_NOTIFY_AGREE, GRADE
-    )
-    VALUES (
-        #{userid}, #{password}, #{name}, #{email}, #{phone}, #{join_date}, #{role},
-        #{gender}, #{birthdate}, #{address}, #{point}, #{promoAgree}, #{postNotifyAgree}, #{grade}
-    )
-</insert>
+	<select id="findPassword" resultType="String">
+		SELECT password
+		FROM USERS
+		WHERE userid = #{userid} AND email = #{email}
+	</select>
 
-<update id="updatePasswordPermanent">
-    UPDATE USERS
-    SET PASSWORD = #{password},
-        TEMP_PW_YN = 'N'
-    WHERE USERID = #{userid}
-</update>
+	<update id="updatePassword">
+		UPDATE USERS
+		SET PASSWORD = #{password},
+		TEMP_PW_YN = 'Y'
+		WHERE USERID = #{userid}
+	</update>
 
-<!-- 로그인 회원 대상 최근 본 상품 조회 리모콘으로 구현 -->
-<!-- 최근 본 상품 조회 -->
-<select id="getRecentBooks" parameterType="String" resultType="String">
-  SELECT recent_books
-  FROM users
-  WHERE userid = #{userid}
-</select>
+	<insert id="insertUser" parameterType="UsersVO">
+		INSERT INTO USERS (
+		USERID, PASSWORD, NAME, EMAIL, PHONE, JOIN_DATE, ROLE,
+		GENDER, BIRTHDATE, ADDRESS, POINT, PROMO_AGREE, POST_NOTIFY_AGREE, GRADE
+		)
+		VALUES (
+		#{userid}, #{password}, #{name}, #{email}, #{phone}, #{join_date}, #{role},
+		#{gender}, #{birthdate}, #{address}, #{point}, #{promoAgree},
+		#{postNotifyAgree}, #{grade}
+		)
+	</insert>
 
-<!-- 최근 본 상품 업데이트 -->
-<update id="updateRecentBooks" parameterType="map">
-  UPDATE users
-  SET recent_books = #{recent_books}
-  WHERE userid = #{userid}
-</update>
+	<update id="updatePasswordPermanent">
+		UPDATE USERS
+		SET PASSWORD = #{password},
+		TEMP_PW_YN = 'N'
+		WHERE USERID = #{userid}
+	</update>
 
-<update id="updateUserPreferences" parameterType="UsersVO">
-  UPDATE USERS
-  SET
-    PROMO_AGREE = #{promoAgree},
-    POST_NOTIFY_AGREE = #{postNotifyAgree}
-  WHERE USERID = #{userid}
-</update>
+	<!-- 로그인 회원 대상 최근 본 상품 조회 리모콘으로 구현 -->
+	<!-- 최근 본 상품 조회 -->
+	<select id="getRecentBooks" parameterType="String"
+		resultType="String">
+		SELECT recent_books
+		FROM users
+		WHERE userid = #{userid}
+	</select>
 
-<update id="updateProfileImage" parameterType="map">
-    UPDATE USERS
-    SET PROFILE_IMAGE_PATH = #{profileImagePath}
-    WHERE USERID = #{userid}
-</update>
+	<!-- 최근 본 상품 업데이트 -->
+	<update id="updateRecentBooks" parameterType="map">
+		UPDATE users
+		SET recent_books = #{recent_books}
+		WHERE userid = #{userid}
+	</update>
 
-<update id="updateUserInfo" parameterType="UsersVO">
-  UPDATE USERS
-  SET
-    BIRTHDATE = #{birthdate},
-    PHONE = #{phone},
-    ADDRESS = #{address}
-  WHERE USERID = #{userid}
-</update>
+	<update id="updateUserPreferences" parameterType="UsersVO">
+		UPDATE USERS
+		SET
+		PROMO_AGREE = #{promoAgree},
+		POST_NOTIFY_AGREE = #{postNotifyAgree}
+		WHERE USERID = #{userid}
+	</update>
+
+	<update id="updateProfileImage" parameterType="map">
+		UPDATE USERS
+		SET PROFILE_IMAGE_PATH = #{profileImagePath}
+		WHERE USERID = #{userid}
+	</update>
+
+	<update id="updateUserInfo" parameterType="UsersVO">
+		UPDATE USERS
+		SET
+		BIRTHDATE = #{birthdate},
+		PHONE = #{phone},
+		ADDRESS = #{address}
+		WHERE USERID = #{userid}
+	</update>
 
 </mapper>
