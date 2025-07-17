@@ -23,5 +23,9 @@ public interface QnaMapper {
 	public int updateQnaAnswer(QnaVO qnavo); // 관리자 답변 등록
 
 	public QnaVO selectQnaById(Long qnaId); // ID로 단건 조회
+	
+	
+	public List<QnaVO> selectUnansweredQna();  // 관리자 전용 답변이 없는 리스트 조회
+	
 
 }

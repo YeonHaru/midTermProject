@@ -3,6 +3,8 @@
  */
 package egovframework.example.qna.web;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,23 +29,50 @@ public class QnaAdminController {
 	public QnaService qnaService;
 
 	// 답변 작성 폼 페이지 (ID로 문의글 조회 후 폼에 보여주기)
-	@GetMapping("/answerForm")
+	@GetMapping("/answerForm.do")
 	public String showAnswerForm(@RequestParam Long id, Model model) {
-		QnaVO qna = qnaService.selectQnaById(id); // selectInquiryById 메서드 필요
+		QnaVO qna = qnaService.selectQnaById(id);
 		model.addAttribute("inquiry", qna);
-		return "admin/refundInquiry-answerForm";
+		// JSP 경로 변경
+		return "mypage/adminQna-answerForm";
 	}
 
 	// 답변 저장 처리
-	@PostMapping("/answerSubmit")
+	@PostMapping("/answerSubmit.do")
 	public String submitAnswer(QnaVO qnaVO, HttpSession session) {
-		// 세션에서 로그인한 관리자 정보 가져오기
-		UsersVO adminUser = (UsersVO) session.getAttribute("loginUser");
-		if (adminUser != null) {
-			qnaVO.setAnswerUserId(adminUser.getUserid()); // A_ID에 관리자 ID 넣기
+	    UsersVO adminUser = (UsersVO) session.getAttribute("loginUser");
+	    if (adminUser == null || !"ADMIN".equals(adminUser.getRole())) {
+	        return "redirect:/accessDenied"; // 권한 없으면 차단
+	    }
+	    qnaVO.setAnswerUserId(adminUser.getUserid());
+	    qnaService.updateQnaAnswer(qnaVO);
+	    return "redirect:/admin/qna/list.do"; // jsp 위치와 매핑 경로에 맞춘 리다이렉트
+	}
+
+
+	// 답변이 없는 문의 리스트 페이지
+	@GetMapping("/admin/qna/list.do")
+	public String showUnansweredInquiries(HttpSession session, Model model) {
+		UsersVO loginUser = (UsersVO) session.getAttribute("loginUser");
+
+		if (loginUser == null || !"ADMIN".equals(loginUser.getRole())) {
+			// 로그인 안 되어 있거나, 관리자가 아닐 경우
+			return "redirect:/home.do"; // 또는 에러 페이지
 		}
 
-		qnaService.updateQnaAnswer(qnaVO);
-		return "redirect:/admin/refundInquiry/list"; // 목록으로 리다이렉트
+		List<QnaVO> unansweredList = qnaService.selectUnansweredQna();
+		model.addAttribute("inquiries", unansweredList);
+		return "mypage/adminQna-list";
 	}
+
+	@GetMapping("/admin/dashboard.do")
+	public String adminDashboard(HttpSession session, Model model) {
+	    UsersVO loginUser = (UsersVO) session.getAttribute("loginUser");
+	    if (loginUser == null || !"ADMIN".equals(loginUser.getRole())) {
+	    	return "redirect:/home.do";
+	    }
+	    // 필요 시 model에 데이터 추가
+	    return "mypage/dashboard";  // jsp 경로에 맞게 리턴
+	}
+
 }

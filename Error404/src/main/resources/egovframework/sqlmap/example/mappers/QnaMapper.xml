@@ -40,5 +40,16 @@
 		FROM QNA
 		WHERE QNA_ID = #{qnaId}
 	</select>
+	
+	<!-- 관리자 전용 답변이 없는 qna 조회 -->
+<select id="selectUnansweredQna" resultType="QnaVO">
+	SELECT
+	QNA_ID, TITLE, Q_ID AS questionUserId, Q_CONTENT AS questionContent,
+	Q_DATE AS questionDate, A_ID AS answerUserId, A_CONTENT AS answerContent,
+	A_DATE AS answerDate
+	FROM QNA
+	WHERE A_CONTENT IS NULL
+	ORDER BY QNA_ID DESC
+</select>
 
 </mapper>
