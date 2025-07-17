@@ -29,86 +29,107 @@
 	%><!-- 7월10일 이 문구는 특정페이지에서 북클립이 숨겨지는 기능을 구현footer -->
 	<jsp:include page="/common/header.jsp" />
 	<div class="page pt5">
-		<table
-			class="table table-bordered table-striped align-middle text-center">
-			<thead class="table-light">
-				<tr>
-					<th>이미지</th>
-					<th>제목</th>
-					<th>정가</th>
-					<th>할인가</th>
-					<th>배송</th>
-					<th>수령예정일</th>
-					<th>수량</th>
-					<th>장바구니</th>
-					<th>바로구매</th>
-				</tr>
-			</thead>
-			<tbody>
-				<c:forEach var="book" items="${books}">
-					<tr>
-						<!-- 이미지 -->
-						<td><c:choose>
-								<c:when test="${not empty book.fileUrl}">
-									<img src="${pageContext.request.contextPath}${book.fileUrl}"
-										alt="${book.title}" width="80" />
+		<div class="card-list">
+			<c:forEach var="book" items="${books}">
+				<div class="book-card shadow-sm">
+					<div class="book-image">
+						<a
+							href="${pageContext.request.contextPath}/book/detail.do?bno=${book.bno}">
+							<c:choose>
+								<c:when test="${not empty book.downloadUrl}">
+									<img src="${book.downloadUrl}" alt="${book.title}" />
 								</c:when>
 								<c:otherwise>
 									<img
 										src="${pageContext.request.contextPath}/images/default.jpg"
-										alt="기본 이미지" width="80" />
+										alt="기본 이미지" />
 								</c:otherwise>
-							</c:choose></td>
+							</c:choose>
+						</a>
+					</div>
 
-						<!-- 제목 -->
-						<td>${book.title}</td>
+					<div class="book-info">
+						<h5 class="book-title">${book.title}</h5>
+						<p class="price-original">
+							<fmt:formatNumber value="${book.fprice}" pattern="#,###" />
+							원
+						</p>
+						<p class="price-sale">
+							<fmt:formatNumber value="${book.dprice}" pattern="#,###" />
+							원 <span class="badge bg-danger ms-2">특가</span>
+						</p>
+						<p class="delivery">🚚 무료배송 · 내일 도착</p>
 
-						<!-- 정가 -->
-						<td><fmt:formatNumber value="${book.fprice}" pattern="#,###" />원</td>
-
-						<!-- 할인가 -->
-						<td><span class="price-sale"><fmt:formatNumber
-									value="${book.dprice}" pattern="#,###" /></span>원</td>
-
-						<!-- 배송 -->
-						<td>무료배송</td>
-
-						<!-- 수령예정일 -->
-						<td>내일 도착 예정</td>
-
-						<!-- 수량 -->
-						<td>
-							<form action="${pageContext.request.contextPath}/cart/add.do"
-								method="post">
-								<input type="hidden" name="bno" value="${book.bno}" /> <input
-									type="hidden" name="quantity" value="1" /> <span>1권</span>
-						</td>
-
-						<!-- 장바구니 -->
-						<td>
-							<button type="submit" class="btn btn-outline-primary btn-sm">장바구니</button>
-							</form>
-						</td>
-
-						<!-- 바로구매 -->
-						<td>
+						<div class="card-actions mt-2">
+							<button type="button"
+								class="btn btn-outline-primary btn-sm btn-add-cart"
+								data-bno="${book.bno}">장바구니</button>
 							<form method="post"
-								action="${pageContext.request.contextPath}/order/buyNowForm.do">
+								action="${pageContext.request.contextPath}/order/buyNowForm.do"
+								class="d-inline">
 								<input type="hidden" name="dno" value="${book.bno}" /> <input
 									type="hidden" name="qty" value="1" />
 								<button type="submit" class="btn btn-success btn-sm">바로구매</button>
 							</form>
-						</td>
-					</tr>
-				</c:forEach>
-			</tbody>
-		</table>
+						</div>
+					</div>
+				</div>
+
+			</c:forEach>
+		</div>
 	</div>
 
 
 
 </body>
 <jsp:include page="/common/footer.jsp" />
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+	const contextPath = "${pageContext.request.contextPath}";
+
+	$(document)
+			.on(
+					'click',
+					'.btn-add-cart',
+					function() {
+						const bno = $(this).data('bno');
+						const qty = 1; // 수량 고정값 (필요 시 동적 처리도 가능)
+
+						$
+								.ajax({
+									url : contextPath + '/cart/add.do',
+									method : 'POST',
+									data : {
+										bno : bno,
+										quantity : qty
+									},
+									success : function(result) {
+										console.log("🧾 응답:", result);
+										if (result.trim() === 'success') {
+											alert('✅ 장바구니에 추가되었습니다.');
+											window
+													.open(
+															contextPath
+																	+ "/cart.do?popup=true",
+															"fullCartPopup",
+															"width=900,height=700,scrollbars=yes,resizable=yes");
+										} else if (result.trim() === 'login') {
+											alert('🔒 로그인 후 이용해주세요.');
+											window.location.href = contextPath
+													+ '/login.do';
+										} else {
+											alert('❌ 장바구니 추가 실패!');
+										}
+									},
+									error : function() {
+										alert('🚨 서버 오류 발생!');
+									}
+								});
+					});
+</script>
+
+
 <script>
 	function setQtyAndSubmit(bno) {
 		const qty = document.getElementById(`qty_${bno}`).value;
