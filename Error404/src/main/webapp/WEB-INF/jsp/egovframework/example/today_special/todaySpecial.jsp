@@ -67,8 +67,8 @@
 							<form method="post"
 								action="${pageContext.request.contextPath}/order/buyNowForm.do"
 								class="d-inline">
-								<input type="hidden" name="dno" value="${book.bno}" /> <input
-									type="hidden" name="qty" value="1" />
+								<input type="hidden" name="dnoList" value="${book.bno}" /> <input
+									type="hidden" name="qtyList" value="1" />
 								<button type="submit" class="btn btn-success btn-sm">바로구매</button>
 							</form>
 						</div>
