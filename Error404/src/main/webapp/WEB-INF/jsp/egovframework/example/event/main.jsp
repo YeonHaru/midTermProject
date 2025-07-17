@@ -25,7 +25,13 @@
 </head>
 <body class="bg-light">
 	<!-- 헤더추가 -->
-	<%@ include file="/common/header.jsp"%>
+	<%
+	request.setAttribute("hideSearch", true);
+	%><!-- 7월10일 이 문구는 특정페이지에서 검색창이 숨겨지는 기능을 구현header -->
+	<%
+	request.setAttribute("hideFooter", true);
+	%><!-- 7월10일 이 문구는 특정페이지에서 북클립이 숨겨지는 기능을 구현footer -->
+	<jsp:include page="/common/header.jsp" />
 <!-- 전체 감싸는 div -->
   <div class="event-wrapper">
 
