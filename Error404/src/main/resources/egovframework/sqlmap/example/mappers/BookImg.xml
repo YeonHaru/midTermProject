@@ -8,12 +8,20 @@
 		B.BNO, B.TITLE, B.AUTHOR, B.PUBLISHER, B.PDATE AS PUBDATE,
     	B.FPRICE, B.DPRICE, B.STOCK, B.DES, 
     	B.ORDER_COUNT, 
-		I.UUID, I.FILE_NAME, I.FILE_DATA, I.DOWNLOAD_URL
+		I.UUID, I.FILE_NAME, I.DOWNLOAD_URL
 		FROM
 		BOOKS B,
 		BNO_IMG I
 		WHERE
 		B.BNO = I.BNO
+		<if test="searchKeyword != null and searchKeyword != ''">
+         AND (
+            LOWER(B.TITLE) LIKE '%' || LOWER(#{searchKeyword}) || '%'
+            OR LOWER(B.AUTHOR) LIKE '%' || LOWER(#{searchKeyword}) || '%'
+            OR LOWER(B.DES) LIKE '%' || LOWER(#{searchKeyword}) || '%'
+         )
+      </if>
+		
 		ORDER BY
 		B.BNO
 		OFFSET #{firstIndex}
@@ -22,10 +30,13 @@
 
 	</select>
 
-	<select id="selectBookImgListTotCnt" resultType="int">
+	<select id="selectBookImgListTotCnt" parameterType="Criteria" resultType="int">
 	<!-- 특정 카테고리 일단 막음 -->
 <!-- 		parameterType="String"> -->
-    SELECT COUNT(*)
+
+   
+		 SELECT COUNT(*)
+
     FROM BOOKS b
     JOIN BNO_IMG i ON b.BNO = i.BNO
     WHERE 1=1
@@ -44,34 +55,45 @@
     B.BNO, B.TITLE, B.AUTHOR, B.PUBLISHER, B.PDATE AS PUBDATE,
     B.FPRICE, B.DPRICE, B.STOCK, B.DES, 
     B.ORDER_COUNT,
-    I.UUID, I.FILE_NAME, I.FILE_DATA, I.DOWNLOAD_URL
+    I.UUID, I.FILE_NAME, I.DOWNLOAD_URL
   FROM BOOKS B
   JOIN BNO_IMG I ON B.BNO = I.BNO
   ORDER BY B.PDATE DESC
   FETCH FIRST 4 ROWS ONLY
   </select> 
 
-  <!-- 랜덤 도서 이미지 리스트 (랜덤 4개) -->
-  <select id="selectRandomBookImgList" resultType="BookImgDTO">
+  <!-- 소설 도서 이미지 리스트 (랜덤 4개) -->
+  <select id="selectBooksByCategory" parameterType="string" resultType="egovframework.example.book.service.BookImgDTO">
     SELECT 
-    B.BNO, B.TITLE, B.AUTHOR, B.PUBLISHER, B.PDATE AS PUBDATE,
-    B.FPRICE, B.DPRICE, B.STOCK, B.DES, 
-    B.ORDER_COUNT,
-    I.UUID, I.FILE_NAME, I.FILE_DATA, I.DOWNLOAD_URL
-  FROM (
-    SELECT * FROM BOOKS ORDER BY DBMS_RANDOM.VALUE
-  ) B
+    B.BNO,
+    B.TITLE,
+    B.AUTHOR,
+    B.PUBLISHER,
+    B.PDATE AS pubDate,
+    B.FPRICE,
+    B.DPRICE,
+    B.STOCK,
+    B.DES,
+    B.CATEGORY,
+    B.ORDER_COUNT AS orderCount,
+    I.UUID,
+    I.FILE_NAME AS fileName,
+    I.FILE_DATA AS fileData,
+    I.DOWNLOAD_URL AS downloadUrl
+  FROM BOOKS B
   JOIN BNO_IMG I ON B.BNO = I.BNO
+  WHERE B.CATEGORY = #{category}
+  ORDER BY B.PDATE DESC
   FETCH FIRST 4 ROWS ONLY
-  </select> 
-
+</select>
+  
   <!-- 플립 도서 이미지 리스트 (조건에 따라) -->
   <select id="selectFlipBookImgList" resultType="BookImgDTO">
        SELECT 
     B.BNO, B.TITLE, B.AUTHOR, B.PUBLISHER, B.PDATE AS PUBDATE,
     B.FPRICE, B.DPRICE, B.STOCK, B.DES, 
     B.ORDER_COUNT,
-    I.UUID, I.FILE_NAME, I.FILE_DATA, I.DOWNLOAD_URL,
+    I.UUID, I.FILE_NAME, I.DOWNLOAD_URL,
     ROUND((B.FPRICE - B.DPRICE) / B.FPRICE * 100, 1) AS DISCOUNT
   FROM BOOKS B
   JOIN BNO_IMG I ON B.BNO = I.BNO

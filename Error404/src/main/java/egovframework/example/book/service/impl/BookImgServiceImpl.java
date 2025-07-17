@@ -39,10 +39,11 @@ public class BookImgServiceImpl implements BookImgService{
 		return bookImgMapper.selectLatestBookImgList();
 	}
 
+
 	@Override
-	public List<BookImgDTO> selectRandomBookImgList() {
+	public List<BookImgDTO> selectBooksByCategory(String category) {
 		// TODO Auto-generated method stub
-		return bookImgMapper.selectRandomBookImgList();
+		return bookImgMapper.selectBooksByCategory(category);
 	}
 
 	@Override
