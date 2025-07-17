@@ -161,13 +161,6 @@ public class OrderController {
 	    }
 		
 
-		// ✅ 로그인 유저 정보 JSP에 전달
-	    UsersVO loginUser = (UsersVO) session.getAttribute("loginUser");
-	    if (loginUser != null) {
-	        model.addAttribute("userInfo", loginUser);
-	    }
-		
-
 		// JSP에서 사용할 모델에 데이터 세팅
 		model.addAttribute("selectedBooks", selectedBooks);
 		model.addAttribute("quantities", quantities);
