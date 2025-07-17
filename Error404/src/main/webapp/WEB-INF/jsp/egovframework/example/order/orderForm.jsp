@@ -70,10 +70,13 @@ request.setAttribute("hideFooter", true);
 
 				<!-- 숨겨진 데이터 전달 -->
 				<c:forEach var="book" items="${selectedBooks}" varStatus="status">
-					<input type="hidden" name="bnoList" value="${book.bno}" />
-					<input type="hidden" name="qtyList"
-						value="${quantities[status.index]}" />
+					<c:if test="${not empty book.bno and quantities[status.index] > 0}">
+						<input type="hidden" name="dno" value="${book.bno}" />
+						<input type="hidden" name="qty"
+							value="${quantities[status.index]}" />
+					</c:if>
 				</c:forEach>
+
 
 				<div class="table-responsive">
 					<table class="table table-bordered align-middle">
