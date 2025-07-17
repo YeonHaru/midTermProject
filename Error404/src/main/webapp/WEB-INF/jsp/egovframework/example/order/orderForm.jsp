@@ -84,28 +84,30 @@ request.setAttribute("hideFooter", true);
 							<tr>
 								<th scope="row"><label for="recipient">수령인</label></th>
 								<td><input type="text" id="recipient" name="recipient"
-									class="form-control" placeholder="홍길동" required /></td>
+									class="form-control" placeholder="홍길동" required
+									value="${userInfo != null ? userInfo.name : ''}" /></td>
 							</tr>
 							<tr>
 								<th scope="row"><label for="phone">전화번호</label></th>
 								<td><input type="text" id="phone" name="phone"
-									class="form-control" placeholder="010-1234-5678" required /></td>
+									class="form-control" placeholder="010-1234-5678" required
+									value="${userInfo != null ? userInfo.phone : ''}" /></td>
 							</tr>
 							<tr>
 								<th scope="row"><label for="address">주소</label></th>
 								<td><input type="text" id="address" name="address"
-									class="form-control" placeholder="서울시 강남구 ..." required /></td>
+									class="form-control" placeholder="서울시 강남구 ..." required
+									value="${userInfo != null ? userInfo.address : ''}" /></td>
 							</tr>
-							<tr>
-								<th scope="row"><label for="presetMemo">배송 요청사항</label></th>
-								<td><select id="presetMemo" class="form-select mb-2">
-										<option value="">-- 요청사항 선택 --</option>
-										<option value="문 앞에 놓아주세요">문 앞에 놓아주세요</option>
-										<option value="부재 시 경비실에 맡겨주세요">부재 시 경비실에 맡겨주세요</option>
-										<option value="벨 누르지 말아주세요">벨 누르지 말아주세요</option>
-										<option value="배송 전에 연락주세요">배송 전에 연락주세요</option>
-								</select> <input type="text" id="memo" name="memo" class="form-control"
-									placeholder="요청사항을 직접 입력할 수도 있어요" /></td>
+							<th scope="row"><label for="presetMemo">배송 요청사항</label></th>
+							<td><select id="presetMemo" class="form-select mb-2">
+									<option value="">-- 요청사항 선택 --</option>
+									<option value="문 앞에 놓아주세요">문 앞에 놓아주세요</option>
+									<option value="부재 시 경비실에 맡겨주세요">부재 시 경비실에 맡겨주세요</option>
+									<option value="벨 누르지 말아주세요">벨 누르지 말아주세요</option>
+									<option value="배송 전에 연락주세요">배송 전에 연락주세요</option>
+							</select> <input type="text" id="memo" name="memo" class="form-control"
+								placeholder="요청사항을 직접 입력할 수도 있어요" /></td>
 							</tr>
 							<tr>
 								<th scope="row"><label for="paymentMethod">결제 수단</label></th>
