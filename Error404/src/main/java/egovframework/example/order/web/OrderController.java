@@ -153,6 +153,13 @@ public class OrderController {
 				log.error("숫자 파싱 오류", e);
 			}
 		}
+		
+		// ✅ 로그인 유저 정보 JSP에 전달
+	    UsersVO loginUser = (UsersVO) session.getAttribute("loginUser");
+	    if (loginUser != null) {
+	        model.addAttribute("userInfo", loginUser);
+	    }
+		
 
 		// ✅ 로그인 유저 정보 JSP에 전달
 	    UsersVO loginUser = (UsersVO) session.getAttribute("loginUser");
