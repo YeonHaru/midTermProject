@@ -127,3 +127,77 @@ body {
 .buy-btn:hover {
   background-color: var(--main-color);
 }
+
+@media (max-width: 768px) {
+  .gift-select-container {
+    padding: 4vh 4vw;
+  }
+
+  .gift-select-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+    font-size: 0.95rem;
+  }
+
+  .gift-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.2vh;
+  }
+
+  .gift-left {
+    width: 100%;
+    gap: 3vw;
+  }
+
+  .gift-image {
+    width: 64px;
+    height: 64px;
+  }
+
+  .gift-right {
+    margin-left: 0;
+    width: 100%;
+  }
+
+  .gift-info {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5vh;
+  }
+
+  .buy-btn {
+    width: 100%;
+    text-align: center;
+    margin-top: 1vh;
+    margin-left: 0;
+  }
+
+  .sort-dropdown select {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .gift-title {
+    font-size: 1rem;
+  }
+
+  .gift-price {
+    font-size: 0.9rem;
+  }
+
+  .wishlist-btn {
+    font-size: 1.1rem;
+  }
+
+  .sort-dropdown {
+    width: 100%;
+  }
+
+  .sort-dropdown select {
+    font-size: 0.9rem;
+  }
+}
+
