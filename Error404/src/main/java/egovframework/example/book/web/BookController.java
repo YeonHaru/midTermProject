@@ -95,7 +95,7 @@ public class BookController {
    // 오늘의 도서 특가 : 덕규
    @RequestMapping("/todaySpecial.do")
    public String todaySpecial(Model model) {
-       List<BookImgDTO> randomBooks = bookImgService.selectRandomBookImgList();
+       List<BookImgDTO> randomBooks = bookImgService.selectFlipBookImgList();
 
        // 최대 2권만 가져오도록 제한 (DB 쿼리에서 제한이 안 걸려 있다면)
        if (randomBooks.size() > 3) {

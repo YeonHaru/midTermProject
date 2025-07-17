@@ -3,9 +3,6 @@
  */
 package egovframework.example.order.web;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -156,6 +153,14 @@ public class OrderController {
 				log.error("숫자 파싱 오류", e);
 			}
 		}
+		
+		// ✅ 로그인 유저 정보 JSP에 전달
+	    UsersVO loginUser = (UsersVO) session.getAttribute("loginUser");
+	    if (loginUser != null) {
+	        model.addAttribute("userInfo", loginUser);
+	    }
+		
+
 		// ✅ 로그인 유저 정보 JSP에 전달
 	    UsersVO loginUser = (UsersVO) session.getAttribute("loginUser");
 	    if (loginUser != null) {
