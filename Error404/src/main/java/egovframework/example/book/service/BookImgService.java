@@ -16,7 +16,7 @@ public interface BookImgService {
    int selectBookImgListTotCnt(Criteria criteria); 	// 총 개수 구하기
    
    List<BookImgDTO> selectLatestBookImgList();
-   List<BookImgDTO> selectRandomBookImgList();
+   List<BookImgDTO> selectBooksByCategory(String category);
    List<BookImgDTO> selectFlipBookImgList();
    List<BookImgDTO> selectBestSellerImgList();
 }

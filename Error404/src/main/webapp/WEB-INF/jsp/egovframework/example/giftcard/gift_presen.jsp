@@ -12,7 +12,7 @@ pageEncoding="UTF-8"%>
   </head>
   <body>
     <section class="gift-card-section">
-      <h2 class="gift-card-title">기프트카드 선물하기🎁</h2>
+      <h2 class="gift-card-title">🎁기프트카드 선물하기🎁</h2>
       <div class="gift-card-grid">
        <!-- 반복문 -->
         <c:forEach var="data" items="${giftPresens}">

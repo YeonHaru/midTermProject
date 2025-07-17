@@ -40,4 +40,16 @@ public class GiftCardController {
 
 		return "giftcard/gift_presen";
 	}
+	
+	
+	@GetMapping("/giftcard/giftbuy.do")
+	public String buy() {
+
+////	전체조회 서비스 메소드 실행
+//		List<?> giftPresens = giftpresenService.selectGiftPresenList();
+//		log.info("테스트 : " + giftPresens);
+//		model.addAttribute("giftPresens", giftPresens);
+
+		return "giftcard/gift_buy";
+	}
 }
