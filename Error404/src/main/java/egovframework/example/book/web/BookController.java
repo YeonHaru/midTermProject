@@ -1,9 +1,6 @@
 package egovframework.example.book.web;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
-import java.util.HashSet;
 
 import javax.servlet.http.HttpSession;
 
@@ -17,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import egovframework.example.book.service.BookImgDTO;
 import egovframework.example.book.service.BookImgService;
 import egovframework.example.book.service.BookService;
 import egovframework.example.book.service.BookVO;
@@ -97,18 +95,11 @@ public class BookController {
    // 오늘의 도서 특가 : 덕규
    @RequestMapping("/todaySpecial.do")
    public String todaySpecial(Model model) {
-       List<BookVO> randomBooks = new ArrayList<>();
-       Set<Integer> usedIds = new HashSet<>();
+       List<BookImgDTO> randomBooks = bookImgService.selectRandomBookImgList();
 
-       int count = 0;
-       while (count < 2) {
-           BookVO randomBook = bookService.getRandomOnSaleBook();
-
-           if (randomBook != null && !usedIds.contains(randomBook.getBno())) {
-               randomBooks.add(randomBook);
-               usedIds.add(randomBook.getBno());
-               count++;
-           }
+       // 최대 2권만 가져오도록 제한 (DB 쿼리에서 제한이 안 걸려 있다면)
+       if (randomBooks.size() > 3) {
+           randomBooks = randomBooks.subList(0, 3);
        }
 
        model.addAttribute("books", randomBooks);

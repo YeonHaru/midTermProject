@@ -23,8 +23,15 @@
 	href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 </head>
 <!-- 디버깅용: 서버에서 전달된 값 확인 -->
-<p>서버 전달 totalPrice: ${totalPrice}</p>
-<jsp:include page="/common/header.jsp" />
+<c:if test="${not popup}">
+<%
+	request.setAttribute("hideSearch", true);
+	%><!-- 7월10일 이 문구는 특정페이지에서 검색창이 숨겨지는 기능을 구현header -->
+	<%
+	request.setAttribute("hideFooter", true);
+	%><!-- 7월10일 이 문구는 특정페이지에서 북클립이 숨겨지는 기능을 구현footer -->
+	<jsp:include page="/common/header.jsp" />
+</c:if>
 <body class="bg">
 	<div class="page">
 		<h2 class="mt3 mb3 tcenter">장바구니</h2>

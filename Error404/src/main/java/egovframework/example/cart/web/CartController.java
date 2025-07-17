@@ -27,6 +27,7 @@ public class CartController {
 	@GetMapping("/cart.do")
 	public String cartList(
 			@ModelAttribute Criteria criteria,
+			@RequestParam(value = "popup", required = false, defaultValue = "false") boolean popup,
 			Model model,
 			HttpSession httpSession
 			) {
@@ -52,10 +53,10 @@ public class CartController {
 	            totalPrice += item.getDprice() * item.getQuantity();
 	        }
 	    }
+	    
 	    model.addAttribute("totalPrice", totalPrice); // JSP로 전달
-
-		
-		return "cart/cart_all";
+	    model.addAttribute("popup", popup);
+	    return "cart/cart_all";
 	}
 	
 	@PostMapping("/cart/updateQuantity.do")
@@ -111,13 +112,10 @@ public class CartController {
 
 	    try {
 	        cartService.addToCart(userId, bno, quantity);
-	        return "sussess";
+	        return "success";
 	    } catch (Exception e) {
 	        e.printStackTrace();
 	        return "fail";
 	    }
 	}
-
-
-	
 }

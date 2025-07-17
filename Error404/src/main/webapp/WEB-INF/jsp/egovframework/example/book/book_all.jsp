@@ -35,6 +35,9 @@
   System.out.println("✅ book_all.jsp session userId = " + uid);
 %>
 
+	<%
+	request.setAttribute("hideFooter", true);
+	%><!-- 7월10일 이 문구는 특정페이지에서 북클립이 숨겨지는 기능을 구현footer -->
 	<jsp:include page="/common/header.jsp" />
 	<div class="page mt5">
 	<form id="listForm" name="listForm" method="get">
@@ -133,52 +136,52 @@
     <!-- 바로구매  -->
 <script>
 document.addEventListener("DOMContentLoaded", function () {
-	  const contextPath = '${pageContext.request.contextPath}';
-	  console.log("📍 contextPath =", contextPath);
+  const contextPath = '${pageContext.request.contextPath}';
+  console.log("📍 contextPath =", contextPath);
 
-	  const buyNowButtons = document.querySelectorAll(".btn-buy-now");
-	  buyNowButtons.forEach(btn => {
-	    btn.addEventListener("click", () => {
-	      const bno = btn.dataset.bno;
-	      const form = document.getElementById("buyNowForm");
-	      form.querySelector("input[name='dno']").value = bno;
-	      form.querySelector("input[name='qty']").value = 1;
-	      form.submit();
-	    });
-	  });
+  const buyNowButtons = document.querySelectorAll(".btn-buy-now");
+  buyNowButtons.forEach(btn => {
+    btn.addEventListener("click", () => {
+      const bno = btn.dataset.bno;
+      const form = document.getElementById("buyNowForm");
+      form.querySelector("input[name='dno']").value = bno;
+      form.querySelector("input[name='qty']").value = 1;
+      form.submit();
+    });
+  });
 
-	  const addCartButtons = document.querySelectorAll(".btn-add-cart");
-	  addCartButtons.forEach(btn => {
-	    btn.addEventListener("click", () => {
-	      const bno = btn.dataset.bno;
+  $('.btn-add-cart').on('click', function () {
+    const bno = $(this).data('bno');
 
-	      fetch(`${contextPath}/cart/add.do`, {
-	        method: "POST",
-	        headers: {
-	          "Content-Type": "application/x-www-form-urlencoded"
-	        },
-	        body: `bno=${bno}&quantity=1`
-	      })
-	      .then(response => response.text())
-	      .then(result => {
-	        console.log("🧪 서버 응답값:", result);
-	        if (result === "success") {
-	          alert("✅ 장바구니에 추가되었습니다.");
-	        } else if (result === "login") {
-	          alert("로그인이 필요합니다.");
-	          window.location.href = `${contextPath}/login.do`;
-	        } else {
-	          alert("❌ 장바구니 추가 실패");
-	        }
-	      })
-	      .catch(err => {
-	        alert("🚨 서버 오류 발생!");
-	        console.error(err);
-	      });
-	    });
-	  });
-	});
+    $.ajax({
+      url: contextPath + '/cart/add.do',
+      type: 'POST',
+      data: {
+        bno: bno,
+        quantity: 1
+      },
+      success: function (result) {
+        console.log('🧪 서버 응답값:', result);
+        if (result === 'success') {
+          alert('✅ 장바구니에 추가되었습니다.');
+          window.open(contextPath + "/cart.do?popup=true", "fullCartPopup", "width=900,height=700,scrollbars=yes,resizable=yes");
+        } else if (result === 'login') {
+          alert('로그인이 필요합니다.');
+          location.href = contextPath + '/login.do';
+        } else {
+          alert('❌ 장바구니 추가 실패');
+        }
+      },
+      error: function (xhr, status, error) {
+        console.error('🚨 Ajax 오류 발생:', status, error);
+        alert('🚨 서버 오류 발생!');
+      }
+    });
+  });
+});
 </script>
+
+
 		
 	<!-- 페이징(려경) -->
 		<script type="text/javascript">
