@@ -9,6 +9,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<!-- 파비콘 -->
+  <link rel="icon" href="${pageContext.request.contextPath}/images/favicon-32x32.ico" type="image/x-icon" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <!-- 공통 CSS : 타이틀 밑에 CSS추가하기(밑에 예시는 공통css, header.css, footder.css-->
 <link rel="stylesheet"

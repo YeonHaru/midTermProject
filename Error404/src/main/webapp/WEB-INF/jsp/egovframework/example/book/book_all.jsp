@@ -78,7 +78,7 @@
 						</div>
 						<div class="book-right">
 							<div class="book-info">
-							  <a href="${pageContext.request.contextPath}/book/detail.do?bno=${book.bno}">
+							  <a href="${pageContext.request.contextPath}/book/detail.do?bno=${book.bno}" class="book-title-link">
 								<h4 class="book-title">${book.title}</h4>
 								</a>
 								<p class="book-desc">지은이 : ${book.author}, 출판사 :
