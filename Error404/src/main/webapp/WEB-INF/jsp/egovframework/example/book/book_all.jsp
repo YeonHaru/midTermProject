@@ -116,8 +116,8 @@
 	</div>
 	<!-- 바로구매 전송용 form -->
 <form id="buyNowForm" method="post" action="${pageContext.request.contextPath}/order/buyNowForm.do">
-  <input type="hidden" name="dno" />
-  <input type="hidden" name="qty" value="1" />
+  <input type="hidden" name="dnoList" />
+  <input type="hidden" name="qtyList" value="1" />
 </form>
 
 
@@ -144,8 +144,8 @@ document.addEventListener("DOMContentLoaded", function () {
     btn.addEventListener("click", () => {
       const bno = btn.dataset.bno;
       const form = document.getElementById("buyNowForm");
-      form.querySelector("input[name='dno']").value = bno;
-      form.querySelector("input[name='qty']").value = 1;
+      form.querySelector("input[name='dnoList']").value = bno;
+      form.querySelector("input[name='qtyList']").value = 1;
       form.submit();
     });
   });
