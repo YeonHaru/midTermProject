@@ -72,21 +72,7 @@
   FETCH FIRST 4 ROWS ONLY
   </select>
 
-  <!-- 베스트셀러 이미지 리스트 -->
-  <select id="selectBestSellerImgList" resultType="BookImgDTO">
-    SELECT 
-    B.BNO, B.TITLE, B.AUTHOR, B.PUBLISHER, B.PDATE AS PUBDATE,
-    B.FPRICE, B.DPRICE, B.STOCK, B.DES, 
-    B.ORDER_COUNT,
-    I.UUID, I.FILE_NAME, I.FILE_DATA, I.DOWNLOAD_URL
-  FROM BOOKS B
-  JOIN BNO_IMG I ON B.BNO = I.BNO
-  WHERE B.BNO IN (
-    SELECT BNO
-    FROM BOOKS B
-    ORDER BY ORDER_COUNT DESC
-    FETCH FIRST 4 ROWS ONLY
-  )
-  </select>
+
+
 
 </mapper>
