@@ -24,7 +24,6 @@ import lombok.extern.log4j.Log4j2;
 public class CartController {
 
 	@Autowired CartService cartService;
-	@Autowired BookImgDTO bookImgDTO;
 	
 	@GetMapping("/cart.do")
 	public String cartList(
