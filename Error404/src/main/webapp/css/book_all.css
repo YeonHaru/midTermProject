@@ -1,3 +1,7 @@
+.book-title-link h4{
+  text-decoration: none !important;
+  
+}
 /* 메뉴 드롭다운 */
 nav.menu {
   margin: 2rem 0 2rem 1rem;
@@ -127,6 +131,7 @@ nav.menu {
   font-size: 0.95rem;
   margin: 0.3rem 0;
   color: var(--text-main);
+  
 }
 
 .delivery-date {
