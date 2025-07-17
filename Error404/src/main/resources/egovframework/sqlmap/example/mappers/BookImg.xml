@@ -25,9 +25,16 @@
 	<select id="selectBookImgListTotCnt" resultType="int">
 	<!-- 특정 카테고리 일단 막음 -->
 <!-- 		parameterType="String"> -->
-		SELECT COUNT(*)
-		FROM BOOKS b
-		JOIN BNO_IMG i ON b.BNO = i.BNO
+    SELECT COUNT(*)
+    FROM BOOKS b
+    JOIN BNO_IMG i ON b.BNO = i.BNO
+    WHERE 1=1
+    <if test="nat != null and nat != ''">
+        AND UPPER(b.NAT) = UPPER(#{nat})
+    </if>
+    <if test="category != null and category != ''">
+        AND UPPER(b.CATEGORY) = UPPER(#{category})
+    </if>
 <!-- 		WHERE b.CATEGORY = #{category} -->
 	</select>
 	
