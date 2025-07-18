@@ -8,9 +8,11 @@
     <title>기프트 카드</title>
     <link rel="stylesheet" href="/css/00_style.css" />
     <link rel="stylesheet" href="/css/404_gift_main.css" />
+    <link rel="stylesheet" href="/css/02_header.css" />
     
 </head>
  <body>
+ <jsp:include page="/common/header.jsp" />
     <!-- ✅ 배너 영역 -->
     <section class="banner">
       <div class="text-area">

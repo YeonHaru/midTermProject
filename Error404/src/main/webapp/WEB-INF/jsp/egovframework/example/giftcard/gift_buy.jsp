@@ -8,8 +8,10 @@ pageEncoding="UTF-8"%>
     <title>기프트카드 구매</title>
     <link rel="stylesheet" href="/css/00_style.css" />
     <link rel="stylesheet" href="/css/406_gift_buy.css" />
+    <link rel="stylesheet" href="/css/02_header.css" />
   </head>
   <body>
+  <jsp:include page="/common/header.jsp" />
     <section class="gift-select-container">
       <div class="gift-select-header">
         <div class="select-left">

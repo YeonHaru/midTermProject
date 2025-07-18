@@ -31,6 +31,8 @@
 	href="${pageContext.request.contextPath}/css/402_bestSellers.css" />
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/css/02_main.css" />
+	
+	
 <!-- 	부트스트랩 css  -->
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
