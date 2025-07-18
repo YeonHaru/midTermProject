@@ -9,9 +9,8 @@
     	B.FPRICE, B.DPRICE, B.STOCK, B.DES, 
     	B.ORDER_COUNT, 
 		I.UUID, I.FILE_NAME, I.DOWNLOAD_URL
-		FROM
-		BOOKS B,
-		BNO_IMG I
+		FROM BOOKS B
+		JOIN BNO_IMG I ON B.BNO = I.BNO
 		WHERE
 		B.BNO = I.BNO
 		<if test="searchKeyword != null and searchKeyword != ''">
@@ -21,6 +20,12 @@
             OR LOWER(B.DES) LIKE '%' || LOWER(#{searchKeyword}) || '%'
          )
       </if>
+        <if test="nat != null and nat != ''">
+        AND UPPER(B.NAT) = UPPER(#{nat})
+    </if>
+    <if test="category != null and category != ''">
+        AND UPPER(B.CATEGORY) = UPPER(#{category})
+    </if>
 		
 		ORDER BY
 		B.BNO
