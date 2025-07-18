@@ -23,4 +23,8 @@ public interface BookImgMapper {
 	public List<BookImgDTO> selectBooksByCategory(String category);
 	public List<BookImgDTO> selectFlipBookImgList();
 	public List<BookImgDTO> selectBestSellerImgList();
+	
+	
+	// 특정 도서번호(bno)에 대한 도서+이미지 상세정보 단건 조회 7/19일 강대성
+	public BookImgDTO selectBookImg(int bno);
 }
