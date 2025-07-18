@@ -16,12 +16,22 @@
 	href="<c:url value='/css/304_mypage_Wishlist.css'/>" />
 </head>
 <body>
+
+
 	<main class="page">
 		<div class="mypage-container">
 			<!-- 왼쪽 탭 메뉴 -->
 			<nav class="tab-menu" aria-label="마이페이지 메뉴">
 				<ul>
-					<li><a href="<c:url value='/home.do' />" class="full-link">홈</a></li>
+					<li style="padding-left: 0;"><a
+						href="<c:url value='/home.do' />"
+						class="full-link d-flex align-items-center "> <img
+							src="${pageContext.request.contextPath}/images/logo_2.png"
+							alt="홈" style="width: 3rem; height: 3rem; margin-right: 8px;" />
+							<span
+							style="font-size: 1rem; font-weight: bold; position: relative; top: -17px; line-height: 1;">BLUEMING
+								PAGE</span>
+					</a></li>
 					<li class="active" data-tab="profile" tabindex="0">내 정보</li>
 					<li data-tab="orders" tabindex="0">주문 내역</li>
 
