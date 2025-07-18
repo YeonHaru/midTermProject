@@ -3,6 +3,7 @@ package egovframework.example.cart.web;
 import java.util.Collections;
 import java.util.List;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +30,9 @@ public class CartController {
 			@ModelAttribute Criteria criteria,
 			@RequestParam(value = "popup", required = false, defaultValue = "false") boolean popup,
 			Model model,
-			HttpSession httpSession
+			HttpSession httpSession,
+			HttpServletResponse response  // 이게 꼭 있어야 함
+			
 			) {
 		String userId = (String) httpSession.getAttribute("userId");
 		
@@ -37,6 +40,11 @@ public class CartController {
 			return "redirect:/login.do";
 		}
 		
+		
+		 // 캐시 무효화 헤더 설정
+	    response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); // HTTP 1.1
+	    response.setHeader("Pragma", "no-cache"); // HTTP 1.0
+	    response.setDateHeader("Expires", 0); // Proxies
 		criteria.setUserId(userId);
 		
 		log.info("장바구니 목록 요청 - 사용자 ID: {}",userId);

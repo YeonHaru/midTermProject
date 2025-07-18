@@ -10,28 +10,26 @@
 <!-- 부트스트랩 아이콘 CDN (head 태그 안에 넣어야 함) -->
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
-
+<link rel="icon" type="image/png"
+	href="<c:url value='/images/favicon.png'/>">
 <!-- 상단 이벤트 배너 -->
 <nav class="navbar navbar-expand-lg custom-navbar"
-	style="background-color: var(--bg-color);">
-	<div
-		class="top-banner w-100 d-flex flex-column align-items-center py-2">
-		<!-- 상단 문구 -->
-		<div style="color: var(--text-sub); font-size: 0.8125rem;">
-			<!-- small (13px) -->
-			여름 책 콘텐츠가 담긴 NOT FOUNDa 키링 <span
-				style="color: var(--accent-color-1); font-weight: bold;">
-				독서는 여름이 제철! 🍇🍒 </span>
-		</div>
-
-		<!-- 하단 이벤트 문구 -->
-		<div class="mt1"
-			style="color: var(--text-main); font-size: 0.9375rem;">
-			💳 삼성카드 결제 시 <strong style="color: var(--accent-color-1);">최대
-				30% 할인</strong> 이벤트 중!
-		</div>
-	</div>
+     style="background-color: var(--bg-color);">
+  <div class="top-banner w-100 d-flex flex-column align-items-center py-2">
+    <div style="color: var(--text-sub); font-size: 0.8125rem;">
+      <a href="${pageContext.request.contextPath}/home.do"
+         class="d-inline-flex align-items-center"
+         style="color: var(--text-sub); text-decoration: none; font-weight: bold;">
+         
+        <img src="${pageContext.request.contextPath}/images/logo_2.png"
+             alt="Blueming Page 로고"
+             style="height: 48px; width: auto; margin-right: 0.5rem; vertical-align: middle;">
+        <h2>BLUEMING PAGE</h2>
+      </a>
+    </div>
+  </div>
 </nav>
+
 
 
 <!-- 부트스트랩 네비게이션 바 -->
@@ -155,9 +153,11 @@
 </nav>
 <!-- 7월10일 특정 페이지에는 검색창이 안보이게 숨기기 -->
 <%
-  boolean hideSearch = Boolean.TRUE.equals(request.getAttribute("hideSearch"));
+boolean hideSearch = Boolean.TRUE.equals(request.getAttribute("hideSearch"));
 %>
-<% if (!hideSearch) { %>
+<%
+if (!hideSearch) {
+%>
 <!-- 7월9일 헤더 건든거 : 덕규 -->
 <nav class="navbar navbar-expand-lg custom-navbar bg-light">
 	<div class="container">
@@ -165,7 +165,8 @@
 			action="${pageContext.request.contextPath}/book.do" method="get"
 			class="mx-auto w-100" style="max-width: 500px;">
 
-			<div class="input-group shadow-sm rounded-pill border overflow-visible">
+			<div
+				class="input-group shadow-sm rounded-pill border overflow-visible">
 
 				<!-- ▼ 드롭다운 -->
 				<div class="dropdown custom-dropdown">
@@ -173,10 +174,13 @@
 						class="btn btn-light dropdown-toggle px-3 border-0" type="button"
 						data-bs-toggle="dropdown" aria-expanded="false">통합검색</button>
 					<ul class="dropdown-menu">
-					<!-- a태그 필요없어서 버튼타입으로 바꿈 -->
-						<li><button type="button" class="dropdown-item search-type-option" data-type="all">전체검색</button></li>
-						<li><button type="button" class="dropdown-item search-type-option" data-type="title">도서검색</button></li>
-						<li><button type="button" class="dropdown-item search-type-option" data-type="author">저자검색</button></li>
+						<!-- a태그 필요없어서 버튼타입으로 바꿈 -->
+						<li><button type="button"
+								class="dropdown-item search-type-option" data-type="all">전체검색</button></li>
+						<li><button type="button"
+								class="dropdown-item search-type-option" data-type="title">도서검색</button></li>
+						<li><button type="button"
+								class="dropdown-item search-type-option" data-type="author">저자검색</button></li>
 					</ul>
 				</div>
 
@@ -197,7 +201,9 @@
 		</form>
 	</div>
 </nav>
-<% } %>
+<%
+}
+%>
 <!-- 여기까지 : 덕규 7월10일-->
 
 <!-- 이걸해볼거임 -->

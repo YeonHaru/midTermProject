@@ -79,6 +79,8 @@ public class BookController {
 		int totCnt = bookImgService.selectBookImgListTotCnt(criteria);
 		paginationInfo.setTotalRecordCount(totCnt);
 		log.info("테스트 : " + totCnt);
+		log.info("총 도서 수 (페이징 대상): {}", totCnt);
+		
 //		페이지 모든정보 : paginationInfo
 		model.addAttribute("paginationInfo", paginationInfo);
 		
@@ -95,7 +97,7 @@ public class BookController {
    // 오늘의 도서 특가 : 덕규
    @RequestMapping("/todaySpecial.do")
    public String todaySpecial(Model model) {
-       List<BookImgDTO> randomBooks = bookImgService.selectRandomBookImgList();
+       List<BookImgDTO> randomBooks = bookImgService.selectFlipBookImgList();
 
        // 최대 2권만 가져오도록 제한 (DB 쿼리에서 제한이 안 걸려 있다면)
        if (randomBooks.size() > 3) {

@@ -28,6 +28,10 @@ public class CartVO {
 	private String title;
     private String author;
     private String publisher;
+    
+//   BookImgDTO
+    private String downloadUrl;      // 7월 17일 추가 강대성
+    
 //    private String bimg;       // BLOB을 경로로 처리 (예: /img/book1.jpg)
     private Date pdate;
     private int fprice;
