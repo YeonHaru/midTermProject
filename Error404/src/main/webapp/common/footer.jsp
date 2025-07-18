@@ -6,6 +6,7 @@
 <!DOCTYPE html>
 <html lang="ko">
   <head>
+  <link rel="icon" href="/images/favicon.ico" type="image/x-icon" />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>책장 펼침 효과 + 검색 기능</title>

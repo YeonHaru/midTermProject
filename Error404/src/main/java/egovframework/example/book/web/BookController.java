@@ -79,6 +79,8 @@ public class BookController {
 		int totCnt = bookImgService.selectBookImgListTotCnt(criteria);
 		paginationInfo.setTotalRecordCount(totCnt);
 		log.info("테스트 : " + totCnt);
+		log.info("총 도서 수 (페이징 대상): {}", totCnt);
+		
 //		페이지 모든정보 : paginationInfo
 		model.addAttribute("paginationInfo", paginationInfo);
 		

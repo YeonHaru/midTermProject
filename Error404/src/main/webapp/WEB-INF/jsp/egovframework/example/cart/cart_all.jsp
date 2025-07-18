@@ -25,7 +25,7 @@
 
 
 <c:if test="${not popup}">
-<%
+	<%
 	request.setAttribute("hideSearch", true);
 	%><!-- 7월10일 이 문구는 특정페이지에서 검색창이 숨겨지는 기능을 구현header -->
 	<%
@@ -52,10 +52,12 @@
 			<tbody>
 				<c:forEach var="item" items="${cartList}">
 					<tr class="cart-item" data-cno="${item.cno}" data-dno="${item.bno}">
-						<td><input type="checkbox" class="row-check" /></td>
+						<td><input type="checkbox" class="row-check" /></td> 
+						
+						<!-- 도서 이미지와 장바구니에 담은 책의 이미지가 같게 설정 7/17일 강대성 -->
 						<td>
 							<div class="thumb-wrapper">
-								<img src="" alt="${item.title}" class="thumb" />
+								<img src="${item.downloadUrl}" alt="${item.title}" class="thumb" />
 							</div>
 						</td>
 						<td class="desc">
