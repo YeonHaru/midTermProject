@@ -5,20 +5,22 @@
 	namespace="egovframework.example.cart.service.impl.CartMapper">
 
 	<!-- 장바구니 목록 조회 -->
-	<select id="getCartList" parameterType="Criteria"
-		resultType="CartVO">
-		SELECT C.CNO, C.USERID, C.BNO, C.QUANTITY,
-		B.TITLE,
-		B.AUTHOR, B.PUBLISHER,
-		B.PDATE, B.FPRICE, B.DPRICE, B.STOCK,
-		B.DES,
-		B.CATEGORY, B.NAT, B.ORDER_COUNT
-		FROM CART C
-		JOIN BOOKS B ON C.BNO =
-		B.BNO
-		WHERE C.USERID = #{userId}
-		ORDER BY C.CNO DESC
-	</select>
+<select id="getCartList" parameterType="Criteria"
+	resultType="CartVO">
+	SELECT
+	C.CNO, C.USERID, C.BNO, C.QUANTITY,
+	B.TITLE,
+	B.AUTHOR, B.PUBLISHER,
+	I.DOWNLOAD_URL,  
+	B.PDATE, B.FPRICE, B.DPRICE, B.STOCK,
+	B.DES,
+	B.CATEGORY, B.NAT, B.ORDER_COUNT
+	FROM CART C
+	JOIN BOOKS B ON C.BNO = B.BNO
+	LEFT JOIN BNO_IMG I ON B.BNO = I.BNO  
+	WHERE C.USERID = #{userId}
+	ORDER BY C.CNO DESC
+</select>
 
 	<update id="updateQuantity">
 		UPDATE CART
