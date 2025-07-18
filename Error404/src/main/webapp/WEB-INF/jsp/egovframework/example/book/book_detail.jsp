@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>${book.title}</title>
+<title>${bookImg.title}</title>
 <link rel="stylesheet"
 	href="<%=request.getContextPath()%>/css/00_style.css" />
 <link rel="stylesheet"
@@ -16,24 +16,32 @@
 	href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 </head>
 <body>
+<!-- 여기페이지 전체를 bookdto에서 이미지를 받아야함으로 수정함 7/19일 강대성  -->
 	<div class="background pb5 pt5">
 		<div class="page">
 			<div class="book-detail-container pt5">
 				<div class="book-image">
-					<img src="${pageContext.request.contextPath}/images/default.jpg"
-						alt="${book.title}" />
+					<c:choose>
+						<c:when test="${not empty bookImg.downloadUrl}">
+							<img src="${bookImg.downloadUrl}" alt="${bookImg.title}" />
+						</c:when>
+						<c:otherwise>
+							<img src="${pageContext.request.contextPath}/images/default.jpg"
+								alt="${bookImg.title}" />
+						</c:otherwise>
+					</c:choose>
 				</div>
 
 				<div class="book-info">
-					<h1 class="book-title">${book.title}</h1>
+					<h1 class="book-title">${bookImg.title}</h1>
 					<div class="book-text">
 						<p>
 							<strong>정가: </strong>
-							<fmt:formatNumber value="${book.fprice}" pattern="#,###" />
+							<fmt:formatNumber value="${bookImg.fprice}" pattern="#,###" />
 							원<br /> <strong>판매가: </strong> <span class="price-sale">
-								<fmt:formatNumber value="${book.dprice}" pattern="#,###" />
+								<fmt:formatNumber value="${bookImg.dprice}" pattern="#,###" />
 							</span>원<br /> <strong>총 금액: </strong> <span id="totalPrice"> <fmt:formatNumber
-									value="${book.dprice}" pattern="#,###" />
+									value="${bookImg.dprice}" pattern="#,###" />
 							</span>원<br /> <strong>배송: </strong>무료배송<br /> <strong>수령예상일:
 							</strong>내일 도착 예정<br />
 						</p>
@@ -42,7 +50,7 @@
 						<!-- 수량 입력창은 버튼 그룹 밖으로 분리 -->
 						<form action="${pageContext.request.contextPath}/cart/add.do"
 							method="post" class="cart-form">
-							<input type="hidden" name="bno" value="${book.bno}" /> <label
+							<input type="hidden" name="bno" value="${bookImg.bno}" /> <label
 								for="quantity">수량:</label> <input type="number"
 								class="quantity-input" id="quantity" name="quantity" value="1"
 								min="1" />
@@ -50,7 +58,7 @@
 
 						<!-- 버튼 그룹 : 버튼 4개 모두 균일 크기 -->
 						<button type="button" class="btn-cart btn-add-cart"
-							data-bno="${book.bno}">
+							data-bno="${bookImg.bno}">
 							<small>장바구니</small>
 						</button>
 
@@ -72,16 +80,16 @@
 				<div class="info-item">
 					<div class="info-label">기본정보</div>
 					<div class="info-text">
-						<p>${book.author}</p>
-						<p>${book.publisher}</p>
-						<p>${book.pubDate}</p>
+						<p>${bookImg.author}</p>
+						<p>${bookImg.publisher}</p>
+						<p>${bookImg.pubDate}</p>
 					</div>
 				</div>
 
 				<div class="info-item">
 					<div class="info-label">카테고리</div>
 					<div class="info-text">
-						<p>${book.category}</p>
+						<p>${bookImg.category}</p>
 					</div>
 				</div>
 
@@ -94,12 +102,12 @@
 
 				<div class="info-item">
 					<div class="info-label">책소개</div>
-					<div class="info-text">${book.des}</div>
+					<div class="info-text">${bookImg.des}</div>
 				</div>
 
 				<div class="info-item">
 					<div class="info-label">재고수량</div>
-					<div class="info-text">${book.stock}</div>
+					<div class="info-text">${bookImg.stock}</div>
 				</div>
 
 				<div class="info-item">
@@ -185,7 +193,8 @@
 	<!-- 바로구매 전송용 form (단일 구매) -->
 	<form id="buyNowForm" method="post"
 		action="${pageContext.request.contextPath}/order/buyNowForm.do">
-		<input type="hidden" name="dnoList" /> <input type="hidden" name="qtyList" />
+		<input type="hidden" name="dnoList" /> <input type="hidden"
+			name="qtyList" />
 	</form>
 
 	<script>
@@ -214,12 +223,12 @@
       },
     });
   </script>
-  
-  <script>
+
+	<script>
   document.addEventListener('DOMContentLoaded', () => {
     const quantityInput = document.getElementById('quantity');
     const totalPriceSpan = document.getElementById('totalPrice');
-    const unitPrice = ${book.dprice}; // 서버에서 dprice를 JS 변수로 넘김
+    const unitPrice = ${bookImg.dprice}; // 서버에서 dprice를 JS 변수로 넘김
 
     quantityInput.addEventListener('input', () => {
       const qty = parseInt(quantityInput.value) || 1;
@@ -228,7 +237,7 @@
     });
   });
 </script>
-  
+
 	<!-- 바로구매 -->
 	<script>
 document.addEventListener("DOMContentLoaded", () => {
@@ -236,7 +245,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const qtyInput = document.querySelector("#quantity"); // 수량 입력칸
 
   btnBuy?.addEventListener("click", () => {
-    const bno = "${book.bno}";
+    const bno = "${bookImg.bno}";
     const qty = qtyInput?.value || 1;
 
     const form = document.getElementById("buyNowForm");

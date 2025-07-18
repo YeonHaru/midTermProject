@@ -97,7 +97,17 @@
   ORDER BY DISCOUNT DESC
   FETCH FIRST 4 ROWS ONLY
   </select>
-
+  
+  <!-- 북디테일 이미지 가져오기 7/19 강대성 -->
+<select id="selectBookImg" parameterType="int" resultType="BookImgDTO">
+    SELECT
+        B.BNO, B.TITLE, B.AUTHOR, B.PUBLISHER, B.PDATE AS PUBDATE,
+        B.FPRICE, B.DPRICE, B.STOCK, B.DES, B.ORDER_COUNT,
+        I.UUID, I.FILE_NAME, I.FILE_DATA, I.DOWNLOAD_URL
+    FROM BOOKS B
+    LEFT JOIN BNO_IMG I ON B.BNO = I.BNO
+    WHERE B.BNO = #{bno}
+</select>
 
 
 

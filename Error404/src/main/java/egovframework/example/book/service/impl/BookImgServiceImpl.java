@@ -57,6 +57,12 @@ public class BookImgServiceImpl implements BookImgService{
 		// TODO Auto-generated method stub
 		return bookImgMapper.selectBestSellerImgList();
 	}
+//	특정 도서번호(bno)에 대한 도서+이미지 상세정보 단건 조회 7/19일 강대성
+	@Override
+	public BookImgDTO selectBookImg(int bno) {
+		// TODO Auto-generated method stub
+		return bookImgMapper.selectBookImg(bno);
+	}
 	
 	
 	
