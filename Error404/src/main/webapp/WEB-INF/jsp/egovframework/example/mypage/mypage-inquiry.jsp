@@ -12,7 +12,6 @@
 	href="<c:url value='/css/501_mypage-inquiry.css' />" />
 </head>
 <body>
-	Context path: ${pageContext.request.contextPath}
 	<div class="inquiry-popup">
 		<h2 class="section-title">환불 사유를 선택해주세요</h2>
 
@@ -63,6 +62,19 @@
       });
     }
   });
+  
 </script>
+<!-- 여기 넣기 -->
+	<c:if test="${success != null}">
+	  <script>
+	    if (${success}) {
+	      alert("환불 요청이 정상 접수되었습니다.");
+	      window.close();
+	    } else {
+	      alert("환불 요청 중 오류가 발생했습니다.");
+	    }
+	  </script>
+	</c:if>
+
 </body>
 </html>

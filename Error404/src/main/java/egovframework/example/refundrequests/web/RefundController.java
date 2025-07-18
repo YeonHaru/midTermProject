@@ -50,14 +50,13 @@ public class RefundController {
 	    refundVO.setOno(0L);
 
 	    try {
-	        int result = refundService.insertRefundRequest(refundVO);
-	        log.info("✅ insertRefundRequest 결과: {}", result);
+	        refundService.insertRefundRequest(refundVO);
+	        model.addAttribute("success", true);
 	    } catch (Exception e) {
-	        log.error("❌ insertRefundRequest 오류 발생", e);
+	        log.error("insertRefundRequest 오류", e);
+	        model.addAttribute("success", false);
 	    }
-
-	    model.addAttribute("msg", "환불 요청이 정상 접수되었습니다.");
-	    return "redirect:/mypage.do";
+	    return "mypage/mypage-inquiry";  // 포워딩
 	}
 
 //	환불사유 새창 띄우기
