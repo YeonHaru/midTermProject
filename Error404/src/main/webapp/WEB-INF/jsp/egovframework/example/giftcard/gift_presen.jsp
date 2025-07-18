@@ -9,8 +9,10 @@ pageEncoding="UTF-8"%>
     <title>기프트카드</title>
     <link rel="stylesheet" href="/css/00_style.css" />
     <link rel="stylesheet" href="/css/405_gift_presen.css" />
+    <link rel="stylesheet" href="/css/02_header.css" />
   </head>
   <body>
+  <jsp:include page="/common/header.jsp" />
     <section class="gift-card-section">
       <h2 class="gift-card-title">🎁기프트카드 선물하기🎁</h2>
       <div class="gift-card-grid">
