@@ -146,7 +146,7 @@
 		<div class="container text-center my-4">
 		  <div class="row">
 		    <!-- 1. 도서예약 서비스 -->
-		    <div class="col-md-3 col-6 mb-4">
+		    <div class="col-lg-3 col-md-6 col-12 mb-4">
 		      <div class="decorated-box h-100">
 		        <div class="store-info-label" id="service">📚 도서예약 서비스</div>
 		        <div class="store-info-text">
@@ -157,7 +157,7 @@
 		    </div>
 		
 		    <!-- 2. 도서배달 서비스 -->
-		    <div class="col-md-3 col-6 mb-4">
+		    <div class="col-lg-3 col-md-6 col-12 mb-4">
 		      <div class="decorated-box h-100">
 		        <div class="store-info-label">📦 도서배달 서비스</div>
 		        <div class="store-info-text">
@@ -168,7 +168,7 @@
 		    </div>
 		
 		    <!-- 3. 무인검색 서비스 -->
-		    <div class="col-md-3 col-6 mb-4">
+		    <div class="col-lg-3 col-md-6 col-12 mb-4">
 		      <div class="decorated-box h-100">
 		        <div class="store-info-label">🔍 무인검색 서비스</div>
 		        <div class="store-info-text">
@@ -179,7 +179,7 @@
 		    </div>
 		
 		    <!-- 4. 와이파이 서비스 -->
-		    <div class="col-md-3 col-6 mb-4">
+		    <div class="col-lg-3 col-md-6 col-12 mb-4">
 		      <div class="decorated-box h-100">
 		        <div class="store-info-label">📶 와이파이 서비스</div>
 		        <div class="store-info-text">

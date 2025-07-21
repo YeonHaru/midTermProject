@@ -41,6 +41,8 @@
   margin: 0;
   list-style: none;
   border-bottom: 1px solid var(--bg-color);
+  box-sizing: border-box;
+  width: 100%;
 }
 
 .event-categories li a {
@@ -53,6 +55,8 @@
   text-decoration: none;
   color: #333;
   transition: all 0.3s;
+  word-break: keep-all;       /* 한국어 줄바꿈 자연스럽게 */
+  white-space: normal;        /* 줄바꿈 허용 */
 }
 
 .event-categories li a:hover {
@@ -201,30 +205,36 @@
   max-width: 300px;
   height: auto;
 }
-
-/* 우측: 추천 박스 */
 .slide-recommend {
-  width: 40%;
-  height : 315px;
+  width: 100%; /* 모바일에선 꽉 채우도록 */
+  max-width: 280px;
+  height: auto; /* 필요에 따라 자동 높이로도 가능 */
   background-color: #fff;
   border-radius: 12px;
-  min-width: 220px;
-  max-width: 280px;
-  flex-shrink: 0;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  padding: 1rem;
+  box-sizing: border-box;
+  overflow-wrap: break-word; /* ✅ 줄바꿈 */
+  word-break: keep-all;      /* ✅ 자연스러운 한글 줄바꿈 */
 }
 
 .slide-recommend h4 {
   font-weight: bold;
   font-size: 1rem;
   margin-bottom: 1rem;
+  text-align: center;
 }
 
 .slide-recommend ul {
   padding-left: 1rem;
+  margin: 0;
   list-style: disc;
   font-size: 0.9rem;
   line-height: 1.6;
+}
+
+.slide-recommend li {
+  word-break: break-word;
 }
  .bottom-slider {
   display: flex;
@@ -235,12 +245,32 @@
   border-radius: 8px;
 } 
 
-
-/* 모바일 반응형 */
+/* 모바일: 768px 이하 전체 */
 @media (max-width: 768px) {
+  /* 추천 박스 */
+  .slide-recommend {
+    width: 100%;
+    max-width: 95%;
+    height: auto;
+    margin-top: 1rem;
+    text-align: center;
+  }
+
+  .slide-recommend ul {
+    list-style: none;
+    padding-left: 0;
+    font-size: 0.85rem;
+  }
+
+  .slide-recommend ul li {
+    margin-bottom: 0.3rem;
+    word-break: break-word;
+  }
+
+  /* 스와이퍼 */
   .event-swiper-section {
     flex-direction: column;
-    align-items: center; /* 중앙 정렬 */
+    align-items: center;
   }
 
   .event-swiper-wrapper {
@@ -248,12 +278,7 @@
     max-width: 95%;
   }
 
-  .slide-recommend {
-    width: 100%;
-    max-width: 95%;
-    margin-top: 1rem;
-  }
-
+  /* 검색 정렬 영역 */
   .event-search-sort {
     flex-direction: column;
     align-items: stretch;
@@ -264,20 +289,8 @@
   .event-search-sort button {
     width: 100%;
   }
-    .slide-recommend {
-    text-align: center; /* 텍스트 중앙 정렬 */
-    height : 200px;
-  }
 
-  .slide-recommend ul {
-    list-style: none; /* 모바일에선 점 제거 */
-    padding-left: 0;  /* 여백 제거 */
-  }
-
-  .slide-recommend ul li {
-    margin-bottom: 0.3rem;
-  }
-    .event-search-bar {
+  .event-search-bar {
     padding: 0.8rem;
   }
 
@@ -286,8 +299,6 @@
     border-radius: 6px;
   }
 }
-
-
 /* 768px 이상: 가로 정렬 */
 @media (min-width: 768px) {
   .event-slide.horizontal .slide-banner {
@@ -325,6 +336,7 @@
     padding: 10px 20px;
   }
 }
+
 
 
 

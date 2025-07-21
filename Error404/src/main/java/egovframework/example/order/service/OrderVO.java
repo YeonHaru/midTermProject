@@ -34,6 +34,9 @@ public class OrderVO extends Criteria {
     private String address;
     private String memo;
     private String paymentMethod;
+    
+    private String orderId;
+    
 
     private List<OrderItemVO> items; // 주문 상세 리스트 (1:N)
     
@@ -43,5 +46,13 @@ public class OrderVO extends Criteria {
 
     public void setItems(List<OrderItemVO> items) {
         this.items = items;
+    }
+    
+    public String getOrderId() {
+        return orderId;
+    }
+
+    public void setOrderId(String orderId) {
+        this.orderId = orderId;
     }
 }
