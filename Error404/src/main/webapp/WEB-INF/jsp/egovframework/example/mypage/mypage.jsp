@@ -266,7 +266,7 @@
 							<p>
 								찜한 도서가 없습니다.<br>마음에 드는 책을 담아보세요!
 							</p>
-							<br> <a href="/home.do" class="btn btn-primary">도서 보러가기</a>
+							<br> <a href="/book.do" class="btn btn-primary">도서 보러가기</a>
 						</div>
 					</c:when>
 
