@@ -14,13 +14,13 @@
 	href="<c:url value='/images/favicon.png'/>">
 <!-- 상단 이벤트 배너 -->
 <nav class="navbar navbar-expand-lg custom-navbar"
-	style="background-color: var(- -bg-color);">
+	style="background-color: var(--bg-color);">
 	<div
 		class="top-banner w-100 d-flex flex-column align-items-center py-2">
-		<div style="color: var(- -text-sub); font-size: 0.8125rem;">
+		<div style="color: var(--text-sub); font-size: 0.8125rem;">
 			<a href="${pageContext.request.contextPath}/home.do"
 				class="d-inline-flex align-items-center"
-				style="color: var(- -text-sub); text-decoration: none; font-weight: bold;">
+				style="color: var(--text-sub); text-decoration: none; font-weight: bold;">
 
 				<img src="${pageContext.request.contextPath}/images/logo_2.png"
 				alt="Blueming Page 로고"
