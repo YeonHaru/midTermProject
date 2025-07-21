@@ -23,7 +23,7 @@
          
         <img src="${pageContext.request.contextPath}/images/logo_2.png"
              alt="Blueming Page 로고"
-             style="height: 48px; width: auto; margin-right: 0.5rem; vertical-align: middle;">
+             style="height: 70px; width: auto; margin-right: 0.5rem; vertical-align: middle;">
         <h2>BLUEMING PAGE</h2>
       </a>
     </div>
