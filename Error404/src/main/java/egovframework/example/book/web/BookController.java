@@ -87,13 +87,27 @@ public class BookController {
        return "book/book_all"; // JSP 경로
    }
 
-   // 상세페이지
+//   // 상세페이지
+//   @GetMapping("/book/detail.do")
+//   public String bookDetail(@RequestParam int bno, Model model) {
+//       BookVO book = bookService.selectBook(bno);
+//       model.addAttribute("book", book); // ← 여기 이름을 "book"으로 맞춰줌
+//       return "book/book_detail";
+//   }
+//   북디테일에 이미지를 dto에서 받아야함으로 다시 수정함 위에껀 일단 주석으로 막아둠 7/19 강대성
    @GetMapping("/book/detail.do")
    public String bookDetail(@RequestParam int bno, Model model) {
-       BookVO book = bookService.selectBook(bno);
-       model.addAttribute("book", book); // ← 여기 이름을 "book"으로 맞춰줌
+       BookImgDTO bookImg = bookImgService.selectBookImg(bno);
+       if (bookImg == null) {
+           // 해당 도서 없으면 목록으로 리다이렉트하거나 에러페이지로 처리
+           return "redirect:/book.do";
+       }
+       model.addAttribute("bookImg", bookImg); // JSP에서 bookImg로 받아서 사용
        return "book/book_detail";
    }
+   
+   
+   
    // 오늘의 도서 특가 : 덕규
    @RequestMapping("/todaySpecial.do")
    public String todaySpecial(Model model) {

@@ -14,6 +14,7 @@
 	href="<c:url value='/images/favicon.png'/>">
 <!-- 상단 이벤트 배너 -->
 <nav class="navbar navbar-expand-lg custom-navbar"
+
      style="background-color: var(--bg-color);">
   <div class="top-banner w-100 d-flex flex-column align-items-center py-2">
     <div style="color: var(--text-sub); font-size: 0.8125rem;">
@@ -28,6 +29,7 @@
       </a>
     </div>
   </div>
+
 </nav>
 
 
@@ -99,20 +101,47 @@
 					<!-- 외국도서 -->
 					<li class="nav-item dropdown"><a
 						class="nav-link dropdown-toggle" href="#" id="foreignMenu"
-						role="button" data-bs-toggle="dropdown" aria-expanded="false">외국도서</a>
+						role="button" data-bs-toggle="dropdown" aria-expanded="false">
+							외국도서 </a>
 						<ul class="dropdown-menu" aria-labelledby="foreignMenu">
-							<li><a class="dropdown-item" href="#">소설</a></li>
-							<li><a class="dropdown-item" href="#">에세이</a></li>
+							<li><a class="dropdown-item"
+								href="/book.do?nat=for&category=fiction">소설</a></li>
+							<li><a class="dropdown-item"
+								href="/book.do?nat=for&category=fantasy">판타지</a></li>
+							<li><a class="dropdown-item"
+								href="/book.do?nat=for&category=essay">에세이</a></li>
+							<li><a class="dropdown-item"
+								href="/book.do?nat=for&category=self">자기계발</a></li>
+							<li><a class="dropdown-item"
+								href="/book.do?nat=for&category=science">과학</a></li>
+							<li><a class="dropdown-item"
+								href="/book.do?nat=for&category=history">역사</a></li>
+							<li><a class="dropdown-item"
+								href="/book.do?nat=for&category=philosophy">철학</a></li>
+							<li><a class="dropdown-item"
+								href="/book.do?nat=for&category=art">예술</a></li>
+							<li><a class="dropdown-item"
+								href="/book.do?nat=for&category=travel">여행</a></li>
+							<li><a class="dropdown-item"
+								href="/book.do?nat=for&category=children">아동/청소년</a></li>
+							<li><a class="dropdown-item"
+								href="/book.do?nat=for&category=cooking">요리</a></li>
+							<li><a class="dropdown-item"
+								href="/book.do?nat=for&category=business">경제/경영</a></li>
+							<li><a class="dropdown-item"
+								href="/book.do?nat=for&category=religion">종교</a></li>
+							<li><a class="dropdown-item"
+								href="/book.do?nat=for&category=health">건강</a></li>
+							<li><a class="dropdown-item"
+								href="/book.do?nat=for&category=computer">컴퓨터/IT</a></li>
+							<li><a class="dropdown-item"
+								href="/book.do?nat=for&category=education">교육</a></li>
+							<li><a class="dropdown-item"
+								href="/book.do?nat=for&category=comics">만화/웹툰</a></li>
+							<li><a class="dropdown-item"
+								href="/book.do?nat=for&category=poetry">시/산문</a></li>
 						</ul></li>
 
-					<!-- 전자책 -->
-					<li class="nav-item dropdown"><a
-						class="nav-link dropdown-toggle" href="#" id="ebookMenu"
-						role="button" data-bs-toggle="dropdown" aria-expanded="false">전자책</a>
-						<ul class="dropdown-menu" aria-labelledby="ebookMenu">
-							<li><a class="dropdown-item" href="#">소설</a></li>
-							<li><a class="dropdown-item" href="#">에세이</a></li>
-						</ul></li>
 
 					<!-- 이벤트 -->
 					<li class="nav-item"><a class="nav-link" href="/eventmain.do">이벤트</a></li>
@@ -187,7 +216,7 @@ if (!hideSearch) {
 				<!-- 사용자 검색어 입력창 -->
 				<input type="search" id="searchInput" name="searchKeyword"
 					class="form-control border-0 px-3"
-					placeholder="404 NOT FOUND? WHY?" aria-label="Search" />
+					placeholder="도서 및 저자를 검색하세요" aria-label="Search" />
 
 				<!-- 드롭다운 선택용 숨겨진 검색 타입 -->
 				<input type="hidden" name="searchCondition"

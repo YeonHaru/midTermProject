@@ -57,7 +57,7 @@ request.setAttribute("hideFooter", true);
 		<!-- 주문 요약 -->
 		<div class="order-summary mb4 text-center">
 			<p>
-				총 <strong>${fn:length(selectedBooks)}</strong>권 / 총 결제금액: <strong><fmt:formatNumber
+				총 <strong>${totalQuantity}</strong>권 / 총 결제금액: <strong><fmt:formatNumber
 						value="${totalPrice}" pattern="#,###" /></strong>원
 			</p>
 		</div>
@@ -71,8 +71,8 @@ request.setAttribute("hideFooter", true);
 				<!-- 숨겨진 데이터 전달 -->
 				<c:forEach var="book" items="${selectedBooks}" varStatus="status">
 					<c:if test="${not empty book.bno and quantities[status.index] > 0}">
-						<input type="hidden" name="dno" value="${book.bno}" />
-						<input type="hidden" name="qty"
+						<input type="hidden" name="dnoList" value="${book.bno}" />
+						<input type="hidden" name="qtyList"
 							value="${quantities[status.index]}" />
 					</c:if>
 				</c:forEach>

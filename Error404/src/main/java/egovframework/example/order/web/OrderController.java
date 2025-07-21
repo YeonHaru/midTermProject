@@ -165,6 +165,10 @@ public class OrderController {
 		model.addAttribute("selectedBooks", selectedBooks);
 		model.addAttribute("quantities", quantities);
 		model.addAttribute("totalPrice", totalPrice);
+		
+//		주문서에 책 수량이 잘못찍히는걸 수정 7/19일 강대성
+		int totalQuantity = quantities.stream().mapToInt(Integer::intValue).sum();
+		model.addAttribute("totalQuantity", totalQuantity);
 
 		// 주문서 작성 폼 페이지로 이동
 		return "order/orderForm";
