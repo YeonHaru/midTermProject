@@ -19,5 +19,8 @@
 		<property name="basePackage" value="egovframework.example.order.service.impl" />
 	</bean>
 	
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+	<property name="basePackage" value="egovframework.example.order.service.impl, egovframework.example.giftcard.service.impl" />
+</bean>
     
 </beans>

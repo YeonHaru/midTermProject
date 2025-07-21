@@ -10,5 +10,7 @@ import java.util.List;
  *
  */
 public interface GiftBuyService {
-	 List<?> selectGiftBuyList(); 		// 전체조회
+	 void insertGiftBuy(GiftBuyVO vo);
+	 GiftBuyVO selectById(int gno);
+	 List<GiftBuyVO> selectGiftBuyList(); 		// 전체조회
 }

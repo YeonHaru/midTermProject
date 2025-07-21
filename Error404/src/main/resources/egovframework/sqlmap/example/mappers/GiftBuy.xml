@@ -1,9 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="egovframework.example.giftcard.service.impl.GiftBuyMapper">
-<select  id="selectGiftBuyList"
-		 resultType="GiftBuyVO"
-		>
-			SELECT * FROM gift_buy
-		</select>
+<select id="selectGiftBuyList" resultType="egovframework.example.giftcard.service.GiftBuyVO">
+    SELECT GNO, PHOTO, NAME, MONEY
+    FROM GIFT_BUY
+  </select>
+
+<insert id="insertGiftBuy" parameterType="GiftBuyVO">
+  <selectKey keyProperty="gno" resultType="int" order="BEFORE">
+    SELECT gift_buy_seq.NEXTVAL FROM dual
+  </selectKey>
+
+  INSERT INTO gift_buy (
+    gno, photo, name, money
+  ) VALUES (
+    #{gno}, #{photo}, #{name}, #{money}
+  )
+</insert>
+
+  <select id="selectById" parameterType="int" resultType="egovframework.example.giftcard.service.GiftBuyVO">
+    SELECT GNO, PHOTO, NAME, MONEY
+    FROM GIFT_BUY
+    WHERE GNO = #{gno}
+  </select>
 </mapper>
