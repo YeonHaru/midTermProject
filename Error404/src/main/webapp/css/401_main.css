@@ -82,6 +82,7 @@
   display: block;
 }
 
+
 /* 페이지네이션 버튼 아이콘 */
 .ebook-banner-prev::after,
 .ebook-banner-next::after {

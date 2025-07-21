@@ -1,14 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper
-	namespace="egovframework.example.guestorder.service.impl.GuestOrderMapper">
+<mapper namespace="egovframework.example.guestorder.service.impl.GuestOrderMapper">
 
-	<select id="selectGuestOrder" parameterType="GuestOrderVO"
-		resultType="GuestOrderVO">
-		SELECT * FROM GUEST_ORDER
-		WHERE ORDER_ID = #{orderId}
-		AND ORDER_PASSWORD = #{orderPassword}
-	</select>
+  <select id="selectGuestOrder" parameterType="GuestOrderVO" resultType="GuestOrderVO">
+    SELECT * FROM GUEST_ORDER
+    WHERE ORDER_ID = #{orderId}
+    AND ORDER_PASSWORD = #{orderPassword}
+  </select>
 
+ <insert id="insertGuestOrder" parameterType="GuestOrderVO">
+  <selectKey keyProperty="gno" order="BEFORE" resultType="int">
+    SELECT GUEST_ORDER_SEQ.NEXTVAL FROM DUAL
+  </selectKey>
+  INSERT INTO GUEST_ORDER (
+    GNO, ORDER_ID, ORDER_PASSWORD, RECEIVER,
+    PRODUCT_NAME, ORDER_DATE, TOTAL_PRICE,
+    ADDRESS, PHONE, OSTATUS, PAYMENT_METHOD, MEMO
+  )
+  VALUES (
+    #{gno}, #{orderId}, #{orderPassword}, #{customerName},
+    #{productName}, SYSDATE, #{totalPrice},
+    #{address}, #{phone}, #{ostatus}, #{paymentMethod}, #{memo}
+  )
+</insert>
+
+
+
+  <update id="updateGuestOrderStatus" parameterType="GuestOrderVO">
+    UPDATE GUEST_ORDER
+    SET OSTATUS = #{ostatus}
+    WHERE ORDER_ID = #{orderId}
+  </update>
+
+  <select id="selectGuestOrdersByPhone" parameterType="String" resultType="GuestOrderVO">
+    SELECT * FROM GUEST_ORDER
+    WHERE PHONE = #{phone}
+    ORDER BY ORDER_DATE DESC
+  </select>
+  
+  <update id="updateOrderId">
+  UPDATE GUEST_ORDER
+  SET ORDER_ID = #{orderId}
+  WHERE GNO = #{gno}
+</update>
 
 </mapper>
