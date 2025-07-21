@@ -34,7 +34,7 @@
     </div>
 
     <div class="tcenter store-info">
-      <h2 class="store-title ml2">404호_NOT&FOUND점</h2>
+      <h2 class="store-title ml2">BLUEMING PAGE</h2>
       <div class="store-description">
         <p>
           <strong>위치:</strong> 부산광역시 부산진구 중앙대로 627 삼비빌딩2, 2층(범천동)<br>

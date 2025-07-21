@@ -25,7 +25,7 @@ public class HomeController {
         
       
         List<BookImgDTO> latestBookImgs = bookImgService.selectLatestBookImgList();// 메인페이지 신간 도서 4개용(승화)
-        List<BookImgDTO> novelBooksImgs = bookImgService.selectBooksByCategory("소설");// 메인페이지 랜덤 도서 4개용(승화)   	
+        List<BookImgDTO> novelBooksImgs = bookImgService.selectBooksByCategory("fiction");// 메인페이지 랜덤 도서 4개용(승화)   	
         List<BookImgDTO> flipBooksImgs = bookImgService.selectFlipBookImgList();// 메인페이지 플립 도서 4개용(승화)
         List<BookVO> bestSellers = bookService.selectBestSellerList();// 메인페이지 베스트셀러(승화)
         

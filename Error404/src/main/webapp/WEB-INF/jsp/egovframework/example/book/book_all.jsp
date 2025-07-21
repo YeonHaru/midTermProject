@@ -41,8 +41,14 @@
 	<jsp:include page="/common/header.jsp" />
 	<div class="page mt5">
 	<form id="listForm" name="listForm" method="get">
-	<!-- 컨트롤러로 보낼 페이지번호 -->
-    <input type="hidden" id="pageIndex" name="pageIndex" />
+	<!-- 컨트롤러로 보낼 페이지번호(승화 수정) -->
+     <input type="hidden" id="pageIndex" name="pageIndex" value="${param.pageIndex != null ? param.pageIndex : 1}" />
+
+    <!-- 필터(검색조건) 유지용 히든(승화 수정) -->
+    <input type="hidden" id="nat" name="nat" value="${param.nat}" />
+    <input type="hidden" id="category" name="category" value="${param.category}" />
+    <input type="hidden" id="searchKeyword" name="searchKeyword" value="${param.searchKeyword}" />
+    <input type="hidden" id="searchCondition" name="searchCondition" value="${param.searchCondition}" />
 	
 		<!-- 메뉴 시작 -->
 

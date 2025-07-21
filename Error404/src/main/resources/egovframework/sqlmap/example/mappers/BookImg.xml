@@ -11,8 +11,8 @@
 		I.UUID, I.FILE_NAME, I.DOWNLOAD_URL
 		FROM BOOKS B
 		JOIN BNO_IMG I ON B.BNO = I.BNO
-		WHERE
-		B.BNO = I.BNO
+		WHERE 1=1
+		
 		<if test="searchKeyword != null and searchKeyword != ''">
          AND (
             LOWER(B.TITLE) LIKE '%' || LOWER(#{searchKeyword}) || '%'
@@ -27,10 +27,8 @@
         AND UPPER(B.CATEGORY) = UPPER(#{category})
     </if>
 		
-		ORDER BY
-		B.BNO
-		OFFSET #{firstIndex}
-		ROWS
+		ORDER BY B.BNO
+		OFFSET #{firstIndex} ROWS
 		FETCH NEXT #{pageUnit} ROWS ONLY
 
 	</select>
@@ -38,13 +36,17 @@
 	<select id="selectBookImgListTotCnt" parameterType="Criteria" resultType="int">
 	<!-- 특정 카테고리 일단 막음 -->
 <!-- 		parameterType="String"> -->
-
-   
-		 SELECT COUNT(*)
-
+    SELECT COUNT(*)
     FROM BOOKS b
     JOIN BNO_IMG i ON b.BNO = i.BNO
     WHERE 1=1
+      <if test="searchKeyword != null and searchKeyword != ''">
+    AND (
+      LOWER(b.TITLE) LIKE '%' || LOWER(#{searchKeyword}) || '%'
+      OR LOWER(b.AUTHOR) LIKE '%' || LOWER(#{searchKeyword}) || '%'
+      OR LOWER(b.DES) LIKE '%' || LOWER(#{searchKeyword}) || '%'
+    ) 
+     </if>
     <if test="nat != null and nat != ''">
         AND UPPER(b.NAT) = UPPER(#{nat})
     </if>

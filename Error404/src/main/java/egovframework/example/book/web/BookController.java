@@ -60,17 +60,17 @@ public class BookController {
 	
 	
        // 조건에 맞는 도서 조회
-       List<?> books;
+		List<?> books = bookImgService.selectBookImgList(criteria);
        
 
-
+//		이중 조회라 일단 막음 검색은 잘됨(승화)
        // (덕규)검색어가 있는 경우: 검색 전용으로 조건문을 달아봄
-       if (criteria.getSearchKeyword() != null && !criteria.getSearchKeyword().trim().isEmpty()) {
-           books = bookImgService.selectBookImgList(criteria);
-//           나중에 수정
-       } else {  
-           books = bookImgService.selectBookImgList(criteria); // 기존 전체 조회
-       }
+//       if (criteria.getSearchKeyword() != null && !criteria.getSearchKeyword().trim().isEmpty()) {
+//           books = bookImgService.selectBookImgList(criteria);
+////           나중에 수정
+//       } else {  
+//           books = bookImgService.selectBookImgList(criteria); // 기존 전체 조회
+//       }
        // 여기까지가 조건문으로 바꾼것
 
        model.addAttribute("books", books);

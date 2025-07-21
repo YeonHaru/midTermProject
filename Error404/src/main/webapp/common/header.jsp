@@ -14,21 +14,22 @@
 	href="<c:url value='/images/favicon.png'/>">
 <!-- 상단 이벤트 배너 -->
 <nav class="navbar navbar-expand-lg custom-navbar"
-	style="background-color: var(--bg-color);">
-	<div
-		class="top-banner w-100 d-flex flex-column align-items-center py-2">
-		<div style="color: var(--text-sub); font-size: 0.8125rem;">
-			<a href="${pageContext.request.contextPath}/home.do"
-				class="d-inline-flex align-items-center"
-				style="color: var(--text-sub); text-decoration: none; font-weight: bold;">
 
-				<img src="${pageContext.request.contextPath}/images/logo_2.png"
-				alt="Blueming Page 로고"
-				style="height: 48px; width: auto; margin-right: 0.5rem; vertical-align: middle;">
-				<h2>BLUEMING PAGE</h2>
-			</a>
-		</div>
-	</div>
+     style="background-color: var(--bg-color);">
+  <div class="top-banner w-100 d-flex flex-column align-items-center py-2">
+    <div style="color: var(--text-sub); font-size: 0.8125rem;">
+      <a href="${pageContext.request.contextPath}/home.do"
+         class="d-inline-flex align-items-center"
+         style="color: var(--text-sub); text-decoration: none; font-weight: bold;">
+         
+        <img src="${pageContext.request.contextPath}/images/logo_2.png"
+             alt="Blueming Page 로고"
+             style="height: 70px; width: auto; margin-right: 0.5rem; vertical-align: middle;">
+        <h2>BLUEMING PAGE</h2>
+      </a>
+    </div>
+  </div>
+
 </nav>
 
 
@@ -140,7 +141,7 @@
 							<li><a class="dropdown-item"
 								href="/book.do?nat=for&category=poetry">시/산문</a></li>
 						</ul></li>
- 
+
 
 					<!-- 이벤트 -->
 					<li class="nav-item"><a class="nav-link" href="/eventmain.do">이벤트</a></li>
@@ -215,7 +216,7 @@ if (!hideSearch) {
 				<!-- 사용자 검색어 입력창 -->
 				<input type="search" id="searchInput" name="searchKeyword"
 					class="form-control border-0 px-3"
-					placeholder="404 NOT FOUND? WHY?" aria-label="Search" />
+					placeholder="도서 및 저자를 검색하세요" aria-label="Search" />
 
 				<!-- 드롭다운 선택용 숨겨진 검색 타입 -->
 				<input type="hidden" name="searchCondition"
