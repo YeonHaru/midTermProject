@@ -14,6 +14,8 @@ document.addEventListener("DOMContentLoaded", function () {
       prevEl: ".main-banner-prev",
     },
   });
+  
+ 
 
   // 공지사항 슬라이더
   const noticeSwiper = new Swiper(".notice-swiper", {
@@ -21,6 +23,9 @@ document.addEventListener("DOMContentLoaded", function () {
    autoplay: {
       delay: 5000,
     },
+  
+   
+    
 /*  pagination: {
     el: ".swiper-pagination",
     type: "fraction",

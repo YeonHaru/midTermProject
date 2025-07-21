@@ -333,7 +333,7 @@
 	font-weight: 600;
 	padding: 0.3rem 0.6rem;
 	border-radius: 12px;
-	color: #fff;
+	color: var(--text-sub);
 	user-select: none;
 	white-space: nowrap; /* 줄바꿈 방지 */
 	min-width: 120px; /* 최소 너비 지정 */

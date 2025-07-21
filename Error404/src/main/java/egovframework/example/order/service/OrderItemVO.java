@@ -30,6 +30,5 @@ public class OrderItemVO extends Criteria {
 
     private BookVO book;	// 북 정보 포함
     private BookImgDTO bookImg;
-    
-    
+
 }

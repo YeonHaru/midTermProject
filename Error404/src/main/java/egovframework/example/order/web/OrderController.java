@@ -63,6 +63,7 @@ public class OrderController {
 		// 총액 계산 및 주문 아이템 생성
 		List<OrderItemVO> items = new ArrayList<>();
 		int total = 0;
+		
 
 		for (int i = 0; i < bnoList.size(); i++) {
 			int bno = bnoList.get(i);
@@ -101,8 +102,10 @@ public class OrderController {
 
 		// 주문 객체에 다시 주문번호 설정
 		order.setOno(ono);
-
+		order.setOrderId("M" + ono);
+				
 		model.addAttribute("order", order);
+		model.addAttribute("totalAmount", order.getTotal());
 		return "order/submit";
 	}
 
