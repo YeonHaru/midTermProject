@@ -59,6 +59,11 @@
         <result property="title" column="book_title"/>
         <result property="dprice" column="book_dprice"/>
     </association>
+    
+    <association property="bookImg" javaType="egovframework.example.book.service.BookImgDTO">
+    <id property="bno" column="bookImg_bno"/>
+    <result property="downloadUrl" column="bookImg_imgUrl"/>
+</association>
 </resultMap>
 
 
@@ -69,12 +74,18 @@
         oi.BNO,
         oi.QTY,
         oi.PRICE,
+
         b.BNO AS book_bno,
         b.TITLE AS book_title,
-        b.DPRICE AS book_dprice
+        b.DPRICE AS book_dprice,
+
+        bi.BNO AS bookImg_bno,
+        bi.DOWNLOAD_URL AS bookImg_imgUrl
+
     FROM ORDER_ITEM_M oi
-    JOIN BOOKS b ON oi.bno = b.bno
-    WHERE oi.ono = #{ono}
+    JOIN BOOKS b ON oi.BNO = b.BNO
+    LEFT JOIN BNO_IMG bi ON b.BNO = bi.BNO
+    WHERE oi.ONO = #{ono}
 </select>
 
 </mapper>
