@@ -107,7 +107,7 @@
 						</div>
 					</div>
 					<div class="user-summary-item">
-						<span class="icon">🧭</span>
+						<span class="icon">🟢</span>
 						<div>
 							<strong>회원등급</strong>
 							<p>
@@ -213,11 +213,20 @@
 												value="${order.odate}" pattern="yyyy-MM-dd" /></span> <span
 											class="order-number">주문번호 ${order.ono}</span>
 									</div> <c:forEach var="item" items="${order.items}">
-										<div class="order-product">
-											<img src="<c:url value='/images/sample.jpg' />"
-												alt="${item.book.title}" class="order-product-img" /> <span
-												class="order-product-name">${item.book.title}</span>
-										</div>
+										<c:choose>
+											<c:when
+												test="${not empty item.bookImg and not empty item.bookImg.downloadUrl}">
+												<img src="${item.bookImg.downloadUrl}"
+													alt="${item.book.title}" class="order-product-img" />
+											</c:when>
+											<c:otherwise>
+												<img src="<c:url value='/images/sample.jpg' />" alt="기본 이미지"
+													class="order-product-img" />
+											</c:otherwise>
+										</c:choose>
+
+										<!-- 책 제목 추가 -->
+										<span class="order-product-name">${item.book.title}</span>
 
 										<div class="order-status">${order.ostatus}</div>
 
