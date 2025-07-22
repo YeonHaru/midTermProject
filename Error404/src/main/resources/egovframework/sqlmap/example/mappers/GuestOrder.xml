@@ -2,11 +2,25 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="egovframework.example.guestorder.service.impl.GuestOrderMapper">
 
+<!-- 비회원 조회 이름 안나오던거 수정 완료 7월22일 강대성 -->
   <select id="selectGuestOrder" parameterType="GuestOrderVO" resultType="GuestOrderVO">
-    SELECT * FROM GUEST_ORDER
-    WHERE ORDER_ID = #{orderId}
+  SELECT 
+    GNO,
+    ORDER_ID,
+    ORDER_PASSWORD,
+    RECEIVER AS customerName,
+    PRODUCT_NAME,
+    ORDER_DATE,
+    TOTAL_PRICE,
+    ADDRESS,
+    PHONE,
+    OSTATUS,
+    PAYMENT_METHOD,
+    MEMO
+  FROM GUEST_ORDER
+  WHERE ORDER_ID = #{orderId}
     AND ORDER_PASSWORD = #{orderPassword}
-  </select>
+</select>
 
  <insert id="insertGuestOrder" parameterType="GuestOrderVO">
   <selectKey keyProperty="gno" order="BEFORE" resultType="int">
