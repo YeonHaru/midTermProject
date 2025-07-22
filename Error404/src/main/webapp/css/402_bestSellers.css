@@ -55,6 +55,14 @@
   transition: color 0.3s ease;     /* 색 변화 부드럽게 */
 }
 
+.best-flags {
+  white-space: nowrap;
+  margin-left: 0.5rem;
+  display: flex;
+  gap: 0.25rem;
+  align-items: center;
+}
+
 .best-title a:hover {
   color: var(--accent-color-1);   /* 호버 시 강조 색상으로 변경 */
   text-decoration: underline;      /* 호버시 밑줄 표시 */

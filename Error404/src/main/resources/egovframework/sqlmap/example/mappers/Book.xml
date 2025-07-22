@@ -68,15 +68,15 @@
     FETCH FIRST 4 ROWS ONLY
    </select>
    
-   <!-- 메인페이지 랜덤 도서 4개용(승화) -->
-<select id="selectRandomBooks" resultType="BookVO">
+   <!-- 메인페이지 랜덤 도서 4개용(승화) 카테고리 소설로 변경 -->
+<!-- <select id="selectRandomBooks" resultType="BookVO">
   SELECT *
   FROM (
     SELECT * FROM BOOKS
     ORDER BY DBMS_RANDOM.VALUE
   )
   WHERE ROWNUM &lt;= 4
-</select>
+</select> -->
 
 <!-- 페이징 -->
 		<!-- id="메소드명", parameterType="매개변수자료형", resultType="리턴자료형" -->
