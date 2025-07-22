@@ -70,7 +70,7 @@
   </select> 
 
   <!-- 소설 도서 이미지 리스트 (랜덤 4개) -->
-  <select id="selectBooksByCategory" parameterType="string" resultType="egovframework.example.book.service.BookImgDTO">
+  <select id="selectBooksByCategory" parameterType="string" resultType="BookImgDTO">
     SELECT 
     B.BNO,
     B.TITLE,
@@ -113,7 +113,7 @@
     SELECT
         B.BNO, B.TITLE, B.AUTHOR, B.PUBLISHER, B.PDATE AS PUBDATE,
         B.FPRICE, B.DPRICE, B.STOCK, B.DES, B.ORDER_COUNT,
-        I.UUID, I.FILE_NAME, I.FILE_DATA, I.DOWNLOAD_URL
+        I.UUID, I.FILE_NAME, I.DOWNLOAD_URL
     FROM BOOKS B
     LEFT JOIN BNO_IMG I ON B.BNO = I.BNO
     WHERE B.BNO = #{bno}
