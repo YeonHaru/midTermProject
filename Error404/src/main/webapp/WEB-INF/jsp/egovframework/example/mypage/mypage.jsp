@@ -237,8 +237,9 @@
 										</div>
 
 										<div class="order-actions">
-											<a href="#" class="btn btn-small btn-primary">상세</a> <a
-												href="#" class="btn btn-small btn-secondary cancel-btn">취소</a>
+											<a href="<c:url value='/book/detail.do?bno=${item.book.bno}'/>"
+											   class="btn btn-small btn-primary" target="_blank" >상세</a> 
+											<a href="#" class="btn btn-small btn-secondary cancel-btn">취소</a>
 										</div>
 									</c:forEach>
 								</li>
