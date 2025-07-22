@@ -60,11 +60,10 @@
         <result property="dprice" column="book_dprice"/>
     </association>
     
-    
-        <association property="bookImg" javaType="egovframework.example.book.service.BookImgDTO">
+    <association property="bookImg" javaType="egovframework.example.book.service.BookImgDTO">
     <id property="bno" column="bookImg_bno"/>
     <result property="downloadUrl" column="bookImg_imgUrl"/>
-</association>  
+    </association>  
     
 </resultMap>
 
