@@ -54,4 +54,6 @@ public interface UsersService {
 	 int updateUserInfo(UsersVO user);  // 유저 회원정보 수정 반영
 	 
 	 UsersVO getUserById(String userid);
+	 
+	 int updatePasswordWithFlag(UsersVO user);  // 암호화 비번, 임시비번 플레그 업뎃
 }
