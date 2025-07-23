@@ -52,7 +52,7 @@
     <property name="host" value="smtp.naver.com" />
     <property name="port" value="587" />
     <property name="username" value="rkdeotjdak@naver.com" />
-    <property name="password" value="QVQD9633PR61" />
+    <property name="password" value="임시비밀번호삭제함" />
     <property name="javaMailProperties">
     <props>
         <prop key="mail.smtp.auth">true</prop>
