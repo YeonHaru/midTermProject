@@ -47,12 +47,15 @@
 	
 	<bean id="antPathMater" class="org.springframework.util.AntPathMatcher" />
 	<bean id="defaultTraceHandler" class="org.egovframe.rte.fdl.cmmn.trace.handler.DefaultTraceHandler" />
+
 	
 	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
     <property name="host" value="smtp.naver.com" />
     <property name="port" value="587" />
     <property name="username" value="rkdeotjdak@naver.com" />
+
     <property name="password" value="임시비밀번호삭제함" />
+
     <property name="javaMailProperties">
     <props>
         <prop key="mail.smtp.auth">true</prop>
@@ -66,6 +69,6 @@
     </props>
 </property>
 </bean>
-	
+
 	 
 </beans>
