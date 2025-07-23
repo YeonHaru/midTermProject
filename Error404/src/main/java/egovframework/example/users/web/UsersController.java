@@ -6,6 +6,7 @@ package egovframework.example.users.web;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
+import java.util.UUID;
 
 import javax.servlet.http.HttpSession;
 
@@ -21,8 +22,10 @@ import org.springframework.web.multipart.MultipartFile;
 
 import egovframework.example.order.service.OrderService;
 import egovframework.example.order.service.OrderVO;
+import egovframework.example.users.service.EmailService;
 import egovframework.example.users.service.UsersService;
 import egovframework.example.users.service.UsersVO;
+import egovframework.example.users.service.impl.UsersMapper;
 import egovframework.example.wishlist.service.WishlistService;
 import lombok.extern.log4j.Log4j2;
 
@@ -42,6 +45,10 @@ public class UsersController {
 	private WishlistService wishlistService;  // 위시리스트 불러오기
 	@Autowired
 	private BCryptPasswordEncoder passwordEncoder;  // 비밀번호 해시화
+	@Autowired
+	private EmailService emailService;
+	@Autowired
+	private UsersMapper usersMapper;
 
 //	회원가입 페이지 열기(주소정하기, 추가페이지 우리 몇개까지?)
 	@GetMapping("/join.do")
@@ -154,15 +161,27 @@ public class UsersController {
 	}
 	// 비밀번호 찾기 처리 (추가)
 	@PostMapping("/findPw.do")
-	public String sendTempPassword(String userid, String email, Model model) {
-	    String resultMessage;
+	public String sendTemporaryPassword(String userid, String email, Model model) {
 	    try {
-	        resultMessage = usersService.sendTemporaryPassword(userid, email);
+	        UsersVO user = usersMapper.selectUserById(userid);
+	        if(user == null || !user.getEmail().equals(email)) {
+	            model.addAttribute("result", "아이디 또는 이메일이 올바르지 않습니다.");
+	            return "auth/findPw";
+	        }
+
+	        String tempPassword = UUID.randomUUID().toString().substring(0, 8);
+	        String encodedTempPw = passwordEncoder.encode(tempPassword);
+
+	        user.setPassword(encodedTempPw);
+	        user.setTempPwYn("Y");
+	        usersMapper.updatePasswordWithFlag(user);
+
+	        emailService.sendTempPassword(email, tempPassword);
+	        model.addAttribute("result", "임시 비밀번호가 이메일로 전송되었습니다.");
 	    } catch (Exception e) {
-	        log.error("임시 비밀번호 발송 중 오류 발생", e);
-	        resultMessage = "임시 비밀번호 발송 중 오류가 발생했습니다. 다시 시도해주세요.";
+	        e.printStackTrace();
+	        model.addAttribute("result", "임시 비밀번호 발송에 실패했습니다. 다시 시도해주세요.");
 	    }
-	    model.addAttribute("result", resultMessage);
 	    return "auth/findPw";
 	}
 	

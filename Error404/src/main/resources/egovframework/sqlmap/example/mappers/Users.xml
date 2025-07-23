@@ -6,7 +6,8 @@
 	<select id="selectUsersList" parameterType="Criteria"
 		resultType="UsersVO">
 		SELECT * FROM USERS
-		WHERE NAME LIKE '%' || #{searchKeyword} || '%'
+		WHERE NAME LIKE '%' || #{searchKeyword}
+		|| '%'
 		OFFSET #{firstIndex} ROWS
 		FETCH NEXT #{pageUnit} ROWS ONLY
 	</select>
@@ -56,13 +57,15 @@
 		TOTAL_PURCHASE,
 		PROFILE_IMAGE_PATH
 		FROM USERS
-		WHERE USERID = #{userid}
+		WHERE USERID =
+		#{userid}
 	</select>
 
 	<select id="findUserId" resultType="String">
 		SELECT userid
 		FROM USERS
-		WHERE name = #{name} AND email = #{email}
+		WHERE
+		name = #{name} AND email = #{email}
 	</select>
 
 	<select id="findPassword" resultType="String">
@@ -74,18 +77,22 @@
 	<update id="updatePassword">
 		UPDATE USERS
 		SET PASSWORD = #{password},
-		TEMP_PW_YN = 'Y'
+		TEMP_PW_YN =
+		'Y'
 		WHERE USERID = #{userid}
 	</update>
 
 	<insert id="insertUser" parameterType="UsersVO">
 		INSERT INTO USERS (
 		USERID, PASSWORD, NAME, EMAIL, PHONE, JOIN_DATE, ROLE,
-		GENDER, BIRTHDATE, ADDRESS, POINT, PROMO_AGREE, POST_NOTIFY_AGREE, GRADE
+		GENDER,
+		BIRTHDATE, ADDRESS, POINT, PROMO_AGREE, POST_NOTIFY_AGREE, GRADE
 		)
 		VALUES (
-		#{userid}, #{password}, #{name}, #{email}, #{phone}, #{join_date}, #{role},
-		#{gender}, #{birthdate}, #{address}, #{point}, #{promoAgree},
+		#{userid}, #{password}, #{name}, #{email}, #{phone},
+		#{join_date}, #{role},
+		#{gender}, #{birthdate}, #{address}, #{point},
+		#{promoAgree},
 		#{postNotifyAgree}, #{grade}
 		)
 	</insert>
@@ -93,7 +100,8 @@
 	<update id="updatePasswordPermanent">
 		UPDATE USERS
 		SET PASSWORD = #{password},
-		TEMP_PW_YN = 'N'
+		TEMP_PW_YN =
+		'N'
 		WHERE USERID = #{userid}
 	</update>
 
@@ -109,7 +117,8 @@
 	<!-- 최근 본 상품 업데이트 -->
 	<update id="updateRecentBooks" parameterType="map">
 		UPDATE users
-		SET recent_books = #{recent_books}
+		SET
+		recent_books = #{recent_books}
 		WHERE userid = #{userid}
 	</update>
 
@@ -123,7 +132,8 @@
 
 	<update id="updateProfileImage" parameterType="map">
 		UPDATE USERS
-		SET PROFILE_IMAGE_PATH = #{profileImagePath}
+		SET
+		PROFILE_IMAGE_PATH = #{profileImagePath}
 		WHERE USERID = #{userid}
 	</update>
 
@@ -133,6 +143,14 @@
 		BIRTHDATE = #{birthdate},
 		PHONE = #{phone},
 		ADDRESS = #{address}
+		WHERE
+		USERID = #{userid}
+	</update>
+
+	<update id="updatePasswordWithFlag" parameterType="UsersVO">
+		UPDATE USERS
+		SET PASSWORD = #{password},
+		TEMP_PW_YN = #{tempPwYn}
 		WHERE USERID = #{userid}
 	</update>
 

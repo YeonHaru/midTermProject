@@ -36,6 +36,12 @@ public class UsersServiceImpl implements UsersService {
 	private PurchaseMapper purchaseMapper;
 	@Autowired
 	private BookMapper bookMapper;
+	@Override
+	public int updatePasswordWithFlag(UsersVO user) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 	@Autowired
 	private BookService bookService;
 	@Autowired
@@ -79,17 +85,31 @@ public class UsersServiceImpl implements UsersService {
 //		유저가 메일을 받고 임시비번으로 로긴 후 비번 변경시 다시 db에 저장
 	@Override
 	public String sendTemporaryPassword(String userid, String email) {
-	    String found = usersMapper.findPassword(userid, email);
-	    if (found == null) {
+		// 1. userid에 해당하는 사용자 정보 가져오기
+	    UsersVO user = usersMapper.selectUserById(userid);
+
+	    if (user == null || !email.equals(user.getEmail())) {
 	        return "입력한 정보와 일치하는 계정이 없습니다.";
 	    }
 
+	    // 2. 임시 비밀번호 생성 및 암호화
 	    String tempPassword = generateTempPassword();
 	    String encodedTempPw = passwordEncoder.encode(tempPassword);
 
-	    usersMapper.updatePassword(userid, encodedTempPw);  // DB 저장은 암호화된 비밀번호로
+	    // 3. DB에 임시 비밀번호와 임시비밀번호 플래그(Y) 업데이트
+	    user.setPassword(encodedTempPw);
+	    user.setTempPwYn("Y");
+	    usersMapper.updatePasswordWithFlag(user);
 
-	    return "임시 비밀번호: " + tempPassword; // 이메일 전송 or 안내
+	    // 4. 이메일 발송
+	    try {
+	        emailService.sendTempPassword(email, tempPassword);
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	        return "임시 비밀번호 발송에 실패했습니다. 다시 시도해주세요.";
+	    }
+
+	    return "입력하신 이메일로 임시 비밀번호를 발송했습니다.";
 	}
 
 //	임시 비번을 생성하는 메소드
