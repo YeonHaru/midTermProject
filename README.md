@@ -38,7 +38,6 @@ BLUEMING PAGE는 **JSP, Spring, Oracle Database**를 활용하여 구현한 **�
 | **Frontend** | HTML, CSS, JavaScript, JSP |
 | **Backend**  | Java, Spring Framework |
 | **Database** | Oracle Database, ERD 설계 |
-| **API**      | 네이버 도서 API 연동 |
 | **VCS**      | Git, GitHub |
 
 
