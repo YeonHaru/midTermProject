@@ -1,9 +1,11 @@
 # midTermProject
 BLUEMING PAGE – 온라인 서점 프로젝트
+
 프로젝트 개요
-BLUEMING PAGE는 JSP, Spring, Oracle Database를 활용하여 구현한 **반응형 온라인 서점 웹 애플리케이션**입니다.  
-도서 검색·구매부터 장바구니, 주문/환불까지 온라인 서점의 핵심 기능을 구현하였으며,  
-외부 API 연동 및 사용자 친화적인 UI/UX를 반영하였습니다.
+BLUEMING PAGE는 JSP, Spring, Oracle Database를 활용하여 
+구현한 **반응형 온라인 서점 웹 애플리케이션**입니다.  
+도서 검색·구매부터 장바구니, 주문/환불까지 온라인 서점의 핵심 기능을
+구현하였으며, 외부 API 연동 및 사용자 친화적인 UI/UX를 반영하였습니다.
 
 기획 의도
 1. **실무형 기술 스택** (JSP, Spring, Oracle)으로 실제 서비스 흐름을 구현
@@ -27,14 +29,11 @@ BLUEMING PAGE는 JSP, Spring, Oracle Database를 활용하여 구현한 **반응
 - **외부 API**
   - 네이버 도서 API 연동
  
-    향후 개선 사항
-1. 관리자 페이지 구현
-2. 홈 화면 도서 정보 로직 개선
-3. 비회원 장바구니 기능 추가
-4. 작가 정보 연동
-5. 베스트셀러 전체 조회 로직
-6. 외부 API 기반 소셜 로그인
-7. 사용자 정보 암호화 및 메일 발송 로직 개선
-8. 회원 등급제 고도화
-9. 검색 엔진 고도화
-10. 도서 등록 기능 구현
+기술 스택
+HTML / CSS / JavaScript (JS) / JSP
+Java /Spring Framework / Oracle Database / Git / GitHub
+ERD 설계 / API 연동 / 네이버 도서 API / Version Control
+
+팀원 구성
+총 5인 참여
+기획, 백엔드, 프론트엔드, DB 설계 등 역할을 분담하여 협업
